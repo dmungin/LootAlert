@@ -59,8 +59,7 @@ function core:Print(...)
     DEFAULT_CHAT_FRAME:AddMessage(string.join(" ", prefix, ...));
 end
 
-function core:init (event, name)
-    if(name ~= "LootAlert") then return end
+function core:init ()
 
     for i = 1, NUM_CHAT_WINDOWS do
         _G["ChatFrame"..i.."EditBox"]:SetAltArrowKeyMode(false)
@@ -84,10 +83,63 @@ end
 
 local events = CreateFrame("Frame");
 events:RegisterEvent("ADDON_LOADED");
-events:SetScript("OnEvent", core.init);
+events:RegisterEvent("CHAT_MSG_LOOT");
+-- events:RegisterEvent("PLAYER_ENTERING_WORLD")
+-- events:RegisterEvent("PLAYER_LOGOUT")
+-- events:RegisterEvent("CHAT_MSG_ADDON")
+-- events:RegisterEvent("ZONE_CHANGED")
+-- events:RegisterEvent("GROUP_ROSTER_UPDATE")
+-- events:RegisterEvent("UNIT_FLAGS")
+-- events:RegisterEvent("UNIT_TARGET")
+-- events:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 
+-- events:SetScript("OnEvent", core.init);
 
+events:SetScript("OnEvent", function(self, event, ...)
+    -- core:Print("OnEvent self: " .. tostringall(self));
+    if type(self[event]) == "function" then
+        return self[event](self, ...)
+    end
+end)
 
-------------------------------------------------
+function events:ADDON_LOADED (...)
+    local name = ...;
+    if(name ~= "LootAlert") then return end
+    core:Print("ADDON_LOADED name: " .. name);
+    core:init();
+end
+function events:CHAT_MSG_LOOT (...)
+    local msg = ...;
+    local itemID = msg:match("item:(%d+):")
+    local _, itemLink, itemQuality = GetItemInfo(itemID);
 
+	if itemID and itemLink then
+        core:Print("Item Link: " .. itemLink);
+        core:Print("Item ID: " ..itemID);
+        -- Add to table of looted items
+        -- Call function to update looted items list frame
+	else
+		core:Print("did not find item ID or info??");
+	end
+end
 
+-- ideas 
+    -- ability to hide items looted that are not on wanted list
+    -- ability to sort items by those on the wantd list
+
+-- function to update looted items list frame
+    -- add item to list of items
+    -- call function to check if item is in players wanted list
+        -- if this function returns true highlight the item in the list somehow
+
+-- function to check players wanted list
+-- compare looted items with player list
+    -- if found trigger some sort of sound, return true so calling function
+    -- can know result
+
+-- event handler to check when RW message contains item
+-- call function to show frame that allows user to
+    -- link currently equipped item for that slot, roll ms, os, or pass
+
+-- create tab in config to allow pasting imported list from tmb
+-- Allow manually adding items by: id or name (is that hard?)

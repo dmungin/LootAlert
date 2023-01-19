@@ -2,8 +2,7 @@
 ## Notes: Notify when wishlist loot drops and assist in rolling
 ## Author: Klen
 ## Version: 0.1
-## Interface: 30400
-## X-Interface: 30400
+## Interface: 30401
 ## DefaultState: enabled
 ## SavedVariables: LootAlertDB
 

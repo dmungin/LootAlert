@@ -1,5 +1,7 @@
 local _, core = ...;
-core.Config = {};
+core.Config = {
+    ["Quality"] = 0,
+};
 
 local Config = core.Config;
 local UIConfig;
@@ -34,6 +36,17 @@ function Config:CreateButton(point, relativeFrame, relativePoint, yOffset, text)
     return btn;
 end
 
+local checkButtonCounter = 1;
+function Config:CreateCheckButton(point, relativeFrame, relativePoint, xOffset, yOffset, text)
+    
+    checkButtonCounter = checkButtonCounter + 1;
+    local btn = CreateFrame("CheckButton", "la_checkBtn1" .. checkButtonCounter, UIConfig, "UICheckButtonTemplate");
+    btn:SetPoint(point, relativeFrame, relativePoint, xOffset, yOffset);
+    getglobal(btn:GetName() .. 'Text'):SetText(text);
+
+	return btn;
+end
+
 function Config:CreateMenu()
     UIConfig = CreateFrame("Frame", "LA_LootFrame", UIParent, "BasicFrameTemplateWithInset");
     UIConfig:SetSize(300, 360);
@@ -54,11 +67,21 @@ function Config:CreateMenu()
     UIConfig.slider1:SetValueStep(30);
     UIConfig.slider1:SetObeyStepOnDrag(true);
 
-    UIConfig.checkBtn1 = CreateFrame("CheckButton", nil, UIConfig, "UICheckButtonTemplate");
-    UIConfig.checkBtn1:SetPoint("TOPLEFT", UIConfig.slider1, "BOTTOMLEFT", -10, -40);
-    UIConfig.checkBtn1.text:SetText("My Check Button 1");
-    UIConfig.checkBtn1:SetChecked(true);
+    UIConfig.slider2 = CreateFrame("Slider", nil, UIConfig, "OptionsSliderTemplate");
+    UIConfig.slider2:SetPoint("TOP", UIConfig.slider1, "BOTTOM", 0, -20);
+    UIConfig.slider2:SetMinMaxValues(1, 100);
+    UIConfig.slider2:SetValue(50);
+    UIConfig.slider2:SetValueStep(30);
+    UIConfig.slider2:SetObeyStepOnDrag(true);
+
+    UIConfig.checkBtn1 = Config:CreateCheckButton("TOPLEFT", UIConfig.slider2, "BOTTOMLEFT", -5, -20, "My Check Button One1");
+    UIConfig.checkBtn1:SetChecked(false);
+    UIConfig.checkBtn2 = Config:CreateCheckButton("TOPLEFT", UIConfig.checkBtn1, "BOTTOMLEFT", 0, -5, "My Check Button Two1");
+    UIConfig.checkBtn2:SetChecked(false);
+
+    
     UIConfig:Hide();
 
     return UIConfig;
 end
+
