@@ -76,6 +76,18 @@ function core:init ()
 
     SLASH_LootAlert1 = "/la";
     SlashCmdList.LootAlert = HandleSlashCommands;
+--[[
+    if LootAlertDB == nil then
+        LootAlertDB = {};
+    end
+    if LootAlertCharDB == nil then
+        LootAlertCharDB = {
+            ["LootHistory"]: {},
+            ["LootWishList"]: {},
+        };
+      end
+]]
+
 
     core:Print("Welcome back", UnitName("player").. "!");
 
@@ -84,16 +96,6 @@ end
 local events = CreateFrame("Frame");
 events:RegisterEvent("ADDON_LOADED");
 events:RegisterEvent("CHAT_MSG_LOOT");
--- events:RegisterEvent("PLAYER_ENTERING_WORLD")
--- events:RegisterEvent("PLAYER_LOGOUT")
--- events:RegisterEvent("CHAT_MSG_ADDON")
--- events:RegisterEvent("ZONE_CHANGED")
--- events:RegisterEvent("GROUP_ROSTER_UPDATE")
--- events:RegisterEvent("UNIT_FLAGS")
--- events:RegisterEvent("UNIT_TARGET")
--- events:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-
--- events:SetScript("OnEvent", core.init);
 
 events:SetScript("OnEvent", function(self, event, ...)
     -- core:Print("OnEvent self: " .. tostringall(self));
@@ -116,6 +118,7 @@ function events:CHAT_MSG_LOOT (...)
 	if itemID and itemLink then
         core:Print("Item Link: " .. itemLink);
         core:Print("Item ID: " ..itemID);
+        core.LootHistory:AddLoot(itemID);
         -- Add to table of looted items
         -- Call function to update looted items list frame
 	else

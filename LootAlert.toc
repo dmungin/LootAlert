@@ -4,7 +4,8 @@
 ## Version: 0.1
 ## Interface: 30401
 ## DefaultState: enabled
-## SavedVariables: LootAlertDB
 
+util.lua
 config.lua
+lootHistory.lua
 init.lua
