@@ -5,7 +5,16 @@ local defaults = {
 	profile = {
 		message = "Welcome Home!",
 		showOnScreen = true,
+        lootThreshold = "0",
 	},
+    char = {
+        lootHistory = {},
+        lootHistoryLength = 1,
+        LootHistoryLocation = {
+            ["x"] = 30,
+            ["y"] = -30,
+        },
+    },
 };
 local options = {
     name = "LootAlert",
@@ -27,10 +36,26 @@ local options = {
 			get = "IsShowOnScreen",
 			set = "ToggleShowOnScreen"
 		},
+        lootThreshold = {
+            type = "select",
+            name = "Loot Quality Threshold",
+            desc = "Limit the loot tracked by the addon to above a certain quality threshold",
+            set = "SetLootThreshold",
+            get = "GetLootThreshold",
+            values = {
+                ["0"] = ITEM_QUALITY_COLORS[0].hex.."Poor|r",
+                ["1"] = ITEM_QUALITY_COLORS[1].hex.."Common|r",
+                ["2"] = ITEM_QUALITY_COLORS[2].hex.."Uncommon|r",
+                ["3"] = ITEM_QUALITY_COLORS[3].hex.."Rare|r",
+                ["4"] = ITEM_QUALITY_COLORS[4].hex.."Epic|r",
+            },
+            sorting = {"0", "1", "2", "3", "4"},
+        }
     },
 };
 
 local LootHistoryFrame;
+local LootHistoryScrollFrame;
 
 function LootAlert:OnInitialize()
     LootAlert:Print("Loot Alert Initialized!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -45,37 +70,76 @@ function LootAlert:OnInitialize()
 	self:RegisterChatCommand("la", "SlashCommand");
 	self:RegisterChatCommand("lootalert", "SlashCommand");
     LootAlert:RegisterEvent("CHAT_MSG_LOOT");
-
-    
 end;
 
 function LootAlert:CreateLootHistory ()
     LootHistoryFrame = AceGUI:Create("Frame");
     LootHistoryFrame:SetTitle("Loot History")
     LootHistoryFrame:SetStatusText("Loot Alet History Frame")
-    LootHistoryFrame:SetWidth(300);
+    LootHistoryFrame:SetLayout("Fill");
+    --local frameX = LootAlert.db.char.lootHistoryLocation["x"];
+    --local framey = LootAlert.db.char.lootHistoryLocation["y"];
+    LootHistoryFrame:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 30, -30);
+    LootHistoryFrame:SetWidth(350);
     LootHistoryFrame:SetHeight(400)
-    LootHistoryFrame:SetCallback("OnClose", function(widget) AceGUI:Release(widget) end)
-    -- LootHistoryFrame:Hide();
+    LootHistoryFrame:SetCallback("OnClose", function(widget)
+        LootAlert:ClearLootHistory();
+        widget:ReleaseChildren();
+        AceGUI:Release(widget);
+        LootHistoryScrollFrame = false;
+    end);
 
-    return LootHistoryFrame;
+
+    local scrollContainer = AceGUI:Create("SimpleGroup");
+    scrollContainer:SetFullWidth(true);
+    scrollContainer:SetFullHeight(true);
+    scrollContainer:SetLayout("Fill");
+
+    LootHistoryFrame:AddChild(scrollContainer)
+
+    LootHistoryScrollFrame = AceGUI:Create("ScrollFrame")
+    LootHistoryScrollFrame:SetLayout("Flow");
+    scrollContainer:AddChild(LootHistoryScrollFrame);
+
+
+
+    LootAlert:RenderLootHistory();
+    return LootHistoryScrollFrame;
 end
-
+function LootAlert:RenderLootHistory () 
+    for index,lootId in ipairs(LootAlert.db.char.lootHistory) do
+        LootAlert:AddLoot(lootId);
+    end
+end
+function LootAlert:ClearLootHistory ()
+    LootAlert.db.char.lootHistoryLength = 0;
+    LootAlert.db.char.lootHistory = {};
+    LootHistoryScrollFrame:ReleaseChildren();
+    LootAlert:RenderLootHistory();
+end
 function LootAlert:AddLoot (newLootId)
-    local lootHistoryWindow = LootHistoryFrame or LootAlert:CreateLootHistory();
+    local lootHistoryWindow = LootHistoryScrollFrame or LootAlert:CreateLootHistory();
     -- lootHistoryWindow.SetShown(true);
     local itemName, itemLink, _, _, _, _, _, _, _, itemTexture = GetItemInfo(newLootId);
     local item = AceGUI:Create("InteractiveLabel")
 
     item:SetText(itemLink);
     item:SetImage(itemTexture);
-    item:SetWidth(300);
-    --item:SetHyperlinksEnabled(true);
-    --item:SetScript("OnHyperlinkClick", ChatFrame_OnHyperlinkShow);
-    lootHistoryWindow:AddChild(item);
-    --local line = lootLink:CreateFontString(nil, "OVERLAY", "GameFontHighlight");
-   -- line:SetPoint("CENTER", 0, 0);
-    --line:SetText(itemLink);
+    item:SetFullWidth(true);
+    item:SetCallback("OnEnter", function(widget)
+        GameTooltip:SetOwner(widget.label, "ANCHOR_BOTTOMRIGHT");
+		GameTooltip:SetHyperlink(itemLink);
+		GameTooltip:Show();
+    end);
+    item:SetCallback("OnLeave", function(widget)
+        GameTooltip:Hide();
+    end);
+    if lootHistoryWindow.children[1] then
+        lootHistoryWindow:AddChild(item, lootHistoryWindow.children[1]);
+    else
+        lootHistoryWindow:AddChild(item);
+    end
+   
     -- table.insert(LootAlertCharDB.LootHistory, newLootId);
     -- local isInWishList = LootHistory.CheckLootWishList(newLootId);
 
@@ -109,6 +173,14 @@ function LootAlert:SlashCommand(msg)
 	end
 end
 
+function LootAlert:GetLootThreshold(info)
+    return self.db.profile.lootThreshold;
+end
+
+function LootAlert:SetLootThreshold(info, value)
+    self.db.profile.lootThreshold = value;
+end
+
 function LootAlert:GetMessage(info)
     return self.db.profile.message;
 end
@@ -134,24 +206,19 @@ function LootAlert:OnDisable()
 end
 
 function LootAlert:CHAT_MSG_LOOT(eventName, ...)
---[[     if self.db.profile.showOnScreen then
-        UIErrorsFrame:AddMessage(self.db.profile.message, 1, 1, 1);
-    else
-        self:Print(wself.db.profile.message);
-    end ]]
-    
     local msg = ...;
     local itemID = msg:match("item:(%d+):")
     local _, itemLink, itemQuality = GetItemInfo(itemID);
-
-    if itemID and itemLink then
-        LootAlert:Print("ITEM ID found " .. itemID);
-        UIErrorsFrame:AddMessage(itemLink, 1, 1, 1);
+    local threshold = tonumber(LootAlert.db.profile.lootThreshold);
+    if itemID and itemLink and itemQuality >= threshold then
+        --UIErrorsFrame:AddMessage(itemLink, 1, 1, 1);
+    
         LootAlert:AddLoot(itemID);
-        -- core.LootHistory:AddLoot(itemID);
+        table.insert(LootAlert.db.char.lootHistory, 1, itemID);
+        LootAlert.db.char.lootHistoryLength = LootAlert.db.char.lootHistoryLength + 1;
         -- Add to table of looted items
         -- Call function to update looted items list frame
     else
-        LootAlert:Print("did not find item ID or info??");
+        LootAlert:Print("Did not find item ID or Item Quality is too Low??");
     end
 end
