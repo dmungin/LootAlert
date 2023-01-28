@@ -53,11 +53,6 @@ local function HandleSlashCommands (str)
 
 end
 
-function core:Print(...)
-    local hex = select(4, self.Config:GetThemeColor());
-    local prefix = string.format("|cff%s%s|r", hex:upper(), "Loot Alert");
-    DEFAULT_CHAT_FRAME:AddMessage(string.join(" ", prefix, ...));
-end
 
 function core:init ()
 
@@ -76,53 +71,15 @@ function core:init ()
 
     SLASH_LootAlert1 = "/la";
     SlashCmdList.LootAlert = HandleSlashCommands;
---[[
-    if LootAlertDB == nil then
-        LootAlertDB = {};
-    end
-    if LootAlertCharDB == nil then
-        LootAlertCharDB = {
-            ["LootHistory"]: {},
-            ["LootWishList"]: {},
-        };
-      end
-]]
+
 
 
     core:Print("Welcome back", UnitName("player").. "!");
 
 end
 
-local events = CreateFrame("Frame");
-events:RegisterEvent("ADDON_LOADED");
-events:RegisterEvent("CHAT_MSG_LOOT");
 
-events:SetScript("OnEvent", function(self, event, ...)
-    -- core:Print("OnEvent self: " .. tostringall(self));
-    if type(self[event]) == "function" then
-        return self[event](self, ...)
-    end
-end)
 
-function events:ADDON_LOADED (...)
-    local name = ...;
-    if(name ~= "LootAlert") then return end
-    core:Print("ADDON_LOADED name: " .. name);
-    core:init();
-end
-function events:CHAT_MSG_LOOT (...)
-    local msg = ...;
-    local itemID = msg:match("item:(%d+):")
-    local _, itemLink, itemQuality = GetItemInfo(itemID);
-
-	if itemID and itemLink then
-        core.LootHistory:AddLoot(itemID);
-        -- Add to table of looted items
-        -- Call function to update looted items list frame
-	else
-		core:Print("did not find item ID or info??");
-	end
-end
 
 -- ideas 
     -- ability to hide items looted that are not on wanted list
