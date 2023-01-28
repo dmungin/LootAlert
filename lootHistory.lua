@@ -4,6 +4,7 @@ core.LootHistory = {};
 
 local LootHistory = core.LootHistory;
 local UILootHistory;
+local lootCount = 0;
 
 function LootHistory:CreateLootHistory ()
     UILootHistory = CreateFrame("Frame", "LA_LootHistoryFrame", UIParent, "BasicFrameTemplateWithInset");
@@ -19,19 +20,18 @@ function LootHistory:CreateLootHistory ()
 end
 
 function LootHistory:AddLoot (newLootId)
-    core:Print("Item ID from AddLoot: ");
-    core:Print("Item ID from AddLoot: " ..newLootId);
     local lootHistoryWindow = UILootHistory or LootHistory:CreateLootHistory();
     -- table.insert(LootAlertCharDB.LootHistory, newLootId);
     -- local isInWishList = LootHistory.CheckLootWishList(newLootId);
 
     local lootLink = CreateFrame("Frame", "LA_LootLink" .. newLootId, UILootHistory, "BasicFrameTemplate");
-    lootLink:SetPoint("CENTER", 0, 0);
-    lootLink:SetSize(500, 500);
+    lootLink:SetPoint("TOP", 0, -20 - (80 * lootCount));
+    lootLink:SetSize(300, 80);
     lootLink:EnableMouse(true);
     lootLink:SetHyperlinksEnabled(true);
     lootLink:SetScript("OnHyperlinkClick", ChatFrame_OnHyperlinkShow);
     
+    lootCount = lootCount + 1;
     local _, itemLink = GetItemInfo(newLootId);
     
     local line = lootLink:CreateFontString(nil, "OVERLAY", "GameFontHighlight");

@@ -116,8 +116,6 @@ function events:CHAT_MSG_LOOT (...)
     local _, itemLink, itemQuality = GetItemInfo(itemID);
 
 	if itemID and itemLink then
-        core:Print("Item Link: " .. itemLink);
-        core:Print("Item ID: " ..itemID);
         core.LootHistory:AddLoot(itemID);
         -- Add to table of looted items
         -- Call function to update looted items list frame
