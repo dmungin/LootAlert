@@ -8,10 +8,12 @@ local defaults = {
     char = {
         lootHistory = {},
         lootHistoryLength = 1,
-        LootHistoryLocation = {
+        lootHistoryLocation = {
             left = false,
             top = false,
         },
+        activeTab = 'lootHistory',
+        lootWishlist = {},
     },
 };
 local options = {
@@ -37,7 +39,9 @@ local options = {
     },
 };
 
-local LootAlertFrame;
+LootAlert.state = {
+    tabFrame = nil,
+};
 
 function LootAlert:OnInitialize()
     LootAlert:Print("Loot Alert Initialized!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -56,27 +60,27 @@ function LootAlert:OnInitialize()
 end;
 
 function LootAlert:RenderLootAlert ()
-    LootAlertFrame = AceGUI:Create("Frame");
-    LootAlertFrame:SetTitle("Loot Alert")
-    LootAlertFrame:SetStatusText("Loot History")
-    LootAlertFrame:SetLayout("Fill");
-    LootAlertFrame:SetWidth(350);
-    LootAlertFrame:SetHeight(400);
+    local lootAlertFrame = AceGUI:Create("Frame");
+    lootAlertFrame:SetTitle("Loot Alert");
+    -- lootAlertFrame:SetStatusText("");
+    lootAlertFrame:SetLayout("Fill");
+    lootAlertFrame:SetWidth(350);
+    lootAlertFrame:SetHeight(400);
     -- Set frame location to saved coords, or center if none are saved
-    local left = LootAlert.db.char.LootHistoryLocation.left;
-    local top = LootAlert.db.char.LootHistoryLocation.top;
+    local left = LootAlert.db.char.lootHistoryLocation.left;
+    local top = LootAlert.db.char.lootHistoryLocation.top;
     if left and top then
-        LootAlertFrame:SetPoint("TOP", UIParent, "BOTTOM", 0, top);
-        LootAlertFrame:SetPoint("LEFT", UIParent, "LEFT", left, 0);
+        lootAlertFrame:SetPoint("TOP", UIParent, "BOTTOM", 0, top);
+        lootAlertFrame:SetPoint("LEFT", UIParent, "LEFT", left, 0);
     else
-        LootAlertFrame:SetPoint("CENTER");
+        lootAlertFrame:SetPoint("CENTER");
     end
     -- Add Frame movement and position saving logic
-    LootAlertFrame.frame:SetScript("OnMouseDown", function (frame) 
+    lootAlertFrame.frame:SetScript("OnMouseDown", function (frame) 
         frame:StartMoving();
         AceGUI:ClearFocus();
     end);
-    LootAlertFrame.frame:SetScript("OnMouseUp", function (frame)
+    lootAlertFrame.frame:SetScript("OnMouseUp", function (frame)
         frame:StopMovingOrSizing();
         local self = frame.obj;
         local status = self.status or self.localstatus;
@@ -84,33 +88,34 @@ function LootAlert:RenderLootAlert ()
         local newTop = frame:GetTop();
         status.top = newTop;
         status.left = newLeft;
-        LootAlert.db.char.LootHistoryLocation.left = newLeft;
-        LootAlert.db.char.LootHistoryLocation.top = newTop;
+        LootAlert.db.char.lootHistoryLocation.left = newLeft;
+        LootAlert.db.char.lootHistoryLocation.top = newTop;
     end);
 
-    LootAlertFrame:SetCallback("OnClose", function(widget)
+    lootAlertFrame:SetCallback("OnClose", function(widget)
         AceGUI:Release(widget);
+        LootAlert.state.tabFrame = nil;
     end);
     -- Create tabs and select default
-    local tabGroup =  AceGUI:Create("TabGroup");
-    tabGroup:SetLayout("Flow");
+    LootAlert.state.tabFrame = AceGUI:Create("TabGroup");
+    LootAlert.state.tabFrame:SetLayout("Flow");
 
-    tabGroup:SetTabs({
+    LootAlert.state.tabFrame:SetTabs({
         {text = "Loot History", value = "lootHistory" },
         {text = "Loot Wishlist", value = "lootWishlist" },
     });
 
-    tabGroup:SetCallback("OnGroupSelected", function (...) 
+    LootAlert.state.tabFrame:SetCallback("OnGroupSelected", function (...) 
         LootAlert.SelectGroup(self, ...);
     end);
     
-    tabGroup:SelectTab("lootHistory");
-    LootAlertFrame:AddChild(tabGroup);
+    LootAlert.state.tabFrame:SelectTab(LootAlert.db.char.activeTab);
+    lootAlertFrame:AddChild(LootAlert.state.tabFrame);
 
 end
 
 function LootAlert:SelectGroup(container, event, group)
-    container:ReleaseChildren();
+    LootAlert.db.char.activeTab = group;
     if group == "lootHistory" then
         LootAlert:RenderLootHistory(container);
     elseif group == "lootWishlist" then
@@ -119,13 +124,44 @@ function LootAlert:SelectGroup(container, event, group)
  end
 
 function LootAlert:RenderLootWishlist (container)
-    local desc = AceGUI:Create("Label");
-    desc:SetText("This is Tab 2");
-    desc:SetFullWidth(true);
-    container:AddChild(desc);
+    container:ReleaseChildren();
+
+    local scrollContainer = AceGUI:Create("SimpleGroup");
+    scrollContainer:SetFullWidth(true);
+    scrollContainer:SetFullHeight(true);
+    scrollContainer:SetLayout("Fill");
+    container:AddChild(scrollContainer)
+
+    local lootWishlistScrollFrame = AceGUI:Create("ScrollFrame")
+    lootWishlistScrollFrame:SetLayout("Flow");
+    scrollContainer:AddChild(lootWishlistScrollFrame);
+    LootAlert.db.char.lootWishlist = {
+        "46115",
+        "46117",
+        "46037",
+        "46032",
+        "45663",
+        "45241",
+        "46041",
+        "45161",
+        "45134",
+        "45841",
+        "45982",
+        "45599",
+        "45459",
+        "46097",
+        "45931",
+    };
+    for index,lootId in ipairs(LootAlert.db.char.lootWishlist) do
+        local item = Item:CreateFromItemID(tonumber(lootId));
+        item:ContinueOnItemLoad(function()
+            LootAlert:AddLoot(lootWishlistScrollFrame, item:GetItemID());
+        end);
+    end
 end
 
 function LootAlert:RenderLootHistory (container)
+    container:ReleaseChildren();
     local scrollContainer = AceGUI:Create("SimpleGroup");
     scrollContainer:SetFullWidth(true);
     scrollContainer:SetFullHeight(true);
@@ -137,7 +173,10 @@ function LootAlert:RenderLootHistory (container)
     scrollContainer:AddChild(lootHistoryScrollFrame);
 
     for index,lootId in ipairs(LootAlert.db.char.lootHistory) do
-        LootAlert:AddLoot(lootHistoryScrollFrame, lootId);
+        local item = Item:CreateFromItemID(tonumber(lootId));
+        item:ContinueOnItemLoad(function()
+            LootAlert:AddLoot(lootHistoryScrollFrame, item:GetItemID());
+        end);
     end
 end
 
@@ -145,10 +184,10 @@ function LootAlert:ClearLootHistory ()
     LootAlert.db.char.lootHistoryLength = 0;
     LootAlert.db.char.lootHistory = {};
 end
+
 function LootAlert:AddLoot (container, newLootId)
     local itemName, itemLink, _, _, _, _, _, _, _, itemTexture = GetItemInfo(newLootId);
-    local item = AceGUI:Create("InteractiveLabel")
-
+    local item = AceGUI:Create("InteractiveLabel");
     item:SetText(itemLink);
     item:SetImage(itemTexture);
     item:SetImageSize(30, 30);
@@ -171,7 +210,10 @@ function LootAlert:SlashCommand(msg)
 		InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
 		InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
 	else
-		self:Print("hello there!")
+		self:Print("hello there!");
+        if not LootAlert.state.tabFrame then
+            LootAlert:RenderLootAlert();
+        end
 	end
 end
 
@@ -200,7 +242,10 @@ function LootAlert:CHAT_MSG_LOOT(eventName, ...)
         --UIErrorsFrame:AddMessage(itemLink, 1, 1, 1);
         table.insert(LootAlert.db.char.lootHistory, 1, itemID);
         LootAlert.db.char.lootHistoryLength = LootAlert.db.char.lootHistoryLength + 1;
-        LootAlert:RenderLootHistory();
+        
+        if LootAlert.state.tabFrame and LootAlert.db.char.activeTab == "lootHistory" then
+            LootAlert:RenderLootHistory(LootAlert.state.tabFrame);
+        end
         -- Add to table of looted items
         -- Call function to update looted items list frame
     else
