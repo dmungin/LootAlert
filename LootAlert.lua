@@ -105,8 +105,9 @@ function LootAlert:RenderLootAlert ()
         {text = "Loot Wishlist", value = "lootWishlist" },
     });
 
-    LootAlert.state.tabFrame:SetCallback("OnGroupSelected", function (...) 
-        LootAlert.SelectGroup(self, ...);
+    LootAlert.state.tabFrame:SetCallback("OnGroupSelected", function (...)
+        local _, _, group = ...;
+        LootAlert:SelectGroup(group);
     end);
     
     LootAlert.state.tabFrame:SelectTab(LootAlert.db.char.activeTab);
@@ -114,7 +115,8 @@ function LootAlert:RenderLootAlert ()
 
 end
 
-function LootAlert:SelectGroup(container, event, group)
+function LootAlert:SelectGroup(group)
+    local container = LootAlert.state.tabFrame;
     LootAlert.db.char.activeTab = group;
     if group == "lootHistory" then
         LootAlert:RenderLootHistory(container);
@@ -209,7 +211,10 @@ function LootAlert:SlashCommand(msg)
 		-- https://github.com/Stanzilla/WoWUIBugs/issues/89
 		InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
 		InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
-	else
+    elseif msg == "clear" then
+        LootAlert:ClearLootHistory();
+        LootAlert:SelectGroup('lootHistory');
+    else
 		self:Print("hello there!");
         if not LootAlert.state.tabFrame then
             LootAlert:RenderLootAlert();
