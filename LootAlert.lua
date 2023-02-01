@@ -240,20 +240,25 @@ end
 
 function LootAlert:CHAT_MSG_LOOT(eventName, ...)
     local msg = ...;
-    local itemID = msg:match("item:(%d+):")
-    local _, itemLink, itemQuality = GetItemInfo(itemID);
+    local itemID = msg:match("item:(%d+):");
+    local isLootedMessage = msg:match("receive loot");
+    
     local threshold = tonumber(LootAlert.db.profile.lootThreshold);
-    if itemID and itemLink and itemQuality >= threshold then
-        --UIErrorsFrame:AddMessage(itemLink, 1, 1, 1);
-        table.insert(LootAlert.db.char.lootHistory, 1, itemID);
-        LootAlert.db.char.lootHistoryLength = LootAlert.db.char.lootHistoryLength + 1;
-        
-        if LootAlert.state.tabFrame and LootAlert.db.char.activeTab == "lootHistory" then
-            LootAlert:RenderLootHistory(LootAlert.state.tabFrame);
+
+    local item = Item:CreateFromItemID(tonumber(itemID));
+    item:ContinueOnItemLoad(function()
+        local lootId = item:GetItemID();
+        local _, _, itemQuality = GetItemInfo(lootId);
+        if lootId and isLootedMessage and itemQuality >= threshold then
+            --UIErrorsFrame:AddMessage(itemLink, 1, 1, 1);
+            table.insert(LootAlert.db.char.lootHistory, 1, lootId);
+            LootAlert.db.char.lootHistoryLength = LootAlert.db.char.lootHistoryLength + 1;
+            
+            if LootAlert.state.tabFrame and LootAlert.db.char.activeTab == "lootHistory" then
+                LootAlert:RenderLootHistory(LootAlert.state.tabFrame);
+            end
+        else
+            LootAlert:Print("Did not find item ID or Item Quality is too Low??");
         end
-        -- Add to table of looted items
-        -- Call function to update looted items list frame
-    else
-        LootAlert:Print("Did not find item ID or Item Quality is too Low??");
-    end
+    end);
 end
