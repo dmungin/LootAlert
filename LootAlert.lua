@@ -4,6 +4,7 @@ local AceGUI = LibStub("AceGUI-3.0");
 local defaults = {
 	profile = {
         lootThreshold = "0",
+        showOnlyMaster = true,
 	},
     char = {
         lootHistory = {},
@@ -35,6 +36,13 @@ local options = {
                 ["4"] = ITEM_QUALITY_COLORS[4].hex.."Epic|r",
             },
             sorting = {"0", "1", "2", "3", "4"},
+        },
+        showOnlyMaster = {
+            name = "Show Only Master Looter",
+            desc = "Enables / disables filtering loot history by master looter name",
+            type = "toggle",
+            set = "SetShowOnlyMaster",
+            get = "GetShowOnlyMaster",
         }
     },
 };
@@ -230,6 +238,14 @@ function LootAlert:SetLootThreshold(info, value)
     self.db.profile.lootThreshold = value;
 end
 
+function LootAlert:GetShowOnlyMaster(info)
+    return self.db.profile.showOnlyMaster;
+end
+
+function LootAlert:SetShowOnlyMaster(info, value)
+    self.db.profile.showOnlyMaster = value;
+end
+
 function LootAlert:OnEnable()
     LootAlert:Print("Loot Alert Enabled");
 end
@@ -239,10 +255,20 @@ function LootAlert:OnDisable()
 end
 
 function LootAlert:CHAT_MSG_LOOT(eventName, ...)
-    local msg = ...;
+    local msg, _, _, _, playerName2 = ...;
     local itemID = msg:match("item:(%d+):");
-    local isLootedMessage = msg:match("receive loot");
-    if itemId and isLootedMessage then
+    local isLootedMessage = msg:find("receive") and msg:find("loot");
+    
+    local lootMethod, _, masterlooterRaidID = GetLootMethod();
+    local showLooter = true;
+    if lootMethod == 'master' and LootAlert.db.profile.showOnlyMaster then
+        local masterLooterName = GetRaidRosterInfo(masterlooterRaidID);
+        if masterLooterName ~= playerName2 then
+            showLooter = false;
+        end
+    end
+
+    if itemID and isLootedMessage then
         local item = Item:CreateFromItemID(tonumber(itemID));
         item:ContinueOnItemLoad(function()
             local lootId = item:GetItemID();
