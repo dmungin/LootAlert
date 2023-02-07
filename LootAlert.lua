@@ -258,7 +258,7 @@ function LootAlert:CHAT_MSG_LOOT(eventName, ...)
     local msg, _, _, _, playerName2 = ...;
     local itemID = msg:match("item:(%d+):");
     local isLootedMessage = msg:find("receive") and msg:find("loot");
-    
+    -- Split into method CheckLootedByMaster
     local lootMethod, _, masterlooterRaidID = GetLootMethod();
     local showLooter = true;
     if lootMethod == 'master' and LootAlert.db.profile.showOnlyMaster then
