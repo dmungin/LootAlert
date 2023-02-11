@@ -1,6 +1,9 @@
-LootAlert = LibStub("AceAddon-3.0"):NewAddon("LootAlert", "AceConsole-3.0", "AceEvent-3.0");
+local _, core = ...;
+local LootAlert = LibStub("AceAddon-3.0"):NewAddon("LootAlert", "AceConsole-3.0", "AceEvent-3.0");
 local AceGUI = LibStub("AceGUI-3.0");
--- LootAlert:SetDefaultModuleLibraries("AceConsole-3.0", "AceEvent-3.0");
+
+core.LootAlert = LootAlert;
+core.AceGUI = AceGUI;
 local defaults = {
 	profile = {
         lootThreshold = "0",
@@ -200,10 +203,10 @@ function LootAlert:AddLoot (container, newLootId)
     local item = AceGUI:Create("InteractiveLabel");
     item:SetText(itemLink);
     item:SetImage(itemTexture);
-    item:SetImageSize(30, 30);
+    item:SetImageSize(20, 20);
     item:SetFullWidth(true);
     item:SetCallback("OnEnter", function(widget)
-        GameTooltip:SetOwner(widget.label, "ANCHOR_BOTTOMRIGHT");
+        GameTooltip:SetOwner(widget.image, "ANCHOR_LEFT");
 		GameTooltip:SetHyperlink(itemLink);
 		GameTooltip:Show();
     end);
@@ -254,37 +257,4 @@ function LootAlert:OnDisable()
     LootAlert:Print("Loot Alert Disabled");
 end
 
-function LootAlert:CHAT_MSG_LOOT(eventName, ...)
-    local msg, _, _, _, playerName2 = ...;
-    local itemID = msg:match("item:(%d+):");
-    local isLootedMessage = msg:find("receive") and msg:find("loot");
-    -- Split into method CheckLootedByMaster
-    local lootMethod, _, masterlooterRaidID = GetLootMethod();
-    local showLooter = true;
-    if lootMethod == 'master' and LootAlert.db.profile.showOnlyMaster then
-        local masterLooterName = GetRaidRosterInfo(masterlooterRaidID);
-        if masterLooterName ~= playerName2 then
-            showLooter = false;
-        end
-    end
 
-    if itemID and isLootedMessage then
-        local item = Item:CreateFromItemID(tonumber(itemID));
-        item:ContinueOnItemLoad(function()
-            local lootId = item:GetItemID();
-            local _, _, itemQuality = GetItemInfo(lootId);
-            local threshold = tonumber(LootAlert.db.profile.lootThreshold);
-            if itemQuality >= threshold then
-                --UIErrorsFrame:AddMessage(itemLink, 1, 1, 1);
-                table.insert(LootAlert.db.char.lootHistory, 1, lootId);
-                LootAlert.db.char.lootHistoryLength = LootAlert.db.char.lootHistoryLength + 1;
-                
-                if LootAlert.state.tabFrame and LootAlert.db.char.activeTab == "lootHistory" then
-                    LootAlert:RenderLootHistory(LootAlert.state.tabFrame);
-                end
-            else
-                LootAlert:Print("Did not find item ID or Item Quality is too Low??");
-            end
-        end);
-    end
-end
