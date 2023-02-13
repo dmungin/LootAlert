@@ -19,7 +19,11 @@ function LootAlert:RenderRollOptionsModal(item)
     local rollMainSpecButton = AceGUI:Create("Button");
     local rollOffSpecButton = AceGUI:Create("Button");
 
-    linkButton:SetText("Link Equipped");
+    --linkButton:SetPoint("TOP", rollOptionsFrame.frame, "TOP", 0, top);
+    --rollMainSpecButton:SetPoint("TOP", rollOptionsFrame.frame, "BOTTOM", 0, top);
+    --rollOffSpecButton:SetPoint("TOP", rollOptionsFrame.frame, "BOTTOM", 0, top);
+
+    linkButton:SetText("Link Gear");
     rollMainSpecButton:SetText("Roll Main Spec");
     rollOffSpecButton:SetText("Roll Off Spec");
 
@@ -34,14 +38,19 @@ function LootAlert:RenderRollOptionsModal(item)
     rollOffSpecButton:SetCallback("OnClick", function ()
         RandomRoll(1, 99);
     end);
+    
+    LootAlert:AddLoot(rollOptionsFrame, item:GetItemID());
     rollOptionsFrame:AddChild(linkButton);
     rollOptionsFrame:AddChild(rollMainSpecButton);
     rollOptionsFrame:AddChild(rollOffSpecButton);
-
-
 end
 
 function OnLinkButtonClick (item) 
     return function (widget)
+        local _, _, _, _, _, _, _, _, itemEquipLoc = GetItemInfo(item:GetItemID());
+        local equipSlot = _G[itemEquipLoc];
+        local slotId = GetInventorySlotInfo(equipSlot.."Slot");
+        local itemLink = GetInventoryItemLink("player", slotId);
+        DEFAULT_CHAT_FRAME:AddMessage(itemLink);
     end
 end

@@ -27,8 +27,6 @@ function LootAlert:HandleNewLoot(item)
         if LootAlert.state.tabFrame and LootAlert.db.char.activeTab == "lootHistory" then
             LootAlert:RenderLootHistory(LootAlert.state.tabFrame);
         end
-
-        LootAlert:RenderRollOptionsModal(item);
     else
         LootAlert:Print("Did not find item ID or Item Quality is too Low??");
     end
@@ -36,15 +34,27 @@ end
 
 function LootAlert:CHAT_MSG_LOOT(eventName, ...)
     local msg, _, _, _, playerName2 = ...;
-    local itemID = msg:match("item:(%d+):");
+    local itemId = msg:match("item:(%d+):");
     local isLootedMessage = msg:find("receive") and msg:find("loot");
-    local showLooter = true;
-    showLooter = LootAlert:CheckLootedByMaster(playerName2);
+    local showLooter = LootAlert:CheckLootedByMaster(playerName2);
 
-    if itemID and isLootedMessage and showLooter then
-        local item = Item:CreateFromItemID(tonumber(itemID));
+    if itemId and isLootedMessage and showLooter then
+        local item = Item:CreateFromItemID(tonumber(itemId));
         item:ContinueOnItemLoad(function()
             LootAlert:HandleNewLoot(item);
         end);
     end
+end
+
+function LootAlert:CHAT_MSG_RAID_WARNING(eventName, ...)
+    local msg, _, _, _, playerName2 = ...;
+    local itemId = msg:match("item:(%d+):");
+
+    if itemId then
+        local item = Item:CreateFromItemID(tonumber(itemId));
+        item:ContinueOnItemLoad(function()
+            LootAlert:RenderRollOptionsModal(item);
+        end);
+    end
+
 end
