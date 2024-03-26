@@ -87,8 +87,9 @@ function OnLinkButtonClick (itemId, rollOptionsFrame)
             local _, itemLink = GetItemInfo(equippedItemId);
             itemLinks = itemLinks .. itemLink;
         end
-        -- TEMP FOR TESTING: Should be SendChatMessage(itemLinks, "RAID");
+        -- TEMP FOR TESTING: Remove when done
         LootAlert:Print(itemLinks);
+        SendChatMessage(itemLinks, "RAID");
         AceGUI:Release(rollOptionsFrame);
     end
 end
