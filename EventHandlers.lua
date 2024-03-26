@@ -45,12 +45,12 @@ function LootAlert:CHAT_MSG_LOOT(eventName, ...)
     end
 end
 
--- This is for testing, needs to change to CHAT_MSG_RAID
+-- TEMP FOR TESTING: needs to change to CHAT_MSG_RAID_WARNING
 function LootAlert:CHAT_MSG_CHANNEL(eventName, ...)
     local msg, _, _, channel, playerName2 = ...;
     local itemId = msg:match("item:(%d+):");
     local showLooterMessages = LootAlert:UseLooterMessages(playerName2);
-
+    -- TEMP FOR TESTING: needs to change to if itemId and showLooterMessages then
     if itemId and channel == '5. lootalert' then
         LootAlert:RenderRollOptionsModal(itemId);
     end
