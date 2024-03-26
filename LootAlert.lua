@@ -61,7 +61,7 @@ local defaults = {
             top = false,
         },
         activeTab = 'lootHistory',
-        --lootBisList = {},
+        wantedLootBisList = {},
     },
 };
 local options = {
@@ -541,6 +541,7 @@ function LootAlert:OnInitialize()
 	self:RegisterChatCommand("lootalert", "SlashCommand");
     LootAlert:RegisterEvent("CHAT_MSG_LOOT");
     LootAlert:RegisterEvent("CHAT_MSG_CHANNEL");
+    LootAlert:RegisterEvent("CHAT_MSG_RAID_WARNING");
     LootAlert:RenderLootAlert();
 end;
 
@@ -609,12 +610,39 @@ function LootAlert:RenderLootBisList (container)
     lootBislistScrollFrame:SetLayout("Flow");
     scrollContainer:AddChild(lootBislistScrollFrame);
 
-    local lootBisList = LootAlert:BuildLootBisList();
-    for itemId,itemEntry in pairs(lootBisList) do
-        local item = Item:CreateFromItemID(tonumber(itemId));
-        item:ContinueOnItemLoad(function()
-            LootAlert:AddLoot(lootBislistScrollFrame, item:GetItemID(), { fullWidth = true, iconSize = 20 });
-        end);
+    local lootBistList = LootAlert:BuildLootBisList();
+
+    for slot,slotItems in pairs(lootBistList) do
+        local slotHeader = AceGUI:Create("Label");
+        slotHeader:SetText(slot);
+        slotHeader:SetColor(255,255,255);
+        slotHeader:SetFullWidth(true);
+        lootBislistScrollFrame:AddChild(slotHeader);
+
+        for itemId,itemEntry in pairs(slotItems) do
+            local item = Item:CreateFromItemID(tonumber(itemId));
+            item:ContinueOnItemLoad(function()
+                local addedItem = LootAlert:AddLoot(lootBislistScrollFrame, item:GetItemID(), { fullWidth = false, iconSize = 20 });
+                addedItem:SetWidth(230);
+                local rollCheckBox = AceGUI:Create("CheckBox");
+                rollCheckBox:SetWidth(20);
+                rollCheckBox:SetHeight(20);
+                rollCheckBox:SetType("checkbox");
+                if LootAlert.db.char.wantedLootBisList[itemId] ~= nil then
+                    rollCheckBox:SetValue(LootAlert.db.char.wantedLootBisList[itemId]);
+                else
+                    rollCheckBox:SetValue(false);
+                end
+                rollCheckBox:SetCallback("OnValueChanged", GetOnWantedRadioClick(itemId));
+                lootBislistScrollFrame:AddChild(rollCheckBox);
+            end);
+        end
+    end
+end
+
+function GetOnWantedRadioClick (itemId)
+    return function (widget, event, value)
+        LootAlert.db.char.wantedLootBisList[itemId] = value;
     end
 end
 
@@ -668,7 +696,17 @@ function LootAlert:BuildLootBisList()
             for itemId,itemEntry in pairs(specItems) do
                 for phase,phaseEnabled in pairs(LootAlert.db.profile.alertPhases) do
                     if phaseEnabled and LootAlert:isItemInPhase(phase, itemEntry.Phase) then
-                        bisWishlist[itemId] = itemEntry;
+                        if bisWishlist[itemEntry.Slot] == nil then
+                            bisWishlist[itemEntry.Slot] = {};
+                        end
+                        if bisWishlist[itemEntry.Slot][itemId] ~= nil then
+                            itemEntry.Spec = itemEntry.Spec..", "..spec;
+                        else
+                            itemEntry.Spec = spec;
+                            bisWishlist[itemEntry.Slot][itemId] = itemEntry;
+                        end
+                        -- after 1 phase is found that is enabled and contains the item, stop checking phases
+                        break;
                     end
                 end
             end
@@ -682,14 +720,11 @@ function LootAlert:AddLoot (container, itemId, options)
     local itemName, itemLink, _, _, _, _, _, _, _, itemTexture = GetItemInfo(itemId);
     local item = AceGUI:Create("InteractiveLabel");
     item:SetText(itemLink);
-    if options.iconSize then 
+    if options.iconSize then
         item:SetImage(itemTexture);
         item:SetImageSize(options.iconSize, options.iconSize);
     end
     item:SetFullWidth(options.fullWidth);
-    if options.center then
-        item:SetJustifyH("CENTER");
-    end
     item:SetCallback("OnEnter", function(widget)
         GameTooltip:SetOwner(widget.label, "ANCHOR_LEFT");
 		GameTooltip:SetHyperlink(itemLink);
@@ -700,6 +735,8 @@ function LootAlert:AddLoot (container, itemId, options)
     end);
 
     container:AddChild(item);
+
+    return item;
 end
 
 function LootAlert:SlashCommand(msg)
