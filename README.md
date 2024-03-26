@@ -27,7 +27,7 @@ A World of Warcraft Addon for keeping track of raid loot and rolling on items as
 
 ### Dependency
 
-Currently this addon requires "Loon Best In Slot (BIS)" to also be installed. It takes the BIS lists from this addon and uses them to allow the player to select items they want to roll on when they are offered. The plan is to remove this dependency once I have the time to recreate some of the BIS list logic and item caching internally.
+Currently this addon requires ["Loon Best In Slot (BIS)"](https://www.curseforge.com/wow/addons/loon-best-in-slot) to also be installed. It takes the BIS lists from this addon and uses them to allow the player to select items they want to roll on when they are offered. The plan is to remove this dependency once I have the time to recreate some of the BIS list logic and item caching internally.
 
 
 ### Known Issues
@@ -35,3 +35,8 @@ Currently this addon requires "Loon Best In Slot (BIS)" to also be installed. It
 - On first load if the `Bis List` tab is selected it will not be formatted correctly. Click back and forth between tabs to fix
 - Item tokens are not included in the `Bis List` tab. Need to convert items to tokens in the list
 - Some widgets may not correctly get released when not shown. This could lead to increased memory usage over time.
+
+### Planned features
+
+- Remove external addon dependency - this is unstable as changes to this addon will break LootAlert
+- Add the ability for players to create Custom BIS Lists
