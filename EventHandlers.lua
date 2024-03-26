@@ -45,13 +45,27 @@ function LootAlert:CHAT_MSG_LOOT(eventName, ...)
     end
 end
 
--- TEMP FOR TESTING: needs to change to CHAT_MSG_RAID_WARNING
-function LootAlert:CHAT_MSG_CHANNEL(eventName, ...)
+function LootAlert:CHAT_MSG_RAID_WARNING(eventName, ...)
     local msg, _, _, channel, playerName2 = ...;
     local itemId = msg:match("item:(%d+):");
     local showLooterMessages = LootAlert:UseLooterMessages(playerName2);
-    -- TEMP FOR TESTING: needs to change to if itemId and showLooterMessages then
+    if itemId and showLooterMessages then
+        local isWantedLoot = LootAlert.db.char.wantedLootBisList[tonumber(itemId)];
+        LootAlert:Print("Is Linked Item Wanted?: ", tostring(isWantedLoot));
+        if isWantedLoot then
+            LootAlert:RenderRollOptionsModal(itemId);
+        end
+    end
+end
+-- TEMP FOR TESTING: Remove when done
+function LootAlert:CHAT_MSG_CHANNEL(eventName, ...)
+    local msg, _, _, channel, playerName2 = ...;
+    local itemId = msg:match("item:(%d+):");
     if itemId and channel == '5. lootalert' then
-        LootAlert:RenderRollOptionsModal(itemId);
+        local isWantedLoot = LootAlert.db.char.wantedLootBisList[tonumber(itemId)];
+        LootAlert:Print("Is Linked Item Wanted?: ", tostring(isWantedLoot));
+        if isWantedLoot then 
+            LootAlert:RenderRollOptionsModal(itemId);
+        end
     end
 end
