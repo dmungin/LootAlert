@@ -1,15 +1,25 @@
 local _, core = ...;
 
-local Util = core.Util;
+local LootAlert = core.LootAlert;
+local AceGUI = core.AceGUI;
 
-function Util:SetContains (set, key)
-    return set[key] ~= nil;
+function LootAlert:GetFrameMoveMouseDown(frameName)
+    return function (frame)
+        frame:StartMoving();
+        AceGUI:ClearFocus();
+    end
 end
 
-function Util:AddToSet(set, key)
-    set[key] = true;
-end
-
-function Util:RemoveFromSet(set, key)
-    set[key] = nil;
+function LootAlert:GetFrameMoveMouseUp(frameName)
+    return function (frame)
+        frame:StopMovingOrSizing();
+        local self = frame.obj;
+        local status = self.status or self.localstatus;
+        local newLeft = frame:GetLeft();
+        local newTop = frame:GetTop();
+        status.top = newTop;
+        status.left = newLeft;
+        LootAlert.db.char[frameName].left = newLeft;
+        LootAlert.db.char[frameName].top = newTop;
+    end
 end
