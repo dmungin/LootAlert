@@ -46,7 +46,7 @@ function LootAlert:RenderRollOptionsModal(itemId)
         RandomRoll(1, 99);
     end);
 
-
+    -- TODO:: Use Cache
     local itemName, itemLink, _, _, _, _, _, _, _, itemTexture = GetItemInfo(itemId);
     local icon = AceGUI:Create("Icon");
     icon:SetLabel(itemLink);
@@ -78,12 +78,14 @@ end
 
 function OnLinkButtonClick (itemId, rollOptionsFrame)
     return function ()
+        -- TODO:: Use cache
         local slotName = select(9, GetItemInfo(itemId));
-        local slotIds = LOOTALERT.slotNumbersMap[slotName];
+        local slotIds = LootAlert.constants.SLOT_MAP[slotName].ids;
         local itemLinks = "";
 
         for _,slotId in ipairs(slotIds) do
             local equippedItemId = GetInventoryItemID("player", slotId);
+            -- TODO:: Use cache
             local _, itemLink = GetItemInfo(equippedItemId);
             itemLinks = itemLinks .. itemLink;
         end

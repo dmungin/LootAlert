@@ -1,81 +1,165 @@
-LOOTALERT = {};
+local _, core = ...;
+local LootAlert = core.LootAlert;
 
-LOOTALERT.phases = {
-    PRERAID = "0",
-    PHASE_1 = "1",
-    PHASE_2 = "2",
-    PHASE_3 = "3",
-    PHASE_4 = "4"
-};
+function LootAlert:BuildConstants ()
+    local constants = {};
+    constants.PHASES = {
+        PRERAID = 0,
+        PHASE_1 = 1,
+        PHASE_2 = 2,
+        PHASE_3 = 3,
+        PHASE_4 = 4,
+    };
 
-LOOTALERT.classes = {
-    DRUID = "Druid",
-    HUNTER = "Hunter",
-    MAGE = "Mage",
-    PALADIN = "Paladin",
-    PRIEST = "Priest",
-    ROGUE = "Rogue",
-    SHAMAN = "Shaman",
-    WARLOCK = "Warlock",
-    WARRIOR = "Warrior",
-    DEATH_KNIGHT = "Death Knight"
-};
+    constants.CLASSES = {
+        DRUID = "Druid",
+        HUNTER = "Hunter",
+        MAGE = "Mage",
+        PALADIN = "Paladin",
+        PRIEST = "Priest",
+        ROGUE = "Rogue",
+        SHAMAN = "Shaman",
+        WARLOCK = "Warlock",
+        WARRIOR = "Warrior",
+        DEATH_KNIGHT = "Death Knight"
+    };
 
-LOOTALERT.specs = {
-    BLOOD = "Blood",
-    FROST = "Frost",
-    UNHOLY = "Unholy",
-    BALANCE = "Balance",
-    BEAR = "Bear",
-    CAT = "Cat",
-    RESTORATION = "Restoration",
-    BEAST_MASTERY = "Beast Mastery",
-    MARKSMANSHIP = "Marksmanship",
-    SURVIVAL = "Survival",
-    ARCANE = "Arcane",
-    FIRE = "Fire",
-    PROTECTION = "Protection",
-    RETRIBUTION = "Retribution",
-    DISCIPLINE = "Discipline",
-    SHADOW = "Shadow",
-    HOLY = "Holy",
-    ASSASSINATION = "Assassination",
-    COMBAT = "Combat",
-    SUBTLETY = "Subtlety",
-    ELEMENTAL = "Elemental",
-    ENHANCEMENT = "Enhancement",
-    AFFLICTION = "Affliction",
-    DEMONOLOGY = "Demonology",
-    DESTRUCTION = "Destruction",
-    ARMS = "Arms",
-    FURY = "Fury"
-};
+    constants.SPECS = {
+        BLOOD = "Blood",
+        FROST = "Frost",
+        UNHOLY = "Unholy",
+        BALANCE = "Balance",
+        BEAR = "Bear",
+        CAT = "Cat",
+        RESTORATION = "Restoration",
+        BEAST_MASTERY = "Beast Mastery",
+        MARKSMANSHIP = "Marksmanship",
+        SURVIVAL = "Survival",
+        ARCANE = "Arcane",
+        FIRE = "Fire",
+        PROTECTION = "Protection",
+        RETRIBUTION = "Retribution",
+        DISCIPLINE = "Discipline",
+        SHADOW = "Shadow",
+        HOLY = "Holy",
+        ASSASSINATION = "Assassination",
+        COMBAT = "Combat",
+        SUBTLETY = "Subtlety",
+        ELEMENTAL = "Elemental",
+        ENHANCEMENT = "Enhancement",
+        AFFLICTION = "Affliction",
+        DEMONOLOGY = "Demonology",
+        DESTRUCTION = "Destruction",
+        ARMS = "Arms",
+        FURY = "Fury"
+    };
 
-LOOTALERT.slotNumbersMap = {
-    INVTYPE_AMMO = {0},
-    INVTYPE_HEAD = {1},
-    INVTYPE_NECK = {2},
-    INVTYPE_SHOULDER = {3},
-    INVTYPE_BODY = {4},
-    INVTYPE_CHEST = {5},
-    INVTYPE_ROBE = {5},
-    INVTYPE_WAIST = {6},
-    INVTYPE_LEGS = {7},
-    INVTYPE_FEET = {8},
-    INVTYPE_WRIST = {9},
-    INVTYPE_HAND = {10},
-    INVTYPE_FINGER = {11, 12},
-    INVTYPE_TRINKET = {13, 14},
-    INVTYPE_CLOAK = {15},
-    INVTYPE_WEAPON = {16, 17},
-    INVTYPE_2HWEAPON = {16},
-    INVTYPE_WEAPONMAINHAND = {16},
-    INVTYPE_WEAPONOFFHAND = {17},
-    INVTYPE_SHIELD = {17},
-    INVTYPE_HOLDABLE = {17},
-    INVTYPE_RANGED = {18},
-    INVTYPE_RANGEDRIGHT = {18},
-    INVTYPE_THROWN = {18},
-    INVTYPE_RELIC = {18},
-    INVTYPE_TABARD = {19},
-};
+    constants.SLOT_MAP = {
+        INVTYPE_AMMO = {
+            ids = {0},
+            name = "Ammo",
+        },
+        INVTYPE_HEAD = {
+            ids = {1},
+            name = "Head",
+        },
+        INVTYPE_NECK = {
+            ids = {2},
+            name = "Neck",
+        },
+        INVTYPE_SHOULDER = {
+            ids = {3},
+            name = "Shoulder",
+        },
+        INVTYPE_BODY = {
+            ids = {4},
+            name = "Shirt",
+        },
+        INVTYPE_CHEST = {
+            ids = {5},
+            name = "Chest",
+        },
+        INVTYPE_ROBE = {
+            ids = {5},
+            name = "Chest",
+        },
+        INVTYPE_WAIST = {
+            ids = {6},
+            name = "Waist",
+        },
+        INVTYPE_LEGS = {
+            ids = {7},
+            name = "Legs",
+        },
+        INVTYPE_FEET = {
+            ids = {8},
+            name = "Feet",
+        },
+        INVTYPE_WRIST = {
+            ids = {9},
+            name = "Wrist",
+        },
+        INVTYPE_HAND = {
+            ids = {10},
+            name = "Hands",
+        },
+        INVTYPE_FINGER = {
+            ids = {11, 12},
+            name = "Finger",
+        },
+        INVTYPE_TRINKET = {
+            ids = {13, 14},
+            name = "Trinket",
+        },
+        INVTYPE_CLOAK = {
+            ids = {15},
+            name = "Back",
+        },
+        INVTYPE_WEAPON = {
+            ids = {16, 17},
+            name = "Main Hand/Off Hand",
+        },
+        INVTYPE_2HWEAPON = {
+            ids = {16},
+            name = "Two Hand",
+        },
+        INVTYPE_WEAPONMAINHAND = {
+            ids = {16},
+            name = "Main Hand",
+        },
+        INVTYPE_WEAPONOFFHAND = {
+            ids = {17},
+            name = "Off Hand",
+        },
+        INVTYPE_SHIELD = {
+            ids = {17},
+            name = "Off Hand",
+        },
+        INVTYPE_HOLDABLE = {
+            ids = {17},
+            name = "Off Hand",
+        },
+        INVTYPE_RANGED = {
+            ids = {18},
+            name = "Ranged/Relic",
+        },
+        INVTYPE_RANGEDRIGHT = {
+            ids = {18},
+            name = "Ranged/Relic",
+        },
+        INVTYPE_THROWN = {
+            ids = {18},
+            name = "Ranged/Relic",
+        },
+        INVTYPE_RELIC = {
+            ids = {18},
+            name = "Ranged/Relic",
+        },
+        INVTYPE_TABARD = {
+            ids = {19},
+            name = "Tabard",
+        },
+    };
+
+    return constants;
+end
