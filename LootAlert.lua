@@ -10,6 +10,8 @@ LootAlert.state = {
     bisListLoadFunctions = {},
 };
 
+local next = next;
+
 function LootAlert:OnInitialize()
     LootAlert:Print("Loot Alert Initialized!");
     LootAlert.constants = LootAlert:BuildConstants();
@@ -102,33 +104,44 @@ function LootAlert:RenderLootBisList (container)
     scrollContainer:AddChild(lootBislistScrollFrame);
 
     local lootBistList = LootAlert:BuildLootBisList();
-
-    for slot, slotItems in pairs(lootBistList) do
-        local slotHeader = AceGUI:Create("Label");
-        slotHeader:SetText(slot);
-        slotHeader:SetColor(255,255,255);
-        slotHeader:SetFullWidth(true);
-        lootBislistScrollFrame:AddChild(slotHeader);
-
-        for itemId, _ in pairs(slotItems) do
-            local item = LootAlert:GetItemInfoInstant(itemId);
-            if item.Id ~= nil then
-                local addedItemLabel = LootAlert:AddLoot(lootBislistScrollFrame, item, { fullWidth = false, iconSize = 20 });
-                addedItemLabel:SetWidth(230);
-                local rollCheckBox = AceGUI:Create("CheckBox");
-                rollCheckBox:SetWidth(20);
-                rollCheckBox:SetHeight(20);
-                rollCheckBox:SetType("checkbox");
-                if LootAlert.db.char.wantedLootBisList[itemId] ~= nil then
-                    rollCheckBox:SetValue(LootAlert.db.char.wantedLootBisList[itemId]);
-                else
-                    rollCheckBox:SetValue(false);
+    if next(lootBistList) == nil then
+        local AddSpecButton = AceGUI:Create("Button");
+        AddSpecButton:SetText("Add Spec in Options");
+        AddSpecButton:SetCallback("OnClick", function ()
+            LootAlert.state.tabFrame:SelectTab("lootHistory");
+            LootAlert:OpenOptions();
+        end);
+        lootBislistScrollFrame:AddChild(AddSpecButton);
+    else
+        for slot, slotItems in pairs(lootBistList) do
+            local slotHeader = AceGUI:Create("Label");
+            slotHeader:SetText(slot);
+            slotHeader:SetColor(255,255,255);
+            slotHeader:SetFullWidth(true);
+            lootBislistScrollFrame:AddChild(slotHeader);
+    
+            for itemId, _ in pairs(slotItems) do
+                local item = LootAlert:GetItemInfoInstant(itemId);
+                if item.Id ~= nil then
+                    local addedItemLabel = LootAlert:AddLoot(lootBislistScrollFrame, item, { fullWidth = false, iconSize = 20 });
+                    addedItemLabel:SetWidth(230);
+                    local rollCheckBox = AceGUI:Create("CheckBox");
+                    rollCheckBox:SetWidth(20);
+                    rollCheckBox:SetHeight(20);
+                    rollCheckBox:SetType("checkbox");
+                    if LootAlert.db.char.wantedLootBisList[itemId] ~= nil then
+                        rollCheckBox:SetValue(LootAlert.db.char.wantedLootBisList[itemId]);
+                    else
+                        rollCheckBox:SetValue(false);
+                    end
+                    rollCheckBox:SetCallback("OnValueChanged", GetOnWantedRadioClick(itemId));
+                    lootBislistScrollFrame:AddChild(rollCheckBox);
                 end
-                rollCheckBox:SetCallback("OnValueChanged", GetOnWantedRadioClick(itemId));
-                lootBislistScrollFrame:AddChild(rollCheckBox);
             end
         end
     end
+
+    
 end
 
 function GetOnWantedRadioClick (itemId)
@@ -226,11 +239,15 @@ function LootAlert:AddLoot (container, item, options)
     return itemLabel;
 end
 
+function LootAlert:OpenOptions()
+    -- https://github.com/Stanzilla/WoWUIBugs/issues/89
+    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame);
+    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame);
+end
+
 function LootAlert:SlashCommand(msg)
 	if not msg or msg:trim() == "" then
-		-- https://github.com/Stanzilla/WoWUIBugs/issues/89
-		InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
-		InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
+		LootAlert:OpenOptions();
     elseif msg == "clear" then
         LootAlert:ClearLootHistory();
         LootAlert:SelectGroup('lootHistory');
