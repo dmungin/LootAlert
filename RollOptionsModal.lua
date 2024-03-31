@@ -38,11 +38,17 @@ function LootAlert:RenderRollOptionsModal(itemId)
     rollOffSpecButton:SetHeight(30);
     rollOffSpecButton:SetWidth(150);
 
+    local bisCheckbox = AceGUI:Create("CheckBox");
+    bisCheckbox:SetLabel("BIS?");
+    bisCheckbox:SetWidth(150);
+    bisCheckbox:SetHeight(20);
+    bisCheckbox:SetType("checkbox");
+
     local item = LootAlert:GetItemInfoInstant(itemId);
     if item.Slot == "Unknown" then
         linkButton:SetDisabled(true);
     end
-    linkButton:SetCallback("OnClick", OnLinkButtonClick(item, rollOptionsFrame));
+    linkButton:SetCallback("OnClick", OnLinkButtonClick(item, rollOptionsFrame, bisCheckbox));
     rollMainSpecButton:SetCallback("OnClick", function ()
         RandomRoll(1, 100);
         AceGUI:Release(rollOptionsFrame);
@@ -70,15 +76,17 @@ function LootAlert:RenderRollOptionsModal(itemId)
     rollOptionsFrame:AddChild(linkButton);
     rollOptionsFrame:AddChild(rollMainSpecButton);
     rollOptionsFrame:AddChild(rollOffSpecButton);
+    rollOptionsFrame:AddChild(bisCheckbox);
 
     icon:SetPoint("TOP", rollOptionsFrame.frame, "TOP", 0, -30);
     linkButton:SetPoint("LEFT", rollOptionsFrame.frame, "LEFT", 20, -20);
     rollMainSpecButton:SetPoint("CENTER", rollOptionsFrame.frame, "CENTER", 0, -20);
     rollOffSpecButton:SetPoint("RIGHT", rollOptionsFrame.frame, "RIGHT", -20, -20);
+    bisCheckbox:SetPoint("TOPLEFT", linkButton.frame, "BOTTOMLEFT", 0, -10);
 
 end
 
-function OnLinkButtonClick (item, rollOptionsFrame)
+function OnLinkButtonClick (item, rollOptionsFrame, bisCheckbox)
     return function ()
         local slotName = select(9, GetItemInfo(item.Id));
         local slotIds = LootAlert.constants.SLOT_MAP[slotName].ids;
@@ -89,7 +97,9 @@ function OnLinkButtonClick (item, rollOptionsFrame)
             local _, itemLink = GetItemInfo(equippedItemId);
             itemLinks = itemLinks .. itemLink;
         end
-
+        if bisCheckbox:GetValue() == true then
+            itemLinks = itemLinks .. " bis";
+        end
         LootAlert:Print(itemLinks); -- TEMP FOR TESTING: Remove when done
         SendChatMessage(itemLinks, "RAID");
         AceGUI:Release(rollOptionsFrame);
