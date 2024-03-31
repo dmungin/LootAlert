@@ -39,7 +39,9 @@ function LootAlert:RenderRollOptionsModal(itemId)
     rollOffSpecButton:SetWidth(150);
 
     local item = LootAlert:GetItemInfoInstant(itemId);
-
+    if item.Slot == "Unknown" then
+        linkButton:SetDisabled(true);
+    end
     linkButton:SetCallback("OnClick", OnLinkButtonClick(item, rollOptionsFrame));
     rollMainSpecButton:SetCallback("OnClick", function ()
         RandomRoll(1, 100);
