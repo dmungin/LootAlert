@@ -2,6 +2,29 @@ local _, core = ...;
 local LootAlert = LibStub("AceAddon-3.0"):NewAddon("LootAlert", "AceConsole-3.0", "AceEvent-3.0");
 local AceGUI = LibStub("AceGUI-3.0");
 
+local lootAlertDataBroker = LibStub("LibDataBroker-1.1"):NewDataObject("LootAlert", {
+	type = "data source",
+	text = "Loot Alert",
+	icon = "Interface\\Icons\\INV_Axe_113",
+    OnClick = function (self, button)
+
+        if button == "LeftButton" then
+            if not LootAlert.state.tabFrame then
+                LootAlert:RenderLootAlert();
+            end
+        elseif button == "RightButton" then
+            LootAlert:OpenOptions();
+        end
+
+    end,
+    OnTooltipShow = function (tooltip)
+        tooltip:AddLine ("Loot Alert");
+        tooltip:AddLine("|cFF9CD6DELeft Click|r: Open Loot Alert Window");
+        tooltip:AddLine("|cFF9CD6DERight Click|r: Open Settings");
+    end,
+});
+local icon = LibStub("LibDBIcon-1.0");
+
 core.LootAlert = LootAlert;
 core.AceGUI = AceGUI;
 
@@ -21,7 +44,8 @@ function LootAlert:OnInitialize()
     local profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(LootAlert.db);
 	LibStub("AceConfig-3.0"):RegisterOptionsTable("LootAlert_Profiles", profiles);
 	LibStub("AceConfigDialog-3.0"):AddToBlizOptions("LootAlert_Profiles", "Profiles", "LootAlert");
-
+    
+    icon:Register("LootAlert", lootAlertDataBroker, LootAlert.db.profile.minimap);
     -- Should this be in a temporal state instead of DB?
     LootAlert.db.global.allItemsCached = false;
     LootAlert.db.global.itemSources = LootAlert:PopulateItemSources();

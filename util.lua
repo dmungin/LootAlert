@@ -11,6 +11,9 @@ function LootAlert:getDefaultDb()
         profile = {
             lootThreshold = "4",
             showOnlyMaster = true,
+            minimap = {
+				hide = false,
+			},
         },
         char = {
             lootHistory = {},
@@ -72,8 +75,17 @@ function LootAlert:getDefaultDb()
     };
 end
 
+function LootAlert:ReMakeBisListOnOptionChange ()
+    if LootAlert.state.tabFrame ~= nil and LootAlert.db.char.activeTab == "lootBisList" then
+        LootAlert:RenderLootBisList(LootAlert.state.tabFrame);
+    end
+end
+
 local function getShowSpecSetter (spec)
-    return function (info, val) LootAlert.db.char.alertSpecs[spec] = val end;
+    return function (info, val)
+        LootAlert.db.char.alertSpecs[spec] = val;
+        LootAlert:ReMakeBisListOnOptionChange();
+    end;
 end
 
 local function getShowSpecGetter (spec)
@@ -117,7 +129,10 @@ function LootAlert:getOptions()
                 type = "select",
                 name = "Active BIS Phase",
                 desc = "Set what phase gear you wish to use for your BIS list",
-                set = function(info, val) LootAlert.db.char.alertPhase = val end,
+                set = function(info, val)
+                    LootAlert.db.char.alertPhase = val;
+                    LootAlert:ReMakeBisListOnOptionChange();
+                end,
                 get = function() return LootAlert.db.char.alertPhase  end,
                 values = {
                     [PHASES.PRERAID] = "Pre-Raid",
