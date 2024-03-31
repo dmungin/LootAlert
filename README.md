@@ -19,7 +19,7 @@ A World of Warcraft Addon for keeping track of raid loot and rolling on items as
 1) The item on offer will be linked in the `\rw` channel by the loot master when it is on offer
 2) 3 options are valid for items on offer: `Link Equipped`, `Roll Main Spec`, `Roll Off spec`. Link equipped will link your currently equipped gear for the matching slot in `\ra`.
 
-![Item Roll](https://i.imgur.com/ljJEeV6.png)
+![Item Roll](https://i.imgur.com/avo3DYr.png)
 
 * Option to filter by item quality and master looter - Generally only Epic items or above would be relevant in raid, but this is configurable. If someone other than master looter links items for offer, disable this filter.
 * Option to select specs to set BIS list of your current class. This will control what is shown in the "BIS List" tab.
