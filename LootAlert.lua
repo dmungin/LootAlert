@@ -14,7 +14,7 @@ function LootAlert:OnInitialize()
     LootAlert:Print("Loot Alert Initialized!");
     LootAlert.constants = LootAlert:BuildConstants();
     LootAlert.db = LibStub("AceDB-3.0"):New("LootAlertDB", LootAlert:getDefaultDb(), true);
-    LibStub("AceConfig-3.0"):RegisterOptionsTable("LootAlert_options", LootAlert:getDefaultOptions());
+    LibStub("AceConfig-3.0"):RegisterOptionsTable("LootAlert_options", LootAlert:getOptions());
 	LootAlert.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("LootAlert_options", "LootAlert");
     local profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(LootAlert.db);
 	LibStub("AceConfig-3.0"):RegisterOptionsTable("LootAlert_Profiles", profiles);
@@ -181,23 +181,20 @@ end
 
 function LootAlert:BuildLootBisList()
     local bisWishlist = {};
-    for spec,specEnabled in pairs(LootAlert.db.profile.alertSpecs) do
+    for spec, specEnabled in pairs(LootAlert.db.profile.alertSpecs) do
         if specEnabled then
             local specItems = LootAlert.db.global.itemsBySpecAndId[spec];
             for itemId, itemEntry in pairs(specItems) do
-                for phase, phaseEnabled in pairs(LootAlert.db.profile.alertPhases) do
-                    if phaseEnabled and LootAlert:isItemInPhase(phase, itemEntry.Phase) then
-                        if bisWishlist[itemEntry.Slot] == nil then
-                            bisWishlist[itemEntry.Slot] = {};
-                        end
-                        if bisWishlist[itemEntry.Slot][itemId] ~= nil then
-                            itemEntry.Spec = itemEntry.Spec..", "..spec;
-                        else
-                            itemEntry.Spec = spec;
-                            bisWishlist[itemEntry.Slot][itemId] = itemEntry;
-                        end
-                        -- after 1 phase is found that is enabled and contains the item, stop checking phases
-                        break;
+                local phase = LootAlert.db.profile.alertPhase;
+                if LootAlert:isItemInPhase(phase, itemEntry.Phase) then
+                    if bisWishlist[itemEntry.Slot] == nil then
+                        bisWishlist[itemEntry.Slot] = {};
+                    end
+                    if bisWishlist[itemEntry.Slot][itemId] ~= nil then
+                        itemEntry.Spec = itemEntry.Spec..", "..spec;
+                    else
+                        itemEntry.Spec = spec;
+                        bisWishlist[itemEntry.Slot][itemId] = itemEntry;
                     end
                 end
             end

@@ -38,25 +38,26 @@ function LootAlert:RenderRollOptionsModal(itemId)
     rollOffSpecButton:SetHeight(30);
     rollOffSpecButton:SetWidth(150);
 
-    linkButton:SetCallback("OnClick", OnLinkButtonClick(itemId, rollOptionsFrame));
-    rollMainSpecButton:SetCallback("OnClick", function () 
+    local item = LootAlert:GetItemInfoInstant(itemId);
+
+    linkButton:SetCallback("OnClick", OnLinkButtonClick(item, rollOptionsFrame));
+    rollMainSpecButton:SetCallback("OnClick", function ()
         RandomRoll(1, 100);
+        AceGUI:Release(rollOptionsFrame);
     end);
     rollOffSpecButton:SetCallback("OnClick", function ()
         RandomRoll(1, 99);
+        AceGUI:Release(rollOptionsFrame);
     end);
 
-    -- TODO:: Use Cache
-    local itemName, itemLink, _, _, _, _, _, _, _, itemTexture = GetItemInfo(itemId);
     local icon = AceGUI:Create("Icon");
-    icon:SetLabel(itemLink);
-    icon:SetImage(itemTexture);
+    icon:SetLabel(item.Link);
+    icon:SetImage(item.Texture);
     icon:SetWidth(400);
-    --icon:SetFullWidth(true);
     icon:SetImageSize(40, 40);
     icon:SetCallback("OnEnter", function(widget)
         GameTooltip:SetOwner(widget.image, "ANCHOR_LEFT");
-		GameTooltip:SetHyperlink(itemLink);
+		GameTooltip:SetHyperlink(item.Link);
 		GameTooltip:Show();
     end);
     icon:SetCallback("OnLeave", function()
@@ -68,7 +69,6 @@ function LootAlert:RenderRollOptionsModal(itemId)
     rollOptionsFrame:AddChild(rollMainSpecButton);
     rollOptionsFrame:AddChild(rollOffSpecButton);
 
-    
     icon:SetPoint("TOP", rollOptionsFrame.frame, "TOP", 0, -30);
     linkButton:SetPoint("LEFT", rollOptionsFrame.frame, "LEFT", 20, -20);
     rollMainSpecButton:SetPoint("CENTER", rollOptionsFrame.frame, "CENTER", 0, -20);
@@ -76,21 +76,19 @@ function LootAlert:RenderRollOptionsModal(itemId)
 
 end
 
-function OnLinkButtonClick (itemId, rollOptionsFrame)
+function OnLinkButtonClick (item, rollOptionsFrame)
     return function ()
-        -- TODO:: Use cache
-        local slotName = select(9, GetItemInfo(itemId));
+        local slotName = select(9, GetItemInfo(item.Id));
         local slotIds = LootAlert.constants.SLOT_MAP[slotName].ids;
         local itemLinks = "";
 
         for _,slotId in ipairs(slotIds) do
             local equippedItemId = GetInventoryItemID("player", slotId);
-            -- TODO:: Use cache
             local _, itemLink = GetItemInfo(equippedItemId);
             itemLinks = itemLinks .. itemLink;
         end
-        -- TEMP FOR TESTING: Remove when done
-        LootAlert:Print(itemLinks);
+
+        LootAlert:Print(itemLinks); -- TEMP FOR TESTING: Remove when done
         SendChatMessage(itemLinks, "RAID");
         AceGUI:Release(rollOptionsFrame);
     end
