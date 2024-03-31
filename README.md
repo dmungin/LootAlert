@@ -22,8 +22,9 @@ A World of Warcraft Addon for keeping track of raid loot and rolling on items as
 ![Item Roll](https://i.imgur.com/ljJEeV6.png)
 
 * Option to filter by item quality and master looter - Generally only Epic items or above would be relevant in raid, but this is configurable. If someone other than master looter links items for offer, disable this filter.
+* Option to select specs to set BIS list of your current class. This will control what is shown in the "BIS List" tab.
 
-![Config Options](https://i.imgur.com/YhrY5da.png)
+![Config Options](https://i.imgur.com/7laQ7H3.png)
 
 
 ### Known Issues
