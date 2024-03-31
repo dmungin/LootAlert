@@ -19,7 +19,6 @@ libs\AceConfig-3.0\AceConfig-3.0.xml
 
 LootAlert.lua
 db\ItemSources.lua
-db\TierSources.lua
 Debug.lua
 Cache.lua
 Constants.lua

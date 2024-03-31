@@ -74,9 +74,7 @@ function LootAlert:getDefaultDb()
             lastCacheDate = nil,
             itemCache = {},
             itemSources = {},
-            tierSources = {},
             itemsBySpecAndId = {},
-            itemsByIdAndSpec = {},
         },
     };
 end

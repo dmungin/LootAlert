@@ -22,7 +22,6 @@ function LootAlert:OnInitialize()
 
     -- Should this be in a temporal state instead of DB?
     LootAlert.db.global.allItemsCached = false;
-    LootAlert.db.global.tierSources = LootAlert:PopulateTierSources();
     LootAlert.db.global.itemSources = LootAlert:PopulateItemSources();
 	LootAlert:PreCacheItems();
     LootAlert:PopulateBisLists();
@@ -60,6 +59,7 @@ function LootAlert:RenderLootAlert ()
         LootAlert.state.tabFrame = nil;
     end);
     -- Create tabs and select default
+    -- TODO:: This probably can be curried into the callback "OnGroupSelected" and removed from state
     LootAlert.state.tabFrame = AceGUI:Create("TabGroup");
     LootAlert.state.tabFrame:SetLayout("Flow");
 

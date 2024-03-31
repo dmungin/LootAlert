@@ -3,7 +3,7 @@ local LootAlert = core.LootAlert;
 
 local FORCE_UPDATE_CACHE = false;
 
--- TODO:: This is not finishing before the UI tries to render...need to add a callback somehow
+-- TODO:: This is not finishing before the UI tries to render...need to add a callback somehow?
 function LootAlert:PreCacheItems()
     if LootAlert.db.global.allItemsCached then return LootAlert.db.global.allItemsCached; end
 
@@ -57,27 +57,7 @@ function LootAlert:GetPhaseNumbers(phaseText)
 
     return firstNumber, lastNumber;
 end
---[[
-function LootAlert:FindInPhase(phaseText, phase)
 
-    local phaseNumber = tonumber(phase);
-
-    local firstNumber, lastNumber = LootAlert:GetPhaseNumbers(phaseText);
-
-    if firstNumber == nil then
-        return false;
-    end
-
-    return tonumber(firstNumber) <= phaseNumber and tonumber(lastNumber) >= phaseNumber;
-end
-]]
---[[
-function LootAlert:TableLength(T)
-    local count = 0
-    for _ in pairs(T) do count = count + 1 end
-    return count
-end
-]]
 local NIL_ITEM = { Name = nil, Link = nil, Quality = nil, Type = nil, SubType = nil, Texture = nil, Class = nil, Slot = nil };
 
 function LootAlert:GetItemInfoInstant(itemId)
@@ -125,13 +105,13 @@ function LootAlert:GetItemInfo(itemId, callback)
                 Class = classId,
                 Slot = slot
             };
-            
+
             if name and LootAlert.db.global.itemSources[itemId] == nil then
                 LootAlert:Error("Item Missing from Sources: ", itemId);
             end
-            
+
             LootAlert.db.global.itemCache[itemId] = newItem;
-            
+
             callback(newItem);
         end);
     end
@@ -163,17 +143,13 @@ function LootAlert:AddItem(bisEntry, id, slot, bis)
 		return;
 	end
 
-	if not LootAlert.db.global.itemsByIdAndSpec[itemId] then
-		LootAlert.db.global.itemsByIdAndSpec[itemId] = {}
-	end
-
 	if bisEntry.Phase == "0" then
 		bis = "PreRaid";
 	elseif tonumber(bisEntry.Phase) < LootAlert.db.global.currentPhase then
 		bis = string.gsub(bis, "BIS", "Alt");
 	end
 
-	local searchedItem = LootAlert.db.global.itemsByIdAndSpec[itemId][bisEntry.Id];
+	local searchedItem = LootAlert.db.global.itemsBySpecAndId[bisEntry.Id][itemId];
 
 	if searchedItem == nil then
 		searchedItem = { Id = itemId, Bis = bis, Phase = bisEntry.Phase, Slot = slot, SortOrder = addOrder }
@@ -198,19 +174,11 @@ function LootAlert:AddItem(bisEntry, id, slot, bis)
 	end
 
 	LootAlert.db.global.itemsBySpecAndId[bisEntry.Id][itemId] = searchedItem;
-	LootAlert.db.global.itemsByIdAndSpec[itemId][bisEntry.Id] = searchedItem;
 
 	local itemSource = LootAlert.db.global.itemSources[itemId];
 
 	if itemSource == nil then
 		LootAlert:Error("Couldn't find item source for: ", id);
-    else
-        if itemSource.SourceType == "Profession" and tonumber(itemSource.SourceNumber) ~= nil and tonumber(itemSource.SourceNumber) > 0 then
-            if not LootAlert.db.global.itemsByIdAndSpec[tonumber(itemSource.SourceNumber)] then
-                LootAlert.db.global.itemsByIdAndSpec[tonumber(itemSource.SourceNumber)] = {}
-            end
-            LootAlert.db.global.itemsByIdAndSpec[tonumber(itemSource.SourceNumber)][bisEntry.Id] = searchedItem
-        end
 	end
 
     addOrder = addOrder + 1;
@@ -221,38 +189,3 @@ function LootAlert:PopulateBisLists()
         loadBis();
     end
 end
-
---[[
-
-function LootAlert:GetSpellInfo(spellId, returnFunc)
-
-    if not spellId or spellId <= 0 then
-        returnFunc({ Name = nil, Link = nil, Quality = nil, Type = nil, SubType = nil, Texture = nil });
-    end
-
-    local cachedSpell = LootAlert.SpellCache[spellId];
-
-    if cachedSpell then
-        returnFunc(cachedSpell);
-    else
-        local spellCache = Spell:CreateFromSpellID(spellId)
-
-        spellCache:ContinueOnSpellLoad(function()
-            local name = spellCache:GetSpellName();
-            
-            local newSpell = {
-                Id = spellId,
-                Name = name,
-                SubText = spellCache:GetSpellSubtext(),
-                Texture = GetSpellTexture(spellId)
-            };
-
-            if name then
-                LootAlert.SpellCache[spellId] = newSpell;
-            end
-            
-            returnFunc(newSpell);
-        end);
-    end           
-end
-]]
