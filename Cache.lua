@@ -134,13 +134,17 @@ end
 local addOrder = 0;
 function LootAlert:AddItem(bisEntry, id, slot, bis)
 	if strlen(id) <= 0 then
-		return
+		return;
 	end
 
 	local itemId = tonumber(id);
 
 	if itemId == nil or LootAlert.db.global.currentPhase < tonumber(bisEntry.Phase) then
 		return;
+	end
+
+    if not LootAlert.db.global.itemsBySpecAndId[bisEntry.Id] then
+		LootAlert.db.global.itemsBySpecAndId[bisEntry.Id] = {};
 	end
 
 	if bisEntry.Phase == "0" then
@@ -155,7 +159,7 @@ function LootAlert:AddItem(bisEntry, id, slot, bis)
 		searchedItem = { Id = itemId, Bis = bis, Phase = bisEntry.Phase, Slot = slot, SortOrder = addOrder }
 
 		if not LootAlert.db.global.itemsBySpecAndId[bisEntry.Id] then
-			LootAlert.db.global.itemsBySpecAndId[bisEntry.Id] = {}
+			LootAlert.db.global.itemsBySpecAndId[bisEntry.Id] = {};
 		end
 	else
 		if bisEntry.Phase > searchedItem.Phase then

@@ -9,7 +9,7 @@ LootAlert.state = {
     tabFrame = nil,
     bisListLoadFunctions = {},
 };
-
+-- https://stackoverflow.com/questions/1252539/most-efficient-way-to-determine-if-a-lua-table-is-empty-contains-no-entries
 local next = next;
 
 function LootAlert:OnInitialize()
@@ -194,17 +194,18 @@ end
 
 function LootAlert:BuildLootBisList()
     local bisWishlist = {};
-    for spec, specEnabled in pairs(LootAlert.db.profile.alertSpecs) do
+    for spec, specEnabled in pairs(LootAlert.db.char.alertSpecs) do
         if specEnabled then
             local specItems = LootAlert.db.global.itemsBySpecAndId[spec];
             for itemId, itemEntry in pairs(specItems) do
-                local phase = LootAlert.db.profile.alertPhase;
+                local phase = LootAlert.db.char.alertPhase;
                 if LootAlert:isItemInPhase(phase, itemEntry.Phase) then
                     if bisWishlist[itemEntry.Slot] == nil then
                         bisWishlist[itemEntry.Slot] = {};
                     end
-                    if bisWishlist[itemEntry.Slot][itemId] ~= nil then
-                        itemEntry.Spec = itemEntry.Spec..", "..spec;
+                    local existingItem = bisWishlist[itemEntry.Slot][itemId];
+                    if existingItem ~= nil then
+                        existingItem.Spec = existingItem.Spec..", "..spec;
                     else
                         itemEntry.Spec = spec;
                         bisWishlist[itemEntry.Slot][itemId] = itemEntry;
@@ -256,22 +257,6 @@ function LootAlert:SlashCommand(msg)
             LootAlert:RenderLootAlert();
         end
 	end
-end
-
-function LootAlert:GetLootThreshold(info)
-    return self.db.profile.lootThreshold;
-end
-
-function LootAlert:SetLootThreshold(info, value)
-    self.db.profile.lootThreshold = value;
-end
-
-function LootAlert:GetShowOnlyMaster(info)
-    return self.db.profile.showOnlyMaster;
-end
-
-function LootAlert:SetShowOnlyMaster(info, value)
-    self.db.profile.showOnlyMaster = value;
 end
 
 function LootAlert:OnEnable()
