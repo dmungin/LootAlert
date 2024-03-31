@@ -457,6 +457,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "51927", "Ranged/Relic", "Alt") --Njorndar Bone Bow
     LootAlert:AddItem(spec4, "51845", "Ranged/Relic", "Alt") --Stakethrower
     LootAlert:AddItem(spec4, "50034", "Ranged/Relic", "Alt") --Zod's Repeating Longbow
+    LootAlert:AddItem(spec4, "52029", "Tier Token", "BIS") --Protector's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52026", "Tier Token", "Alt") --Protector's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

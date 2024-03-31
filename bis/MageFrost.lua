@@ -452,6 +452,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "50472", "Ranged/Relic", "Alt") --Nightmare Ender
     LootAlert:AddItem(spec4, "51838", "Ranged/Relic", "Alt") --Lana'thel's Bloody Nail
     LootAlert:AddItem(spec4, "45294", "Ranged/Relic", "Alt") --Petrified Ivy Sprig
+    LootAlert:AddItem(spec4, "52028", "Tier Token", "BIS") --Vanquisher's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52025", "Tier Token", "Alt") --Vanquisher's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

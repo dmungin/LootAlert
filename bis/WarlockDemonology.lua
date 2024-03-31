@@ -749,6 +749,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "50472", "Ranged/Relic", "Alt") --Nightmare Ender
     LootAlert:AddItem(spec4, "50033", "Ranged/Relic", "Alt") --Corpse-Impaling Spike
     LootAlert:AddItem(spec4, "51326", "Ranged/Relic", "Alt") --Wand of Ruby Claret
+    LootAlert:AddItem(spec4, "52030", "Tier Token", "BIS") --Conqueror's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52027", "Tier Token", "Alt") --Conqueror's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

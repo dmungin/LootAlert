@@ -462,6 +462,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "50648", "Two Hand", "Alt") --Nibelung
     LootAlert:AddItem(spec4, "51943", "Two Hand", "Alt") --Halion, Staff of Forgotten Love
     LootAlert:AddItem(spec4, "50457", "Ranged/Relic", "BIS") --Idol of the Lunar Eclipse
+    LootAlert:AddItem(spec4, "52028", "Tier Token", "BIS") --Vanquisher's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52025", "Tier Token", "Alt") --Vanquisher's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

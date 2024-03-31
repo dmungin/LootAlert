@@ -449,6 +449,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "45887", "Off Hand", "Alt") --Ice Layered Barrier
     LootAlert:AddItem(spec4, "47665", "Ranged/Relic", "BIS") --Totem of Calming Tides
     LootAlert:AddItem(spec4, "40709", "Ranged/Relic", "Alt") --Totem of Forest Growth
+    LootAlert:AddItem(spec4, "52029", "Tier Token", "BIS") --Protector's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52026", "Tier Token", "Alt") --Protector's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

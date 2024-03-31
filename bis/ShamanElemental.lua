@@ -428,6 +428,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "47666", "Ranged/Relic", "Alt") --Totem of Electrifying Wind
     LootAlert:AddItem(spec4, "40267", "Ranged/Relic", "Alt") --Totem of Hex
     LootAlert:AddItem(spec4, "40708", "Ranged/Relic", "Alt") --Totem of the Elemental Plane
+    LootAlert:AddItem(spec4, "52029", "Tier Token", "BIS") --Protector's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52026", "Tier Token", "Alt") --Protector's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

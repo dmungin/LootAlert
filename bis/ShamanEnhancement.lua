@@ -449,6 +449,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "46097", "Off Hand", "Alt") --Caress of Insanity
     LootAlert:AddItem(spec4, "50458", "Ranged/Relic", "BIS") --Bizuri's Totem of Shattered Ice
     LootAlert:AddItem(spec4, "47666", "Ranged/Relic", "Alt") --Totem of Electrifying Wind
+    LootAlert:AddItem(spec4, "52029", "Tier Token", "BIS") --Protector's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52026", "Tier Token", "Alt") --Protector's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

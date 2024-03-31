@@ -336,6 +336,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "50462", "Ranged/Relic", "BIS") --Sigil of the Bone Gryphon
     LootAlert:AddItem(spec4, "47672", "Ranged/Relic", "Alt") --Sigil of Insolence
     LootAlert:AddItem(spec4, "45144", "Ranged/Relic", "Alt") --Sigil of Deflection
+    LootAlert:AddItem(spec4, "52028", "Tier Token", "BIS") --Vanquisher's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52025", "Tier Token", "Alt") --Vanquisher's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

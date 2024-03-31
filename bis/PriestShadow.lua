@@ -761,6 +761,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "47995", "Ranged/Relic", "Alt") --Scepter of Imprisoned Souls
     LootAlert:AddItem(spec4, "47922", "Ranged/Relic", "Alt") --Rod of Imprisoned Souls
     LootAlert:AddItem(spec4, "45294", "Ranged/Relic", "Alt") --Petrified Ivy Sprig
+    LootAlert:AddItem(spec4, "52030", "Tier Token", "BIS") --Conqueror's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52027", "Tier Token", "Alt") --Conqueror's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

@@ -350,6 +350,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "50654", "Off Hand", "Alt") --Scourgeborne Waraxe
     LootAlert:AddItem(spec4, "50459", "Ranged/Relic", "BIS") --Sigil of the Hanged Man
     LootAlert:AddItem(spec4, "47673", "Ranged/Relic", "BIS") --Sigil of Virulence
+    LootAlert:AddItem(spec4, "52028", "Tier Token", "BIS") --Vanquisher's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52025", "Tier Token", "Alt") --Vanquisher's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

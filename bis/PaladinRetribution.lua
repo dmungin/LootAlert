@@ -583,6 +583,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "27484", "Ranged/Relic", "Alt") --Libram of Avengement
     LootAlert:AddItem(spec4, "40191", "Ranged/Relic", "Alt") --Libram of Radiance
     LootAlert:AddItem(spec4, "45510", "Ranged/Relic", "Alt") --Libram of Discord
+    LootAlert:AddItem(spec4, "52030", "Tier Token", "BIS") --Conqueror's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52027", "Tier Token", "Alt") --Conqueror's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

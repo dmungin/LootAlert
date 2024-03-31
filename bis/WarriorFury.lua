@@ -325,6 +325,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "47428", "Ranged/Relic", "Alt") --Death's Head Crossbow
     LootAlert:AddItem(spec4, "46995", "Ranged/Relic", "Alt") --Talonstrike
     LootAlert:AddItem(spec4, "45296", "Ranged/Relic", "Alt") --Twirling Blades
+    LootAlert:AddItem(spec4, "52029", "Tier Token", "BIS") --Protector's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52026", "Tier Token", "Alt") --Protector's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

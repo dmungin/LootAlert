@@ -404,6 +404,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "50444", "Ranged/Relic", "Alt") --Rowan's Rifle of Silver Bullets
     LootAlert:AddItem(spec4, "51561", "Ranged/Relic", "Alt") --Dreamhunter's Carbine
     LootAlert:AddItem(spec4, "47660", "Ranged/Relic", "Alt") --Blades of the Sable Cross
+    LootAlert:AddItem(spec4, "52029", "Tier Token", "BIS") --Protector's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52026", "Tier Token", "Alt") --Protector's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

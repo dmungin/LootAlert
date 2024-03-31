@@ -405,6 +405,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "51833", "Two Hand", "Alt") --Oxheart
     LootAlert:AddItem(spec4, "50456", "Ranged/Relic", "BIS") --Idol of the Crying Moon
     LootAlert:AddItem(spec4, "45509", "Ranged/Relic", "Alt") --Idol of the Corruptor
+    LootAlert:AddItem(spec4, "52028", "Tier Token", "BIS") --Vanquisher's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52025", "Tier Token", "Alt") --Vanquisher's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

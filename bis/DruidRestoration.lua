@@ -467,6 +467,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "51943", "Two Hand", "Alt") --Halion, Staff of Forgotten Love
     LootAlert:AddItem(spec4, "50454", "Ranged/Relic", "BIS") --Idol of the Black Willow
     LootAlert:AddItem(spec4, "40342", "Ranged/Relic", "BIS") --Idol of Awakening
+    LootAlert:AddItem(spec4, "52028", "Tier Token", "BIS") --Vanquisher's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52025", "Tier Token", "Alt") --Vanquisher's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

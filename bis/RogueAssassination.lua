@@ -652,6 +652,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "51385", "Ranged/Relic", "Alt") --Stakethrower
     LootAlert:AddItem(spec4, "47950", "Ranged/Relic", "Alt") --The Diplomat
     LootAlert:AddItem(spec4, "48022", "Ranged/Relic", "Alt") --Widebarrel Flintlock
+    LootAlert:AddItem(spec4, "52028", "Tier Token", "BIS") --Vanquisher's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52025", "Tier Token", "Alt") --Vanquisher's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

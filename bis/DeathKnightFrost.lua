@@ -336,6 +336,8 @@ local function loadBis ()
     LootAlert:AddItem(spec4, "47528", "Main Hand/Off Hand", "Alt") --Cudgel of the Damned
     LootAlert:AddItem(spec4, "47526", "Main Hand/Off Hand", "Alt") --Remorseless
     LootAlert:AddItem(spec4, "40207", "Ranged/Relic", "BIS") --Sigil of Awareness
+    LootAlert:AddItem(spec4, "52028", "Tier Token", "BIS") --Vanquisher's Mark of Sanctification
+    LootAlert:AddItem(spec4, "52025", "Tier Token", "Alt") --Vanquisher's Mark of Sanctification
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);
