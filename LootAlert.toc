@@ -1,7 +1,7 @@
 ## Title: |cff1784d1LootAlert|r
 ## Notes: Notify when wishlist loot drops and assist in rolling
 ## Author: Klen
-## Version: 1.0
+## Version: 1.0.1
 ## Interface: 30403
 ## SavedVariables: LootAlertDB
 ## DefaultState: enabled
