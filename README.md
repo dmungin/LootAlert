@@ -30,9 +30,7 @@ A World of Warcraft Classic Addon for keeping track of raid loot and rolling on 
 ### Known Issues
 
 - Item tokens and the items they are used to obtain are both shown in the BIS list. Maybe just show items and in code map them to tokens they need when linked?
-- Some widgets may not correctly get released when not shown. This could lead to increased memory usage over time.
 
 ### Planned features
 
 - Add the ability for players to create Custom BIS Lists
-- Reduce memory footprint
