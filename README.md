@@ -1,7 +1,7 @@
 LootAlert
 =====
 
-A World of Warcraft Addon for keeping track of raid loot and rolling on items as they are put on offer. **This addon is written in a very specific way to work with the way my guild does loot and probably won't be useful unless your guild uses a very similar loot procedure!**
+A World of Warcraft Classic Addon for keeping track of raid loot and rolling on items as they are put on offer. **This addon is written in a very specific way to work with the way my guild does loot and probably won't be useful unless your guild uses a very similar loot procedure!**
 
 
 ### Features
