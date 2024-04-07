@@ -249,7 +249,7 @@ function LootAlert:AddLoot (container, item, options)
     end
     itemLabel:SetFullWidth(options.fullWidth);
     itemLabel:SetCallback("OnEnter", function(widget)
-        GameTooltip:SetOwner(widget.label, "ANCHOR_LEFT");
+        GameTooltip:SetOwner(widget.image, "ANCHOR_LEFT");
 		GameTooltip:SetHyperlink(item.Link);
 		GameTooltip:Show();
     end);
