@@ -187,8 +187,22 @@ function LootAlert:RenderLootHistory (container)
     for _, itemId in ipairs(LootAlert.db.char.lootHistory) do
         local item = LootAlert:GetItemInfoInstant(itemId);
         if item.Id ~= nil then
-            LootAlert:AddLoot(lootHistoryScrollFrame, item, { fullWidth = true, iconSize = 20 });
+            local lootHistoryLabel = LootAlert:AddLoot(lootHistoryScrollFrame, item, { fullWidth = true, iconSize = 20 });
+            LootAlert:HighlightWantedLoot(item, lootHistoryLabel)
         end
+    end
+end
+
+function LootAlert:HighlightWantedLoot(item, labelWidget)
+    if LootAlert.db.char.wantedLootBisList[item.Id] then
+        local hightlightTexture = labelWidget.frame:CreateTexture("wantedItemTex["..item.Id.."]", "BACKGROUND", nil, -1);
+        hightlightTexture:SetTexture("Interface\\QuestFrame\\UI-QuestLogTitleHighlight");
+        hightlightTexture:SetAllPoints(labelWidget.frame);
+        hightlightTexture:Show();
+        labelWidget:SetCallback("OnRelease", function (...)
+            hightlightTexture:ClearAllPoints();
+            hightlightTexture:Hide();
+        end);
     end
 end
 
