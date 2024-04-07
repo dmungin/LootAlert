@@ -6,9 +6,9 @@ A World of Warcraft Classic Addon for keeping track of raid loot and rolling on 
 
 ### Features
 
-* Loot History Tracker - Shows a list of all loot picked up by the current raid master looter - reset this with the `\la clear` command
+* Loot History Tracker - Shows a list of all loot picked up by the current raid master looter - reset this with the `\la clear` command. Items marked as wanted in the BIS List tab will be highlighted here.
 
-![Loot History](https://i.imgur.com/sqkqOK9.png)
+![Loot History](https://i.imgur.com/nDufU8O.png)
 
 * Bis List - Shows a list of the BIS or Alt BIS items for the currently activated Class / Specs and Phases - Use `\la` to open the options frame and select the desired Specs and Phases.
 
