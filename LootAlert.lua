@@ -55,8 +55,6 @@ function LootAlert:OnInitialize()
 	self:RegisterChatCommand("la", "SlashCommand");
 	self:RegisterChatCommand("lootalert", "SlashCommand");
     LootAlert:RegisterEvent("CHAT_MSG_LOOT");
-    -- Remove CHAT_MSG_CHANNEL when done testing
-    LootAlert:RegisterEvent("CHAT_MSG_CHANNEL");
     LootAlert:RegisterEvent("CHAT_MSG_RAID_WARNING");
     LootAlert:RenderLootAlert();
 end;
