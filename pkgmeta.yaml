@@ -1,3 +1,5 @@
-# Ignore takes place before folder's moving takes place
-ignore:
- - wowheadScraper
+
+# wildcards (*) are not supported by curse
+ignore: # Files and directories beginning with a dot (such as .git) are automatically ignored, as is the pgkmeta file itself.
+    - wowheadScraper
+    -
