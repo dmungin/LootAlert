@@ -1,0 +1,3 @@
+# Ignore takes place before folder's moving takes place
+ignore:
+ - wowheadScraper
