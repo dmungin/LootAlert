@@ -102,7 +102,7 @@ function LootAlert:BuildConstants()
         },
         INVTYPE_FINGER = {
             ids = { 11, 12 },
-            name = "Finger",
+            name = "Ring",
         },
         INVTYPE_TRINKET = {
             ids = { 13, 14 },
@@ -179,6 +179,7 @@ function LootAlert:BuildConstants()
         constants.SLOT_MAP.INVTYPE_RANGED.name,
         constants.SLOT_MAP.INVTYPE_AMMO.name,
         constants.SLOT_MAP.INVTYPE_TABARD.name,
+        "Tier Token",
     };
 
     return constants;
