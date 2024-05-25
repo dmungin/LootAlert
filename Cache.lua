@@ -1,7 +1,7 @@
 local _, core = ...;
 local LootAlert = core.LootAlert;
 
-local FORCE_UPDATE_CACHE = false;
+local FORCE_UPDATE_CACHE = true;
 
 -- TODO:: This is not finishing before the UI tries to render...need to add a callback somehow?
 function LootAlert:PreCacheItems()
@@ -11,6 +11,9 @@ function LootAlert:PreCacheItems()
     -- TODO:: Temp flag to force cache update;
     if (FORCE_UPDATE_CACHE or not LootAlert.db.global.lastCacheDate or LootAlert.db.global.lastCacheDate < LootAlert.db.global.reCacheDate) then
         LootAlert.db.global.itemCache = {};
+        LootAlert.db.global.itemsBySpecAndId = {};
+        LootAlert.db.char.wantedLootBisList = {};
+        LootAlert.db.char.activeTab = 'lootHistory';
         LootAlert.db.global.lastCacheDate = time();
 
         for itemId, _ in pairs(LootAlert.db.global.itemSources) do
