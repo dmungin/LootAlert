@@ -5,152 +5,152 @@ local function loadBis ()
     local spec0 = LootAlert:RegisterSpec("Hunter", "Marksmanship", "0")
     local spec1 = LootAlert:RegisterSpec("Hunter", "Marksmanship", "1")
 
-    LBIS:AddItem(spec0, "59456", LBIS.L["Head"], "BIS") --Deadly Bio-Optic Killshades
-    LBIS:AddItem(spec0, "62429", LBIS.L["Head"], "BIS") --Windhome Helm
-    LBIS:AddItem(spec0, "62409", LBIS.L["Head"], "BIS") --Snarling Helm
-    LBIS:AddItem(spec0, "56443", LBIS.L["Head"], "Alt") --Wildhammer Riding Helm
-    LBIS:AddItem(spec0, "56298", LBIS.L["Head"], "Alt") --Renouncer's Cowl
-    LBIS:AddItem(spec0, "56419", LBIS.L["Shoulder"], "BIS") --Bloodpetal Mantle
-    LBIS:AddItem(spec0, "58124", LBIS.L["Shoulder"], "Alt") --Wrap of the Valley Glades
-    LBIS:AddItem(spec0, "55997", LBIS.L["Shoulder"], "Alt") --Bloodpetal Mantle
-    LBIS:AddItem(spec0, "63473", LBIS.L["Back"], "BIS") --Cloak of Thredd
-    LBIS:AddItem(spec0, "65177", LBIS.L["Back"], "Alt") --Cape of the Brotherhood
-    LBIS:AddItem(spec0, "62361", LBIS.L["Back"], "Alt") --Softwind Cape
-    LBIS:AddItem(spec0, "56315", LBIS.L["Back"], "Alt") --Twitching Shadows
-    LBIS:AddItem(spec0, "56281", LBIS.L["Chest"], "BIS") --Wentletrap Vest
-    LBIS:AddItem(spec0, "58121", LBIS.L["Chest"], "Alt") --Vest of the True Companion
-    LBIS:AddItem(spec0, "56515", LBIS.L["Chest"], "Alt") --Razorshell Chest
-    LBIS:AddItem(spec0, "63479", LBIS.L["Wrist"], "BIS") --Bracers of Some Consequence
-    LBIS:AddItem(spec0, "56340", LBIS.L["Wrist"], "Alt") --Elementium Scale Bracers
-    LBIS:AddItem(spec0, "66935", LBIS.L["Wrist"], "Alt") --Eradicator's Bracers
-    LBIS:AddItem(spec0, "58125", LBIS.L["Hands"], "BIS") --Gloves of the Passing Night
-    LBIS:AddItem(spec0, "67239", LBIS.L["Hands"], "Alt") --Xariona's Spectral Claws
-    LBIS:AddItem(spec0, "63436", LBIS.L["Hands"], "Alt") --Traitor's Grips
-    LBIS:AddItem(spec0, "56268", LBIS.L["Hands"], "Alt") --Wrasse Handwraps
-    LBIS:AddItem(spec0, "56539", LBIS.L["Waist"], "BIS") --Corded Viper Belt
-    LBIS:AddItem(spec0, "57916", LBIS.L["Waist"], "Alt") --Belt of the Dim Forest
-    LBIS:AddItem(spec0, "56363", LBIS.L["Waist"], "Alt") --Hail-Strung Belt
-    LBIS:AddItem(spec0, "56386", LBIS.L["Legs"], "BIS") --Balkar's Waders
-    LBIS:AddItem(spec0, "58122", LBIS.L["Legs"], "Alt") --Hillside Striders
-    LBIS:AddItem(spec0, "55861", LBIS.L["Legs"], "Alt") --Balkar's Waders
-    LBIS:AddItem(spec0, "62385", LBIS.L["Feet"], "BIS") --Treads of Malorne
-    LBIS:AddItem(spec0, "56451", LBIS.L["Feet"], "Alt") --Red Scale Boots
-    LBIS:AddItem(spec0, "57867", LBIS.L["Feet"], "Alt") --Boots of Crumbling Ruin
-    LBIS:AddItem(spec0, "63446", LBIS.L["Feet"], "Alt") --Haunting Footfalls
-    LBIS:AddItem(spec0, "52350", LBIS.L["Neck"], "BIS") --Brazen Elementium Medallion
-    LBIS:AddItem(spec0, "57931", LBIS.L["Neck"], "Alt") --Amulet of Dull Dreaming
-    LBIS:AddItem(spec0, "56422", LBIS.L["Neck"], "Alt") --Mouth of the Earth
-    LBIS:AddItem(spec0, "56338", LBIS.L["Neck"], "Alt") --Pendant of the Lightless Grotto
-    LBIS:AddItem(spec0, "52348", LBIS.L["Ring"], "BIS") --Elementium Destroyer's Ring
-    LBIS:AddItem(spec0, "62362", LBIS.L["Ring"], "BIS") --Signet of the Elder Council
-    LBIS:AddItem(spec0, "52318", LBIS.L["Ring"], "Alt") --Band of Blades
-    LBIS:AddItem(spec0, "56445", LBIS.L["Ring"], "Alt") --Ring of Dun Algaz
-    LBIS:AddItem(spec0, "56282", LBIS.L["Ring"], "Alt") --Nautilus Ring
-    LBIS:AddItem(spec0, "56310", LBIS.L["Ring"], "Alt") --Skullcracker Ring
-    LBIS:AddItem(spec0, "56394", LBIS.L["Trinket"], "BIS") --Tia's Grace
-    LBIS:AddItem(spec0, "56328", LBIS.L["Trinket"], "BIS") --Key to the Endless Chamber
-    LBIS:AddItem(spec0, "62051", LBIS.L["Trinket"], "Alt") --Darkmoon Card: Hurricane
-    LBIS:AddItem(spec0, "56440", LBIS.L["Trinket"], "Alt") --Skardyn's Grace
-    LBIS:AddItem(spec0, "65168", LBIS.L["Two Hand"], "BIS") --Rockslicer
-    LBIS:AddItem(spec0, "56325", LBIS.L["Two Hand"], "Alt") --Berto's Staff
-    LBIS:AddItem(spec0, "62474", LBIS.L["Two Hand"], "Alt") --Spear of Trailing Shadows
-    LBIS:AddItem(spec0, "62455", LBIS.L["Two Hand"], "Alt") --Spear of Trailing Shadows
-    LBIS:AddItem(spec0, "56343", LBIS.L["Two Hand"], "Alt") --Darkling Staff
-    LBIS:AddItem(spec0, "56317", LBIS.L["Ranged/Relic"], "BIS") --Amber Messenger
-    LBIS:AddItem(spec0, "56366", LBIS.L["Ranged/Relic"], "Alt") --Lightningflash
-    LBIS:AddItem(spec0, "59367", LBIS.L["Ranged/Relic"], "Alt") --Kickback 5000
-    LBIS:AddItem(spec0, "59364", LBIS.L["Ranged/Relic"], "Alt") --Overpowered Chicken Splitter
+    LootAlert:AddItem(spec0, "59456", "Head", "BIS") --Deadly Bio-Optic Killshades
+    LootAlert:AddItem(spec0, "62429", "Head", "BIS") --Windhome Helm
+    LootAlert:AddItem(spec0, "62409", "Head", "BIS") --Snarling Helm
+    LootAlert:AddItem(spec0, "56443", "Head", "Alt") --Wildhammer Riding Helm
+    LootAlert:AddItem(spec0, "56298", "Head", "Alt") --Renouncer's Cowl
+    LootAlert:AddItem(spec0, "56419", "Shoulder", "BIS") --Bloodpetal Mantle
+    LootAlert:AddItem(spec0, "58124", "Shoulder", "Alt") --Wrap of the Valley Glades
+    LootAlert:AddItem(spec0, "55997", "Shoulder", "Alt") --Bloodpetal Mantle
+    LootAlert:AddItem(spec0, "63473", "Back", "BIS") --Cloak of Thredd
+    LootAlert:AddItem(spec0, "65177", "Back", "Alt") --Cape of the Brotherhood
+    LootAlert:AddItem(spec0, "62361", "Back", "Alt") --Softwind Cape
+    LootAlert:AddItem(spec0, "56315", "Back", "Alt") --Twitching Shadows
+    LootAlert:AddItem(spec0, "56281", "Chest", "BIS") --Wentletrap Vest
+    LootAlert:AddItem(spec0, "58121", "Chest", "Alt") --Vest of the True Companion
+    LootAlert:AddItem(spec0, "56515", "Chest", "Alt") --Razorshell Chest
+    LootAlert:AddItem(spec0, "63479", "Wrist", "BIS") --Bracers of Some Consequence
+    LootAlert:AddItem(spec0, "56340", "Wrist", "Alt") --Elementium Scale Bracers
+    LootAlert:AddItem(spec0, "66935", "Wrist", "Alt") --Eradicator's Bracers
+    LootAlert:AddItem(spec0, "58125", "Hands", "BIS") --Gloves of the Passing Night
+    LootAlert:AddItem(spec0, "67239", "Hands", "Alt") --Xariona's Spectral Claws
+    LootAlert:AddItem(spec0, "63436", "Hands", "Alt") --Traitor's Grips
+    LootAlert:AddItem(spec0, "56268", "Hands", "Alt") --Wrasse Handwraps
+    LootAlert:AddItem(spec0, "56539", "Waist", "BIS") --Corded Viper Belt
+    LootAlert:AddItem(spec0, "57916", "Waist", "Alt") --Belt of the Dim Forest
+    LootAlert:AddItem(spec0, "56363", "Waist", "Alt") --Hail-Strung Belt
+    LootAlert:AddItem(spec0, "56386", "Legs", "BIS") --Balkar's Waders
+    LootAlert:AddItem(spec0, "58122", "Legs", "Alt") --Hillside Striders
+    LootAlert:AddItem(spec0, "55861", "Legs", "Alt") --Balkar's Waders
+    LootAlert:AddItem(spec0, "62385", "Feet", "BIS") --Treads of Malorne
+    LootAlert:AddItem(spec0, "56451", "Feet", "Alt") --Red Scale Boots
+    LootAlert:AddItem(spec0, "57867", "Feet", "Alt") --Boots of Crumbling Ruin
+    LootAlert:AddItem(spec0, "63446", "Feet", "Alt") --Haunting Footfalls
+    LootAlert:AddItem(spec0, "52350", "Neck", "BIS") --Brazen Elementium Medallion
+    LootAlert:AddItem(spec0, "57931", "Neck", "Alt") --Amulet of Dull Dreaming
+    LootAlert:AddItem(spec0, "56422", "Neck", "Alt") --Mouth of the Earth
+    LootAlert:AddItem(spec0, "56338", "Neck", "Alt") --Pendant of the Lightless Grotto
+    LootAlert:AddItem(spec0, "52348", "Ring", "BIS") --Elementium Destroyer's Ring
+    LootAlert:AddItem(spec0, "62362", "Ring", "BIS") --Signet of the Elder Council
+    LootAlert:AddItem(spec0, "52318", "Ring", "Alt") --Band of Blades
+    LootAlert:AddItem(spec0, "56445", "Ring", "Alt") --Ring of Dun Algaz
+    LootAlert:AddItem(spec0, "56282", "Ring", "Alt") --Nautilus Ring
+    LootAlert:AddItem(spec0, "56310", "Ring", "Alt") --Skullcracker Ring
+    LootAlert:AddItem(spec0, "56394", "Trinket", "BIS") --Tia's Grace
+    LootAlert:AddItem(spec0, "56328", "Trinket", "BIS") --Key to the Endless Chamber
+    LootAlert:AddItem(spec0, "62051", "Trinket", "Alt") --Darkmoon Card: Hurricane
+    LootAlert:AddItem(spec0, "56440", "Trinket", "Alt") --Skardyn's Grace
+    LootAlert:AddItem(spec0, "65168", "Two Hand", "BIS") --Rockslicer
+    LootAlert:AddItem(spec0, "56325", "Two Hand", "Alt") --Berto's Staff
+    LootAlert:AddItem(spec0, "62474", "Two Hand", "Alt") --Spear of Trailing Shadows
+    LootAlert:AddItem(spec0, "62455", "Two Hand", "Alt") --Spear of Trailing Shadows
+    LootAlert:AddItem(spec0, "56343", "Two Hand", "Alt") --Darkling Staff
+    LootAlert:AddItem(spec0, "56317", "Ranged/Relic", "BIS") --Amber Messenger
+    LootAlert:AddItem(spec0, "56366", "Ranged/Relic", "Alt") --Lightningflash
+    LootAlert:AddItem(spec0, "59367", "Ranged/Relic", "Alt") --Kickback 5000
+    LootAlert:AddItem(spec0, "59364", "Ranged/Relic", "Alt") --Overpowered Chicken Splitter
     
-    LBIS:AddItem(spec1, "65206", LBIS.L["Head"], "BIS") --Lightning-Charged Headguard
-    LBIS:AddItem(spec1, "65120", LBIS.L["Head"], "Alt") --Arion's Crown
-    LBIS:AddItem(spec1, "60303", LBIS.L["Head"], "Alt") --Lightning-Charged Headguard
-    LBIS:AddItem(spec1, "59456", LBIS.L["Head"], "Alt") --Deadly Bio-Optic Killshades
-    LBIS:AddItem(spec1, "62429", LBIS.L["Head"], "Alt") --Windhome Helm
-    LBIS:AddItem(spec1, "62409", LBIS.L["Head"], "Alt") --Snarling Helm
-    LBIS:AddItem(spec1, "56443", LBIS.L["Head"], "Alt") --Wildhammer Riding Helm
-    LBIS:AddItem(spec1, "56298", LBIS.L["Head"], "Alt") --Renouncer's Cowl
-    LBIS:AddItem(spec1, "65208", LBIS.L["Shoulder"], "BIS") --Lightning-Charged Spaulders
-    LBIS:AddItem(spec1, "65074", LBIS.L["Shoulder"], "Alt") --Spaulders of the Scarred Lady
-    LBIS:AddItem(spec1, "60306", LBIS.L["Shoulder"], "Alt") --Lightning-Charged Spaulders
-    LBIS:AddItem(spec1, "56419", LBIS.L["Shoulder"], "Alt") --Bloodpetal Mantle
-    LBIS:AddItem(spec1, "58124", LBIS.L["Shoulder"], "Alt") --Wrap of the Valley Glades
-    LBIS:AddItem(spec1, "55997", LBIS.L["Shoulder"], "Alt") --Bloodpetal Mantle
-    LBIS:AddItem(spec1, "69884", LBIS.L["Back"], "BIS") --Mistral Drape
-    LBIS:AddItem(spec1, "65035", LBIS.L["Back"], "Alt") --Cloak of Biting Chill
-    LBIS:AddItem(spec1, "69831", LBIS.L["Back"], "Alt") --Mistral Drape
-    LBIS:AddItem(spec1, "63473", LBIS.L["Back"], "Alt") --Cloak of Thredd
-    LBIS:AddItem(spec1, "65177", LBIS.L["Back"], "Alt") --Cape of the Brotherhood
-    LBIS:AddItem(spec1, "62361", LBIS.L["Back"], "Alt") --Softwind Cape
-    LBIS:AddItem(spec1, "56315", LBIS.L["Back"], "Alt") --Twitching Shadows
-    LBIS:AddItem(spec1, "65204", LBIS.L["Chest"], "BIS") --Lightning-Charged Tunic
-    LBIS:AddItem(spec1, "65084", LBIS.L["Chest"], "Alt") --Voltage Source Chestguard
-    LBIS:AddItem(spec1, "60304", LBIS.L["Chest"], "Alt") --Lightning-Charged Tunic
-    LBIS:AddItem(spec1, "56281", LBIS.L["Chest"], "Alt") --Wentletrap Vest
-    LBIS:AddItem(spec1, "58121", LBIS.L["Chest"], "Alt") --Vest of the True Companion
-    LBIS:AddItem(spec1, "56515", LBIS.L["Chest"], "Alt") --Razorshell Chest
-    LBIS:AddItem(spec1, "65028", LBIS.L["Wrist"], "BIS") --Chimaeron Armguards
-    LBIS:AddItem(spec1, "59355", LBIS.L["Wrist"], "Alt") --Chimaeron Armguards
-    LBIS:AddItem(spec1, "63479", LBIS.L["Wrist"], "Alt") --Bracers of Some Consequence
-    LBIS:AddItem(spec1, "56340", LBIS.L["Wrist"], "Alt") --Elementium Scale Bracers
-    LBIS:AddItem(spec1, "66935", LBIS.L["Wrist"], "Alt") --Eradicator's Bracers
-    LBIS:AddItem(spec1, "65205", LBIS.L["Hands"], "BIS") --Lightning-Charged Gloves
-    LBIS:AddItem(spec1, "65141", LBIS.L["Hands"], "Alt") --Proto-Handler's Gauntlets
-    LBIS:AddItem(spec1, "60307", LBIS.L["Hands"], "Alt") --Lightning-Charged Gloves
-    LBIS:AddItem(spec1, "58125", LBIS.L["Hands"], "Alt") --Gloves of the Passing Night
-    LBIS:AddItem(spec1, "67239", LBIS.L["Hands"], "Alt") --Xariona's Spectral Claws
-    LBIS:AddItem(spec1, "63436", LBIS.L["Hands"], "Alt") --Traitor's Grips
-    LBIS:AddItem(spec1, "56268", LBIS.L["Hands"], "Alt") --Wrasse Handwraps
-    LBIS:AddItem(spec1, "65132", LBIS.L["Waist"], "BIS") --Coil of Ten-Thousand Screams
-    LBIS:AddItem(spec1, "65368", LBIS.L["Waist"], "Alt") --Star Chaser Belt
-    LBIS:AddItem(spec1, "56539", LBIS.L["Waist"], "Alt") --Corded Viper Belt
-    LBIS:AddItem(spec1, "57916", LBIS.L["Waist"], "Alt") --Belt of the Dim Forest
-    LBIS:AddItem(spec1, "56363", LBIS.L["Waist"], "Alt") --Hail-Strung Belt
-    LBIS:AddItem(spec1, "60230", LBIS.L["Legs"], "BIS") --Twilight Scale Leggings
-    LBIS:AddItem(spec1, "65207", LBIS.L["Legs"], "Alt") --Lightning-Charged Legguards
-    LBIS:AddItem(spec1, "65049", LBIS.L["Legs"], "Alt") --Leggings of Lethal Force
-    LBIS:AddItem(spec1, "56386", LBIS.L["Legs"], "Alt") --Balkar's Waders
-    LBIS:AddItem(spec1, "58122", LBIS.L["Legs"], "Alt") --Hillside Striders
-    LBIS:AddItem(spec1, "55861", LBIS.L["Legs"], "Alt") --Balkar's Waders
-    LBIS:AddItem(spec1, "65063", LBIS.L["Feet"], "BIS") --Boots of Vertigo
-    LBIS:AddItem(spec1, "59315", LBIS.L["Feet"], "Alt") --Boots of Vertigo
-    LBIS:AddItem(spec1, "62385", LBIS.L["Feet"], "Alt") --Treads of Malorne
-    LBIS:AddItem(spec1, "56451", LBIS.L["Feet"], "Alt") --Red Scale Boots
-    LBIS:AddItem(spec1, "57867", LBIS.L["Feet"], "Alt") --Boots of Crumbling Ruin
-    LBIS:AddItem(spec1, "63446", LBIS.L["Feet"], "Alt") --Haunting Footfalls
-    LBIS:AddItem(spec1, "69880", LBIS.L["Neck"], "BIS") --Mistral Pendant
-    LBIS:AddItem(spec1, "65107", LBIS.L["Neck"], "Alt") --Necklace of Strife
-    LBIS:AddItem(spec1, "52350", LBIS.L["Neck"], "Alt") --Brazen Elementium Medallion
-    LBIS:AddItem(spec1, "57931", LBIS.L["Neck"], "Alt") --Amulet of Dull Dreaming
-    LBIS:AddItem(spec1, "56422", LBIS.L["Neck"], "Alt") --Mouth of the Earth
-    LBIS:AddItem(spec1, "56338", LBIS.L["Neck"], "Alt") --Pendant of the Lightless Grotto
-    LBIS:AddItem(spec1, "65082", LBIS.L["Ring"], "BIS") --Lightning Conductor Band
-    LBIS:AddItem(spec1, "65367", LBIS.L["Ring"], "BIS") --Mistral Circle
-    LBIS:AddItem(spec1, "52348", LBIS.L["Ring"], "Alt") --Elementium Destroyer's Ring
-    LBIS:AddItem(spec1, "62362", LBIS.L["Ring"], "Alt") --Signet of the Elder Council
-    LBIS:AddItem(spec1, "52318", LBIS.L["Ring"], "Alt") --Band of Blades
-    LBIS:AddItem(spec1, "56445", LBIS.L["Ring"], "Alt") --Ring of Dun Algaz
-    LBIS:AddItem(spec1, "56282", LBIS.L["Ring"], "Alt") --Nautilus Ring
-    LBIS:AddItem(spec1, "56310", LBIS.L["Ring"], "Alt") --Skullcracker Ring
-    LBIS:AddItem(spec1, "65140", LBIS.L["Trinket"], "BIS") --Essence of the Cyclone
-    LBIS:AddItem(spec1, "65026", LBIS.L["Trinket"], "BIS") --Prestor's Talisman of Machination
-    LBIS:AddItem(spec1, "56394", LBIS.L["Trinket"], "Alt") --Tia's Grace
-    LBIS:AddItem(spec1, "56328", LBIS.L["Trinket"], "Alt") --Key to the Endless Chamber
-    LBIS:AddItem(spec1, "62051", LBIS.L["Trinket"], "Alt") --Darkmoon Card: Hurricane
-    LBIS:AddItem(spec1, "56440", LBIS.L["Trinket"], "Alt") --Skardyn's Grace
-    LBIS:AddItem(spec1, "65139", LBIS.L["Two Hand"], "BIS") --Malevolence
-    LBIS:AddItem(spec1, "59474", LBIS.L["Two Hand"], "Alt") --Malevolence
-    LBIS:AddItem(spec1, "65168", LBIS.L["Two Hand"], "Alt") --Rockslicer
-    LBIS:AddItem(spec1, "56325", LBIS.L["Two Hand"], "Alt") --Berto's Staff
-    LBIS:AddItem(spec1, "62474", LBIS.L["Two Hand"], "Alt") --Spear of Trailing Shadows
-    LBIS:AddItem(spec1, "62455", LBIS.L["Two Hand"], "Alt") --Spear of Trailing Shadows
-    LBIS:AddItem(spec1, "56343", LBIS.L["Two Hand"], "Alt") --Darkling Staff
-    LBIS:AddItem(spec1, "65058", LBIS.L["Ranged/Relic"], "BIS") --Themios the Darkbringer
-    LBIS:AddItem(spec1, "65095", LBIS.L["Ranged/Relic"], "Alt") --Dragonheart Piercer
-    LBIS:AddItem(spec1, "59320", LBIS.L["Ranged/Relic"], "Alt") --Themios the Darkbringer
-    LBIS:AddItem(spec1, "56317", LBIS.L["Ranged/Relic"], "Alt") --Amber Messenger
-    LBIS:AddItem(spec1, "56366", LBIS.L["Ranged/Relic"], "Alt") --Lightningflash
-    LBIS:AddItem(spec1, "59367", LBIS.L["Ranged/Relic"], "Alt") --Kickback 5000
-    LBIS:AddItem(spec1, "59364", LBIS.L["Ranged/Relic"], "Alt") --Overpowered Chicken Splitter
+    LootAlert:AddItem(spec1, "65206", "Head", "BIS") --Lightning-Charged Headguard
+    LootAlert:AddItem(spec1, "65120", "Head", "Alt") --Arion's Crown
+    LootAlert:AddItem(spec1, "60303", "Head", "Alt") --Lightning-Charged Headguard
+    LootAlert:AddItem(spec1, "59456", "Head", "Alt") --Deadly Bio-Optic Killshades
+    LootAlert:AddItem(spec1, "62429", "Head", "Alt") --Windhome Helm
+    LootAlert:AddItem(spec1, "62409", "Head", "Alt") --Snarling Helm
+    LootAlert:AddItem(spec1, "56443", "Head", "Alt") --Wildhammer Riding Helm
+    LootAlert:AddItem(spec1, "56298", "Head", "Alt") --Renouncer's Cowl
+    LootAlert:AddItem(spec1, "65208", "Shoulder", "BIS") --Lightning-Charged Spaulders
+    LootAlert:AddItem(spec1, "65074", "Shoulder", "Alt") --Spaulders of the Scarred Lady
+    LootAlert:AddItem(spec1, "60306", "Shoulder", "Alt") --Lightning-Charged Spaulders
+    LootAlert:AddItem(spec1, "56419", "Shoulder", "Alt") --Bloodpetal Mantle
+    LootAlert:AddItem(spec1, "58124", "Shoulder", "Alt") --Wrap of the Valley Glades
+    LootAlert:AddItem(spec1, "55997", "Shoulder", "Alt") --Bloodpetal Mantle
+    LootAlert:AddItem(spec1, "69884", "Back", "BIS") --Mistral Drape
+    LootAlert:AddItem(spec1, "65035", "Back", "Alt") --Cloak of Biting Chill
+    LootAlert:AddItem(spec1, "69831", "Back", "Alt") --Mistral Drape
+    LootAlert:AddItem(spec1, "63473", "Back", "Alt") --Cloak of Thredd
+    LootAlert:AddItem(spec1, "65177", "Back", "Alt") --Cape of the Brotherhood
+    LootAlert:AddItem(spec1, "62361", "Back", "Alt") --Softwind Cape
+    LootAlert:AddItem(spec1, "56315", "Back", "Alt") --Twitching Shadows
+    LootAlert:AddItem(spec1, "65204", "Chest", "BIS") --Lightning-Charged Tunic
+    LootAlert:AddItem(spec1, "65084", "Chest", "Alt") --Voltage Source Chestguard
+    LootAlert:AddItem(spec1, "60304", "Chest", "Alt") --Lightning-Charged Tunic
+    LootAlert:AddItem(spec1, "56281", "Chest", "Alt") --Wentletrap Vest
+    LootAlert:AddItem(spec1, "58121", "Chest", "Alt") --Vest of the True Companion
+    LootAlert:AddItem(spec1, "56515", "Chest", "Alt") --Razorshell Chest
+    LootAlert:AddItem(spec1, "65028", "Wrist", "BIS") --Chimaeron Armguards
+    LootAlert:AddItem(spec1, "59355", "Wrist", "Alt") --Chimaeron Armguards
+    LootAlert:AddItem(spec1, "63479", "Wrist", "Alt") --Bracers of Some Consequence
+    LootAlert:AddItem(spec1, "56340", "Wrist", "Alt") --Elementium Scale Bracers
+    LootAlert:AddItem(spec1, "66935", "Wrist", "Alt") --Eradicator's Bracers
+    LootAlert:AddItem(spec1, "65205", "Hands", "BIS") --Lightning-Charged Gloves
+    LootAlert:AddItem(spec1, "65141", "Hands", "Alt") --Proto-Handler's Gauntlets
+    LootAlert:AddItem(spec1, "60307", "Hands", "Alt") --Lightning-Charged Gloves
+    LootAlert:AddItem(spec1, "58125", "Hands", "Alt") --Gloves of the Passing Night
+    LootAlert:AddItem(spec1, "67239", "Hands", "Alt") --Xariona's Spectral Claws
+    LootAlert:AddItem(spec1, "63436", "Hands", "Alt") --Traitor's Grips
+    LootAlert:AddItem(spec1, "56268", "Hands", "Alt") --Wrasse Handwraps
+    LootAlert:AddItem(spec1, "65132", "Waist", "BIS") --Coil of Ten-Thousand Screams
+    LootAlert:AddItem(spec1, "65368", "Waist", "Alt") --Star Chaser Belt
+    LootAlert:AddItem(spec1, "56539", "Waist", "Alt") --Corded Viper Belt
+    LootAlert:AddItem(spec1, "57916", "Waist", "Alt") --Belt of the Dim Forest
+    LootAlert:AddItem(spec1, "56363", "Waist", "Alt") --Hail-Strung Belt
+    LootAlert:AddItem(spec1, "60230", "Legs", "BIS") --Twilight Scale Leggings
+    LootAlert:AddItem(spec1, "65207", "Legs", "Alt") --Lightning-Charged Legguards
+    LootAlert:AddItem(spec1, "65049", "Legs", "Alt") --Leggings of Lethal Force
+    LootAlert:AddItem(spec1, "56386", "Legs", "Alt") --Balkar's Waders
+    LootAlert:AddItem(spec1, "58122", "Legs", "Alt") --Hillside Striders
+    LootAlert:AddItem(spec1, "55861", "Legs", "Alt") --Balkar's Waders
+    LootAlert:AddItem(spec1, "65063", "Feet", "BIS") --Boots of Vertigo
+    LootAlert:AddItem(spec1, "59315", "Feet", "Alt") --Boots of Vertigo
+    LootAlert:AddItem(spec1, "62385", "Feet", "Alt") --Treads of Malorne
+    LootAlert:AddItem(spec1, "56451", "Feet", "Alt") --Red Scale Boots
+    LootAlert:AddItem(spec1, "57867", "Feet", "Alt") --Boots of Crumbling Ruin
+    LootAlert:AddItem(spec1, "63446", "Feet", "Alt") --Haunting Footfalls
+    LootAlert:AddItem(spec1, "69880", "Neck", "BIS") --Mistral Pendant
+    LootAlert:AddItem(spec1, "65107", "Neck", "Alt") --Necklace of Strife
+    LootAlert:AddItem(spec1, "52350", "Neck", "Alt") --Brazen Elementium Medallion
+    LootAlert:AddItem(spec1, "57931", "Neck", "Alt") --Amulet of Dull Dreaming
+    LootAlert:AddItem(spec1, "56422", "Neck", "Alt") --Mouth of the Earth
+    LootAlert:AddItem(spec1, "56338", "Neck", "Alt") --Pendant of the Lightless Grotto
+    LootAlert:AddItem(spec1, "65082", "Ring", "BIS") --Lightning Conductor Band
+    LootAlert:AddItem(spec1, "65367", "Ring", "BIS") --Mistral Circle
+    LootAlert:AddItem(spec1, "52348", "Ring", "Alt") --Elementium Destroyer's Ring
+    LootAlert:AddItem(spec1, "62362", "Ring", "Alt") --Signet of the Elder Council
+    LootAlert:AddItem(spec1, "52318", "Ring", "Alt") --Band of Blades
+    LootAlert:AddItem(spec1, "56445", "Ring", "Alt") --Ring of Dun Algaz
+    LootAlert:AddItem(spec1, "56282", "Ring", "Alt") --Nautilus Ring
+    LootAlert:AddItem(spec1, "56310", "Ring", "Alt") --Skullcracker Ring
+    LootAlert:AddItem(spec1, "65140", "Trinket", "BIS") --Essence of the Cyclone
+    LootAlert:AddItem(spec1, "65026", "Trinket", "BIS") --Prestor's Talisman of Machination
+    LootAlert:AddItem(spec1, "56394", "Trinket", "Alt") --Tia's Grace
+    LootAlert:AddItem(spec1, "56328", "Trinket", "Alt") --Key to the Endless Chamber
+    LootAlert:AddItem(spec1, "62051", "Trinket", "Alt") --Darkmoon Card: Hurricane
+    LootAlert:AddItem(spec1, "56440", "Trinket", "Alt") --Skardyn's Grace
+    LootAlert:AddItem(spec1, "65139", "Two Hand", "BIS") --Malevolence
+    LootAlert:AddItem(spec1, "59474", "Two Hand", "Alt") --Malevolence
+    LootAlert:AddItem(spec1, "65168", "Two Hand", "Alt") --Rockslicer
+    LootAlert:AddItem(spec1, "56325", "Two Hand", "Alt") --Berto's Staff
+    LootAlert:AddItem(spec1, "62474", "Two Hand", "Alt") --Spear of Trailing Shadows
+    LootAlert:AddItem(spec1, "62455", "Two Hand", "Alt") --Spear of Trailing Shadows
+    LootAlert:AddItem(spec1, "56343", "Two Hand", "Alt") --Darkling Staff
+    LootAlert:AddItem(spec1, "65058", "Ranged/Relic", "BIS") --Themios the Darkbringer
+    LootAlert:AddItem(spec1, "65095", "Ranged/Relic", "Alt") --Dragonheart Piercer
+    LootAlert:AddItem(spec1, "59320", "Ranged/Relic", "Alt") --Themios the Darkbringer
+    LootAlert:AddItem(spec1, "56317", "Ranged/Relic", "Alt") --Amber Messenger
+    LootAlert:AddItem(spec1, "56366", "Ranged/Relic", "Alt") --Lightningflash
+    LootAlert:AddItem(spec1, "59367", "Ranged/Relic", "Alt") --Kickback 5000
+    LootAlert:AddItem(spec1, "59364", "Ranged/Relic", "Alt") --Overpowered Chicken Splitter
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

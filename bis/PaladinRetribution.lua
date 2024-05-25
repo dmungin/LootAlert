@@ -5,103 +5,103 @@ local function loadBis ()
     local spec0 = LootAlert:RegisterSpec("Paladin", "Retribution", "0")
     local spec1 = LootAlert:RegisterSpec("Paladin", "Retribution", "1")
 
-    LBIS:AddItem(spec0, "59359", LBIS.L["Head"], "BIS") --Reinforced Bio-Optic Killshades
-    LBIS:AddItem(spec0, "56278", LBIS.L["Head"], "BIS") --Anomuran Helm
-    LBIS:AddItem(spec0, "58098", LBIS.L["Head"], "Alt") --Helm of Easeful Death
-    LBIS:AddItem(spec0, "63478", LBIS.L["Head"], "Alt") --Stonemason's Helm
-    LBIS:AddItem(spec0, "56318", LBIS.L["Shoulder"], "BIS") --Raz's Pauldrons
-    LBIS:AddItem(spec0, "58100", LBIS.L["Shoulder"], "Alt") --Pauldrons of the High Requiem
-    LBIS:AddItem(spec0, "63470", LBIS.L["Shoulder"], "Alt") --Missing Diplomat's Pauldrons
-    LBIS:AddItem(spec0, "67140", LBIS.L["Back"], "BIS") --Drape of Inimitable Fate
-    LBIS:AddItem(spec0, "56397", LBIS.L["Back"], "Alt") --Geordan's Cloak
-    LBIS:AddItem(spec0, "56275", LBIS.L["Back"], "Alt") --Eagle Ray Cloak
-    LBIS:AddItem(spec0, "63467", LBIS.L["Back"], "Alt") --Shadow of the Past
-    LBIS:AddItem(spec0, "55060", LBIS.L["Chest"], "BIS") --Elementium Deathplate
-    LBIS:AddItem(spec0, "63450", LBIS.L["Chest"], "Alt") --Phantom Armor
-    LBIS:AddItem(spec0, "56425", LBIS.L["Chest"], "Alt") --Breastplate of the Risen Land
-    LBIS:AddItem(spec0, "63458", LBIS.L["Chest"], "Alt") --Lord Walden's Breastplate
-    LBIS:AddItem(spec0, "57870", LBIS.L["Wrist"], "BIS") --Alpha Bracers
-    LBIS:AddItem(spec0, "56301", LBIS.L["Wrist"], "Alt") --Bracers of Cooled Anger
-    LBIS:AddItem(spec0, "58099", LBIS.L["Hands"], "BIS") --Reaping Gauntlets
-    LBIS:AddItem(spec0, "63474", LBIS.L["Hands"], "Alt") --Gear-Marked Gauntlets
-    LBIS:AddItem(spec0, "62408", LBIS.L["Hands"], "Alt") --Gauntlets of Rattling Bones
-    LBIS:AddItem(spec0, "62384", LBIS.L["Waist"], "BIS") --Belt of the Ferocious Wolf
-    LBIS:AddItem(spec0, "55061", LBIS.L["Waist"], "Alt") --Elementium Girdle of Pain
-    LBIS:AddItem(spec0, "57913", LBIS.L["Waist"], "Alt") --Beech Green Belt
-    LBIS:AddItem(spec0, "56447", LBIS.L["Waist"], "Alt") --Belt of the Forgemaster
-    LBIS:AddItem(spec0, "60347", LBIS.L["Legs"], "BIS") --Reinforced Sapphirium Legplates
-    LBIS:AddItem(spec0, "67141", LBIS.L["Legs"], "Alt") --Corefire Legplates
-    LBIS:AddItem(spec0, "56367", LBIS.L["Legs"], "Alt") --Legguards of Winnowing Wind
-    LBIS:AddItem(spec0, "58097", LBIS.L["Legs"], "Alt") --Greaves of Gallantry
-    LBIS:AddItem(spec0, "62418", LBIS.L["Feet"], "BIS") --Boots of Sullen Rock
-    LBIS:AddItem(spec0, "58195", LBIS.L["Feet"], "BIS") --Woe Breeder's Boots
-    LBIS:AddItem(spec0, "56381", LBIS.L["Feet"], "Alt") --Greaves of Wu the Elder
-    LBIS:AddItem(spec0, "62382", LBIS.L["Feet"], "Alt") --Waywatcher's Boots
-    LBIS:AddItem(spec0, "67138", LBIS.L["Neck"], "BIS") --Buc-Zakai Choker
-    LBIS:AddItem(spec0, "62447", LBIS.L["Neck"], "BIS") --Gift of Nadun
-    LBIS:AddItem(spec0, "56360", LBIS.L["Neck"], "Alt") --Red Sky Pendant
-    LBIS:AddItem(spec0, "63438", LBIS.L["Neck"], "Alt") --Baroness Silverlaine's Locket
-    LBIS:AddItem(spec0, "67139", LBIS.L["Ring"], "BIS") --Blauvelt's Family Crest
-    LBIS:AddItem(spec0, "69852", LBIS.L["Ring"], "BIS") --Punisher's Band
-    LBIS:AddItem(spec0, "56415", LBIS.L["Ring"], "Alt") --Nova Band
-    LBIS:AddItem(spec0, "56388", LBIS.L["Ring"], "Alt") --Ring of the Darkest Day
-    LBIS:AddItem(spec0, "56365", LBIS.L["Ring"], "Alt") --Skyshard Ring
-    LBIS:AddItem(spec0, "56299", LBIS.L["Ring"], "Alt") --Signet of Transformation
-    LBIS:AddItem(spec0, "62350", LBIS.L["Ring"], "Alt") --Gorsik's Band of Shattering
-    LBIS:AddItem(spec0, "62464", LBIS.L["Trinket"], "BIS") --Impatience of Youth
-    LBIS:AddItem(spec0, "62469", LBIS.L["Trinket"], "BIS") --Impatience of Youth
-    LBIS:AddItem(spec0, "56393", LBIS.L["Trinket"], "BIS") --Heart of Solace
-    LBIS:AddItem(spec0, "68775", LBIS.L["Trinket"], "Alt") --Volatile Alchemist Stone
-    LBIS:AddItem(spec0, "52351", LBIS.L["Trinket"], "Alt") --Figurine - King of Boars
-    LBIS:AddItem(spec0, "56345", LBIS.L["Trinket"], "Alt") --Magnetite Mirror
-    LBIS:AddItem(spec0, "56285", LBIS.L["Trinket"], "Alt") --Might of the Ocean
-    LBIS:AddItem(spec0, "56431", LBIS.L["Trinket"], "Alt") --Right Eye of Rajh
-    LBIS:AddItem(spec0, "64377", LBIS.L["Two Hand"], "BIS") --Zin'rokh, Destroyer of Worlds
-    LBIS:AddItem(spec0, "62454", LBIS.L["Two Hand"], "Alt") --Blade of the Fearless
-    LBIS:AddItem(spec0, "56342", LBIS.L["Two Hand"], "Alt") --Sword of the Bottomless Pit
-    LBIS:AddItem(spec0, "62243", LBIS.L["Ranged/Relic"], "BIS") --Notched Jawbone
-    LBIS:AddItem(spec0, "63480", LBIS.L["Ranged/Relic"], "Alt") --Record of the Brotherhood's End
-    LBIS:AddItem(spec0, "56279", LBIS.L["Ranged/Relic"], "Alt") --Conch of Thundering Waves
+    LootAlert:AddItem(spec0, "59359", "Head", "BIS") --Reinforced Bio-Optic Killshades
+    LootAlert:AddItem(spec0, "56278", "Head", "BIS") --Anomuran Helm
+    LootAlert:AddItem(spec0, "58098", "Head", "Alt") --Helm of Easeful Death
+    LootAlert:AddItem(spec0, "63478", "Head", "Alt") --Stonemason's Helm
+    LootAlert:AddItem(spec0, "56318", "Shoulder", "BIS") --Raz's Pauldrons
+    LootAlert:AddItem(spec0, "58100", "Shoulder", "Alt") --Pauldrons of the High Requiem
+    LootAlert:AddItem(spec0, "63470", "Shoulder", "Alt") --Missing Diplomat's Pauldrons
+    LootAlert:AddItem(spec0, "67140", "Back", "BIS") --Drape of Inimitable Fate
+    LootAlert:AddItem(spec0, "56397", "Back", "Alt") --Geordan's Cloak
+    LootAlert:AddItem(spec0, "56275", "Back", "Alt") --Eagle Ray Cloak
+    LootAlert:AddItem(spec0, "63467", "Back", "Alt") --Shadow of the Past
+    LootAlert:AddItem(spec0, "55060", "Chest", "BIS") --Elementium Deathplate
+    LootAlert:AddItem(spec0, "63450", "Chest", "Alt") --Phantom Armor
+    LootAlert:AddItem(spec0, "56425", "Chest", "Alt") --Breastplate of the Risen Land
+    LootAlert:AddItem(spec0, "63458", "Chest", "Alt") --Lord Walden's Breastplate
+    LootAlert:AddItem(spec0, "57870", "Wrist", "BIS") --Alpha Bracers
+    LootAlert:AddItem(spec0, "56301", "Wrist", "Alt") --Bracers of Cooled Anger
+    LootAlert:AddItem(spec0, "58099", "Hands", "BIS") --Reaping Gauntlets
+    LootAlert:AddItem(spec0, "63474", "Hands", "Alt") --Gear-Marked Gauntlets
+    LootAlert:AddItem(spec0, "62408", "Hands", "Alt") --Gauntlets of Rattling Bones
+    LootAlert:AddItem(spec0, "62384", "Waist", "BIS") --Belt of the Ferocious Wolf
+    LootAlert:AddItem(spec0, "55061", "Waist", "Alt") --Elementium Girdle of Pain
+    LootAlert:AddItem(spec0, "57913", "Waist", "Alt") --Beech Green Belt
+    LootAlert:AddItem(spec0, "56447", "Waist", "Alt") --Belt of the Forgemaster
+    LootAlert:AddItem(spec0, "60347", "Legs", "BIS") --Reinforced Sapphirium Legplates
+    LootAlert:AddItem(spec0, "67141", "Legs", "Alt") --Corefire Legplates
+    LootAlert:AddItem(spec0, "56367", "Legs", "Alt") --Legguards of Winnowing Wind
+    LootAlert:AddItem(spec0, "58097", "Legs", "Alt") --Greaves of Gallantry
+    LootAlert:AddItem(spec0, "62418", "Feet", "BIS") --Boots of Sullen Rock
+    LootAlert:AddItem(spec0, "58195", "Feet", "BIS") --Woe Breeder's Boots
+    LootAlert:AddItem(spec0, "56381", "Feet", "Alt") --Greaves of Wu the Elder
+    LootAlert:AddItem(spec0, "62382", "Feet", "Alt") --Waywatcher's Boots
+    LootAlert:AddItem(spec0, "67138", "Neck", "BIS") --Buc-Zakai Choker
+    LootAlert:AddItem(spec0, "62447", "Neck", "BIS") --Gift of Nadun
+    LootAlert:AddItem(spec0, "56360", "Neck", "Alt") --Red Sky Pendant
+    LootAlert:AddItem(spec0, "63438", "Neck", "Alt") --Baroness Silverlaine's Locket
+    LootAlert:AddItem(spec0, "67139", "Ring", "BIS") --Blauvelt's Family Crest
+    LootAlert:AddItem(spec0, "69852", "Ring", "BIS") --Punisher's Band
+    LootAlert:AddItem(spec0, "56415", "Ring", "Alt") --Nova Band
+    LootAlert:AddItem(spec0, "56388", "Ring", "Alt") --Ring of the Darkest Day
+    LootAlert:AddItem(spec0, "56365", "Ring", "Alt") --Skyshard Ring
+    LootAlert:AddItem(spec0, "56299", "Ring", "Alt") --Signet of Transformation
+    LootAlert:AddItem(spec0, "62350", "Ring", "Alt") --Gorsik's Band of Shattering
+    LootAlert:AddItem(spec0, "62464", "Trinket", "BIS") --Impatience of Youth
+    LootAlert:AddItem(spec0, "62469", "Trinket", "BIS") --Impatience of Youth
+    LootAlert:AddItem(spec0, "56393", "Trinket", "BIS") --Heart of Solace
+    LootAlert:AddItem(spec0, "68775", "Trinket", "Alt") --Volatile Alchemist Stone
+    LootAlert:AddItem(spec0, "52351", "Trinket", "Alt") --Figurine - King of Boars
+    LootAlert:AddItem(spec0, "56345", "Trinket", "Alt") --Magnetite Mirror
+    LootAlert:AddItem(spec0, "56285", "Trinket", "Alt") --Might of the Ocean
+    LootAlert:AddItem(spec0, "56431", "Trinket", "Alt") --Right Eye of Rajh
+    LootAlert:AddItem(spec0, "64377", "Two Hand", "BIS") --Zin'rokh, Destroyer of Worlds
+    LootAlert:AddItem(spec0, "62454", "Two Hand", "Alt") --Blade of the Fearless
+    LootAlert:AddItem(spec0, "56342", "Two Hand", "Alt") --Sword of the Bottomless Pit
+    LootAlert:AddItem(spec0, "62243", "Ranged/Relic", "BIS") --Notched Jawbone
+    LootAlert:AddItem(spec0, "63480", "Ranged/Relic", "Alt") --Record of the Brotherhood's End
+    LootAlert:AddItem(spec0, "56279", "Ranged/Relic", "Alt") --Conch of Thundering Waves
     
-    LBIS:AddItem(spec1, "65216", LBIS.L["Head"], "BIS") --Reinforced Sapphirium Helmet
-    LBIS:AddItem(spec1, "65038", LBIS.L["Head"], "Alt") --Dragon Bone Warhelm
-    LBIS:AddItem(spec1, "65130", LBIS.L["Head"], "Alt") --Helm of Maddening Whispers
-    LBIS:AddItem(spec1, "65142", LBIS.L["Shoulder"], "BIS") --Pauldrons of the Great Ettin
-    LBIS:AddItem(spec1, "65218", LBIS.L["Shoulder"], "Alt") --Reinforced Sapphirium Pauldrons
-    LBIS:AddItem(spec1, "69879", LBIS.L["Back"], "BIS") --Cloudburst Cloak
-    LBIS:AddItem(spec1, "65117", LBIS.L["Back"], "Alt") --Glittering Epidermis
-    LBIS:AddItem(spec1, "65214", LBIS.L["Chest"], "BIS") --Reinforced Sapphirium Battleplate
-    LBIS:AddItem(spec1, "65062", LBIS.L["Chest"], "Alt") --Battleplate of Ancient Kings
-    LBIS:AddItem(spec1, "60228", LBIS.L["Wrist"], "BIS") --Bracers of the Mat'redor
-    LBIS:AddItem(spec1, "65085", LBIS.L["Wrist"], "Alt") --Electron Inductor Coils
-    LBIS:AddItem(spec1, "65215", LBIS.L["Hands"], "BIS") --Reinforced Sapphirium Gauntlets
-    LBIS:AddItem(spec1, "65071", LBIS.L["Hands"], "Alt") --Plated Fists of Provocation
-    LBIS:AddItem(spec1, "65119", LBIS.L["Hands"], "Alt") --Gravitational Pull
-    LBIS:AddItem(spec1, "65040", LBIS.L["Waist"], "BIS") --Belt of Absolute Zero
-    LBIS:AddItem(spec1, "65369", LBIS.L["Waist"], "Alt") --Sky Strider Belt
-    LBIS:AddItem(spec1, "65217", LBIS.L["Legs"], "BIS") --Reinforced Sapphirium Legplates
-    LBIS:AddItem(spec1, "65379", LBIS.L["Legs"], "Alt") --Sky Strider Greaves
-    LBIS:AddItem(spec1, "65121", LBIS.L["Legs"], "Alt") --Terrastra's Legguards
-    LBIS:AddItem(spec1, "65075", LBIS.L["Feet"], "BIS") --Massacre Treads
-    LBIS:AddItem(spec1, "58195", LBIS.L["Feet"], "Alt") --Woe Breeder's Boots
-    LBIS:AddItem(spec1, "60227", LBIS.L["Neck"], "BIS") --Caelestrasz's Will
-    LBIS:AddItem(spec1, "65025", LBIS.L["Neck"], "Alt") --Rage of Ages
-    LBIS:AddItem(spec1, "60226", LBIS.L["Ring"], "BIS") --Dargonax's Signet
-    LBIS:AddItem(spec1, "65382", LBIS.L["Ring"], "BIS") --Cloudburst Ring
-    LBIS:AddItem(spec1, "65106", LBIS.L["Ring"], "Alt") --Ring of Rivalry
-    LBIS:AddItem(spec1, "65072", LBIS.L["Trinket"], "BIS") --Heart of Rage
-    LBIS:AddItem(spec1, "62464", LBIS.L["Trinket"], "BIS") --Impatience of Youth
-    LBIS:AddItem(spec1, "62469", LBIS.L["Trinket"], "BIS") --Impatience of Youth
-    LBIS:AddItem(spec1, "65118", LBIS.L["Trinket"], "Alt") --Crushing Weight
-    LBIS:AddItem(spec1, "68775", LBIS.L["Trinket"], "Alt") --Volatile Alchemist Stone
-    LBIS:AddItem(spec1, "58180", LBIS.L["Trinket"], "Alt") --License to Slay
-    LBIS:AddItem(spec1, "65003", LBIS.L["Two Hand"], "BIS") --Reclaimed Ashkandi, Greatsword of the Brotherhood
-    LBIS:AddItem(spec1, "65007", LBIS.L["Two Hand"], "Alt") --Akirus the Worm-Breaker
-    LBIS:AddItem(spec1, "65145", LBIS.L["Two Hand"], "Alt") --Shalug'doom, the Axe of Unmaking
-    LBIS:AddItem(spec1, "62243", LBIS.L["Ranged/Relic"], "BIS") --Notched Jawbone
-    LBIS:AddItem(spec1, "64674", LBIS.L["Ranged/Relic"], "BIS") --Relic of Aggramar
-    LBIS:AddItem(spec1, "63480", LBIS.L["Ranged/Relic"], "Alt") --Record of the Brotherhood's End
-    LBIS:AddItem(spec1, "56279", LBIS.L["Ranged/Relic"], "Alt") --Conch of Thundering Waves
+    LootAlert:AddItem(spec1, "65216", "Head", "BIS") --Reinforced Sapphirium Helmet
+    LootAlert:AddItem(spec1, "65038", "Head", "Alt") --Dragon Bone Warhelm
+    LootAlert:AddItem(spec1, "65130", "Head", "Alt") --Helm of Maddening Whispers
+    LootAlert:AddItem(spec1, "65142", "Shoulder", "BIS") --Pauldrons of the Great Ettin
+    LootAlert:AddItem(spec1, "65218", "Shoulder", "Alt") --Reinforced Sapphirium Pauldrons
+    LootAlert:AddItem(spec1, "69879", "Back", "BIS") --Cloudburst Cloak
+    LootAlert:AddItem(spec1, "65117", "Back", "Alt") --Glittering Epidermis
+    LootAlert:AddItem(spec1, "65214", "Chest", "BIS") --Reinforced Sapphirium Battleplate
+    LootAlert:AddItem(spec1, "65062", "Chest", "Alt") --Battleplate of Ancient Kings
+    LootAlert:AddItem(spec1, "60228", "Wrist", "BIS") --Bracers of the Mat'redor
+    LootAlert:AddItem(spec1, "65085", "Wrist", "Alt") --Electron Inductor Coils
+    LootAlert:AddItem(spec1, "65215", "Hands", "BIS") --Reinforced Sapphirium Gauntlets
+    LootAlert:AddItem(spec1, "65071", "Hands", "Alt") --Plated Fists of Provocation
+    LootAlert:AddItem(spec1, "65119", "Hands", "Alt") --Gravitational Pull
+    LootAlert:AddItem(spec1, "65040", "Waist", "BIS") --Belt of Absolute Zero
+    LootAlert:AddItem(spec1, "65369", "Waist", "Alt") --Sky Strider Belt
+    LootAlert:AddItem(spec1, "65217", "Legs", "BIS") --Reinforced Sapphirium Legplates
+    LootAlert:AddItem(spec1, "65379", "Legs", "Alt") --Sky Strider Greaves
+    LootAlert:AddItem(spec1, "65121", "Legs", "Alt") --Terrastra's Legguards
+    LootAlert:AddItem(spec1, "65075", "Feet", "BIS") --Massacre Treads
+    LootAlert:AddItem(spec1, "58195", "Feet", "Alt") --Woe Breeder's Boots
+    LootAlert:AddItem(spec1, "60227", "Neck", "BIS") --Caelestrasz's Will
+    LootAlert:AddItem(spec1, "65025", "Neck", "Alt") --Rage of Ages
+    LootAlert:AddItem(spec1, "60226", "Ring", "BIS") --Dargonax's Signet
+    LootAlert:AddItem(spec1, "65382", "Ring", "BIS") --Cloudburst Ring
+    LootAlert:AddItem(spec1, "65106", "Ring", "Alt") --Ring of Rivalry
+    LootAlert:AddItem(spec1, "65072", "Trinket", "BIS") --Heart of Rage
+    LootAlert:AddItem(spec1, "62464", "Trinket", "BIS") --Impatience of Youth
+    LootAlert:AddItem(spec1, "62469", "Trinket", "BIS") --Impatience of Youth
+    LootAlert:AddItem(spec1, "65118", "Trinket", "Alt") --Crushing Weight
+    LootAlert:AddItem(spec1, "68775", "Trinket", "Alt") --Volatile Alchemist Stone
+    LootAlert:AddItem(spec1, "58180", "Trinket", "Alt") --License to Slay
+    LootAlert:AddItem(spec1, "65003", "Two Hand", "BIS") --Reclaimed Ashkandi, Greatsword of the Brotherhood
+    LootAlert:AddItem(spec1, "65007", "Two Hand", "Alt") --Akirus the Worm-Breaker
+    LootAlert:AddItem(spec1, "65145", "Two Hand", "Alt") --Shalug'doom, the Axe of Unmaking
+    LootAlert:AddItem(spec1, "62243", "Ranged/Relic", "BIS") --Notched Jawbone
+    LootAlert:AddItem(spec1, "64674", "Ranged/Relic", "BIS") --Relic of Aggramar
+    LootAlert:AddItem(spec1, "63480", "Ranged/Relic", "Alt") --Record of the Brotherhood's End
+    LootAlert:AddItem(spec1, "56279", "Ranged/Relic", "Alt") --Conch of Thundering Waves
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

@@ -5,150 +5,150 @@ local function loadBis ()
     local spec0 = LootAlert:RegisterSpec("Shaman", "Elemental", "0")
     local spec1 = LootAlert:RegisterSpec("Shaman", "Elemental", "1")
 
-    LBIS:AddItem(spec0, "59458", LBIS.L["Head"], "BIS") --Energized Bio-Optic Killshades
-    LBIS:AddItem(spec0, "58128", LBIS.L["Head"], "Alt") --Helm of the Inward Eye
-    LBIS:AddItem(spec0, "56352", LBIS.L["Head"], "Alt") --Cowl of the Unseen World
-    LBIS:AddItem(spec0, "63452", LBIS.L["Shoulder"], "BIS") --Burden of Lost Humanity
-    LBIS:AddItem(spec0, "58129", LBIS.L["Shoulder"], "Alt") --Seafoam Mantle
-    LBIS:AddItem(spec0, "56359", LBIS.L["Shoulder"], "Alt") --Fallen Snow Shoulderguards
-    LBIS:AddItem(spec0, "58194", LBIS.L["Back"], "BIS") --Heavenly Breeze
-    LBIS:AddItem(spec0, "67131", LBIS.L["Back"], "BIS") --Ritssyn's Ruminous Drape
-    LBIS:AddItem(spec0, "62357", LBIS.L["Back"], "Alt") --Cloak of Ancient Wisdom
-    LBIS:AddItem(spec0, "56267", LBIS.L["Back"], "Alt") --Periwinkle Cloak
-    LBIS:AddItem(spec0, "56434", LBIS.L["Back"], "Alt") --Solar Wind Cloak
-    LBIS:AddItem(spec0, "63448", LBIS.L["Back"], "Alt") --Springvale's Cloak
-    LBIS:AddItem(spec0, "56450", LBIS.L["Back"], "Alt") --Azureborne Cloak
-    LBIS:AddItem(spec0, "56563", LBIS.L["Chest"], "BIS") --Twilight Scale Chestguard
-    LBIS:AddItem(spec0, "58126", LBIS.L["Chest"], "Alt") --Vest of the Waking Dream
-    LBIS:AddItem(spec0, "56274", LBIS.L["Chest"], "Alt") --Chromis Chestpiece
-    LBIS:AddItem(spec0, "63486", LBIS.L["Wrist"], "BIS") --Shackles of the Betrayed
-    LBIS:AddItem(spec0, "56313", LBIS.L["Wrist"], "Alt") --Manacles of Pain
-    LBIS:AddItem(spec0, "63475", LBIS.L["Hands"], "BIS") --Old Friend's Gloves
-    LBIS:AddItem(spec0, "58130", LBIS.L["Hands"], "Alt") --Gleaning Gloves
-    LBIS:AddItem(spec0, "56383", LBIS.L["Hands"], "Alt") --Ionic Gloves
-    LBIS:AddItem(spec0, "56538", LBIS.L["Waist"], "BIS") --Stormleather Sash
-    LBIS:AddItem(spec0, "62445", LBIS.L["Waist"], "Alt") --Sash of Prophecy
-    LBIS:AddItem(spec0, "57917", LBIS.L["Waist"], "Alt") --Belt of the Still Stream
-    LBIS:AddItem(spec0, "67148", LBIS.L["Legs"], "BIS") --Kilt of Trollish Dreams
-    LBIS:AddItem(spec0, "60201", LBIS.L["Legs"], "Alt") --Phase-Twister Leggings
-    LBIS:AddItem(spec0, "62380", LBIS.L["Legs"], "Alt") --Wilderness Legguards
-    LBIS:AddItem(spec0, "62363", LBIS.L["Feet"], "BIS") --Earthmender's Boots
-    LBIS:AddItem(spec0, "58481", LBIS.L["Feet"], "BIS") --Boots of the Perilous Seas
-    LBIS:AddItem(spec0, "56448", LBIS.L["Feet"], "BIS") --Dark Iron Chain Boots
-    LBIS:AddItem(spec0, "67130", LBIS.L["Neck"], "BIS") --Dorian's Lost Necklace
-    LBIS:AddItem(spec0, "62416", LBIS.L["Neck"], "BIS") --Yellow Smoke Pendant
-    LBIS:AddItem(spec0, "56300", LBIS.L["Neck"], "Alt") --Quicksilver Amulet
-    LBIS:AddItem(spec0, "56288", LBIS.L["Neck"], "Alt") --Pipefish Cord
-    LBIS:AddItem(spec0, "56362", LBIS.L["Neck"], "Alt") --Amulet of Tender Breath
-    LBIS:AddItem(spec0, "57934", LBIS.L["Neck"], "Alt") --Celadon Pendant
-    LBIS:AddItem(spec0, "63441", LBIS.L["Neck"], "Alt") --Pendant of the Keep
-    LBIS:AddItem(spec0, "56385", LBIS.L["Neck"], "Alt") --Tauntka's Necklace
-    LBIS:AddItem(spec0, "52322", LBIS.L["Neck"], "Alt") --Eye of Many Deaths
-    LBIS:AddItem(spec0, "58189", LBIS.L["Ring"], "BIS") --Twined Band of Flowers
-    LBIS:AddItem(spec0, "64904", LBIS.L["Ring"], "BIS") --Ring of the Boy Emperor
-    LBIS:AddItem(spec0, "58188", LBIS.L["Ring"], "BIS") --Band of Secret Names
-    LBIS:AddItem(spec0, "56307", LBIS.L["Ring"], "Alt") --Kibble
-    LBIS:AddItem(spec0, "56391", LBIS.L["Ring"], "Alt") --Veneficial Band
-    LBIS:AddItem(spec0, "56373", LBIS.L["Ring"], "Alt") --Ring of Frozen Rain
-    LBIS:AddItem(spec0, "56418", LBIS.L["Ring"], "Alt") --Band of Life Energy
-    LBIS:AddItem(spec0, "62352", LBIS.L["Ring"], "Alt") --Diamant's Ring of Temperance
-    LBIS:AddItem(spec0, "56333", LBIS.L["Ring"], "Alt") --Rose Quartz Band
-    LBIS:AddItem(spec0, "56380", LBIS.L["Ring"], "Alt") --Spirit Creeper Ring
-    LBIS:AddItem(spec0, "52319", LBIS.L["Ring"], "Alt") --Ring of Warring Elements
-    LBIS:AddItem(spec0, "62047", LBIS.L["Trinket"], "BIS") --Darkmoon Card: Volcano
-    LBIS:AddItem(spec0, "58183", LBIS.L["Trinket"], "BIS") --Soul Casket
-    LBIS:AddItem(spec0, "56320", LBIS.L["Trinket"], "Alt") --Witching Hourglass
-    LBIS:AddItem(spec0, "56462", LBIS.L["Trinket"], "Alt") --Gale of Shadows
-    LBIS:AddItem(spec0, "68777", LBIS.L["Trinket"], "Alt") --Vibrant Alchemist Stone
-    LBIS:AddItem(spec0, "62465", LBIS.L["Trinket"], "Alt") --Stump of Time
-    LBIS:AddItem(spec0, "62470", LBIS.L["Trinket"], "Alt") --Stump of Time
-    LBIS:AddItem(spec0, "56339", LBIS.L["Trinket"], "Alt") --Tendrils of Burrowing Dark
-    LBIS:AddItem(spec0, "56407", LBIS.L["Trinket"], "Alt") --Anhuur's Hymnal
-    LBIS:AddItem(spec0, "64645", LBIS.L["Trinket"], "Alt") --Tyrande's Favorite Doll
-    LBIS:AddItem(spec0, "65804", LBIS.L["Trinket"], "Alt") --Talisman of Sinister Order
-    LBIS:AddItem(spec0, "55065", LBIS.L["Main Hand"], "BIS") --Elementium Hammer
-    LBIS:AddItem(spec0, "57872", LBIS.L["Main Hand"], "Alt") --Scepter of Power
-    LBIS:AddItem(spec0, "62459", LBIS.L["Main Hand"], "Alt") --Shimmering Morningstar
-    LBIS:AddItem(spec0, "56312", LBIS.L["Main Hand"], "Alt") --Torturer's Mercy
-    LBIS:AddItem(spec0, "56357", LBIS.L["Main Hand"], "Alt") --Biting Wind
-    LBIS:AddItem(spec0, "55070", LBIS.L["Off Hand"], "BIS") --Elementium Stormshield
-    LBIS:AddItem(spec0, "56402", LBIS.L["Off Hand"], "Alt") --Zora's Ward
-    LBIS:AddItem(spec0, "56322", LBIS.L["Off Hand"], "Alt") --Crepuscular Shield
-    LBIS:AddItem(spec0, "57925", LBIS.L["Off Hand"], "Alt") --Shield of the Mists
-    LBIS:AddItem(spec0, "59525", LBIS.L["Two Hand"], "BIS") --Chelley's Staff of Dark Mending
-    LBIS:AddItem(spec0, "64880", LBIS.L["Two Hand"], "Alt") --Staff of Ammunae
-    LBIS:AddItem(spec0, "64489", LBIS.L["Two Hand"], "Alt") --Staff of Sorcerer-Thane Thaurissan
-    LBIS:AddItem(spec0, "64673", LBIS.L["Ranged/Relic"], "BIS") --Relic of Eonar
-    LBIS:AddItem(spec0, "64672", LBIS.L["Ranged/Relic"], "Alt") --Relic of Norgannon
-    LBIS:AddItem(spec0, "56350", LBIS.L["Ranged/Relic"], "Alt") --Book of Dark Prophecies
-    LBIS:AddItem(spec0, "63487", LBIS.L["Ranged/Relic"], "Alt") --Book of the Well Sung Song
-    LBIS:AddItem(spec0, "56372", LBIS.L["Ranged/Relic"], "Alt") --Captured Lightning
-    LBIS:AddItem(spec0, "62244", LBIS.L["Ranged/Relic"], "Alt") --Tattooed Eyeball
+    LootAlert:AddItem(spec0, "59458", "Head", "BIS") --Energized Bio-Optic Killshades
+    LootAlert:AddItem(spec0, "58128", "Head", "Alt") --Helm of the Inward Eye
+    LootAlert:AddItem(spec0, "56352", "Head", "Alt") --Cowl of the Unseen World
+    LootAlert:AddItem(spec0, "63452", "Shoulder", "BIS") --Burden of Lost Humanity
+    LootAlert:AddItem(spec0, "58129", "Shoulder", "Alt") --Seafoam Mantle
+    LootAlert:AddItem(spec0, "56359", "Shoulder", "Alt") --Fallen Snow Shoulderguards
+    LootAlert:AddItem(spec0, "58194", "Back", "BIS") --Heavenly Breeze
+    LootAlert:AddItem(spec0, "67131", "Back", "BIS") --Ritssyn's Ruminous Drape
+    LootAlert:AddItem(spec0, "62357", "Back", "Alt") --Cloak of Ancient Wisdom
+    LootAlert:AddItem(spec0, "56267", "Back", "Alt") --Periwinkle Cloak
+    LootAlert:AddItem(spec0, "56434", "Back", "Alt") --Solar Wind Cloak
+    LootAlert:AddItem(spec0, "63448", "Back", "Alt") --Springvale's Cloak
+    LootAlert:AddItem(spec0, "56450", "Back", "Alt") --Azureborne Cloak
+    LootAlert:AddItem(spec0, "56563", "Chest", "BIS") --Twilight Scale Chestguard
+    LootAlert:AddItem(spec0, "58126", "Chest", "Alt") --Vest of the Waking Dream
+    LootAlert:AddItem(spec0, "56274", "Chest", "Alt") --Chromis Chestpiece
+    LootAlert:AddItem(spec0, "63486", "Wrist", "BIS") --Shackles of the Betrayed
+    LootAlert:AddItem(spec0, "56313", "Wrist", "Alt") --Manacles of Pain
+    LootAlert:AddItem(spec0, "63475", "Hands", "BIS") --Old Friend's Gloves
+    LootAlert:AddItem(spec0, "58130", "Hands", "Alt") --Gleaning Gloves
+    LootAlert:AddItem(spec0, "56383", "Hands", "Alt") --Ionic Gloves
+    LootAlert:AddItem(spec0, "56538", "Waist", "BIS") --Stormleather Sash
+    LootAlert:AddItem(spec0, "62445", "Waist", "Alt") --Sash of Prophecy
+    LootAlert:AddItem(spec0, "57917", "Waist", "Alt") --Belt of the Still Stream
+    LootAlert:AddItem(spec0, "67148", "Legs", "BIS") --Kilt of Trollish Dreams
+    LootAlert:AddItem(spec0, "60201", "Legs", "Alt") --Phase-Twister Leggings
+    LootAlert:AddItem(spec0, "62380", "Legs", "Alt") --Wilderness Legguards
+    LootAlert:AddItem(spec0, "62363", "Feet", "BIS") --Earthmender's Boots
+    LootAlert:AddItem(spec0, "58481", "Feet", "BIS") --Boots of the Perilous Seas
+    LootAlert:AddItem(spec0, "56448", "Feet", "BIS") --Dark Iron Chain Boots
+    LootAlert:AddItem(spec0, "67130", "Neck", "BIS") --Dorian's Lost Necklace
+    LootAlert:AddItem(spec0, "62416", "Neck", "BIS") --Yellow Smoke Pendant
+    LootAlert:AddItem(spec0, "56300", "Neck", "Alt") --Quicksilver Amulet
+    LootAlert:AddItem(spec0, "56288", "Neck", "Alt") --Pipefish Cord
+    LootAlert:AddItem(spec0, "56362", "Neck", "Alt") --Amulet of Tender Breath
+    LootAlert:AddItem(spec0, "57934", "Neck", "Alt") --Celadon Pendant
+    LootAlert:AddItem(spec0, "63441", "Neck", "Alt") --Pendant of the Keep
+    LootAlert:AddItem(spec0, "56385", "Neck", "Alt") --Tauntka's Necklace
+    LootAlert:AddItem(spec0, "52322", "Neck", "Alt") --Eye of Many Deaths
+    LootAlert:AddItem(spec0, "58189", "Ring", "BIS") --Twined Band of Flowers
+    LootAlert:AddItem(spec0, "64904", "Ring", "BIS") --Ring of the Boy Emperor
+    LootAlert:AddItem(spec0, "58188", "Ring", "BIS") --Band of Secret Names
+    LootAlert:AddItem(spec0, "56307", "Ring", "Alt") --Kibble
+    LootAlert:AddItem(spec0, "56391", "Ring", "Alt") --Veneficial Band
+    LootAlert:AddItem(spec0, "56373", "Ring", "Alt") --Ring of Frozen Rain
+    LootAlert:AddItem(spec0, "56418", "Ring", "Alt") --Band of Life Energy
+    LootAlert:AddItem(spec0, "62352", "Ring", "Alt") --Diamant's Ring of Temperance
+    LootAlert:AddItem(spec0, "56333", "Ring", "Alt") --Rose Quartz Band
+    LootAlert:AddItem(spec0, "56380", "Ring", "Alt") --Spirit Creeper Ring
+    LootAlert:AddItem(spec0, "52319", "Ring", "Alt") --Ring of Warring Elements
+    LootAlert:AddItem(spec0, "62047", "Trinket", "BIS") --Darkmoon Card: Volcano
+    LootAlert:AddItem(spec0, "58183", "Trinket", "BIS") --Soul Casket
+    LootAlert:AddItem(spec0, "56320", "Trinket", "Alt") --Witching Hourglass
+    LootAlert:AddItem(spec0, "56462", "Trinket", "Alt") --Gale of Shadows
+    LootAlert:AddItem(spec0, "68777", "Trinket", "Alt") --Vibrant Alchemist Stone
+    LootAlert:AddItem(spec0, "62465", "Trinket", "Alt") --Stump of Time
+    LootAlert:AddItem(spec0, "62470", "Trinket", "Alt") --Stump of Time
+    LootAlert:AddItem(spec0, "56339", "Trinket", "Alt") --Tendrils of Burrowing Dark
+    LootAlert:AddItem(spec0, "56407", "Trinket", "Alt") --Anhuur's Hymnal
+    LootAlert:AddItem(spec0, "64645", "Trinket", "Alt") --Tyrande's Favorite Doll
+    LootAlert:AddItem(spec0, "65804", "Trinket", "Alt") --Talisman of Sinister Order
+    LootAlert:AddItem(spec0, "55065", "Main Hand", "BIS") --Elementium Hammer
+    LootAlert:AddItem(spec0, "57872", "Main Hand", "Alt") --Scepter of Power
+    LootAlert:AddItem(spec0, "62459", "Main Hand", "Alt") --Shimmering Morningstar
+    LootAlert:AddItem(spec0, "56312", "Main Hand", "Alt") --Torturer's Mercy
+    LootAlert:AddItem(spec0, "56357", "Main Hand", "Alt") --Biting Wind
+    LootAlert:AddItem(spec0, "55070", "Off Hand", "BIS") --Elementium Stormshield
+    LootAlert:AddItem(spec0, "56402", "Off Hand", "Alt") --Zora's Ward
+    LootAlert:AddItem(spec0, "56322", "Off Hand", "Alt") --Crepuscular Shield
+    LootAlert:AddItem(spec0, "57925", "Off Hand", "Alt") --Shield of the Mists
+    LootAlert:AddItem(spec0, "59525", "Two Hand", "BIS") --Chelley's Staff of Dark Mending
+    LootAlert:AddItem(spec0, "64880", "Two Hand", "Alt") --Staff of Ammunae
+    LootAlert:AddItem(spec0, "64489", "Two Hand", "Alt") --Staff of Sorcerer-Thane Thaurissan
+    LootAlert:AddItem(spec0, "64673", "Ranged/Relic", "BIS") --Relic of Eonar
+    LootAlert:AddItem(spec0, "64672", "Ranged/Relic", "Alt") --Relic of Norgannon
+    LootAlert:AddItem(spec0, "56350", "Ranged/Relic", "Alt") --Book of Dark Prophecies
+    LootAlert:AddItem(spec0, "63487", "Ranged/Relic", "Alt") --Book of the Well Sung Song
+    LootAlert:AddItem(spec0, "56372", "Ranged/Relic", "Alt") --Captured Lightning
+    LootAlert:AddItem(spec0, "62244", "Ranged/Relic", "Alt") --Tattooed Eyeball
     
-    LBIS:AddItem(spec1, "65256", LBIS.L["Head"], "BIS") --Headpiece of the Raging Elements
-    LBIS:AddItem(spec1, "65136", LBIS.L["Head"], "Alt") --Helm of the Nether Scion
-    LBIS:AddItem(spec1, "59453", LBIS.L["Head"], "Alt") --Camouflage Bio-Optic Killshades
-    LBIS:AddItem(spec1, "65114", LBIS.L["Shoulder"], "BIS") --Feludius' Mantle
-    LBIS:AddItem(spec1, "65248", LBIS.L["Shoulder"], "BIS") --Mantle of the Raging Elements
-    LBIS:AddItem(spec1, "60311", LBIS.L["Shoulder"], "Alt") --Mantle of the Raging Elements
-    LBIS:AddItem(spec1, "63452", LBIS.L["Shoulder"], "Alt") --Burden of Lost Humanity
-    LBIS:AddItem(spec1, "60232", LBIS.L["Back"], "BIS") --Shroud of Endless Grief
-    LBIS:AddItem(spec1, "65108", LBIS.L["Back"], "Alt") --Drape of the Twins
-    LBIS:AddItem(spec1, "69881", LBIS.L["Back"], "Alt") --Planetary Drape
-    LBIS:AddItem(spec1, "65018", LBIS.L["Back"], "Alt") --Shadow of Dread
-    LBIS:AddItem(spec1, "67131", LBIS.L["Back"], "Alt") --Ritssyn's Ruminous Drape
-    LBIS:AddItem(spec1, "58194", LBIS.L["Back"], "Alt") --Heavenly Breeze
-    LBIS:AddItem(spec1, "65254", LBIS.L["Chest"], "BIS") --Hauberk of the Raging Elements
-    LBIS:AddItem(spec1, "65004", LBIS.L["Chest"], "Alt") --Circuit Design Breastplate
-    LBIS:AddItem(spec1, "56563", LBIS.L["Chest"], "Alt") --Twilight Scale Chestguard
-    LBIS:AddItem(spec1, "65068", LBIS.L["Wrist"], "BIS") --Chaos Beast Bracers
-    LBIS:AddItem(spec1, "59310", LBIS.L["Wrist"], "Alt") --Chaos Beast Bracers
-    LBIS:AddItem(spec1, "63486", LBIS.L["Wrist"], "Alt") --Shackles of the Betrayed
-    LBIS:AddItem(spec1, "56313", LBIS.L["Wrist"], "Alt") --Manacles of Pain
-    LBIS:AddItem(spec1, "65255", LBIS.L["Hands"], "BIS") --Gloves of the Raging Elements
-    LBIS:AddItem(spec1, "65055", LBIS.L["Hands"], "Alt") --Gloves of Cacophony
-    LBIS:AddItem(spec1, "63475", LBIS.L["Hands"], "Alt") --Old Friend's Gloves
-    LBIS:AddItem(spec1, "65092", LBIS.L["Waist"], "BIS") --Waistguard of Hatred
-    LBIS:AddItem(spec1, "65046", LBIS.L["Waist"], "Alt") --Lifecycle Waistguard
-    LBIS:AddItem(spec1, "56538", LBIS.L["Waist"], "Alt") --Stormleather Sash
-    LBIS:AddItem(spec1, "65257", LBIS.L["Legs"], "BIS") --Kilt of the Raging Elements
-    LBIS:AddItem(spec1, "65125", LBIS.L["Legs"], "Alt") --Kilt of the Forgotten Battle
-    LBIS:AddItem(spec1, "67148", LBIS.L["Legs"], "Alt") --Kilt of Trollish Dreams
-    LBIS:AddItem(spec1, "60201", LBIS.L["Legs"], "Alt") --Phase-Twister Leggings
-    LBIS:AddItem(spec1, "60235", LBIS.L["Feet"], "BIS") --Boots of Az'galada
-    LBIS:AddItem(spec1, "65033", LBIS.L["Feet"], "Alt") --Treads of Flawless Creation
-    LBIS:AddItem(spec1, "62363", LBIS.L["Feet"], "Alt") --Earthmender's Boots
-    LBIS:AddItem(spec1, "69882", LBIS.L["Neck"], "BIS") --Planetary Amulet
-    LBIS:AddItem(spec1, "65134", LBIS.L["Neck"], "BIS") --Wyrmbreaker's Amulet
-    LBIS:AddItem(spec1, "65112", LBIS.L["Neck"], "Alt") --Valiona's Medallion
-    LBIS:AddItem(spec1, "67130", LBIS.L["Neck"], "Alt") --Dorian's Lost Necklace
-    LBIS:AddItem(spec1, "62416", LBIS.L["Neck"], "Alt") --Yellow Smoke Pendant
-    LBIS:AddItem(spec1, "65123", LBIS.L["Ring"], "BIS") --Signet of the Fifth Circle
-    LBIS:AddItem(spec1, "65373", LBIS.L["Ring"], "BIS") --Planetary Band
-    LBIS:AddItem(spec1, "65076", LBIS.L["Ring"], "Alt") --Security Measure Alpha
-    LBIS:AddItem(spec1, "58189", LBIS.L["Ring"], "Alt") --Twined Band of Flowers
-    LBIS:AddItem(spec1, "64904", LBIS.L["Ring"], "Alt") --Ring of the Boy Emperor
-    LBIS:AddItem(spec1, "58188", LBIS.L["Ring"], "Alt") --Band of Secret Names
-    LBIS:AddItem(spec1, "62047", LBIS.L["Trinket"], "BIS") --Darkmoon Card: Volcano
-    LBIS:AddItem(spec1, "65053", LBIS.L["Trinket"], "BIS") --Bell of Enraging Resonance
-    LBIS:AddItem(spec1, "65110", LBIS.L["Trinket"], "Alt") --Heart of Ignacious
-    LBIS:AddItem(spec1, "65105", LBIS.L["Trinket"], "Alt") --Theralion's Mirror
-    LBIS:AddItem(spec1, "65017", LBIS.L["Main Hand"], "BIS") --Andoros, Fist of the Dragon King
-    LBIS:AddItem(spec1, "65041", LBIS.L["Main Hand"], "Alt") --Incineratus
-    LBIS:AddItem(spec1, "65090", LBIS.L["Main Hand"], "Alt") --Twilight's Hammer
-    LBIS:AddItem(spec1, "65091", LBIS.L["Main Hand"], "Alt") --Blade of the Witching Hour
-    LBIS:AddItem(spec1, "65052", LBIS.L["Off Hand"], "BIS") --Kingdom's Heart
-    LBIS:AddItem(spec1, "55070", LBIS.L["Off Hand"], "Alt") --Elementium Stormshield
-    LBIS:AddItem(spec1, "56402", LBIS.L["Off Hand"], "Alt") --Zora's Ward
-    LBIS:AddItem(spec1, "59525", LBIS.L["Two Hand"], "BIS") --Chelley's Staff of Dark Mending
-    LBIS:AddItem(spec1, "64880", LBIS.L["Two Hand"], "Alt") --Staff of Ammunae
-    LBIS:AddItem(spec1, "64489", LBIS.L["Two Hand"], "Alt") --Staff of Sorcerer-Thane Thaurissan
-    LBIS:AddItem(spec1, "64673", LBIS.L["Ranged/Relic"], "BIS") --Relic of Eonar
-    LBIS:AddItem(spec1, "64672", LBIS.L["Ranged/Relic"], "Alt") --Relic of Norgannon
-    LBIS:AddItem(spec1, "56350", LBIS.L["Ranged/Relic"], "Alt") --Book of Dark Prophecies
-    LBIS:AddItem(spec1, "63487", LBIS.L["Ranged/Relic"], "Alt") --Book of the Well Sung Song
-    LBIS:AddItem(spec1, "56372", LBIS.L["Ranged/Relic"], "Alt") --Captured Lightning
-    LBIS:AddItem(spec1, "62244", LBIS.L["Ranged/Relic"], "Alt") --Tattooed Eyeball
+    LootAlert:AddItem(spec1, "65256", "Head", "BIS") --Headpiece of the Raging Elements
+    LootAlert:AddItem(spec1, "65136", "Head", "Alt") --Helm of the Nether Scion
+    LootAlert:AddItem(spec1, "59453", "Head", "Alt") --Camouflage Bio-Optic Killshades
+    LootAlert:AddItem(spec1, "65114", "Shoulder", "BIS") --Feludius' Mantle
+    LootAlert:AddItem(spec1, "65248", "Shoulder", "BIS") --Mantle of the Raging Elements
+    LootAlert:AddItem(spec1, "60311", "Shoulder", "Alt") --Mantle of the Raging Elements
+    LootAlert:AddItem(spec1, "63452", "Shoulder", "Alt") --Burden of Lost Humanity
+    LootAlert:AddItem(spec1, "60232", "Back", "BIS") --Shroud of Endless Grief
+    LootAlert:AddItem(spec1, "65108", "Back", "Alt") --Drape of the Twins
+    LootAlert:AddItem(spec1, "69881", "Back", "Alt") --Planetary Drape
+    LootAlert:AddItem(spec1, "65018", "Back", "Alt") --Shadow of Dread
+    LootAlert:AddItem(spec1, "67131", "Back", "Alt") --Ritssyn's Ruminous Drape
+    LootAlert:AddItem(spec1, "58194", "Back", "Alt") --Heavenly Breeze
+    LootAlert:AddItem(spec1, "65254", "Chest", "BIS") --Hauberk of the Raging Elements
+    LootAlert:AddItem(spec1, "65004", "Chest", "Alt") --Circuit Design Breastplate
+    LootAlert:AddItem(spec1, "56563", "Chest", "Alt") --Twilight Scale Chestguard
+    LootAlert:AddItem(spec1, "65068", "Wrist", "BIS") --Chaos Beast Bracers
+    LootAlert:AddItem(spec1, "59310", "Wrist", "Alt") --Chaos Beast Bracers
+    LootAlert:AddItem(spec1, "63486", "Wrist", "Alt") --Shackles of the Betrayed
+    LootAlert:AddItem(spec1, "56313", "Wrist", "Alt") --Manacles of Pain
+    LootAlert:AddItem(spec1, "65255", "Hands", "BIS") --Gloves of the Raging Elements
+    LootAlert:AddItem(spec1, "65055", "Hands", "Alt") --Gloves of Cacophony
+    LootAlert:AddItem(spec1, "63475", "Hands", "Alt") --Old Friend's Gloves
+    LootAlert:AddItem(spec1, "65092", "Waist", "BIS") --Waistguard of Hatred
+    LootAlert:AddItem(spec1, "65046", "Waist", "Alt") --Lifecycle Waistguard
+    LootAlert:AddItem(spec1, "56538", "Waist", "Alt") --Stormleather Sash
+    LootAlert:AddItem(spec1, "65257", "Legs", "BIS") --Kilt of the Raging Elements
+    LootAlert:AddItem(spec1, "65125", "Legs", "Alt") --Kilt of the Forgotten Battle
+    LootAlert:AddItem(spec1, "67148", "Legs", "Alt") --Kilt of Trollish Dreams
+    LootAlert:AddItem(spec1, "60201", "Legs", "Alt") --Phase-Twister Leggings
+    LootAlert:AddItem(spec1, "60235", "Feet", "BIS") --Boots of Az'galada
+    LootAlert:AddItem(spec1, "65033", "Feet", "Alt") --Treads of Flawless Creation
+    LootAlert:AddItem(spec1, "62363", "Feet", "Alt") --Earthmender's Boots
+    LootAlert:AddItem(spec1, "69882", "Neck", "BIS") --Planetary Amulet
+    LootAlert:AddItem(spec1, "65134", "Neck", "BIS") --Wyrmbreaker's Amulet
+    LootAlert:AddItem(spec1, "65112", "Neck", "Alt") --Valiona's Medallion
+    LootAlert:AddItem(spec1, "67130", "Neck", "Alt") --Dorian's Lost Necklace
+    LootAlert:AddItem(spec1, "62416", "Neck", "Alt") --Yellow Smoke Pendant
+    LootAlert:AddItem(spec1, "65123", "Ring", "BIS") --Signet of the Fifth Circle
+    LootAlert:AddItem(spec1, "65373", "Ring", "BIS") --Planetary Band
+    LootAlert:AddItem(spec1, "65076", "Ring", "Alt") --Security Measure Alpha
+    LootAlert:AddItem(spec1, "58189", "Ring", "Alt") --Twined Band of Flowers
+    LootAlert:AddItem(spec1, "64904", "Ring", "Alt") --Ring of the Boy Emperor
+    LootAlert:AddItem(spec1, "58188", "Ring", "Alt") --Band of Secret Names
+    LootAlert:AddItem(spec1, "62047", "Trinket", "BIS") --Darkmoon Card: Volcano
+    LootAlert:AddItem(spec1, "65053", "Trinket", "BIS") --Bell of Enraging Resonance
+    LootAlert:AddItem(spec1, "65110", "Trinket", "Alt") --Heart of Ignacious
+    LootAlert:AddItem(spec1, "65105", "Trinket", "Alt") --Theralion's Mirror
+    LootAlert:AddItem(spec1, "65017", "Main Hand", "BIS") --Andoros, Fist of the Dragon King
+    LootAlert:AddItem(spec1, "65041", "Main Hand", "Alt") --Incineratus
+    LootAlert:AddItem(spec1, "65090", "Main Hand", "Alt") --Twilight's Hammer
+    LootAlert:AddItem(spec1, "65091", "Main Hand", "Alt") --Blade of the Witching Hour
+    LootAlert:AddItem(spec1, "65052", "Off Hand", "BIS") --Kingdom's Heart
+    LootAlert:AddItem(spec1, "55070", "Off Hand", "Alt") --Elementium Stormshield
+    LootAlert:AddItem(spec1, "56402", "Off Hand", "Alt") --Zora's Ward
+    LootAlert:AddItem(spec1, "59525", "Two Hand", "BIS") --Chelley's Staff of Dark Mending
+    LootAlert:AddItem(spec1, "64880", "Two Hand", "Alt") --Staff of Ammunae
+    LootAlert:AddItem(spec1, "64489", "Two Hand", "Alt") --Staff of Sorcerer-Thane Thaurissan
+    LootAlert:AddItem(spec1, "64673", "Ranged/Relic", "BIS") --Relic of Eonar
+    LootAlert:AddItem(spec1, "64672", "Ranged/Relic", "Alt") --Relic of Norgannon
+    LootAlert:AddItem(spec1, "56350", "Ranged/Relic", "Alt") --Book of Dark Prophecies
+    LootAlert:AddItem(spec1, "63487", "Ranged/Relic", "Alt") --Book of the Well Sung Song
+    LootAlert:AddItem(spec1, "56372", "Ranged/Relic", "Alt") --Captured Lightning
+    LootAlert:AddItem(spec1, "62244", "Ranged/Relic", "Alt") --Tattooed Eyeball
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);
