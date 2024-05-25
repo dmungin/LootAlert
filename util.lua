@@ -65,7 +65,6 @@ function LootAlert:getDefaultDb()
         },
         global = {
             allItemsCached = false,
-            reCacheDate = time({year=2024, month=05, day=24, hour=20}),
             currentPhase = PHASES.PHASE_1,
             lastCacheDate = nil,
             itemCache = {},
