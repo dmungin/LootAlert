@@ -53,3 +53,15 @@ function LootAlert:CHAT_MSG_RAID_WARNING(eventName, ...)
         end
     end
 end
+
+function LootAlert:START_LOOT_ROLL(eventName, ...)
+    local itemId = ...;
+    --local texture, name, count, quality = GetLootRollItemInfo(rollId);
+    if itemId then
+        LootAlert:GetItemInfo(tonumber(itemId), function (item)
+            if item.Id ~= nil then
+                LootAlert:HandleNewLoot(item);
+            end
+        end);
+    end
+end

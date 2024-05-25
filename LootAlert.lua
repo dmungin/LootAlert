@@ -56,6 +56,7 @@ function LootAlert:OnInitialize()
 	self:RegisterChatCommand("lootalert", "SlashCommand");
     LootAlert:RegisterEvent("CHAT_MSG_LOOT");
     LootAlert:RegisterEvent("CHAT_MSG_RAID_WARNING");
+    --LootAlert:RegisterEvent("START_LOOT_ROLL");
     LootAlert:RenderLootAlert();
 end;
 
@@ -135,29 +136,33 @@ function LootAlert:RenderLootBisList (container)
         end);
         lootBislistScrollFrame:AddChild(AddSpecButton);
     else
-        for slot, slotItems in pairs(lootBistList) do
-            local slotHeader = AceGUI:Create("Label");
-            slotHeader:SetText(slot);
-            slotHeader:SetColor(255,255,255);
-            slotHeader:SetFullWidth(true);
-            lootBislistScrollFrame:AddChild(slotHeader);
-    
-            for itemId, _ in pairs(slotItems) do
-                local item = LootAlert:GetItemInfoInstant(itemId);
-                if item.Id ~= nil then
-                    local addedItemLabel = LootAlert:AddLoot(lootBislistScrollFrame, item, { fullWidth = false, iconSize = 20 });
-                    addedItemLabel:SetWidth(230);
-                    local rollCheckBox = AceGUI:Create("CheckBox");
-                    rollCheckBox:SetWidth(20);
-                    rollCheckBox:SetHeight(20);
-                    rollCheckBox:SetType("checkbox");
-                    if LootAlert.db.char.wantedLootBisList[itemId] ~= nil then
-                        rollCheckBox:SetValue(LootAlert.db.char.wantedLootBisList[itemId]);
-                    else
-                        rollCheckBox:SetValue(false);
+        for _, slot in ipairs(LootAlert.constants.SLOT_ORDER) do
+
+            local slotItems = lootBistList[slot];
+            if slotItems ~= nil then
+                local slotHeader = AceGUI:Create("Label");
+                slotHeader:SetText(slot);
+                slotHeader:SetColor(255,255,255);
+                slotHeader:SetFullWidth(true);
+                lootBislistScrollFrame:AddChild(slotHeader);
+
+                for itemId, _ in pairs(slotItems) do
+                    local item = LootAlert:GetItemInfoInstant(itemId);
+                    if item.Id ~= nil then
+                        local addedItemLabel = LootAlert:AddLoot(lootBislistScrollFrame, item, { fullWidth = false, iconSize = 20 });
+                        addedItemLabel:SetWidth(230);
+                        local rollCheckBox = AceGUI:Create("CheckBox");
+                        rollCheckBox:SetWidth(20);
+                        rollCheckBox:SetHeight(20);
+                        rollCheckBox:SetType("checkbox");
+                        if LootAlert.db.char.wantedLootBisList[itemId] ~= nil then
+                            rollCheckBox:SetValue(LootAlert.db.char.wantedLootBisList[itemId]);
+                        else
+                            rollCheckBox:SetValue(false);
+                        end
+                        rollCheckBox:SetCallback("OnValueChanged", GetOnWantedRadioClick(itemId));
+                        lootBislistScrollFrame:AddChild(rollCheckBox);
                     end
-                    rollCheckBox:SetCallback("OnValueChanged", GetOnWantedRadioClick(itemId));
-                    lootBislistScrollFrame:AddChild(rollCheckBox);
                 end
             end
         end
