@@ -56,7 +56,7 @@ function LootAlert:OnInitialize()
 	self:RegisterChatCommand("lootalert", "SlashCommand");
     LootAlert:RegisterEvent("CHAT_MSG_LOOT");
     LootAlert:RegisterEvent("CHAT_MSG_RAID_WARNING");
-    --LootAlert:RegisterEvent("START_LOOT_ROLL");
+    LootAlert:RegisterEvent("START_LOOT_ROLL");
     LootAlert:RenderLootAlert();
 end;
 
