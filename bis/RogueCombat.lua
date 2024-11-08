@@ -4,82 +4,78 @@ local LootAlert = core.LootAlert;
 local function loadBis ()
     local spec0 = LootAlert:RegisterSpec("Rogue", "Combat", "0")
     local spec1 = LootAlert:RegisterSpec("Rogue", "Combat", "1")
+    local spec2 = LootAlert:RegisterSpec("Rogue", "Combat", "2")
+    local spec3 = LootAlert:RegisterSpec("Rogue", "Combat", "3")
+    local spec4 = LootAlert:RegisterSpec("Rogue", "Combat", "4")
 
     LootAlert:AddItem(spec0, "59455", "Head", "BIS") --Agile Bio-Optic Killshades
+    LootAlert:AddItem(spec0, "60299", "Head", "Alt") --Wind Dancer's Helmet
+    LootAlert:AddItem(spec0, "69564", "Head", "Alt") --The Savager's Mask
     LootAlert:AddItem(spec0, "58133", "Head", "Alt") --Mask of Vines
-    LootAlert:AddItem(spec0, "56344", "Head", "Alt") --Helm of Numberless Shadows
-    LootAlert:AddItem(spec0, "56273", "Shoulder", "BIS") --Caridean Epaulettes
-    LootAlert:AddItem(spec0, "63449", "Shoulder", "Alt") --Thieving Spaulders
-    LootAlert:AddItem(spec0, "58134", "Shoulder", "Alt") --Embrace of the Night
-    LootAlert:AddItem(spec0, "67134", "Back", "BIS") --Dory's Finery
-    LootAlert:AddItem(spec0, "58191", "Back", "BIS") --Viewless Wings
-    LootAlert:AddItem(spec0, "65177", "Back", "Alt") --Cape of the Brotherhood
-    LootAlert:AddItem(spec0, "62361", "Back", "Alt") --Softwind Cape
-    LootAlert:AddItem(spec0, "56379", "Back", "Alt") --Kaleki Cloak
-    LootAlert:AddItem(spec0, "63473", "Back", "Alt") --Cloak of Thredd
-    LootAlert:AddItem(spec0, "56315", "Back", "Alt") --Twitching Shadows
-    LootAlert:AddItem(spec0, "56562", "Chest", "BIS") --Assassin's Chestplate
-    LootAlert:AddItem(spec0, "63468", "Chest", "BIS") --Defias Brotherhood Vest
-    LootAlert:AddItem(spec0, "56455", "Chest", "Alt") --Vest of Misshapen Hides
-    LootAlert:AddItem(spec0, "57874", "Chest", "Alt") --Hieroglyphic Vest
-    LootAlert:AddItem(spec0, "58131", "Chest", "Alt") --Tunic of Sinking Envy
-    LootAlert:AddItem(spec0, "62374", "Chest", "Alt") --Sly Fox Jerkin
-    LootAlert:AddItem(spec0, "56409", "Wrist", "BIS") --Poison Fang Bracers
-    LootAlert:AddItem(spec0, "63454", "Wrist", "Alt") --Double Dealing Bracers
-    LootAlert:AddItem(spec0, "62417", "Hands", "BIS") --Liar's Handwraps
-    LootAlert:AddItem(spec0, "62433", "Hands", "BIS") --Stormbolt Gloves
-    LootAlert:AddItem(spec0, "58138", "Hands", "Alt") --Sticky Fingers
-    LootAlert:AddItem(spec0, "56368", "Hands", "Alt") --Gloves of Haze
-    LootAlert:AddItem(spec0, "56537", "Waist", "BIS") --Belt of Nefarious Whispers
-    LootAlert:AddItem(spec0, "57918", "Waist", "Alt") --Sash of Musing
-    LootAlert:AddItem(spec0, "62446", "Waist", "Alt") --Quicksand Belt
-    LootAlert:AddItem(spec0, "56429", "Waist", "Alt") --Red Beam Cord
-    LootAlert:AddItem(spec0, "58132", "Legs", "BIS") --Leggings of the Burrowing Mole
-    LootAlert:AddItem(spec0, "56309", "Legs", "BIS") --Beauty's Chew Toy
-    LootAlert:AddItem(spec0, "62405", "Legs", "Alt") --Leggings of the Impenitent
-    LootAlert:AddItem(spec0, "62425", "Legs", "Alt") --Swiftflight Leggings
-    LootAlert:AddItem(spec0, "58482", "Feet", "BIS") --Treads of Fleeting Joy
-    LootAlert:AddItem(spec0, "56395", "Feet", "Alt") --Crafty's Gaiters
-    LootAlert:AddItem(spec0, "65178", "Feet", "Alt") --VanCleef's Boots
-    LootAlert:AddItem(spec0, "63435", "Feet", "Alt") --Boots of the Predator
-    LootAlert:AddItem(spec0, "67137", "Neck", "BIS") --Don Rodrigo's Fabulous Necklace
-    LootAlert:AddItem(spec0, "56422", "Neck", "Alt") --Mouth of the Earth
-    LootAlert:AddItem(spec0, "62378", "Neck", "Alt") --Acorn of the Daughter Tree
-    LootAlert:AddItem(spec0, "56338", "Neck", "Alt") --Pendant of the Lightless Grotto
-    LootAlert:AddItem(spec0, "57931", "Neck", "Alt") --Amulet of Dull Dreaming
-    LootAlert:AddItem(spec0, "62362", "Ring", "BIS") --Signet of the Elder Council
-    LootAlert:AddItem(spec0, "67136", "Ring", "BIS") --Gilnean Ring of Ruination
-    LootAlert:AddItem(spec0, "68812", "Ring", "BIS") --Hornet-Sting Band
-    LootAlert:AddItem(spec0, "62348", "Ring", "Alt") --Terrath's Signet of Balance
-    LootAlert:AddItem(spec0, "56412", "Ring", "Alt") --Ring of Blinding Stars
-    LootAlert:AddItem(spec0, "56310", "Ring", "Alt") --Skullcracker Ring
-    LootAlert:AddItem(spec0, "56282", "Ring", "Alt") --Nautilus Ring
-    LootAlert:AddItem(spec0, "56445", "Ring", "Alt") --Ring of Dun Algaz
+    LootAlert:AddItem(spec0, "60302", "Shoulder", "BIS") --Wind Dancer's Spaulders
+    LootAlert:AddItem(spec0, "69574", "Shoulder", "Alt") --Tusked Shoulderpads
+    LootAlert:AddItem(spec0, "56273", "Shoulder", "Alt") --Caridean Epaulettes
+    LootAlert:AddItem(spec0, "69884", "Back", "BIS") --Mistral Drape
+    LootAlert:AddItem(spec0, "71268", "Back", "BIS") --Mantle of Doubt
+    LootAlert:AddItem(spec0, "67134", "Back", "Alt") --Dory's Finery
+    LootAlert:AddItem(spec0, "58191", "Back", "Alt") --Viewless Wings
+    LootAlert:AddItem(spec0, "71045", "Chest", "BIS") --Dark Phoenix Tunic
+    LootAlert:AddItem(spec0, "60301", "Chest", "Alt") --Wind Dancer's Tunic
+    LootAlert:AddItem(spec0, "67135", "Chest", "Alt") --Morrie's Waywalker Wrap
+    LootAlert:AddItem(spec0, "56562", "Chest", "Alt") --Assassin's Chestplate
+    LootAlert:AddItem(spec0, "71130", "Wrist", "BIS") --Flamebinder Bracers
+    LootAlert:AddItem(spec0, "65050", "Wrist", "Alt") --Parasitic Bands
+    LootAlert:AddItem(spec0, "69559", "Wrist", "Alt") --Amani'shi Bracers
+    LootAlert:AddItem(spec0, "56409", "Wrist", "Alt") --Poison Fang Bracers
+    LootAlert:AddItem(spec0, "69942", "Hands", "BIS") --Clutches of Evil
+    LootAlert:AddItem(spec0, "71046", "Hands", "BIS") --Dark Phoenix Gloves
+    LootAlert:AddItem(spec0, "70122", "Hands", "Alt") --Aviana's Grips
+    LootAlert:AddItem(spec0, "60298", "Hands", "Alt") --Wind Dancer's Gloves
+    LootAlert:AddItem(spec0, "62417", "Hands", "Alt") --Liar's Handwraps
+    LootAlert:AddItem(spec0, "62433", "Hands", "Alt") --Stormbolt Gloves
+    LootAlert:AddItem(spec0, "60231", "Waist", "BIS") --Belt of the Fallen Brood
+    LootAlert:AddItem(spec0, "71640", "Waist", "Alt") --Riplimb's Lost Collar
+    LootAlert:AddItem(spec0, "65371", "Waist", "Alt") --Wind Stalker Belt
+    LootAlert:AddItem(spec0, "56537", "Waist", "Alt") --Belt of Nefarious Whispers
+    LootAlert:AddItem(spec0, "71048", "Legs", "BIS") --Dark Phoenix Legguards
+    LootAlert:AddItem(spec0, "65381", "Legs", "Alt") --Wind Stalker Leggings
+    LootAlert:AddItem(spec0, "60300", "Legs", "Alt") --Wind Dancer's Legguards
+    LootAlert:AddItem(spec0, "69951", "Feet", "BIS") --Treads of the Craft
+    LootAlert:AddItem(spec0, "58482", "Feet", "Alt") --Treads of Fleeting Joy
+    LootAlert:AddItem(spec0, "69634", "Feet", "Alt") --Fasc's Preserved Boots
+    LootAlert:AddItem(spec0, "71129", "Neck", "BIS") --Necklace of Smoke Signals
+    LootAlert:AddItem(spec0, "69880", "Neck", "Alt") --Mistral Pendant
+    LootAlert:AddItem(spec0, "67137", "Neck", "Alt") --Don Rodrigo's Fabulous Necklace
+    LootAlert:AddItem(spec0, "69605", "Neck", "Alt") --Amulet of the Watcher
+    LootAlert:AddItem(spec0, "71209", "Ring", "BIS") --Splintered Brimstone Seal
+    LootAlert:AddItem(spec0, "65367", "Ring", "BIS") --Mistral Circle
+    LootAlert:AddItem(spec0, "70110", "Ring", "Alt") --Band of Glittering Lights
+    LootAlert:AddItem(spec0, "62362", "Ring", "Alt") --Signet of the Elder Council
+    LootAlert:AddItem(spec0, "67136", "Ring", "Alt") --Gilnean Ring of Ruination
+    LootAlert:AddItem(spec0, "68812", "Ring", "Alt") --Hornet-Sting Band
+    LootAlert:AddItem(spec0, "70105", "Ring", "Alt") --Matoclaw's Band
+    LootAlert:AddItem(spec0, "65026", "Trinket", "BIS") --Prestor's Talisman of Machination
     LootAlert:AddItem(spec0, "58181", "Trinket", "BIS") --Fluid Death
-    LootAlert:AddItem(spec0, "56427", "Trinket", "BIS") --Left Eye of Rajh
-    LootAlert:AddItem(spec0, "56394", "Trinket", "BIS") --Tia's Grace
-    LootAlert:AddItem(spec0, "56328", "Trinket", "BIS") --Key to the Endless Chamber
-    LootAlert:AddItem(spec0, "68776", "Trinket", "Alt") --Quicksilver Alchemist Stone
-    LootAlert:AddItem(spec0, "62463", "Trinket", "Alt") --Unsolvable Riddle
-    LootAlert:AddItem(spec0, "62468", "Trinket", "Alt") --Unsolvable Riddle
-    LootAlert:AddItem(spec0, "56440", "Trinket", "Alt") --Skardyn's Grace
-    LootAlert:AddItem(spec0, "56295", "Trinket", "Alt") --Grace of the Herald
+    LootAlert:AddItem(spec0, "65140", "Trinket", "Alt") --Essence of the Cyclone
+    LootAlert:AddItem(spec0, "56328", "Trinket", "Alt") --Key to the Endless Chamber
+    LootAlert:AddItem(spec0, "56427", "Trinket", "Alt") --Left Eye of Rajh
+    LootAlert:AddItem(spec0, "56394", "Trinket", "Alt") --Tia's Grace
     LootAlert:AddItem(spec0, "68161", "Main Hand", "BIS") --Krol Decapitator
-    LootAlert:AddItem(spec0, "65164", "Main Hand", "BIS") --Cruel Barb
-    LootAlert:AddItem(spec0, "65173", "Main Hand", "Alt") --Thief's Blade
-    LootAlert:AddItem(spec0, "62476", "Main Hand", "Alt") --Ravening Slicer
-    LootAlert:AddItem(spec0, "67602", "Main Hand", "Alt") --Elementium Gutslicer
-    LootAlert:AddItem(spec0, "56329", "Main Hand", "Alt") --Fist of Pained Senses
-    LootAlert:AddItem(spec0, "56266", "Main Hand", "Alt") --Lightning Whelk Axe
-    LootAlert:AddItem(spec0, "56396", "Main Hand", "Alt") --Hammer of Sparks
-    LootAlert:AddItem(spec0, "56335", "Off Hand", "BIS") --Quicksilver Blade
-    LootAlert:AddItem(spec0, "65163", "Off Hand", "Alt") --Buzzer Blade
-    LootAlert:AddItem(spec0, "56390", "Off Hand", "Alt") --Barim's Main Gauche
-    LootAlert:AddItem(spec0, "57927", "Off Hand", "Alt") --Throat Slasher
-    LootAlert:AddItem(spec0, "68162", "Ranged/Relic", "BIS") --Spinerender
-    LootAlert:AddItem(spec0, "56420", "Ranged/Relic", "Alt") --Slashing Thorns
-    LootAlert:AddItem(spec0, "56317", "Ranged/Relic", "Alt") --Amber Messenger
-    LootAlert:AddItem(spec0, "56366", "Ranged/Relic", "Alt") --Lightningflash
+    LootAlert:AddItem(spec0, "59443", "Main Hand", "Alt") --Crul'korak, the Lightning's Arc
+    LootAlert:AddItem(spec0, "63533", "Main Hand", "Alt") --Fang of Twilight
+    LootAlert:AddItem(spec0, "63537", "Main Hand", "Alt") --Claws of Torment
+    LootAlert:AddItem(spec0, "69575", "Main Hand", "Alt") --Mace of the Sacrificed
+    LootAlert:AddItem(spec0, "69636", "Main Hand", "Alt") --Thekal's Claws
+    LootAlert:AddItem(spec0, "65164", "Main Hand", "Alt") --Cruel Barb
+    LootAlert:AddItem(spec0, "68601", "Off Hand", "BIS") --Scaleslicer
+    LootAlert:AddItem(spec0, "59494", "Off Hand", "BIS") --Uhn'agh Fash, the Darkest Betrayal
+    LootAlert:AddItem(spec0, "69620", "Off Hand", "Alt") --Twinblade of the Hakkari
+    LootAlert:AddItem(spec0, "56335", "Off Hand", "Alt") --Quicksilver Blade
+    LootAlert:AddItem(spec0, "71152", "Ranged/Relic", "BIS") --Morningstar Shard
+    LootAlert:AddItem(spec0, "71366", "Ranged/Relic", "BIS") --Lava Bolt Crossbow
+    LootAlert:AddItem(spec0, "59367", "Ranged/Relic", "Alt") --Kickback 5000
+    LootAlert:AddItem(spec0, "68162", "Ranged/Relic", "Alt") --Spinerender
+    LootAlert:AddItem(spec0, "69597", "Ranged/Relic", "Alt") --Zulian Throwing Axe
     
     LootAlert:AddItem(spec1, "65129", "Head", "BIS") --Membrane of C'Thun
     LootAlert:AddItem(spec1, "65241", "Head", "Alt") --Wind Dancer's Helmet
@@ -117,7 +113,6 @@ local function loadBis ()
     LootAlert:AddItem(spec1, "56455", "Chest", "Alt") --Vest of Misshapen Hides
     LootAlert:AddItem(spec1, "57874", "Chest", "Alt") --Hieroglyphic Vest
     LootAlert:AddItem(spec1, "58131", "Chest", "Alt") --Tunic of Sinking Envy
-    LootAlert:AddItem(spec1, "62374", "Chest", "Alt") --Sly Fox Jerkin
     LootAlert:AddItem(spec1, "65050", "Wrist", "BIS") --Parasitic Bands
     LootAlert:AddItem(spec1, "59329", "Wrist", "Alt") --Parasitic Bands
     LootAlert:AddItem(spec1, "56409", "Wrist", "Alt") --Poison Fang Bracers
@@ -158,9 +153,9 @@ local function loadBis ()
     LootAlert:AddItem(spec1, "63435", "Feet", "Alt") --Boots of the Predator
     LootAlert:AddItem(spec1, "65107", "Neck", "BIS") --Necklace of Strife
     LootAlert:AddItem(spec1, "69880", "Neck", "BIS") --Mistral Pendant
-    LootAlert:AddItem(spec1, "67137", "Neck", "BIS") --Don Rodrigo's Fabulous Necklace
     LootAlert:AddItem(spec1, "59517", "Neck", "Alt") --Necklace of Strife
     LootAlert:AddItem(spec1, "69827", "Neck", "Alt") --Mistral Pendant
+    LootAlert:AddItem(spec1, "67137", "Neck", "Alt") --Don Rodrigo's Fabulous Necklace
     LootAlert:AddItem(spec1, "56422", "Neck", "Alt") --Mouth of the Earth
     LootAlert:AddItem(spec1, "62378", "Neck", "Alt") --Acorn of the Daughter Tree
     LootAlert:AddItem(spec1, "56338", "Neck", "Alt") --Pendant of the Lightless Grotto
@@ -187,19 +182,19 @@ local function loadBis ()
     LootAlert:AddItem(spec1, "59520", "Trinket", "Alt") --Unheeded Warning
     LootAlert:AddItem(spec1, "59473", "Trinket", "Alt") --Essence of the Cyclone
     LootAlert:AddItem(spec1, "68776", "Trinket", "Alt") --Quicksilver Alchemist Stone
-    LootAlert:AddItem(spec1, "62463", "Trinket", "Alt") --Unsolvable Riddle
     LootAlert:AddItem(spec1, "62468", "Trinket", "Alt") --Unsolvable Riddle
+    LootAlert:AddItem(spec1, "62463", "Trinket", "Alt") --Unsolvable Riddle
     LootAlert:AddItem(spec1, "56440", "Trinket", "Alt") --Skardyn's Grace
     LootAlert:AddItem(spec1, "56295", "Trinket", "Alt") --Grace of the Herald
     LootAlert:AddItem(spec1, "68130", "Main Hand", "BIS") --Stormwake, the Tempest's Reach
     LootAlert:AddItem(spec1, "65024", "Main Hand", "BIS") --Crul'korak, the Lightning's Arc
     LootAlert:AddItem(spec1, "65094", "Main Hand", "BIS") --Fang of Twilight
-    LootAlert:AddItem(spec1, "68161", "Main Hand", "BIS") --Krol Decapitator
-    LootAlert:AddItem(spec1, "65164", "Main Hand", "BIS") --Cruel Barb
     LootAlert:AddItem(spec1, "68129", "Main Hand", "Alt") --Stormwake, the Tempest's Reach
+    LootAlert:AddItem(spec1, "68161", "Main Hand", "Alt") --Krol Decapitator
     LootAlert:AddItem(spec1, "59443", "Main Hand", "Alt") --Crul'korak, the Lightning's Arc
     LootAlert:AddItem(spec1, "63533", "Main Hand", "Alt") --Fang of Twilight
     LootAlert:AddItem(spec1, "63537", "Main Hand", "Alt") --Claws of Torment
+    LootAlert:AddItem(spec1, "65164", "Main Hand", "Alt") --Cruel Barb
     LootAlert:AddItem(spec1, "65173", "Main Hand", "Alt") --Thief's Blade
     LootAlert:AddItem(spec1, "62476", "Main Hand", "Alt") --Ravening Slicer
     LootAlert:AddItem(spec1, "67602", "Main Hand", "Alt") --Elementium Gutslicer
@@ -216,12 +211,248 @@ local function loadBis ()
     LootAlert:AddItem(spec1, "65058", "Ranged/Relic", "BIS") --Themios the Darkbringer
     LootAlert:AddItem(spec1, "65095", "Ranged/Relic", "BIS") --Dragonheart Piercer
     LootAlert:AddItem(spec1, "68608", "Ranged/Relic", "Alt") --Dragonwreck Throwing Axe
+    LootAlert:AddItem(spec1, "59367", "Ranged/Relic", "Alt") --Kickback 5000
     LootAlert:AddItem(spec1, "59320", "Ranged/Relic", "Alt") --Themios the Darkbringer
     LootAlert:AddItem(spec1, "63532", "Ranged/Relic", "Alt") --Dragonheart Piercer
     LootAlert:AddItem(spec1, "68162", "Ranged/Relic", "Alt") --Spinerender
     LootAlert:AddItem(spec1, "56420", "Ranged/Relic", "Alt") --Slashing Thorns
     LootAlert:AddItem(spec1, "56317", "Ranged/Relic", "Alt") --Amber Messenger
     LootAlert:AddItem(spec1, "56366", "Ranged/Relic", "Alt") --Lightningflash
+    
+    LootAlert:AddItem(spec2, "65129", "Head", "BIS") --Membrane of C'Thun
+    LootAlert:AddItem(spec2, "65241", "Head", "Alt") --Wind Dancer's Helmet
+    LootAlert:AddItem(spec2, "59455", "Head", "Alt") --Agile Bio-Optic Killshades
+    LootAlert:AddItem(spec2, "59490", "Head", "Alt") --Membrane of C'Thun
+    LootAlert:AddItem(spec2, "60202", "Head", "Alt") --Tsanga's Helm
+    LootAlert:AddItem(spec2, "60299", "Head", "Alt") --Wind Dancer's Helmet
+    LootAlert:AddItem(spec2, "58133", "Head", "Alt") --Mask of Vines
+    LootAlert:AddItem(spec2, "56344", "Head", "Alt") --Helm of Numberless Shadows
+    LootAlert:AddItem(spec2, "65083", "Shoulder", "BIS") --Poison Protocol Pauldrons
+    LootAlert:AddItem(spec2, "65243", "Shoulder", "BIS") --Wind Dancer's Spaulders
+    LootAlert:AddItem(spec2, "59120", "Shoulder", "Alt") --Poison Protocol Pauldrons
+    LootAlert:AddItem(spec2, "60302", "Shoulder", "Alt") --Wind Dancer's Spaulders
+    LootAlert:AddItem(spec2, "56273", "Shoulder", "Alt") --Caridean Epaulettes
+    LootAlert:AddItem(spec2, "63449", "Shoulder", "Alt") --Thieving Spaulders
+    LootAlert:AddItem(spec2, "58134", "Shoulder", "Alt") --Embrace of the Night
+    LootAlert:AddItem(spec2, "69884", "Back", "BIS") --Mistral Drape
+    LootAlert:AddItem(spec2, "65035", "Back", "BIS") --Cloak of Biting Chill
+    LootAlert:AddItem(spec2, "69831", "Back", "Alt") --Mistral Drape
+    LootAlert:AddItem(spec2, "59348", "Back", "Alt") --Cloak of Biting Chill
+    LootAlert:AddItem(spec2, "67134", "Back", "Alt") --Dory's Finery
+    LootAlert:AddItem(spec2, "58191", "Back", "Alt") --Viewless Wings
+    LootAlert:AddItem(spec2, "65177", "Back", "Alt") --Cape of the Brotherhood
+    LootAlert:AddItem(spec2, "62361", "Back", "Alt") --Softwind Cape
+    LootAlert:AddItem(spec2, "56379", "Back", "Alt") --Kaleki Cloak
+    LootAlert:AddItem(spec2, "63473", "Back", "Alt") --Cloak of Thredd
+    LootAlert:AddItem(spec2, "56315", "Back", "Alt") --Twitching Shadows
+    LootAlert:AddItem(spec2, "65239", "Chest", "BIS") --Wind Dancer's Tunic
+    LootAlert:AddItem(spec2, "65060", "Chest", "BIS") --Sark of the Unwatched
+    LootAlert:AddItem(spec2, "60301", "Chest", "Alt") --Wind Dancer's Tunic
+    LootAlert:AddItem(spec2, "59318", "Chest", "Alt") --Sark of the Unwatched
+    LootAlert:AddItem(spec2, "67135", "Chest", "Alt") --Morrie's Waywalker Wrap
+    LootAlert:AddItem(spec2, "56562", "Chest", "Alt") --Assassin's Chestplate
+    LootAlert:AddItem(spec2, "63468", "Chest", "Alt") --Defias Brotherhood Vest
+    LootAlert:AddItem(spec2, "56455", "Chest", "Alt") --Vest of Misshapen Hides
+    LootAlert:AddItem(spec2, "57874", "Chest", "Alt") --Hieroglyphic Vest
+    LootAlert:AddItem(spec2, "58131", "Chest", "Alt") --Tunic of Sinking Envy
+    LootAlert:AddItem(spec2, "65050", "Wrist", "BIS") --Parasitic Bands
+    LootAlert:AddItem(spec2, "59329", "Wrist", "Alt") --Parasitic Bands
+    LootAlert:AddItem(spec2, "56409", "Wrist", "Alt") --Poison Fang Bracers
+    LootAlert:AddItem(spec2, "63454", "Wrist", "Alt") --Double Dealing Bracers
+    LootAlert:AddItem(spec2, "65073", "Hands", "BIS") --Double Attack Handguards
+    LootAlert:AddItem(spec2, "65240", "Hands", "BIS") --Wind Dancer's Gloves
+    LootAlert:AddItem(spec2, "59223", "Hands", "Alt") --Double Attack Handguards
+    LootAlert:AddItem(spec2, "60298", "Hands", "Alt") --Wind Dancer's Gloves
+    LootAlert:AddItem(spec2, "62417", "Hands", "Alt") --Liar's Handwraps
+    LootAlert:AddItem(spec2, "62433", "Hands", "Alt") --Stormbolt Gloves
+    LootAlert:AddItem(spec2, "58138", "Hands", "Alt") --Sticky Fingers
+    LootAlert:AddItem(spec2, "56368", "Hands", "Alt") --Gloves of Haze
+    LootAlert:AddItem(spec2, "60231", "Waist", "BIS") --Belt of the Fallen Brood
+    LootAlert:AddItem(spec2, "65371", "Waist", "Alt") --Wind Stalker Belt
+    LootAlert:AddItem(spec2, "65122", "Waist", "Alt") --Dispersing Belt
+    LootAlert:AddItem(spec2, "56537", "Waist", "Alt") --Belt of Nefarious Whispers
+    LootAlert:AddItem(spec2, "63493", "Waist", "Alt") --Wind Stalker Belt
+    LootAlert:AddItem(spec2, "59502", "Waist", "Alt") --Dispersing Belt
+    LootAlert:AddItem(spec2, "69877", "Waist", "Alt") --Belt of a Thousand Gaping Mouths
+    LootAlert:AddItem(spec2, "57918", "Waist", "Alt") --Sash of Musing
+    LootAlert:AddItem(spec2, "62446", "Waist", "Alt") --Quicksand Belt
+    LootAlert:AddItem(spec2, "56429", "Waist", "Alt") --Red Beam Cord
+    LootAlert:AddItem(spec2, "65381", "Legs", "BIS") --Wind Stalker Leggings
+    LootAlert:AddItem(spec2, "65242", "Legs", "Alt") --Wind Dancer's Legguards
+    LootAlert:AddItem(spec2, "65039", "Legs", "Alt") --Aberration's Leggings
+    LootAlert:AddItem(spec2, "63503", "Legs", "Alt") --Wind Stalker Leggings
+    LootAlert:AddItem(spec2, "60300", "Legs", "Alt") --Wind Dancer's Legguards
+    LootAlert:AddItem(spec2, "59343", "Legs", "Alt") --Aberration's Leggings
+    LootAlert:AddItem(spec2, "58132", "Legs", "Alt") --Leggings of the Burrowing Mole
+    LootAlert:AddItem(spec2, "56309", "Legs", "Alt") --Beauty's Chew Toy
+    LootAlert:AddItem(spec2, "62405", "Legs", "Alt") --Leggings of the Impenitent
+    LootAlert:AddItem(spec2, "62425", "Legs", "Alt") --Swiftflight Leggings
+    LootAlert:AddItem(spec2, "65144", "Feet", "BIS") --Storm Rider's Boots
+    LootAlert:AddItem(spec2, "59469", "Feet", "Alt") --Storm Rider's Boots
+    LootAlert:AddItem(spec2, "58482", "Feet", "Alt") --Treads of Fleeting Joy
+    LootAlert:AddItem(spec2, "56395", "Feet", "Alt") --Crafty's Gaiters
+    LootAlert:AddItem(spec2, "65178", "Feet", "Alt") --VanCleef's Boots
+    LootAlert:AddItem(spec2, "63435", "Feet", "Alt") --Boots of the Predator
+    LootAlert:AddItem(spec2, "65107", "Neck", "BIS") --Necklace of Strife
+    LootAlert:AddItem(spec2, "69880", "Neck", "BIS") --Mistral Pendant
+    LootAlert:AddItem(spec2, "59517", "Neck", "Alt") --Necklace of Strife
+    LootAlert:AddItem(spec2, "69827", "Neck", "Alt") --Mistral Pendant
+    LootAlert:AddItem(spec2, "67137", "Neck", "Alt") --Don Rodrigo's Fabulous Necklace
+    LootAlert:AddItem(spec2, "56422", "Neck", "Alt") --Mouth of the Earth
+    LootAlert:AddItem(spec2, "62378", "Neck", "Alt") --Acorn of the Daughter Tree
+    LootAlert:AddItem(spec2, "56338", "Neck", "Alt") --Pendant of the Lightless Grotto
+    LootAlert:AddItem(spec2, "57931", "Neck", "Alt") --Amulet of Dull Dreaming
+    LootAlert:AddItem(spec2, "65367", "Ring", "BIS") --Mistral Circle
+    LootAlert:AddItem(spec2, "65082", "Ring", "BIS") --Lightning Conductor Band
+    LootAlert:AddItem(spec2, "62362", "Ring", "Alt") --Signet of the Elder Council
+    LootAlert:AddItem(spec2, "63488", "Ring", "Alt") --Mistral Circle
+    LootAlert:AddItem(spec2, "68812", "Ring", "Alt") --Hornet-Sting Band
+    LootAlert:AddItem(spec2, "67136", "Ring", "Alt") --Gilnean Ring of Ruination
+    LootAlert:AddItem(spec2, "59121", "Ring", "Alt") --Lightning Conductor Band
+    LootAlert:AddItem(spec2, "62348", "Ring", "Alt") --Terrath's Signet of Balance
+    LootAlert:AddItem(spec2, "56412", "Ring", "Alt") --Ring of Blinding Stars
+    LootAlert:AddItem(spec2, "56310", "Ring", "Alt") --Skullcracker Ring
+    LootAlert:AddItem(spec2, "56282", "Ring", "Alt") --Nautilus Ring
+    LootAlert:AddItem(spec2, "56445", "Ring", "Alt") --Ring of Dun Algaz
+    LootAlert:AddItem(spec2, "65026", "Trinket", "BIS") --Prestor's Talisman of Machination
+    LootAlert:AddItem(spec2, "58181", "Trinket", "BIS") --Fluid Death
+    LootAlert:AddItem(spec2, "59441", "Trinket", "Alt") --Prestor's Talisman of Machination
+    LootAlert:AddItem(spec2, "65140", "Trinket", "Alt") --Essence of the Cyclone
+    LootAlert:AddItem(spec2, "56427", "Trinket", "Alt") --Left Eye of Rajh
+    LootAlert:AddItem(spec2, "56394", "Trinket", "Alt") --Tia's Grace
+    LootAlert:AddItem(spec2, "56328", "Trinket", "Alt") --Key to the Endless Chamber
+    LootAlert:AddItem(spec2, "59520", "Trinket", "Alt") --Unheeded Warning
+    LootAlert:AddItem(spec2, "59473", "Trinket", "Alt") --Essence of the Cyclone
+    LootAlert:AddItem(spec2, "68776", "Trinket", "Alt") --Quicksilver Alchemist Stone
+    LootAlert:AddItem(spec2, "62468", "Trinket", "Alt") --Unsolvable Riddle
+    LootAlert:AddItem(spec2, "62463", "Trinket", "Alt") --Unsolvable Riddle
+    LootAlert:AddItem(spec2, "56440", "Trinket", "Alt") --Skardyn's Grace
+    LootAlert:AddItem(spec2, "56295", "Trinket", "Alt") --Grace of the Herald
+    LootAlert:AddItem(spec2, "68130", "Main Hand", "BIS") --Stormwake, the Tempest's Reach
+    LootAlert:AddItem(spec2, "65024", "Main Hand", "BIS") --Crul'korak, the Lightning's Arc
+    LootAlert:AddItem(spec2, "65094", "Main Hand", "BIS") --Fang of Twilight
+    LootAlert:AddItem(spec2, "68129", "Main Hand", "Alt") --Stormwake, the Tempest's Reach
+    LootAlert:AddItem(spec2, "68161", "Main Hand", "Alt") --Krol Decapitator
+    LootAlert:AddItem(spec2, "59443", "Main Hand", "Alt") --Crul'korak, the Lightning's Arc
+    LootAlert:AddItem(spec2, "63533", "Main Hand", "Alt") --Fang of Twilight
+    LootAlert:AddItem(spec2, "63537", "Main Hand", "Alt") --Claws of Torment
+    LootAlert:AddItem(spec2, "65164", "Main Hand", "Alt") --Cruel Barb
+    LootAlert:AddItem(spec2, "65173", "Main Hand", "Alt") --Thief's Blade
+    LootAlert:AddItem(spec2, "62476", "Main Hand", "Alt") --Ravening Slicer
+    LootAlert:AddItem(spec2, "67602", "Main Hand", "Alt") --Elementium Gutslicer
+    LootAlert:AddItem(spec2, "56329", "Main Hand", "Alt") --Fist of Pained Senses
+    LootAlert:AddItem(spec2, "56266", "Main Hand", "Alt") --Lightning Whelk Axe
+    LootAlert:AddItem(spec2, "56396", "Main Hand", "Alt") --Hammer of Sparks
+    LootAlert:AddItem(spec2, "68600", "Off Hand", "BIS") --Uhn'agh Fash, the Darkest Betrayal
+    LootAlert:AddItem(spec2, "56335", "Off Hand", "BIS") --Quicksilver Blade
+    LootAlert:AddItem(spec2, "68601", "Off Hand", "Alt") --Scaleslicer
+    LootAlert:AddItem(spec2, "59494", "Off Hand", "Alt") --Uhn'agh Fash, the Darkest Betrayal
+    LootAlert:AddItem(spec2, "65163", "Off Hand", "Alt") --Buzzer Blade
+    LootAlert:AddItem(spec2, "56390", "Off Hand", "Alt") --Barim's Main Gauche
+    LootAlert:AddItem(spec2, "57927", "Off Hand", "Alt") --Throat Slasher
+    LootAlert:AddItem(spec2, "65058", "Ranged/Relic", "BIS") --Themios the Darkbringer
+    LootAlert:AddItem(spec2, "65095", "Ranged/Relic", "BIS") --Dragonheart Piercer
+    LootAlert:AddItem(spec2, "68608", "Ranged/Relic", "Alt") --Dragonwreck Throwing Axe
+    LootAlert:AddItem(spec2, "59367", "Ranged/Relic", "Alt") --Kickback 5000
+    LootAlert:AddItem(spec2, "59320", "Ranged/Relic", "Alt") --Themios the Darkbringer
+    LootAlert:AddItem(spec2, "63532", "Ranged/Relic", "Alt") --Dragonheart Piercer
+    LootAlert:AddItem(spec2, "68162", "Ranged/Relic", "Alt") --Spinerender
+    LootAlert:AddItem(spec2, "56420", "Ranged/Relic", "Alt") --Slashing Thorns
+    LootAlert:AddItem(spec2, "56317", "Ranged/Relic", "Alt") --Amber Messenger
+    LootAlert:AddItem(spec2, "56366", "Ranged/Relic", "Alt") --Lightningflash
+    
+    LootAlert:AddItem(spec3, "71416", "Head", "BIS") --Hood of Rampant Disdain
+    LootAlert:AddItem(spec3, "71539", "Head", "BIS") --Dark Phoenix Helmet
+    LootAlert:AddItem(spec3, "71003", "Head", "Alt") --Hood of Rampant Disdain
+    LootAlert:AddItem(spec3, "71047", "Head", "Alt") --Dark Phoenix Helmet
+    LootAlert:AddItem(spec3, "65129", "Head", "Alt") --Membrane of C'Thun
+    LootAlert:AddItem(spec3, "65241", "Head", "Alt") --Wind Dancer's Helmet
+    LootAlert:AddItem(spec3, "59455", "Head", "Alt") --Agile Bio-Optic Killshades
+    LootAlert:AddItem(spec3, "71541", "Shoulder", "BIS") --Dark Phoenix Spaulders
+    LootAlert:AddItem(spec3, "71456", "Shoulder", "BIS") --Shoulderpads of the Forgotten Gate
+    LootAlert:AddItem(spec3, "71049", "Shoulder", "Alt") --Dark Phoenix Spaulders
+    LootAlert:AddItem(spec3, "71345", "Shoulder", "Alt") --Shoulderpads of the Forgotten Gate
+    LootAlert:AddItem(spec3, "65083", "Shoulder", "Alt") --Poison Protocol Pauldrons
+    LootAlert:AddItem(spec3, "65243", "Shoulder", "Alt") --Wind Dancer's Spaulders
+    LootAlert:AddItem(spec3, "71415", "Back", "BIS") --Dreadfire Drape
+    LootAlert:AddItem(spec3, "70992", "Back", "Alt") --Dreadfire Drape
+    LootAlert:AddItem(spec3, "71228", "Back", "Alt") --Sleek Flamewrath Cloak
+    LootAlert:AddItem(spec3, "69884", "Back", "Alt") --Mistral Drape
+    LootAlert:AddItem(spec3, "65035", "Back", "Alt") --Cloak of Biting Chill
+    LootAlert:AddItem(spec3, "71455", "Chest", "BIS") --Breastplate of the Incendiary Soul
+    LootAlert:AddItem(spec3, "71537", "Chest", "BIS") --Dark Phoenix Tunic
+    LootAlert:AddItem(spec3, "71314", "Chest", "Alt") --Breastplate of the Incendiary Soul
+    LootAlert:AddItem(spec3, "71045", "Chest", "Alt") --Dark Phoenix Tunic
+    LootAlert:AddItem(spec3, "65239", "Chest", "Alt") --Wind Dancer's Tunic
+    LootAlert:AddItem(spec3, "65060", "Chest", "Alt") --Sark of the Unwatched
+    LootAlert:AddItem(spec3, "71428", "Wrist", "BIS") --Flickering Wristbands
+    LootAlert:AddItem(spec3, "70735", "Wrist", "Alt") --Flickering Wristbands
+    LootAlert:AddItem(spec3, "71130", "Wrist", "Alt") --Flamebinder Bracers
+    LootAlert:AddItem(spec3, "65050", "Wrist", "Alt") --Parasitic Bands
+    LootAlert:AddItem(spec3, "71440", "Hands", "BIS") --Gloves of Dissolving Smoke
+    LootAlert:AddItem(spec3, "71538", "Hands", "BIS") --Dark Phoenix Gloves
+    LootAlert:AddItem(spec3, "69942", "Hands", "Alt") --Clutches of Evil
+    LootAlert:AddItem(spec3, "71020", "Hands", "Alt") --Gloves of Dissolving Smoke
+    LootAlert:AddItem(spec3, "71046", "Hands", "Alt") --Dark Phoenix Gloves
+    LootAlert:AddItem(spec3, "65240", "Hands", "Alt") --Wind Dancer's Gloves
+    LootAlert:AddItem(spec3, "65073", "Hands", "Alt") --Double Attack Handguards
+    LootAlert:AddItem(spec3, "71641", "Waist", "BIS") --Riplimb's Lost Collar
+    LootAlert:AddItem(spec3, "60231", "Waist", "Alt") --Belt of the Fallen Brood
+    LootAlert:AddItem(spec3, "71131", "Waist", "Alt") --Flamebinding Girdle
+    LootAlert:AddItem(spec3, "71640", "Waist", "Alt") --Riplimb's Lost Collar
+    LootAlert:AddItem(spec3, "65371", "Waist", "Alt") --Wind Stalker Belt
+    LootAlert:AddItem(spec3, "65122", "Waist", "Alt") --Dispersing Belt
+    LootAlert:AddItem(spec3, "71402", "Legs", "BIS") --Cinderweb Leggings
+    LootAlert:AddItem(spec3, "71540", "Legs", "BIS") --Dark Phoenix Legguards
+    LootAlert:AddItem(spec3, "71031", "Legs", "Alt") --Cinderweb Leggings
+    LootAlert:AddItem(spec3, "71048", "Legs", "Alt") --Dark Phoenix Legguards
+    LootAlert:AddItem(spec3, "65381", "Legs", "Alt") --Wind Stalker Leggings
+    LootAlert:AddItem(spec3, "65242", "Legs", "Alt") --Wind Dancer's Legguards
+    LootAlert:AddItem(spec3, "65039", "Legs", "Alt") --Aberration's Leggings
+    LootAlert:AddItem(spec3, "71467", "Feet", "BIS") --Sandals of Leaping Coals
+    LootAlert:AddItem(spec3, "69951", "Feet", "Alt") --Treads of the Craft
+    LootAlert:AddItem(spec3, "71313", "Feet", "Alt") --Sandals of Leaping Coals
+    LootAlert:AddItem(spec3, "65144", "Feet", "Alt") --Storm Rider's Boots
+    LootAlert:AddItem(spec3, "71610", "Neck", "BIS") --Choker of the Vanquished Lord
+    LootAlert:AddItem(spec3, "71354", "Neck", "Alt") --Choker of the Vanquished Lord
+    LootAlert:AddItem(spec3, "71129", "Neck", "Alt") --Necklace of Smoke Signals
+    LootAlert:AddItem(spec3, "65107", "Neck", "Alt") --Necklace of Strife
+    LootAlert:AddItem(spec3, "69880", "Neck", "Alt") --Mistral Pendant
+    LootAlert:AddItem(spec3, "71216", "Ring", "BIS") --Viridian Signet of the Avengers
+    LootAlert:AddItem(spec3, "71401", "Ring", "BIS") --Widow's Kiss
+    LootAlert:AddItem(spec3, "71032", "Ring", "Alt") --Widow's Kiss
+    LootAlert:AddItem(spec3, "71209", "Ring", "Alt") --Splintered Brimstone Seal
+    LootAlert:AddItem(spec3, "65367", "Ring", "Alt") --Mistral Circle
+    LootAlert:AddItem(spec3, "65082", "Ring", "Alt") --Lightning Conductor Band
+    LootAlert:AddItem(spec3, "69150", "Trinket", "BIS") --Matrix Restabilizer
+    LootAlert:AddItem(spec3, "69112", "Trinket", "BIS") --The Hungerer
+    LootAlert:AddItem(spec3, "68994", "Trinket", "Alt") --Matrix Restabilizer
+    LootAlert:AddItem(spec3, "65026", "Trinket", "Alt") --Prestor's Talisman of Machination
+    LootAlert:AddItem(spec3, "68927", "Trinket", "Alt") --The Hungerer
+    LootAlert:AddItem(spec3, "58181", "Trinket", "Alt") --Fluid Death
+    LootAlert:AddItem(spec3, "59441", "Trinket", "Alt") --Prestor's Talisman of Machination
+    LootAlert:AddItem(spec3, "71454", "Main Hand", "BIS") --Gatecrasher
+    LootAlert:AddItem(spec3, "71783", "Main Hand", "BIS") --Shatterskull Bonecrusher
+    LootAlert:AddItem(spec3, "71312", "Main Hand", "Alt") --Gatecrasher
+    LootAlert:AddItem(spec3, "71782", "Main Hand", "Alt") --Shatterskull Bonecrusher
+    LootAlert:AddItem(spec3, "68130", "Main Hand", "Alt") --Stormwake, the Tempest's Reach
+    LootAlert:AddItem(spec3, "65024", "Main Hand", "Alt") --Crul'korak, the Lightning's Arc
+    LootAlert:AddItem(spec3, "65094", "Main Hand", "Alt") --Fang of Twilight
+    LootAlert:AddItem(spec3, "71427", "Off Hand", "BIS") --Alysra's Razor
+    LootAlert:AddItem(spec3, "71786", "Off Hand", "Alt") --Entrail Disgorger
+    LootAlert:AddItem(spec3, "70733", "Off Hand", "Alt") --Alysra's Razor
+    LootAlert:AddItem(spec3, "71787", "Off Hand", "Alt") --Entrail Disgorger
+    LootAlert:AddItem(spec3, "68600", "Off Hand", "Alt") --Uhn'agh Fash, the Darkest Betrayal
+    LootAlert:AddItem(spec3, "71611", "Ranged/Relic", "BIS") --Arathar, the Eye of Flame
+    LootAlert:AddItem(spec3, "71568", "Ranged/Relic", "BIS") --Morningstar Shard
+    LootAlert:AddItem(spec3, "71558", "Ranged/Relic", "Alt") --Lava Bolt Crossbow
+    LootAlert:AddItem(spec3, "71414", "Ranged/Relic", "Alt") --Arbalest of Erupting Fury
+    LootAlert:AddItem(spec3, "71353", "Ranged/Relic", "Alt") --Arathar, the Eye of Flame
+    LootAlert:AddItem(spec3, "71152", "Ranged/Relic", "Alt") --Morningstar Shard
+    LootAlert:AddItem(spec3, "71366", "Ranged/Relic", "Alt") --Lava Bolt Crossbow
+    LootAlert:AddItem(spec3, "70991", "Ranged/Relic", "Alt") --Arbalest of Erupting Fury
+    LootAlert:AddItem(spec3, "65058", "Ranged/Relic", "Alt") --Themios the Darkbringer
+    LootAlert:AddItem(spec3, "65095", "Ranged/Relic", "Alt") --Dragonheart Piercer
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);
