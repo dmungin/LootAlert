@@ -61,11 +61,11 @@ function LootAlert:getDefaultDb()
                 [SPECS.FURY..CLASSES.WARRIOR] = false,
                 [SPECS.PROTECTION..CLASSES.WARRIOR] = false
             },
-            alertPhase = PHASES.PHASE_1,
+            alertPhase = PHASES.PHASE_3,
         },
         global = {
             allItemsCached = false,
-            currentPhase = PHASES.PHASE_1,
+            currentPhase = PHASES.PHASE_3,
             lastCacheDate = nil,
             itemCache = {},
             itemSources = {},
@@ -136,6 +136,8 @@ function LootAlert:getOptions()
                 values = {
                     [PHASES.PRERAID] = "Pre-Raid",
                     [PHASES.PHASE_1] = "Phase 1",
+                    [PHASES.PHASE_2] = "Phase 2",
+                    [PHASES.PHASE_3] = "Phase 3",
                 },
                 sorting = {0, 1, 2, 3, 4},
                 width = 1.1,

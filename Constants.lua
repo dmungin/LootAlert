@@ -6,6 +6,8 @@ function LootAlert:BuildConstants()
     constants.PHASES = {
         PRERAID = 0,
         PHASE_1 = 1,
+        PHASE_2 = 2,
+        PHASE_3 = 3,
     };
 
     constants.CLASSES = {
