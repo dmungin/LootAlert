@@ -100,7 +100,6 @@ function OnLinkButtonClick (item, rollOptionsFrame, bisCheckbox)
         if bisCheckbox:GetValue() == true then
             itemLinks = itemLinks .. " bis";
         end
-        LootAlert:Print(itemLinks); -- TEMP FOR TESTING: Remove when done
         SendChatMessage(itemLinks, "RAID");
         AceGUI:Release(rollOptionsFrame);
     end
