@@ -375,6 +375,15 @@ local function loadBis ()
     LootAlert:AddItem(spec3, "65058", "Ranged/Relic", "Alt") --Themios the Darkbringer
     LootAlert:AddItem(spec3, "69637", "Ranged/Relic", "Alt") --Gurubashi Destroyer
     LootAlert:AddItem(spec3, "60210", "Ranged/Relic", "Alt") --Crossfire Carbine
+
+    LootAlert:AddItem(spec3, "71684", "Tier Token", "BIS") --Crown of the Fiery Protector
+    LootAlert:AddItem(spec3, "71687", "Tier Token", "BIS") --Shoulders of the Fiery Protector
+    LootAlert:AddItem(spec3, "71683", "Tier Token", "BIS") --Gauntlets of the Fiery Protector
+    LootAlert:AddItem(spec3, "71685", "Tier Token", "BIS") --Leggings of the Fiery Protector
+    LootAlert:AddItem(spec3, "71686", "Tier Token", "ALT") --Chest of the Fiery Protector
+    
+    LootAlert:AddItem(spec3, "71682", "Tier Token", "ALT") --Helm of the Fiery Protector
+    LootAlert:AddItem(spec3, "71688", "Tier Token", "ALT") --Mantle of the Fiery Protector
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

@@ -2829,12 +2829,6 @@ function LootAlert:PopulateItemSources ()
         [226463] = { Name = "Greater Inscription of Charged Lodestone", SourceType = "Reputation", Source = "Therazane", SourceNumber = "0", SourceLocation = "Exalted", SourceFaction = "B" },
         [232016] = { Name = "Bubblier Brightbrew Charm", SourceType = "Drop", Source = "Coren Direbrew", SourceNumber = "0", SourceLocation = "Brewfest", SourceFaction = "B" },
         [232017] = { Name = "Bitterer Balebrew Charm", SourceType = "Drop", Source = "Coren Direbrew", SourceNumber = "0", SourceLocation = "Brewfest", SourceFaction = "B" },
-        [234446] = { Name = "Commendation of Service", SourceType = "Dungeon Token", Source = "Fissure Stone Fragment", SourceNumber = "1", SourceLocation = "Emblem Vendor", SourceFaction = "B" },
-        --[52027] = { Name = "Conqueror's Mark of Sanctification", SourceType = "Drop", Source = "ICC Endwing Bosses", SourceNumber = "0", SourceLocation = "Icecrown Citadel (10H)/Icecrown Citadel (25)", SourceFaction = "B" },
-        --[52026] = { Name = "Protector's Mark of Sanctification", SourceType = "Drop", Source = "ICC Endwing Bosses", SourceNumber = "0", SourceLocation = "Icecrown Citadel (10H)/Icecrown Citadel (25)", SourceFaction = "B" },
-        --[52025] = { Name = "Vanquisher's Mark of Sanctification", SourceType = "Drop", Source = "ICC Endwing Bosses", SourceNumber = "0", SourceLocation = "Icecrown Citadel (10H)/Icecrown Citadel (25)", SourceFaction = "B" },
-        --[52030] = { Name = "Conqueror's Mark of Sanctification", SourceType = "Drop", Source = "ICC Endwing Bosses", SourceNumber = "0", SourceLocation = "Icecrown Citadel (25H)", SourceFaction = "B" },
-        --[52029] = { Name = "Protector's Mark of Sanctification", SourceType = "Drop", Source = "ICC Endwing Bosses", SourceNumber = "0", SourceLocation = "Icecrown Citadel (25H)", SourceFaction = "B" },
-        --[52028] = { Name = "Vanquisher's Mark of Sanctification", SourceType = "Drop", Source = "ICC Endwing Bosses", SourceNumber = "0", SourceLocation = "Icecrown Citadel (25H)", SourceFaction = "B" },
+        [234446] = { Name = "Commendation of Service", SourceType = "Dungeon Token", Source = "Fissure Stone Fragment", SourceNumber = "1", SourceLocation = "Emblem Vendor", SourceFaction = "B" }
     };
 end

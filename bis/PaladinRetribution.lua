@@ -308,6 +308,15 @@ local function loadBis ()
     LootAlert:AddItem(spec3, "70125", "Ranged/Relic", "Alt") --Relic of Lo'Gosh
     LootAlert:AddItem(spec3, "64674", "Ranged/Relic", "Alt") --Relic of Aggramar
     LootAlert:AddItem(spec3, "62243", "Ranged/Relic", "Alt") --Notched Jawbone 
+
+    LootAlert:AddItem(spec3, "71677", "Tier Token", "BIS") --Crown of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71680", "Tier Token", "BIS") --Shoulders of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71676", "Tier Token", "BIS") --Gauntlets of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71678", "Tier Token", "BIS") --Leggings of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71679", "Tier Token", "ALT") --Chest of the Fiery Conqueror
+    
+    LootAlert:AddItem(spec3, "71675", "Tier Token", "ALT") --Helm of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71681", "Tier Token", "ALT") --Mantle of the Fiery Conqueror
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);
