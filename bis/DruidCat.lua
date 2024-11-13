@@ -245,6 +245,16 @@ local function loadBis ()
     LootAlert:AddItem(spec3, "64671", "Ranged/Relic", "BIS") --Relic of Golganneth
     LootAlert:AddItem(spec3, "71146", "Ranged/Relic", "Alt") --Covenant of the Flame
     LootAlert:AddItem(spec3, "70109", "Ranged/Relic", "Alt") --Relic of Elune's Shadow
+
+    
+    LootAlert:AddItem(spec3, "71670", "Tier Token", "BIS") --Crown of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71673", "Tier Token", "BIS") --Shoulders of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71669", "Tier Token", "ALT") --Gauntlets of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71671", "Tier Token", "BIS") --Leggings of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71672", "Tier Token", "BIS") --Chest of the Fiery Vanquisher
+    
+    LootAlert:AddItem(spec3, "71668", "Tier Token", "ALT") --Helm of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71674", "Tier Token", "ALT") --Mantle of the Fiery Vanquisher
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

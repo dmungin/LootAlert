@@ -427,6 +427,15 @@ local function loadBis ()
     LootAlert:AddItem(spec3, "71366", "Ranged/Relic", "Alt") --Lava Bolt Crossbow
     LootAlert:AddItem(spec3, "65058", "Ranged/Relic", "Alt") --Themios the Darkbringer
     LootAlert:AddItem(spec3, "65095", "Ranged/Relic", "Alt") --Dragonheart Piercer
+
+    LootAlert:AddItem(spec3, "71670", "Tier Token", "BIS") --Crown of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71673", "Tier Token", "BIS") --Shoulders of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71669", "Tier Token", "BIS") --Gauntlets of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71671", "Tier Token", "BIS") --Leggings of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71672", "Tier Token", "ALT") --Chest of the Fiery Vanquisher
+    
+    LootAlert:AddItem(spec3, "71668", "Tier Token", "ALT") --Helm of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71674", "Tier Token", "ALT") --Mantle of the Fiery Vanquisher
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

@@ -236,6 +236,15 @@ local function loadBis ()
     LootAlert:AddItem(spec3, "71593", "Ranged/Relic", "BIS") --Giantslicer
     LootAlert:AddItem(spec3, "71154", "Ranged/Relic", "Alt") --Giantslicer
     LootAlert:AddItem(spec3, "60210", "Ranged/Relic", "Alt") --Crossfire Carbine
+
+    LootAlert:AddItem(spec3, "71684", "Tier Token", "ALT") --Crown of the Fiery Protector
+    LootAlert:AddItem(spec3, "71687", "Tier Token", "BIS") --Shoulders of the Fiery Protector
+    LootAlert:AddItem(spec3, "71683", "Tier Token", "BIS") --Gauntlets of the Fiery Protector
+    LootAlert:AddItem(spec3, "71685", "Tier Token", "BIS") --Leggings of the Fiery Protector
+    LootAlert:AddItem(spec3, "71686", "Tier Token", "BIS") --Chest of the Fiery Protector
+    
+    LootAlert:AddItem(spec3, "71682", "Tier Token", "ALT") --Helm of the Fiery Protector
+    LootAlert:AddItem(spec3, "71688", "Tier Token", "ALT") --Mantle of the Fiery Protector
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

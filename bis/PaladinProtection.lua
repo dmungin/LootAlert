@@ -300,6 +300,15 @@ local function loadBis ()
     LootAlert:AddItem(spec3, "71460", "Off Hand", "BIS") --Shard of Torment
     LootAlert:AddItem(spec3, "65023", "Off Hand", "BIS") --Akmin-Kurai, Dominion's Shield
     LootAlert:AddItem(spec3, "71590", "Ranged/Relic", "BIS") --Deathclutch Figurine
+
+    LootAlert:AddItem(spec3, "71677", "Tier Token", "ALT") --Crown of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71680", "Tier Token", "BIS") --Shoulders of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71676", "Tier Token", "BIS") --Gauntlets of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71678", "Tier Token", "BIS") --Leggings of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71679", "Tier Token", "ALT") --Chest of the Fiery Conqueror
+    
+    LootAlert:AddItem(spec3, "71675", "Tier Token", "ALT") --Helm of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71681", "Tier Token", "ALT") --Mantle of the Fiery Conqueror
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

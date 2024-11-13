@@ -225,6 +225,14 @@ local function loadBis ()
     LootAlert:AddItem(spec3, "64674", "Ranged/Relic", "BIS") --Relic of Aggramar
     LootAlert:AddItem(spec3, "71147", "Ranged/Relic", "Alt") --Relic of the Elemental Lords
     LootAlert:AddItem(spec3, "70125", "Ranged/Relic", "Alt")
+
+    LootAlert:AddItem(spec3, "71670", "Tier Token", "BIS") --Crown of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71673", "Tier Token", "BIS") --Shoulders of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71669", "Tier Token", "BIS") --Gauntlets of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71671", "Tier Token", "ALT") --Leggings of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71672", "Tier Token", "BIS") --Chest of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71668", "Tier Token", "ALT") --Helm of the Fiery Vanquisher
+    LootAlert:AddItem(spec3, "71674", "Tier Token", "ALT") --Mantle of the Fiery Vanquisher
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

@@ -352,6 +352,15 @@ local function loadBis ()
     LootAlert:AddItem(spec3, "64673", "Ranged/Relic", "Alt") --Relic of Eonar
     LootAlert:AddItem(spec3, "64672", "Ranged/Relic", "Alt") --Relic of Norgannon
     LootAlert:AddItem(spec3, "62244", "Ranged/Relic", "Alt") --Tattooed Eyeball
+
+    LootAlert:AddItem(spec3, "71684", "Tier Token", "ALT") --Crown of the Fiery Protector
+    LootAlert:AddItem(spec3, "71687", "Tier Token", "BIS") --Shoulders of the Fiery Protector
+    LootAlert:AddItem(spec3, "71683", "Tier Token", "BIS") --Gauntlets of the Fiery Protector
+    LootAlert:AddItem(spec3, "71685", "Tier Token", "BIS") --Leggings of the Fiery Protector
+    LootAlert:AddItem(spec3, "71686", "Tier Token", "BIS") --Chest of the Fiery Protector
+    
+    LootAlert:AddItem(spec3, "71682", "Tier Token", "ALT") --Helm of the Fiery Protector
+    LootAlert:AddItem(spec3, "71688", "Tier Token", "ALT") --Mantle of the Fiery Protector
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

@@ -270,6 +270,15 @@ local function loadBis ()
     LootAlert:AddItem(spec3, "64671", "Ranged/Relic", "Alt") --Relic of Golganneth
     LootAlert:AddItem(spec3, "56316", "Ranged/Relic", "Alt") --Sandshift Relic
     LootAlert:AddItem(spec3, "63460", "Ranged/Relic", "Alt") --Relic of Arathor
+
+    LootAlert:AddItem(spec3, "71684", "Tier Token", "BIS") --Crown of the Fiery Protector
+    LootAlert:AddItem(spec3, "71687", "Tier Token", "BIS") --Shoulders of the Fiery Protector
+    LootAlert:AddItem(spec3, "71683", "Tier Token", "BIS") --Gauntlets of the Fiery Protector
+    LootAlert:AddItem(spec3, "71685", "Tier Token", "ALT") --Leggings of the Fiery Protector
+    LootAlert:AddItem(spec3, "71686", "Tier Token", "BIS") --Chest of the Fiery Protector
+    
+    LootAlert:AddItem(spec3, "71682", "Tier Token", "ALT") --Helm of the Fiery Protector
+    LootAlert:AddItem(spec3, "71688", "Tier Token", "ALT") --Mantle of the Fiery Protector
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

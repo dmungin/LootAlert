@@ -536,6 +536,15 @@ local function loadBis ()
     LootAlert:AddItem(spec3, "71347", "Ranged/Relic", "Alt") --Stinger of the Flaming Scorpion
     LootAlert:AddItem(spec3, "65064", "Ranged/Relic", "Alt") --Pip's Solution Agitator
     LootAlert:AddItem(spec3, "59314", "Ranged/Relic", "Alt") --Pip's Solution Agitator
+
+    LootAlert:AddItem(spec3, "71677", "Tier Token", "BIS") --Crown of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71680", "Tier Token", "BIS") --Shoulders of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71676", "Tier Token", "ALT") --Gauntlets of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71678", "Tier Token", "BIS") --Leggings of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71679", "Tier Token", "BIS") --Chest of the Fiery Conqueror
+    
+    LootAlert:AddItem(spec3, "71675", "Tier Token", "ALT") --Helm of the Fiery Conqueror
+    LootAlert:AddItem(spec3, "71681", "Tier Token", "ALT") --Mantle of the Fiery Conqueror
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);
