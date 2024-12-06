@@ -135,11 +135,9 @@ function LootAlert:getOptions()
                 get = function() return LootAlert.db.char.alertPhase  end,
                 values = {
                     [PHASES.PRERAID] = "Pre-Raid",
-                    [PHASES.PHASE_1] = "Phase 1",
-                    [PHASES.PHASE_2] = "Phase 2",
                     [PHASES.PHASE_3] = "Phase 3",
                 },
-                sorting = {0, 1, 2, 3, 4},
+                sorting = {0, 3},
                 width = 1.1,
                 order = 3,
             },
