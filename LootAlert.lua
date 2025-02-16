@@ -91,6 +91,7 @@ function LootAlert:RenderLootAlert ()
     LootAlert.state.tabFrame:SetTabs({
         {text = "Loot History", value = "lootHistory" },
         {text = "BIS List", value = "lootBisList" },
+        {text = "Add Item", value = "addItem" },
     });
 
     LootAlert.state.tabFrame:SetCallback("OnGroupSelected", function (...)
@@ -110,8 +111,93 @@ function LootAlert:SelectGroup(group)
         LootAlert:RenderLootHistory(container);
     elseif group == "lootBisList" then
         LootAlert:RenderLootBisList(container);
+    elseif group == "addItem" then
+        LootAlert:RenderAddItem(container);
     end
  end
+ 
+function LootAlert:RenderAddItem (container)
+    container:ReleaseChildren();
+
+    local scrollContainer = AceGUI:Create("SimpleGroup");
+    scrollContainer:SetFullWidth(true);
+    scrollContainer:SetFullHeight(true);
+    scrollContainer:SetLayout("Fill");
+    container:AddChild(scrollContainer)
+
+    local addItemScrollFrame = AceGUI:Create("ScrollFrame")
+    addItemScrollFrame:SetLayout("Flow");
+    scrollContainer:AddChild(addItemScrollFrame);
+
+    local AddItemTextBox = AceGUI:Create("EditBox");
+    AddItemTextBox:SetLabel("Item ID");
+    addItemScrollFrame:AddChild(AddItemTextBox);
+    local playerClass = UnitClass("player");
+    -- Handle clearing widgets on multiple item entry
+    AddItemTextBox:SetCallback("OnEnterPressed", function (_, _, text)
+        LootAlert:GetItemInfo(tonumber(text), function (item)
+            if item.Id ~= nil then
+                LootAlert:AddLoot(addItemScrollFrame, item, { fullWidth = true, iconSize = 20 });
+                
+                local ItemSlotDropdown = AceGUI:Create("Dropdown");
+                ItemSlotDropdown:SetLabel("Item Slot");
+                ItemSlotDropdown:SetList(LootAlert.constants.SLOT_LIST);
+                addItemScrollFrame:AddChild(ItemSlotDropdown);
+
+                local ItemSpecDropdown = AceGUI:Create("Dropdown");
+                ItemSpecDropdown:SetLabel("Item Spec");
+                ItemSpecDropdown:SetList(LootAlert.constants.SPEC_LIST_BY_CLASS[playerClass]);
+                addItemScrollFrame:AddChild(ItemSpecDropdown);
+
+                local ItemPhaseDropdown = AceGUI:Create("Dropdown");
+                ItemPhaseDropdown:SetLabel("Item Phase");
+                ItemPhaseDropdown:SetList({
+                    [LootAlert.constants.PHASES.PRERAID] = "Pre-Raid",
+                    [LootAlert.db.global.currentPhase] = "Current Phase",
+                });
+                addItemScrollFrame:AddChild(ItemPhaseDropdown);
+
+                local AddItemButton = AceGUI:Create("Button");
+                AddItemButton:SetText("Add to BIS List");
+                AddItemButton:SetDisabled(true);
+                AddItemButton:SetCallback("OnClick", function ()
+                    local itemSpec = ItemSpecDropdown:GetValue();
+                    local itemSlot = ItemSlotDropdown:GetValue();
+                    local itemPhase = ItemPhaseDropdown:GetValue();
+                    local itemId = AddItemTextBox:GetText();
+                    local spec = LootAlert:RegisterSpec(playerClass, itemSpec, itemPhase);
+                    LootAlert:AddItem(spec, itemId, itemSlot, "BIS");
+                    LootAlert:RenderAddItem(container);
+                end);
+
+                addItemScrollFrame:AddChild(AddItemButton);
+
+                ItemSlotDropdown:SetCallback("OnValueChanged", function (_, _, value)
+                    local itemSpec = ItemSpecDropdown:GetValue();
+                    local itemPhase = ItemPhaseDropdown:GetValue();
+                    if value ~= nil and itemSpec ~= nil and itemPhase ~= nil then
+                        AddItemButton:SetDisabled(false);
+                    end
+                end);
+                ItemSpecDropdown:SetCallback("OnValueChanged", function (_, _, value)
+                    local itemSlot = ItemSlotDropdown:GetValue()
+                    local itemPhase = ItemPhaseDropdown:GetValue();
+                    if value ~= nil and itemSlot ~= nil and itemPhase ~= nil then
+                        AddItemButton:SetDisabled(false);
+                    end
+                end);
+                ItemPhaseDropdown:SetCallback("OnValueChanged", function (_, _, value)
+                    local itemSlot = ItemSlotDropdown:GetValue()
+                    local itemSpec = ItemSpecDropdown:GetValue();
+                    if value ~= nil and itemSlot ~= nil and itemSpec ~= nil then
+                        AddItemButton:SetDisabled(false);
+                    end
+                end);
+                
+            end
+        end);
+    end);
+end
 
 function LootAlert:RenderLootBisList (container)
     container:ReleaseChildren();

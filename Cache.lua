@@ -150,7 +150,7 @@ function LootAlert:AddItem(bisEntry, id, slot, bis)
 		LootAlert.db.global.itemsBySpecAndId[bisEntry.Id] = {};
 	end
 
-	if bisEntry.Phase == "0" then
+	if tonumber(bisEntry.Phase) == 0 then
 		bis = "PreRaid";
 	elseif tonumber(bisEntry.Phase) < LootAlert.db.global.currentPhase then
 		bis = string.gsub(bis, "BIS", "Alt");
