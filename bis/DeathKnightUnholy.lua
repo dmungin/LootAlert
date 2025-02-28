@@ -4,7 +4,7 @@ local LootAlert = core.LootAlert;
 
 local function loadBis ()
     local spec0 = LootAlert:RegisterSpec("Death Knight", "Unholy", "0")
-    local spec3 = LootAlert:RegisterSpec("Death Knight", "Unholy", "3")
+    local spec4 = LootAlert:RegisterSpec("Death Knight", "Unholy", "4")
 
     -- PreRaid
     LootAlert:AddItem(spec0, "78782", "Head", "BIS") -- Necrotic Boneplate Helmet
@@ -55,70 +55,70 @@ local function loadBis ()
     LootAlert:AddItem(spec0, "70125", "Ranged/Relic", "Alt") -- Relic of Lo'Gosh
 
     -- Current Phase
-    LootAlert:AddItem(spec3, "78687", "Head", "BIS") -- Necrotic Boneplate Helmet
-    LootAlert:AddItem(spec3, "76976", "Head", "Alt") -- Necrotic Boneplate Helmet
-    LootAlert:AddItem(spec3, "77155", "Head", "Alt") -- Visage of Petrification
-    LootAlert:AddItem(spec3, "78782", "Head", "Alt") -- Necrotic Boneplate Helmet
-    LootAlert:AddItem(spec3, "71478", "Head", "BIS") -- Elementium Deathplate Helmet
-    LootAlert:AddItem(spec3, "78465", "Shoulder", "BIS") -- Backbreaker Spaulders
-    LootAlert:AddItem(spec3, "78736", "Shoulder", "Alt") -- Necrotic Boneplate Pauldrons
-    LootAlert:AddItem(spec3, "77236", "Shoulder", "Alt") -- Backbreaker Spaulders
-    LootAlert:AddItem(spec3, "78831", "Shoulder", "Alt") -- Necrotic Boneplate Pauldrons
-    LootAlert:AddItem(spec3, "71480", "Shoulder", "BIS") -- Elementium Deathplate Pauldrons
-    LootAlert:AddItem(spec3, "77097", "Back", "BIS") -- Dreamcrusher Drape
-    LootAlert:AddItem(spec3, "65117", "Back", "BIS") -- Glittering Epidermis
-    LootAlert:AddItem(spec3, "78659", "Chest", "BIS") -- Necrotic Boneplate Breastplate
-    LootAlert:AddItem(spec3, "76974", "Chest", "Alt") -- Necrotic Boneplate Breastplate
-    LootAlert:AddItem(spec3, "71476", "Chest", "BIS") -- Elementium Deathplate Breastplate
-    LootAlert:AddItem(spec3, "78373", "Wrist", "BIS") -- Rockhide Bracers
-    LootAlert:AddItem(spec3, "71992", "Wrist", "Alt") -- Bracers of Destructive Strength
-    LootAlert:AddItem(spec3, "77317", "Wrist", "Alt") -- Heartcrusher Wristplates
-    LootAlert:AddItem(spec3, "71418", "Wrist", "BIS") -- Earthcrack Bracers
-    LootAlert:AddItem(spec3, "78670", "Hands", "BIS") -- Necrotic Boneplate Gauntlets
-    LootAlert:AddItem(spec3, "76975", "Hands", "Alt") -- Necrotic Boneplate Gauntlets
-    LootAlert:AddItem(spec3, "77165", "Hands", "Alt") -- Grimfist Crushers
-    LootAlert:AddItem(spec3, "78765", "Hands", "Alt") -- Necrotic Boneplate Gauntlets
-    LootAlert:AddItem(spec3, "71419", "Hands", "Alt") -- Fireskin Gauntlets
-    LootAlert:AddItem(spec3, "71477", "Hands", "BIS") -- Elementium Deathplate Gauntlets
-    LootAlert:AddItem(spec3, "78416", "Waist", "BIS") -- Runescriven Demon Collar
-    LootAlert:AddItem(spec3, "77250", "Waist", "Alt") -- Runescriven Demon Collar
-    LootAlert:AddItem(spec3, "77185", "Waist", "Alt") -- Demonbone Waistguard
-    LootAlert:AddItem(spec3, "78888", "Waist", "Alt") -- Waistguard of Bleeding Bone
-    LootAlert:AddItem(spec3, "78424", "Waist", "Alt") -- Runescriven Demon Collar
-    LootAlert:AddItem(spec3, "71250", "Waist", "BIS") -- Cinch of the Flaming Ember
-    LootAlert:AddItem(spec3, "78707", "Legs", "BIS") -- Necrotic Boneplate Greaves
-    LootAlert:AddItem(spec3, "76977", "Legs", "Alt") -- Necrotic Boneplate Greaves
-    LootAlert:AddItem(spec3, "78802", "Legs", "Alt") -- Necrotic Boneplate Greaves
-    LootAlert:AddItem(spec3, "71431", "Legs", "BIS") -- Lavaworm Legplates
-    LootAlert:AddItem(spec3, "78389", "Feet", "BIS") -- Treads of Crushed Flesh
-    LootAlert:AddItem(spec3, "77259", "Feet", "Alt") -- Treads of Crushed Flesh
-    LootAlert:AddItem(spec3, "77170", "Feet", "Alt") -- Kneebreaker Boots
-    LootAlert:AddItem(spec3, "71404", "Feet", "BIS") -- Arachnaflame Treads
-    LootAlert:AddItem(spec3, "77090", "Neck", "BIS") -- Necklace of Black Dragon's Teeth
-    LootAlert:AddItem(spec3, "71446", "Neck", "BIS") -- Necklace of Fetishes
-    LootAlert:AddItem(spec3, "78432", "Ring", "BIS") -- Curled Twilight Claw
-    LootAlert:AddItem(spec3, "78492", "Ring", "BIS") -- Breathstealer Band
-    LootAlert:AddItem(spec3, "78013", "Ring", "Alt") -- Curled Twilight Claw
-    LootAlert:AddItem(spec3, "77230", "Ring", "Alt") -- Breathstealer Band
-    LootAlert:AddItem(spec3, "77110", "Ring", "Alt") -- Ring of Torn Flesh
-    LootAlert:AddItem(spec3, "71433", "Ring", "BIS") -- Alysrazor's Band
-    LootAlert:AddItem(spec3, "71215", "Ring", "BIS") -- Obsidian Signet of the Avengers
-    LootAlert:AddItem(spec3, "77992", "Trinket", "BIS") -- Creche of the Final Dragon
-    LootAlert:AddItem(spec3, "77997", "Trinket", "BIS") -- Eye of Unmaking
-    LootAlert:AddItem(spec3, "78002", "Trinket", "BIS") -- Bone-Link Fetish
-    LootAlert:AddItem(spec3, "77205", "Trinket", "Alt") -- Creche of the Final Dragon
-    LootAlert:AddItem(spec3, "77200", "Trinket", "Alt") -- Eye of Unmaking
-    LootAlert:AddItem(spec3, "69167", "Trinket", "BIS") -- Vessel of Acceleration
-    LootAlert:AddItem(spec3, "65072", "Trinket", "BIS") -- Heart of Rage
-    LootAlert:AddItem(spec3, "78478", "Two-Hand", "BIS") -- Gurthalak, Voice of the Deeps
-    LootAlert:AddItem(spec3, "77191", "Two-Hand", "Alt") -- Gurthalak, Voice of the Deeps
-    LootAlert:AddItem(spec3, "78445", "Two-Hand", "Alt") -- Ataraxis, Cudgel of the Warmaster
-    LootAlert:AddItem(spec3, "78403", "Two-Hand", "Alt") -- Experimental Specimen Slicer
-    LootAlert:AddItem(spec3, "77224", "Two-Hand", "Alt") -- Ataraxis, Cudgel of the Warmaster
-    LootAlert:AddItem(spec3, "77217", "Two-Hand", "Alt") -- Experimental Specimen Slicer
-    LootAlert:AddItem(spec3, "70723", "Two-Hand", "BIS") -- Sulfuras, the Extinguished Hand
-    LootAlert:AddItem(spec3, "77081", "Ranged/Relic", "BIS") -- Gutripper Shard
-    LootAlert:AddItem(spec3, "71587", "Ranged/Relic", "BIS") -- Relic of the Elemental Lords
+    LootAlert:AddItem(spec4, "78687", "Head", "BIS") -- Necrotic Boneplate Helmet
+    LootAlert:AddItem(spec4, "76976", "Head", "Alt") -- Necrotic Boneplate Helmet
+    LootAlert:AddItem(spec4, "77155", "Head", "Alt") -- Visage of Petrification
+    LootAlert:AddItem(spec4, "78782", "Head", "Alt") -- Necrotic Boneplate Helmet
+    LootAlert:AddItem(spec4, "71478", "Head", "BIS") -- Elementium Deathplate Helmet
+    LootAlert:AddItem(spec4, "78465", "Shoulder", "BIS") -- Backbreaker Spaulders
+    LootAlert:AddItem(spec4, "78736", "Shoulder", "Alt") -- Necrotic Boneplate Pauldrons
+    LootAlert:AddItem(spec4, "77236", "Shoulder", "Alt") -- Backbreaker Spaulders
+    LootAlert:AddItem(spec4, "78831", "Shoulder", "Alt") -- Necrotic Boneplate Pauldrons
+    LootAlert:AddItem(spec4, "71480", "Shoulder", "BIS") -- Elementium Deathplate Pauldrons
+    LootAlert:AddItem(spec4, "77097", "Back", "BIS") -- Dreamcrusher Drape
+    LootAlert:AddItem(spec4, "65117", "Back", "BIS") -- Glittering Epidermis
+    LootAlert:AddItem(spec4, "78659", "Chest", "BIS") -- Necrotic Boneplate Breastplate
+    LootAlert:AddItem(spec4, "76974", "Chest", "Alt") -- Necrotic Boneplate Breastplate
+    LootAlert:AddItem(spec4, "71476", "Chest", "BIS") -- Elementium Deathplate Breastplate
+    LootAlert:AddItem(spec4, "78373", "Wrist", "BIS") -- Rockhide Bracers
+    LootAlert:AddItem(spec4, "71992", "Wrist", "Alt") -- Bracers of Destructive Strength
+    LootAlert:AddItem(spec4, "77317", "Wrist", "Alt") -- Heartcrusher Wristplates
+    LootAlert:AddItem(spec4, "71418", "Wrist", "BIS") -- Earthcrack Bracers
+    LootAlert:AddItem(spec4, "78670", "Hands", "BIS") -- Necrotic Boneplate Gauntlets
+    LootAlert:AddItem(spec4, "76975", "Hands", "Alt") -- Necrotic Boneplate Gauntlets
+    LootAlert:AddItem(spec4, "77165", "Hands", "Alt") -- Grimfist Crushers
+    LootAlert:AddItem(spec4, "78765", "Hands", "Alt") -- Necrotic Boneplate Gauntlets
+    LootAlert:AddItem(spec4, "71419", "Hands", "Alt") -- Fireskin Gauntlets
+    LootAlert:AddItem(spec4, "71477", "Hands", "BIS") -- Elementium Deathplate Gauntlets
+    LootAlert:AddItem(spec4, "78416", "Waist", "BIS") -- Runescriven Demon Collar
+    LootAlert:AddItem(spec4, "77250", "Waist", "Alt") -- Runescriven Demon Collar
+    LootAlert:AddItem(spec4, "77185", "Waist", "Alt") -- Demonbone Waistguard
+    LootAlert:AddItem(spec4, "78888", "Waist", "Alt") -- Waistguard of Bleeding Bone
+    LootAlert:AddItem(spec4, "78424", "Waist", "Alt") -- Runescriven Demon Collar
+    LootAlert:AddItem(spec4, "71250", "Waist", "BIS") -- Cinch of the Flaming Ember
+    LootAlert:AddItem(spec4, "78707", "Legs", "BIS") -- Necrotic Boneplate Greaves
+    LootAlert:AddItem(spec4, "76977", "Legs", "Alt") -- Necrotic Boneplate Greaves
+    LootAlert:AddItem(spec4, "78802", "Legs", "Alt") -- Necrotic Boneplate Greaves
+    LootAlert:AddItem(spec4, "71431", "Legs", "BIS") -- Lavaworm Legplates
+    LootAlert:AddItem(spec4, "78389", "Feet", "BIS") -- Treads of Crushed Flesh
+    LootAlert:AddItem(spec4, "77259", "Feet", "Alt") -- Treads of Crushed Flesh
+    LootAlert:AddItem(spec4, "77170", "Feet", "Alt") -- Kneebreaker Boots
+    LootAlert:AddItem(spec4, "71404", "Feet", "BIS") -- Arachnaflame Treads
+    LootAlert:AddItem(spec4, "77090", "Neck", "BIS") -- Necklace of Black Dragon's Teeth
+    LootAlert:AddItem(spec4, "71446", "Neck", "BIS") -- Necklace of Fetishes
+    LootAlert:AddItem(spec4, "78432", "Ring", "BIS") -- Curled Twilight Claw
+    LootAlert:AddItem(spec4, "78492", "Ring", "BIS") -- Breathstealer Band
+    LootAlert:AddItem(spec4, "78013", "Ring", "Alt") -- Curled Twilight Claw
+    LootAlert:AddItem(spec4, "77230", "Ring", "Alt") -- Breathstealer Band
+    LootAlert:AddItem(spec4, "77110", "Ring", "Alt") -- Ring of Torn Flesh
+    LootAlert:AddItem(spec4, "71433", "Ring", "BIS") -- Alysrazor's Band
+    LootAlert:AddItem(spec4, "71215", "Ring", "BIS") -- Obsidian Signet of the Avengers
+    LootAlert:AddItem(spec4, "77992", "Trinket", "BIS") -- Creche of the Final Dragon
+    LootAlert:AddItem(spec4, "77997", "Trinket", "BIS") -- Eye of Unmaking
+    LootAlert:AddItem(spec4, "78002", "Trinket", "BIS") -- Bone-Link Fetish
+    LootAlert:AddItem(spec4, "77205", "Trinket", "Alt") -- Creche of the Final Dragon
+    LootAlert:AddItem(spec4, "77200", "Trinket", "Alt") -- Eye of Unmaking
+    LootAlert:AddItem(spec4, "69167", "Trinket", "BIS") -- Vessel of Acceleration
+    LootAlert:AddItem(spec4, "65072", "Trinket", "BIS") -- Heart of Rage
+    LootAlert:AddItem(spec4, "78478", "Two-Hand", "BIS") -- Gurthalak, Voice of the Deeps
+    LootAlert:AddItem(spec4, "77191", "Two-Hand", "Alt") -- Gurthalak, Voice of the Deeps
+    LootAlert:AddItem(spec4, "78445", "Two-Hand", "Alt") -- Ataraxis, Cudgel of the Warmaster
+    LootAlert:AddItem(spec4, "78403", "Two-Hand", "Alt") -- Experimental Specimen Slicer
+    LootAlert:AddItem(spec4, "77224", "Two-Hand", "Alt") -- Ataraxis, Cudgel of the Warmaster
+    LootAlert:AddItem(spec4, "77217", "Two-Hand", "Alt") -- Experimental Specimen Slicer
+    LootAlert:AddItem(spec4, "70723", "Two-Hand", "BIS") -- Sulfuras, the Extinguished Hand
+    LootAlert:AddItem(spec4, "77081", "Ranged/Relic", "BIS") -- Gutripper Shard
+    LootAlert:AddItem(spec4, "71587", "Ranged/Relic", "BIS") -- Relic of the Elemental Lords
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

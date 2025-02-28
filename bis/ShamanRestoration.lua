@@ -4,7 +4,7 @@ local LootAlert = core.LootAlert;
 
 local function loadBis ()
     local spec0 = LootAlert:RegisterSpec("Shaman", "Restoration", "0")
-    local spec3 = LootAlert:RegisterSpec("Shaman", "Restoration", "3")
+    local spec4 = LootAlert:RegisterSpec("Shaman", "Restoration", "4")
 
     -- PreRaid
     LootAlert:AddItem(spec0, "78786", "Head", "BIS") -- Spiritwalker's Faceguard
@@ -27,7 +27,8 @@ local function loadBis ()
     LootAlert:AddItem(spec0, "78818", "Chest", "BIS") -- Spiritwalker's Hauberk
     LootAlert:AddItem(spec0, "77125", "Chest", "Alt") -- Ghostworld Chestguard
     LootAlert:AddItem(spec0, "71296", "Chest", "Alt") -- Erupting Volcanic Tunic
-    LootAlert:AddItem(spec0, "77319", "Wrist", "BIS") -- Bracers of the Spectral Wolf
+    LootAlert:AddItem(spec0, "71997", "Wrist", "BIS") -- Thundering Deathscale Wristguards
+    LootAlert:AddItem(spec0, "77319", "Wrist", "Alt") -- Bracers of the Spectral Wolf
     LootAlert:AddItem(spec0, "71263", "Wrist", "Alt") -- Bracers of Misting Ash
     LootAlert:AddItem(spec0, "78767", "Hands", "BIS") -- Spiritwalker's Handwraps
     LootAlert:AddItem(spec0, "77163", "Hands", "Alt") -- Gloves of Ghostly Dreams
@@ -38,8 +39,9 @@ local function loadBis ()
     LootAlert:AddItem(spec0, "56538", "Waist", "Alt") -- Stormleather Sash
     LootAlert:AddItem(spec0, "62445", "Waist", "Alt") -- Sash of Prophecy
     LootAlert:AddItem(spec0, "57917", "Waist", "Alt") -- Belt of the Still Stream
+    LootAlert:AddItem(spec0, "71988", "Legs", "BIS") -- Deathscale Leggings
     LootAlert:AddItem(spec0, "78813", "Legs", "BIS") -- Spiritwalker's Legwraps
-    LootAlert:AddItem(spec0, "71299", "Legs", "BIS") -- Erupting Volcanic Legwraps
+    LootAlert:AddItem(spec0, "71299", "Legs", "Alt") -- Erupting Volcanic Legwraps
     LootAlert:AddItem(spec0, "77174", "Feet", "BIS") -- Sabatons of the Graceful Spirit
     LootAlert:AddItem(spec0, "78411", "Feet", "Alt") -- Mindstrainer Treads
     LootAlert:AddItem(spec0, "60235", "Feet", "Alt") -- Boots of Az'galada
@@ -54,8 +56,8 @@ local function loadBis ()
     LootAlert:AddItem(spec0, "78427", "Ring", "Alt") -- Ring of the Riven
     LootAlert:AddItem(spec0, "71211", "Ring", "Alt") -- Soothing Brimstone Circle
     LootAlert:AddItem(spec0, "77976", "Trinket", "BIS") -- Heart of Unliving
+    LootAlert:AddItem(spec0, "77981", "Trinket", "BIS") -- Windward Heart
     LootAlert:AddItem(spec0, "77975", "Trinket", "BIS") -- Will of Unbinding
-    LootAlert:AddItem(spec0, "77981", "Trinket", "Alt") -- Windward Heart
     LootAlert:AddItem(spec0, "65124", "Trinket", "Alt") -- Fall of Mortality
     LootAlert:AddItem(spec0, "62050", "Trinket", "Alt") -- Darkmoon Card: Tsunami
     LootAlert:AddItem(spec0, "64645", "Trinket", "Alt") -- Tyrande's Favorite Doll
@@ -92,78 +94,80 @@ local function loadBis ()
     LootAlert:AddItem(spec0, "71149", "Ranged/Relic", "Alt") -- Singed Plume of Aviana
 
     -- Current Phase
-    LootAlert:AddItem(spec3, "78691", "Head", "BIS") -- Spiritwalker's Faceguard
-    LootAlert:AddItem(spec3, "77151", "Head", "Alt") -- Wolfdream Circlet
-    LootAlert:AddItem(spec3, "71616", "Head", "Alt") -- Crown of Flame
-    LootAlert:AddItem(spec3, "71544", "Head", "Alt") -- Erupting Volcanic Faceguard
-    LootAlert:AddItem(spec3, "78739", "Shoulder", "BIS") -- Spiritwalker's Mantle
-    LootAlert:AddItem(spec3, "71546", "Shoulder", "Alt") -- Erupting Volcanic Mantle
-    LootAlert:AddItem(spec3, "72856", "Shoulder", "Alt") -- Pauldrons of Midnight Whispers
-    LootAlert:AddItem(spec3, "77096", "Back", "BIS") -- Woundlicker Cover
-    LootAlert:AddItem(spec3, "71434", "Back", "BIS") -- Wings of Flame
-    LootAlert:AddItem(spec3, "60232", "Back", "Alt") -- Shroud of Endless Grief
-    LootAlert:AddItem(spec3, "78723", "Chest", "BIS") -- Spiritwalker's Hauberk
-    LootAlert:AddItem(spec3, "78725", "Chest", "Alt") -- Spiritwalker's Tunic
-    LootAlert:AddItem(spec3, "77125", "Chest", "Alt") -- Ghostworld Chestguard
-    LootAlert:AddItem(spec3, "71542", "Chest", "Alt") -- Erupting Volcanic Tunic
-    LootAlert:AddItem(spec3, "71464", "Chest", "Alt") -- Gatekeeper's Embrace
-    LootAlert:AddItem(spec3, "78393", "Wrist", "BIS") -- Grotesquely Writhing Bracers
-    LootAlert:AddItem(spec3, "77319", "Wrist", "Alt") -- Bracers of the Spectral Wolf
-    LootAlert:AddItem(spec3, "71425", "Wrist", "Alt") -- Lava Line Wristbands
-    LootAlert:AddItem(spec3, "71263", "Wrist", "Alt") -- Bracers of Misting Ash
-    LootAlert:AddItem(spec3, "78672", "Hands", "BIS") -- Spiritwalker's Handwraps
-    LootAlert:AddItem(spec3, "77163", "Hands", "Alt") -- Gloves of Ghostly Dreams
-    LootAlert:AddItem(spec3, "71543", "Hands", "Alt") -- Erupting Volcanic Handwraps
-    LootAlert:AddItem(spec3, "71437", "Hands", "Alt") -- Clawshaper Gauntlets
-    LootAlert:AddItem(spec3, "78463", "Waist", "BIS") -- Belt of Shattered Elementium
-    LootAlert:AddItem(spec3, "77183", "Waist", "Alt") -- Girdle of Shamanic Fury
-    LootAlert:AddItem(spec3, "71254", "Waist", "Alt") -- Firemend Cinch
-    LootAlert:AddItem(spec3, "78718", "Legs", "BIS") -- Spiritwalker's Legwraps
-    LootAlert:AddItem(spec3, "71545", "Legs", "Alt") -- Erupting Volcanic Legwraps
-    LootAlert:AddItem(spec3, "78405", "Feet", "BIS") -- Mindstrainer Treads
-    LootAlert:AddItem(spec3, "77174", "Feet", "Alt") -- Sabatons of the Graceful Spirit
-    LootAlert:AddItem(spec3, "71451", "Feet", "Alt") -- Treads of Implicit Obedience
-    LootAlert:AddItem(spec3, "60235", "Feet", "Alt") -- Boots of Az'galada
-    LootAlert:AddItem(spec3, "78364", "Neck", "BIS") -- Petrified Fungal Heart
-    LootAlert:AddItem(spec3, "77089", "Neck", "Alt") -- Threadlinked Chain
-    LootAlert:AddItem(spec3, "71472", "Neck", "Alt") -- Flowform Choker
-    LootAlert:AddItem(spec3, "71423", "Neck", "Alt") -- Heartstone of Rhyolith
-    LootAlert:AddItem(spec3, "71214", "Neck", "Alt") -- Firemind Pendant
-    LootAlert:AddItem(spec3, "78491", "Ring", "BIS") -- Signet of Suturing
-    LootAlert:AddItem(spec3, "78419", "Ring", "BIS") -- Ring of the Riven
-    LootAlert:AddItem(spec3, "77109", "Ring", "Alt") -- Band of Reconstruction
-    LootAlert:AddItem(spec3, "71237", "Ring", "Alt") -- Quicksilver Signet of the Avengers
-    LootAlert:AddItem(spec3, "71449", "Ring", "Alt") -- Crystal Prison Band
-    LootAlert:AddItem(spec3, "71211", "Ring", "Alt") -- Soothing Brimstone Circle
-    LootAlert:AddItem(spec3, "77996", "Trinket", "BIS") -- Heart of Unliving
-    LootAlert:AddItem(spec3, "77995", "Trinket", "BIS") -- Will of Unbinding
-    LootAlert:AddItem(spec3, "78001", "Trinket", "Alt") -- Windward Heart
-    LootAlert:AddItem(spec3, "77989", "Trinket", "Alt") -- Seal of the Seven Signs
-    LootAlert:AddItem(spec3, "69111", "Trinket", "Alt") -- Jaws of Defeat
-    LootAlert:AddItem(spec3, "65124", "Trinket", "Alt") -- Fall of Mortality
-    LootAlert:AddItem(spec3, "69149", "Trinket", "Alt") -- Eye of Blazing Power
-    LootAlert:AddItem(spec3, "62050", "Trinket", "Alt") -- Darkmoon Card: Tsunami
-    LootAlert:AddItem(spec3, "64645", "Trinket", "Alt") -- Tyrande's Favorite Doll
-    LootAlert:AddItem(spec3, "78477", "Two-Hand", "BIS") -- Ti'tahk, the Steps of Time
-    LootAlert:AddItem(spec3, "78418", "Two-Hand", "Alt") -- Lightning Rod
-    LootAlert:AddItem(spec3, "71797", "Two-Hand", "Alt") -- Sho'ravon, Greatstaff of Annihilation
-    LootAlert:AddItem(spec3, "71774", "Two-Hand", "Alt") -- Smoldering Censer of Purity
-    LootAlert:AddItem(spec3, "71409", "Two-Hand", "Alt") -- Funeral Pyre
-    LootAlert:AddItem(spec3, "78476", "Main Hand", "BIS") -- Maw of the Dragonlord
-    LootAlert:AddItem(spec3, "78363", "Main Hand", "Alt") -- Vagaries of Time
-    LootAlert:AddItem(spec3, "78404", "Main Hand", "Alt") -- Scalpel of Unrelenting Agony
-    LootAlert:AddItem(spec3, "71615", "Main Hand", "Alt") -- Ko'gun, Hammer of the Firelord
-    LootAlert:AddItem(spec3, "71560", "Main Hand", "Alt") -- Chelley's Sterilized Scalpel
-    LootAlert:AddItem(spec3, "71777", "Main Hand", "Alt") -- Eye of Purification
-    LootAlert:AddItem(spec3, "71359", "Main Hand", "Alt") -- Chelley's Sterilized Scalpel
-    LootAlert:AddItem(spec3, "78450", "Off Hand", "BIS") -- Timepiece of the Bronze Flight
-    LootAlert:AddItem(spec3, "78433", "Off Hand", "Alt") -- Ledger of Revolting Rituals
-    LootAlert:AddItem(spec3, "71408", "Off Hand", "Alt") -- Ward of the Red Widow
-    LootAlert:AddItem(spec3, "71448", "Off Hand", "Alt") -- Goblet of Anger
-    LootAlert:AddItem(spec3, "77082", "Ranged/Relic", "BIS") -- Mindbender Lens
-    LootAlert:AddItem(spec3, "77083", "Ranged/Relic", "Alt") -- Lightning Spirit in a Bottle
-    LootAlert:AddItem(spec3, "71577", "Ranged/Relic", "Alt") -- Singed Plume of Aviana
-    LootAlert:AddItem(spec3, "71580", "Ranged/Relic", "Alt") -- Soulflame Vial
+    LootAlert:AddItem(spec4, "78691", "Head", "BIS") -- Spiritwalker's Faceguard
+    LootAlert:AddItem(spec4, "77151", "Head", "Alt") -- Wolfdream Circlet
+    LootAlert:AddItem(spec4, "71616", "Head", "Alt") -- Crown of Flame
+    LootAlert:AddItem(spec4, "71544", "Head", "Alt") -- Erupting Volcanic Faceguard
+    LootAlert:AddItem(spec4, "78739", "Shoulder", "BIS") -- Spiritwalker's Mantle
+    LootAlert:AddItem(spec4, "71546", "Shoulder", "Alt") -- Erupting Volcanic Mantle
+    LootAlert:AddItem(spec4, "72856", "Shoulder", "Alt") -- Pauldrons of Midnight Whispers
+    LootAlert:AddItem(spec4, "77096", "Back", "BIS") -- Woundlicker Cover
+    LootAlert:AddItem(spec4, "71434", "Back", "BIS") -- Wings of Flame
+    LootAlert:AddItem(spec4, "60232", "Back", "Alt") -- Shroud of Endless Grief
+    LootAlert:AddItem(spec4, "78723", "Chest", "BIS") -- Spiritwalker's Hauberk
+    LootAlert:AddItem(spec4, "78725", "Chest", "Alt") -- Spiritwalker's Tunic
+    LootAlert:AddItem(spec4, "77125", "Chest", "Alt") -- Ghostworld Chestguard
+    LootAlert:AddItem(spec4, "71542", "Chest", "Alt") -- Erupting Volcanic Tunic
+    LootAlert:AddItem(spec4, "71464", "Chest", "Alt") -- Gatekeeper's Embrace
+    LootAlert:AddItem(spec4, "78393", "Wrist", "BIS") -- Grotesquely Writhing Bracers
+    LootAlert:AddItem(spec4, "71997", "Wrist", "Alt") -- Thundering Deathscale Wristguards
+    LootAlert:AddItem(spec4, "77319", "Wrist", "Alt") -- Bracers of the Spectral Wolf
+    LootAlert:AddItem(spec4, "71425", "Wrist", "Alt") -- Lava Line Wristbands
+    LootAlert:AddItem(spec4, "71263", "Wrist", "Alt") -- Bracers of Misting Ash
+    LootAlert:AddItem(spec4, "78672", "Hands", "BIS") -- Spiritwalker's Handwraps
+    LootAlert:AddItem(spec4, "77163", "Hands", "Alt") -- Gloves of Ghostly Dreams
+    LootAlert:AddItem(spec4, "71543", "Hands", "Alt") -- Erupting Volcanic Handwraps
+    LootAlert:AddItem(spec4, "71437", "Hands", "Alt") -- Clawshaper Gauntlets
+    LootAlert:AddItem(spec4, "78463", "Waist", "BIS") -- Belt of Shattered Elementium
+    LootAlert:AddItem(spec4, "77183", "Waist", "Alt") -- Girdle of Shamanic Fury
+    LootAlert:AddItem(spec4, "71254", "Waist", "Alt") -- Firemend Cinch
+    LootAlert:AddItem(spec4, "78718", "Legs", "BIS") -- Spiritwalker's Legwraps
+    LootAlert:AddItem(spec4, "71988", "Legs", "Alt") -- Deathscale Leggings
+    LootAlert:AddItem(spec4, "71545", "Legs", "Alt") -- Erupting Volcanic Legwraps
+    LootAlert:AddItem(spec4, "78405", "Feet", "BIS") -- Mindstrainer Treads
+    LootAlert:AddItem(spec4, "77174", "Feet", "Alt") -- Sabatons of the Graceful Spirit
+    LootAlert:AddItem(spec4, "71451", "Feet", "Alt") -- Treads of Implicit Obedience
+    LootAlert:AddItem(spec4, "60235", "Feet", "Alt") -- Boots of Az'galada
+    LootAlert:AddItem(spec4, "78364", "Neck", "BIS") -- Petrified Fungal Heart
+    LootAlert:AddItem(spec4, "77089", "Neck", "Alt") -- Threadlinked Chain
+    LootAlert:AddItem(spec4, "71472", "Neck", "Alt") -- Flowform Choker
+    LootAlert:AddItem(spec4, "71423", "Neck", "Alt") -- Heartstone of Rhyolith
+    LootAlert:AddItem(spec4, "71214", "Neck", "Alt") -- Firemind Pendant
+    LootAlert:AddItem(spec4, "78491", "Ring", "BIS") -- Signet of Suturing
+    LootAlert:AddItem(spec4, "78419", "Ring", "BIS") -- Ring of the Riven
+    LootAlert:AddItem(spec4, "77109", "Ring", "Alt") -- Band of Reconstruction
+    LootAlert:AddItem(spec4, "71237", "Ring", "Alt") -- Quicksilver Signet of the Avengers
+    LootAlert:AddItem(spec4, "71449", "Ring", "Alt") -- Crystal Prison Band
+    LootAlert:AddItem(spec4, "71211", "Ring", "Alt") -- Soothing Brimstone Circle
+    LootAlert:AddItem(spec4, "77996", "Trinket", "BIS") -- Heart of Unliving
+    LootAlert:AddItem(spec4, "78001", "Trinket", "BIS") -- Windward Heart
+    LootAlert:AddItem(spec4, "77995", "Trinket", "BIS") -- Will of Unbinding
+    LootAlert:AddItem(spec4, "77989", "Trinket", "Alt") -- Seal of the Seven Signs
+    LootAlert:AddItem(spec4, "69111", "Trinket", "Alt") -- Jaws of Defeat
+    LootAlert:AddItem(spec4, "65124", "Trinket", "Alt") -- Fall of Mortality
+    LootAlert:AddItem(spec4, "69149", "Trinket", "Alt") -- Eye of Blazing Power
+    LootAlert:AddItem(spec4, "62050", "Trinket", "Alt") -- Darkmoon Card: Tsunami
+    LootAlert:AddItem(spec4, "64645", "Trinket", "Alt") -- Tyrande's Favorite Doll
+    LootAlert:AddItem(spec4, "78477", "Two-Hand", "BIS") -- Ti'tahk, the Steps of Time
+    LootAlert:AddItem(spec4, "78418", "Two-Hand", "Alt") -- Lightning Rod
+    LootAlert:AddItem(spec4, "71797", "Two-Hand", "Alt") -- Sho'ravon, Greatstaff of Annihilation
+    LootAlert:AddItem(spec4, "71774", "Two-Hand", "Alt") -- Smoldering Censer of Purity
+    LootAlert:AddItem(spec4, "71409", "Two-Hand", "Alt") -- Funeral Pyre
+    LootAlert:AddItem(spec4, "78476", "Main Hand", "BIS") -- Maw of the Dragonlord
+    LootAlert:AddItem(spec4, "78363", "Main Hand", "Alt") -- Vagaries of Time
+    LootAlert:AddItem(spec4, "78404", "Main Hand", "Alt") -- Scalpel of Unrelenting Agony
+    LootAlert:AddItem(spec4, "71615", "Main Hand", "Alt") -- Ko'gun, Hammer of the Firelord
+    LootAlert:AddItem(spec4, "71560", "Main Hand", "Alt") -- Chelley's Sterilized Scalpel
+    LootAlert:AddItem(spec4, "71777", "Main Hand", "Alt") -- Eye of Purification
+    LootAlert:AddItem(spec4, "71359", "Main Hand", "Alt") -- Chelley's Sterilized Scalpel
+    LootAlert:AddItem(spec4, "78450", "Off Hand", "BIS") -- Timepiece of the Bronze Flight
+    LootAlert:AddItem(spec4, "78433", "Off Hand", "Alt") -- Ledger of Revolting Rituals
+    LootAlert:AddItem(spec4, "71408", "Off Hand", "Alt") -- Ward of the Red Widow
+    LootAlert:AddItem(spec4, "71448", "Off Hand", "Alt") -- Goblet of Anger
+    LootAlert:AddItem(spec4, "77082", "Ranged/Relic", "BIS") -- Mindbender Lens
+    LootAlert:AddItem(spec4, "77083", "Ranged/Relic", "Alt") -- Lightning Spirit in a Bottle
+    LootAlert:AddItem(spec4, "71577", "Ranged/Relic", "Alt") -- Singed Plume of Aviana
+    LootAlert:AddItem(spec4, "71580", "Ranged/Relic", "Alt") -- Soulflame Vial
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

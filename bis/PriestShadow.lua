@@ -4,7 +4,7 @@ local LootAlert = core.LootAlert;
 
 local function loadBis ()
     local spec0 = LootAlert:RegisterSpec("Priest", "Shadow", "0")
-    local spec3 = LootAlert:RegisterSpec("Priest", "Shadow", "3")
+    local spec4 = LootAlert:RegisterSpec("Priest", "Shadow", "4")
 
     -- PreRaid
     LootAlert:AddItem(spec0, "78798", "Head", "BIS") -- Hood of Dying Light
@@ -83,46 +83,46 @@ local function loadBis ()
     LootAlert:AddItem(spec0, "78399", "Ranged/Relic", "Alt") -- Finger of Zon'ozz
 
     -- Current Phase
-    LootAlert:AddItem(spec3, "78364", "Neck", "BIS") -- Petrified Fungal Heart
-    LootAlert:AddItem(spec3, "77262", "Neck", "Alt") -- Petrified Fungal Heart
-    LootAlert:AddItem(spec3, "77088", "Neck", "Alt") -- Opal of the Secret Order
-    LootAlert:AddItem(spec3, "71472", "Neck", "Alt") -- Flowform Choker
-    LootAlert:AddItem(spec3, "78491", "Ring", "BIS") -- Signet of Suturing
-    LootAlert:AddItem(spec3, "78419", "Ring", "BIS") -- Ring of the Riven
-    LootAlert:AddItem(spec3, "77229", "Ring", "Alt") -- Signet of Suturing
-    LootAlert:AddItem(spec3, "78490", "Ring", "Alt") -- Infinite Loop
-    LootAlert:AddItem(spec3, "77109", "Ring", "Alt") -- Band of Reconstruction
-    LootAlert:AddItem(spec3, "77108", "Ring", "Alt") -- Seal of the Grand Architect
-    LootAlert:AddItem(spec3, "71449", "Ring", "Alt") -- Crystal Prison Band
-    LootAlert:AddItem(spec3, "71217", "Ring", "Alt") -- Infernal Signet of the Avengers
-    LootAlert:AddItem(spec3, "77995", "Trinket", "BIS") -- Will of Unbinding
-    LootAlert:AddItem(spec3, "78000", "Trinket", "BIS") -- Cunning of the Cruel
-    LootAlert:AddItem(spec3, "77198", "Trinket", "Alt") -- Will of Unbinding
-    LootAlert:AddItem(spec3, "77991", "Trinket", "Alt") -- Insignia of the Corrupted Mind
-    LootAlert:AddItem(spec3, "77114", "Trinket", "Alt") -- Bottled Wishes
-    LootAlert:AddItem(spec3, "69110", "Trinket", "Alt") -- Variable Pulse Lightning Capacitor
-    LootAlert:AddItem(spec3, "62047", "Trinket", "Alt") -- Darkmoon Card: Volcano
-    LootAlert:AddItem(spec3, "72898", "Trinket", "Alt") -- Foul Gift of the Demon Lord
-    LootAlert:AddItem(spec3, "78475", "Main Hand", "BIS") -- Rathrak, the Poisonous Mind
-    LootAlert:AddItem(spec3, "78404", "Main Hand", "Alt") -- Scalpel of Unrelenting Agony
-    LootAlert:AddItem(spec3, "78363", "Main Hand", "Alt") -- Vagaries of Time
-    LootAlert:AddItem(spec3, "77195", "Main Hand", "Alt") -- Rathrak, the Poisonous Mind
-    LootAlert:AddItem(spec3, "71615", "Main Hand", "Alt") -- Ko'gun, Hammer of the Firelord
-    LootAlert:AddItem(spec3, "77219", "Main Hand", "Alt") -- Scalpel of Unrelenting Agony
-    LootAlert:AddItem(spec3, "77214", "Main Hand", "Alt") -- Vagaries of Time
-    LootAlert:AddItem(spec3, "78433", "Off Hand", "BIS") -- Ledger of Revolting Rituals
-    LootAlert:AddItem(spec3, "77245", "Off Hand", "Alt") -- Ledger of Revolting Rituals
-    LootAlert:AddItem(spec3, "71448", "Off Hand", "Alt") -- Goblet of Anger
-    LootAlert:AddItem(spec3, "71086", "Two-Hand", "BIS") -- Dragonwrath, Tarecgosa's Rest
-    LootAlert:AddItem(spec3, "78418", "Two-Hand", "Alt") -- Lightning Rod
-    LootAlert:AddItem(spec3, "78451", "Two-Hand", "Alt") -- Visage of the Destroyer
-    LootAlert:AddItem(spec3, "78477", "Two-Hand", "Alt") -- Ti'tahk, the Steps of Time
-    LootAlert:AddItem(spec3, "71797", "Two-Hand", "Alt") -- Sho'ravon, Greatstaff of Annihilation
-    LootAlert:AddItem(spec3, "77221", "Two-Hand", "Alt") -- Lightning Rod
-    LootAlert:AddItem(spec3, "78392", "Ranged/Relic", "BIS") -- Finger of Zon'ozz
-    LootAlert:AddItem(spec3, "77079", "Ranged/Relic", "Alt") -- Hungermouth Wand
-    LootAlert:AddItem(spec3, "77078", "Ranged/Relic", "Alt") -- Scintillating Rods
-    LootAlert:AddItem(spec3, "71575", "Ranged/Relic", "Alt") -- Trail of Embers
+    LootAlert:AddItem(spec4, "78364", "Neck", "BIS") -- Petrified Fungal Heart
+    LootAlert:AddItem(spec4, "77262", "Neck", "Alt") -- Petrified Fungal Heart
+    LootAlert:AddItem(spec4, "77088", "Neck", "Alt") -- Opal of the Secret Order
+    LootAlert:AddItem(spec4, "71472", "Neck", "Alt") -- Flowform Choker
+    LootAlert:AddItem(spec4, "78491", "Ring", "BIS") -- Signet of Suturing
+    LootAlert:AddItem(spec4, "78419", "Ring", "BIS") -- Ring of the Riven
+    LootAlert:AddItem(spec4, "77229", "Ring", "Alt") -- Signet of Suturing
+    LootAlert:AddItem(spec4, "78490", "Ring", "Alt") -- Infinite Loop
+    LootAlert:AddItem(spec4, "77109", "Ring", "Alt") -- Band of Reconstruction
+    LootAlert:AddItem(spec4, "77108", "Ring", "Alt") -- Seal of the Grand Architect
+    LootAlert:AddItem(spec4, "71449", "Ring", "Alt") -- Crystal Prison Band
+    LootAlert:AddItem(spec4, "71217", "Ring", "Alt") -- Infernal Signet of the Avengers
+    LootAlert:AddItem(spec4, "77995", "Trinket", "BIS") -- Will of Unbinding
+    LootAlert:AddItem(spec4, "78000", "Trinket", "BIS") -- Cunning of the Cruel
+    LootAlert:AddItem(spec4, "77198", "Trinket", "Alt") -- Will of Unbinding
+    LootAlert:AddItem(spec4, "77991", "Trinket", "Alt") -- Insignia of the Corrupted Mind
+    LootAlert:AddItem(spec4, "77114", "Trinket", "Alt") -- Bottled Wishes
+    LootAlert:AddItem(spec4, "69110", "Trinket", "Alt") -- Variable Pulse Lightning Capacitor
+    LootAlert:AddItem(spec4, "62047", "Trinket", "Alt") -- Darkmoon Card: Volcano
+    LootAlert:AddItem(spec4, "72898", "Trinket", "Alt") -- Foul Gift of the Demon Lord
+    LootAlert:AddItem(spec4, "78475", "Main Hand", "BIS") -- Rathrak, the Poisonous Mind
+    LootAlert:AddItem(spec4, "78404", "Main Hand", "Alt") -- Scalpel of Unrelenting Agony
+    LootAlert:AddItem(spec4, "78363", "Main Hand", "Alt") -- Vagaries of Time
+    LootAlert:AddItem(spec4, "77195", "Main Hand", "Alt") -- Rathrak, the Poisonous Mind
+    LootAlert:AddItem(spec4, "71615", "Main Hand", "Alt") -- Ko'gun, Hammer of the Firelord
+    LootAlert:AddItem(spec4, "77219", "Main Hand", "Alt") -- Scalpel of Unrelenting Agony
+    LootAlert:AddItem(spec4, "77214", "Main Hand", "Alt") -- Vagaries of Time
+    LootAlert:AddItem(spec4, "78433", "Off Hand", "BIS") -- Ledger of Revolting Rituals
+    LootAlert:AddItem(spec4, "77245", "Off Hand", "Alt") -- Ledger of Revolting Rituals
+    LootAlert:AddItem(spec4, "71448", "Off Hand", "Alt") -- Goblet of Anger
+    LootAlert:AddItem(spec4, "71086", "Two-Hand", "BIS") -- Dragonwrath, Tarecgosa's Rest
+    LootAlert:AddItem(spec4, "78418", "Two-Hand", "Alt") -- Lightning Rod
+    LootAlert:AddItem(spec4, "78451", "Two-Hand", "Alt") -- Visage of the Destroyer
+    LootAlert:AddItem(spec4, "78477", "Two-Hand", "Alt") -- Ti'tahk, the Steps of Time
+    LootAlert:AddItem(spec4, "71797", "Two-Hand", "Alt") -- Sho'ravon, Greatstaff of Annihilation
+    LootAlert:AddItem(spec4, "77221", "Two-Hand", "Alt") -- Lightning Rod
+    LootAlert:AddItem(spec4, "78392", "Ranged/Relic", "BIS") -- Finger of Zon'ozz
+    LootAlert:AddItem(spec4, "77079", "Ranged/Relic", "Alt") -- Hungermouth Wand
+    LootAlert:AddItem(spec4, "77078", "Ranged/Relic", "Alt") -- Scintillating Rods
+    LootAlert:AddItem(spec4, "71575", "Ranged/Relic", "Alt") -- Trail of Embers
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

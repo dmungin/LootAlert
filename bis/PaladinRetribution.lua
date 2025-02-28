@@ -4,7 +4,7 @@ local LootAlert = core.LootAlert;
 
 local function loadBis ()
     local spec0 = LootAlert:RegisterSpec("Paladin", "Retribution", "0")
-    local spec3 = LootAlert:RegisterSpec("Paladin", "Retribution", "3")
+    local spec4 = LootAlert:RegisterSpec("Paladin", "Retribution", "4")
 
     -- PreRaid
     LootAlert:AddItem(spec0, "78788", "Head", "BIS") -- Helmet of Radiant Glory
@@ -71,6 +71,7 @@ local function loadBis ()
     LootAlert:AddItem(spec0, "69002", "Trinket", "Alt") -- Essence of the Eternal Flame
     LootAlert:AddItem(spec0, "73442", "Two-Hand", "BIS") -- Cataclysmic Gladiator's Greatsword
     LootAlert:AddItem(spec0, "78487", "Two-Hand", "BIS") -- Gurthalak, Voice of the Deeps
+    LootAlert:AddItem(spec0, "71352", "Two-Hand", "Alt") -- Sulfuras, the Extinguished Hand
     LootAlert:AddItem(spec0, "73475", "Two-Hand", "Alt") -- Cataclysmic Gladiator's Greatsword
     LootAlert:AddItem(spec0, "72844", "Two-Hand", "Alt") -- Pit Lord's Destroyer
     LootAlert:AddItem(spec0, "72814", "Two-Hand", "Alt") -- Axe of the Tauren Chieftains
@@ -83,115 +84,115 @@ local function loadBis ()
     LootAlert:AddItem(spec0, "62243", "Ranged/Relic", "Alt") -- Notched Jawbone
 
     -- Current Phase
-    LootAlert:AddItem(spec3, "78693", "Head", "BIS") -- Helmet of Radiant Glory
-    LootAlert:AddItem(spec3, "76876", "Head", "Alt") -- Helmet of Radiant Glory
-    LootAlert:AddItem(spec3, "71514", "Head", "Alt") -- Immolation Helmet
-    LootAlert:AddItem(spec3, "77155", "Head", "Alt") -- Visage of Petrification
-    LootAlert:AddItem(spec3, "78788", "Head", "Alt") -- Helmet of Radiant Glory
-    LootAlert:AddItem(spec3, "71430", "Head", "Alt") -- Greathelm of the Voracious Maw
-    LootAlert:AddItem(spec3, "65216", "Head", "Alt") -- Reinforced Sapphirium Helmet
-    LootAlert:AddItem(spec3, "78465", "Shoulder", "BIS") -- Backbreaker Spaulders
-    LootAlert:AddItem(spec3, "78742", "Shoulder", "Alt") -- Pauldrons of Radiant Glory
-    LootAlert:AddItem(spec3, "77236", "Shoulder", "Alt") -- Backbreaker Spaulders
-    LootAlert:AddItem(spec3, "76878", "Shoulder", "Alt") -- Pauldrons of Radiant Glory
-    LootAlert:AddItem(spec3, "71516", "Shoulder", "Alt") -- Immolation Pauldrons
-    LootAlert:AddItem(spec3, "78470", "Shoulder", "Alt") -- Backbreaker Spaulders
-    LootAlert:AddItem(spec3, "78837", "Shoulder", "Alt") -- Pauldrons of Radiant Glory
-    LootAlert:AddItem(spec3, "65218", "Shoulder", "Alt") -- Reinforced Sapphirium Pauldrons
-    LootAlert:AddItem(spec3, "71612", "Shoulder", "Alt") -- Pauldrons of Roaring Flame
-    LootAlert:AddItem(spec3, "77097", "Back", "BIS") -- Dreamcrusher Drape
-    LootAlert:AddItem(spec3, "71415", "Back", "Alt") -- Dreadfire Drape
-    LootAlert:AddItem(spec3, "69879", "Back", "Alt") -- Cloudburst Cloak
-    LootAlert:AddItem(spec3, "71227", "Back", "Alt") -- Bladed Flamewrath Cover
-    LootAlert:AddItem(spec3, "72838", "Back", "Alt") -- Cloak of the Royal Protector
-    LootAlert:AddItem(spec3, "69879", "Back", "Alt") -- Cloudburst Cloak
-    LootAlert:AddItem(spec3, "69879", "Back", "Alt") -- Cloudburst Cloak
-    LootAlert:AddItem(spec3, "78727", "Chest", "BIS") -- Battleplate of Radiant Glory
-    LootAlert:AddItem(spec3, "76874", "Chest", "Alt") -- Battleplate of Radiant Glory
-    LootAlert:AddItem(spec3, "77119", "Chest", "Alt") -- Bones of the Damned
-    LootAlert:AddItem(spec3, "71469", "Chest", "Alt") -- Breastplate of Shifting Visions
-    LootAlert:AddItem(spec3, "71512", "Chest", "Alt") -- Immolation Battleplate
-    LootAlert:AddItem(spec3, "78822", "Chest", "Alt") -- Battleplate of Radiant Glory
-    LootAlert:AddItem(spec3, "71063", "Chest", "Alt") -- Immolation Battleplate
-    LootAlert:AddItem(spec3, "65214", "Chest", "Alt") -- Reinforced Sapphirium Battleplate
-    LootAlert:AddItem(spec3, "78373", "Wrist", "BIS") -- Rockhide Bracers
-    LootAlert:AddItem(spec3, "77270", "Wrist", "Alt") -- Rockhide Bracers
-    LootAlert:AddItem(spec3, "71992", "Wrist", "Alt") -- Bracers of Destructive Strength
-    LootAlert:AddItem(spec3, "77317", "Wrist", "Alt") -- Heartcrusher Wristplates
-    LootAlert:AddItem(spec3, "71418", "Wrist", "Alt") -- Earthcrack Bracers
-    LootAlert:AddItem(spec3, "78377", "Wrist", "Alt") -- Rockhide Bracers
-    LootAlert:AddItem(spec3, "60228", "Wrist", "Alt") -- Bracers of the Mat'redor
-    LootAlert:AddItem(spec3, "71261", "Wrist", "Alt") -- Gigantiform Bracers
-    LootAlert:AddItem(spec3, "71004", "Wrist", "Alt") -- Earthcrack Bracers
-    LootAlert:AddItem(spec3, "78675", "Hands", "BIS") -- Gauntlets of Radiant Glory
-    LootAlert:AddItem(spec3, "76875", "Hands", "Alt") -- Gauntlets of Radiant Glory
-    LootAlert:AddItem(spec3, "71513", "Hands", "Alt") -- Immolation Gauntlets
-    LootAlert:AddItem(spec3, "77165", "Hands", "Alt") -- Grimfist Crushers
-    LootAlert:AddItem(spec3, "78770", "Hands", "Alt") -- Gauntlets of Radiant Glory
-    LootAlert:AddItem(spec3, "73570", "Hands", "Alt") -- Cataclysmic Gladiator's Scaled Gauntlets
-    LootAlert:AddItem(spec3, "71064", "Hands", "Alt") -- Immolation Gauntlets
-    LootAlert:AddItem(spec3, "71419", "Hands", "Alt") -- Fireskin Gauntlets
-    LootAlert:AddItem(spec3, "65215", "Hands", "Alt") -- Reinforced Sapphirium Gauntlets
-    LootAlert:AddItem(spec3, "70993", "Hands", "Alt") -- Fireskin Gauntlets
-    LootAlert:AddItem(spec3, "69936", "Hands", "Alt") -- Fists of Fury
-    LootAlert:AddItem(spec3, "78416", "Waist", "BIS") -- Runescriven Demon Collar
-    LootAlert:AddItem(spec3, "77185", "Waist", "Alt") -- Demonbone Waistguard
-    LootAlert:AddItem(spec3, "77250", "Waist", "Alt") -- Runescriven Demon Collar
-    LootAlert:AddItem(spec3, "78888", "Waist", "Alt") -- Waistguard of Bleeding Bone
-    LootAlert:AddItem(spec3, "71443", "Waist", "Alt") -- Uncrushable Belt of Fury
-    LootAlert:AddItem(spec3, "78424", "Waist", "Alt") -- Runescriven Demon Collar
-    LootAlert:AddItem(spec3, "71250", "Waist", "Alt") -- Cinch of the Flaming Ember
-    LootAlert:AddItem(spec3, "71021", "Waist", "Alt") -- Uncrushable Belt of Fury
-    LootAlert:AddItem(spec3, "72832", "Waist", "Alt") -- Girdle of the Queen's Champion
-    LootAlert:AddItem(spec3, "78712", "Legs", "BIS") -- Legplates of Radiant Glory
-    LootAlert:AddItem(spec3, "76877", "Legs", "Alt") -- Legplates of Radiant Glory
-    LootAlert:AddItem(spec3, "71983", "Legs", "Alt") -- Unstoppable Destroyer's Legplates
-    LootAlert:AddItem(spec3, "71515", "Legs", "Alt") -- Immolation Legplates
-    LootAlert:AddItem(spec3, "78807", "Legs", "Alt") -- Legplates of Radiant Glory
-    LootAlert:AddItem(spec3, "71431", "Legs", "Alt") -- Lavaworm Legplates
-    LootAlert:AddItem(spec3, "71066", "Legs", "Alt") -- Immolation Legplates
-    LootAlert:AddItem(spec3, "65217", "Legs", "Alt") -- Reinforced Sapphirium Legplates
-    LootAlert:AddItem(spec3, "78389", "Feet", "BIS") -- Treads of Crushed Flesh
-    LootAlert:AddItem(spec3, "77259", "Feet", "Alt") -- Treads of Crushed Flesh
-    LootAlert:AddItem(spec3, "77170", "Feet", "Alt") -- Kneebreaker Boots
-    LootAlert:AddItem(spec3, "71404", "Feet", "Alt") -- Arachnaflame Treads
-    LootAlert:AddItem(spec3, "78396", "Feet", "Alt") -- Treads of Crushed Flesh
-    LootAlert:AddItem(spec3, "72881", "Feet", "Alt") -- Treads of the Past
-    LootAlert:AddItem(spec3, "69946", "Feet", "Alt") -- Warboots of Mighty Lords
-    LootAlert:AddItem(spec3, "77997", "Trinket", "BIS") -- Eye of Unmaking
-    LootAlert:AddItem(spec3, "77992", "Trinket", "BIS") -- Creche of the Final Dragon
-    LootAlert:AddItem(spec3, "77200", "Trinket", "Alt") -- Eye of Unmaking
-    LootAlert:AddItem(spec3, "77116", "Trinket", "Alt") -- Rotting Skull
-    LootAlert:AddItem(spec3, "73496", "Trinket", "Alt") -- Cataclysmic Gladiator's Badge of Victory
-    LootAlert:AddItem(spec3, "69113", "Trinket", "Alt") -- Apparatus of Khaz'goroth
-    LootAlert:AddItem(spec3, "77205", "Trinket", "Alt") -- Creche of the Final Dragon
-    LootAlert:AddItem(spec3, "77977", "Trinket", "Alt") -- Eye of Unmaking
-    LootAlert:AddItem(spec3, "72899", "Trinket", "Alt") -- Varo'then's Brooch
-    LootAlert:AddItem(spec3, "65072", "Trinket", "Alt") -- Heart of Rage
-    LootAlert:AddItem(spec3, "73491", "Trinket", "Alt") -- Cataclysmic Gladiator's Insignia of Victory
-    LootAlert:AddItem(spec3, "77972", "Trinket", "Alt") -- Creche of the Final Dragon
-    LootAlert:AddItem(spec3, "78002", "Trinket", "Alt") -- Bone-Link Fetish
-    LootAlert:AddItem(spec3, "68972", "Trinket", "Alt") -- Apparatus of Khaz'goroth
-    LootAlert:AddItem(spec3, "68712", "Trinket", "Alt") -- Impatience of Youth
-    LootAlert:AddItem(spec3, "69002", "Trinket", "Alt") -- Essence of the Eternal Flame
-    LootAlert:AddItem(spec3, "78478", "Two-Hand", "BIS") -- Gurthalak, Voice of the Deeps
-    LootAlert:AddItem(spec3, "78403", "Two-Hand", "Alt") -- Experimental Specimen Slicer
-    LootAlert:AddItem(spec3, "78445", "Two-Hand", "Alt") -- Ataraxis, Cudgel of the Warmaster
-    LootAlert:AddItem(spec3, "77191", "Two-Hand", "Alt") -- Gurthalak, Voice of the Deeps
-    LootAlert:AddItem(spec3, "73442", "Two-Hand", "Alt") -- Cataclysmic Gladiator's Greatsword
-    LootAlert:AddItem(spec3, "70723", "Two-Hand", "Alt") -- Sulfuras, the Extinguished Hand
-    LootAlert:AddItem(spec3, "77217", "Two-Hand", "Alt") -- Experimental Specimen Slicer
-    LootAlert:AddItem(spec3, "77224", "Two-Hand", "Alt") -- Ataraxis, Cudgel of the Warmaster
-    LootAlert:AddItem(spec3, "78487", "Two-Hand", "Alt") -- Gurthalak, Voice of the Deeps
-    LootAlert:AddItem(spec3, "73475", "Two-Hand", "Alt") -- Cataclysmic Gladiator's Greatsword
-    LootAlert:AddItem(spec3, "71352", "Two-Hand", "Alt") -- Sulfuras, the Extinguished Hand
-    LootAlert:AddItem(spec3, "71781", "Two-Hand", "Alt") -- Zoid's Firelit Greatsword
-    LootAlert:AddItem(spec3, "71445", "Two-Hand", "Alt") -- Skullstealer Greataxe
-    LootAlert:AddItem(spec3, "77081", "Ranged/Relic", "BIS") -- Gutripper Shard
-    LootAlert:AddItem(spec3, "71587", "Ranged/Relic", "Alt") -- Relic of the Elemental Lords
-    LootAlert:AddItem(spec3, "71147", "Ranged/Relic", "Alt") -- Relic of the Elemental Lords
-    LootAlert:AddItem(spec3, "70125", "Ranged/Relic", "Alt") -- Relic of Lo'Gosh
-    LootAlert:AddItem(spec3, "62243", "Ranged/Relic", "Alt") -- Notched Jawbone
+    LootAlert:AddItem(spec4, "78693", "Head", "BIS") -- Helmet of Radiant Glory
+    LootAlert:AddItem(spec4, "76876", "Head", "Alt") -- Helmet of Radiant Glory
+    LootAlert:AddItem(spec4, "71514", "Head", "Alt") -- Immolation Helmet
+    LootAlert:AddItem(spec4, "77155", "Head", "Alt") -- Visage of Petrification
+    LootAlert:AddItem(spec4, "78788", "Head", "Alt") -- Helmet of Radiant Glory
+    LootAlert:AddItem(spec4, "71430", "Head", "Alt") -- Greathelm of the Voracious Maw
+    LootAlert:AddItem(spec4, "65216", "Head", "Alt") -- Reinforced Sapphirium Helmet
+    LootAlert:AddItem(spec4, "78465", "Shoulder", "BIS") -- Backbreaker Spaulders
+    LootAlert:AddItem(spec4, "78742", "Shoulder", "Alt") -- Pauldrons of Radiant Glory
+    LootAlert:AddItem(spec4, "77236", "Shoulder", "Alt") -- Backbreaker Spaulders
+    LootAlert:AddItem(spec4, "76878", "Shoulder", "Alt") -- Pauldrons of Radiant Glory
+    LootAlert:AddItem(spec4, "71516", "Shoulder", "Alt") -- Immolation Pauldrons
+    LootAlert:AddItem(spec4, "78470", "Shoulder", "Alt") -- Backbreaker Spaulders
+    LootAlert:AddItem(spec4, "78837", "Shoulder", "Alt") -- Pauldrons of Radiant Glory
+    LootAlert:AddItem(spec4, "65218", "Shoulder", "Alt") -- Reinforced Sapphirium Pauldrons
+    LootAlert:AddItem(spec4, "71612", "Shoulder", "Alt") -- Pauldrons of Roaring Flame
+    LootAlert:AddItem(spec4, "77097", "Back", "BIS") -- Dreamcrusher Drape
+    LootAlert:AddItem(spec4, "71415", "Back", "Alt") -- Dreadfire Drape
+    LootAlert:AddItem(spec4, "69879", "Back", "Alt") -- Cloudburst Cloak
+    LootAlert:AddItem(spec4, "71227", "Back", "Alt") -- Bladed Flamewrath Cover
+    LootAlert:AddItem(spec4, "72838", "Back", "Alt") -- Cloak of the Royal Protector
+    LootAlert:AddItem(spec4, "69879", "Back", "Alt") -- Cloudburst Cloak
+    LootAlert:AddItem(spec4, "69879", "Back", "Alt") -- Cloudburst Cloak
+    LootAlert:AddItem(spec4, "78727", "Chest", "BIS") -- Battleplate of Radiant Glory
+    LootAlert:AddItem(spec4, "76874", "Chest", "Alt") -- Battleplate of Radiant Glory
+    LootAlert:AddItem(spec4, "77119", "Chest", "Alt") -- Bones of the Damned
+    LootAlert:AddItem(spec4, "71469", "Chest", "Alt") -- Breastplate of Shifting Visions
+    LootAlert:AddItem(spec4, "71512", "Chest", "Alt") -- Immolation Battleplate
+    LootAlert:AddItem(spec4, "78822", "Chest", "Alt") -- Battleplate of Radiant Glory
+    LootAlert:AddItem(spec4, "71063", "Chest", "Alt") -- Immolation Battleplate
+    LootAlert:AddItem(spec4, "65214", "Chest", "Alt") -- Reinforced Sapphirium Battleplate
+    LootAlert:AddItem(spec4, "78373", "Wrist", "BIS") -- Rockhide Bracers
+    LootAlert:AddItem(spec4, "77270", "Wrist", "Alt") -- Rockhide Bracers
+    LootAlert:AddItem(spec4, "71992", "Wrist", "Alt") -- Bracers of Destructive Strength
+    LootAlert:AddItem(spec4, "77317", "Wrist", "Alt") -- Heartcrusher Wristplates
+    LootAlert:AddItem(spec4, "71418", "Wrist", "Alt") -- Earthcrack Bracers
+    LootAlert:AddItem(spec4, "78377", "Wrist", "Alt") -- Rockhide Bracers
+    LootAlert:AddItem(spec4, "60228", "Wrist", "Alt") -- Bracers of the Mat'redor
+    LootAlert:AddItem(spec4, "71261", "Wrist", "Alt") -- Gigantiform Bracers
+    LootAlert:AddItem(spec4, "71004", "Wrist", "Alt") -- Earthcrack Bracers
+    LootAlert:AddItem(spec4, "78675", "Hands", "BIS") -- Gauntlets of Radiant Glory
+    LootAlert:AddItem(spec4, "76875", "Hands", "Alt") -- Gauntlets of Radiant Glory
+    LootAlert:AddItem(spec4, "71513", "Hands", "Alt") -- Immolation Gauntlets
+    LootAlert:AddItem(spec4, "77165", "Hands", "Alt") -- Grimfist Crushers
+    LootAlert:AddItem(spec4, "78770", "Hands", "Alt") -- Gauntlets of Radiant Glory
+    LootAlert:AddItem(spec4, "73570", "Hands", "Alt") -- Cataclysmic Gladiator's Scaled Gauntlets
+    LootAlert:AddItem(spec4, "71064", "Hands", "Alt") -- Immolation Gauntlets
+    LootAlert:AddItem(spec4, "71419", "Hands", "Alt") -- Fireskin Gauntlets
+    LootAlert:AddItem(spec4, "65215", "Hands", "Alt") -- Reinforced Sapphirium Gauntlets
+    LootAlert:AddItem(spec4, "70993", "Hands", "Alt") -- Fireskin Gauntlets
+    LootAlert:AddItem(spec4, "69936", "Hands", "Alt") -- Fists of Fury
+    LootAlert:AddItem(spec4, "78416", "Waist", "BIS") -- Runescriven Demon Collar
+    LootAlert:AddItem(spec4, "77185", "Waist", "Alt") -- Demonbone Waistguard
+    LootAlert:AddItem(spec4, "77250", "Waist", "Alt") -- Runescriven Demon Collar
+    LootAlert:AddItem(spec4, "78888", "Waist", "Alt") -- Waistguard of Bleeding Bone
+    LootAlert:AddItem(spec4, "71443", "Waist", "Alt") -- Uncrushable Belt of Fury
+    LootAlert:AddItem(spec4, "78424", "Waist", "Alt") -- Runescriven Demon Collar
+    LootAlert:AddItem(spec4, "71250", "Waist", "Alt") -- Cinch of the Flaming Ember
+    LootAlert:AddItem(spec4, "71021", "Waist", "Alt") -- Uncrushable Belt of Fury
+    LootAlert:AddItem(spec4, "72832", "Waist", "Alt") -- Girdle of the Queen's Champion
+    LootAlert:AddItem(spec4, "78712", "Legs", "BIS") -- Legplates of Radiant Glory
+    LootAlert:AddItem(spec4, "76877", "Legs", "Alt") -- Legplates of Radiant Glory
+    LootAlert:AddItem(spec4, "71983", "Legs", "Alt") -- Unstoppable Destroyer's Legplates
+    LootAlert:AddItem(spec4, "71515", "Legs", "Alt") -- Immolation Legplates
+    LootAlert:AddItem(spec4, "78807", "Legs", "Alt") -- Legplates of Radiant Glory
+    LootAlert:AddItem(spec4, "71431", "Legs", "Alt") -- Lavaworm Legplates
+    LootAlert:AddItem(spec4, "71066", "Legs", "Alt") -- Immolation Legplates
+    LootAlert:AddItem(spec4, "65217", "Legs", "Alt") -- Reinforced Sapphirium Legplates
+    LootAlert:AddItem(spec4, "78389", "Feet", "BIS") -- Treads of Crushed Flesh
+    LootAlert:AddItem(spec4, "77259", "Feet", "Alt") -- Treads of Crushed Flesh
+    LootAlert:AddItem(spec4, "77170", "Feet", "Alt") -- Kneebreaker Boots
+    LootAlert:AddItem(spec4, "71404", "Feet", "Alt") -- Arachnaflame Treads
+    LootAlert:AddItem(spec4, "78396", "Feet", "Alt") -- Treads of Crushed Flesh
+    LootAlert:AddItem(spec4, "72881", "Feet", "Alt") -- Treads of the Past
+    LootAlert:AddItem(spec4, "69946", "Feet", "Alt") -- Warboots of Mighty Lords
+    LootAlert:AddItem(spec4, "77997", "Trinket", "BIS") -- Eye of Unmaking
+    LootAlert:AddItem(spec4, "77992", "Trinket", "BIS") -- Creche of the Final Dragon
+    LootAlert:AddItem(spec4, "77200", "Trinket", "Alt") -- Eye of Unmaking
+    LootAlert:AddItem(spec4, "77116", "Trinket", "Alt") -- Rotting Skull
+    LootAlert:AddItem(spec4, "73496", "Trinket", "Alt") -- Cataclysmic Gladiator's Badge of Victory
+    LootAlert:AddItem(spec4, "69113", "Trinket", "Alt") -- Apparatus of Khaz'goroth
+    LootAlert:AddItem(spec4, "77205", "Trinket", "Alt") -- Creche of the Final Dragon
+    LootAlert:AddItem(spec4, "77977", "Trinket", "Alt") -- Eye of Unmaking
+    LootAlert:AddItem(spec4, "72899", "Trinket", "Alt") -- Varo'then's Brooch
+    LootAlert:AddItem(spec4, "65072", "Trinket", "Alt") -- Heart of Rage
+    LootAlert:AddItem(spec4, "73491", "Trinket", "Alt") -- Cataclysmic Gladiator's Insignia of Victory
+    LootAlert:AddItem(spec4, "77972", "Trinket", "Alt") -- Creche of the Final Dragon
+    LootAlert:AddItem(spec4, "78002", "Trinket", "Alt") -- Bone-Link Fetish
+    LootAlert:AddItem(spec4, "68972", "Trinket", "Alt") -- Apparatus of Khaz'goroth
+    LootAlert:AddItem(spec4, "68712", "Trinket", "Alt") -- Impatience of Youth
+    LootAlert:AddItem(spec4, "69002", "Trinket", "Alt") -- Essence of the Eternal Flame
+    LootAlert:AddItem(spec4, "78478", "Two-Hand", "BIS") -- Gurthalak, Voice of the Deeps
+    LootAlert:AddItem(spec4, "78403", "Two-Hand", "Alt") -- Experimental Specimen Slicer
+    LootAlert:AddItem(spec4, "78445", "Two-Hand", "Alt") -- Ataraxis, Cudgel of the Warmaster
+    LootAlert:AddItem(spec4, "77191", "Two-Hand", "Alt") -- Gurthalak, Voice of the Deeps
+    LootAlert:AddItem(spec4, "70723", "Two-Hand", "Alt") -- Sulfuras, the Extinguished Hand
+    LootAlert:AddItem(spec4, "73442", "Two-Hand", "Alt") -- Cataclysmic Gladiator's Greatsword
+    LootAlert:AddItem(spec4, "77217", "Two-Hand", "Alt") -- Experimental Specimen Slicer
+    LootAlert:AddItem(spec4, "77224", "Two-Hand", "Alt") -- Ataraxis, Cudgel of the Warmaster
+    LootAlert:AddItem(spec4, "78487", "Two-Hand", "Alt") -- Gurthalak, Voice of the Deeps
+    LootAlert:AddItem(spec4, "71352", "Two-Hand", "Alt") -- Sulfuras, the Extinguished Hand
+    LootAlert:AddItem(spec4, "73475", "Two-Hand", "Alt") -- Cataclysmic Gladiator's Greatsword
+    LootAlert:AddItem(spec4, "71781", "Two-Hand", "Alt") -- Zoid's Firelit Greatsword
+    LootAlert:AddItem(spec4, "71445", "Two-Hand", "Alt") -- Skullstealer Greataxe
+    LootAlert:AddItem(spec4, "77081", "Ranged/Relic", "BIS") -- Gutripper Shard
+    LootAlert:AddItem(spec4, "71587", "Ranged/Relic", "Alt") -- Relic of the Elemental Lords
+    LootAlert:AddItem(spec4, "71147", "Ranged/Relic", "Alt") -- Relic of the Elemental Lords
+    LootAlert:AddItem(spec4, "70125", "Ranged/Relic", "Alt") -- Relic of Lo'Gosh
+    LootAlert:AddItem(spec4, "62243", "Ranged/Relic", "Alt") -- Notched Jawbone
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);

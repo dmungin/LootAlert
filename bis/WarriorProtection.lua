@@ -4,7 +4,7 @@ local LootAlert = core.LootAlert;
 
 local function loadBis ()
     local spec0 = LootAlert:RegisterSpec("Warrior", "Protection", "0")
-    local spec3 = LootAlert:RegisterSpec("Warrior", "Protection", "3")
+    local spec4 = LootAlert:RegisterSpec("Warrior", "Protection", "4")
 
     -- PreRaid
     LootAlert:AddItem(spec0, "78784", "Head", "BIS") -- Colossal Dragonplate Faceguard
@@ -91,80 +91,80 @@ local function loadBis ()
     LootAlert:AddItem(spec0, "69637", "Ranged/Relic", "Alt") -- Gurubashi Destroyer
 
     -- Current Phase
-    LootAlert:AddItem(spec3, "78689", "Head", "BIS") -- Colossal Dragonplate Faceguard
-    LootAlert:AddItem(spec3, "76990", "Head", "Alt") -- Colossal Dragonplate Faceguard
-    LootAlert:AddItem(spec3, "71459", "Head", "BIS") -- Helm of Blazing Glory
-    LootAlert:AddItem(spec3, "71606", "Head", "Alt") -- Faceguard of the Molten Giant
-    LootAlert:AddItem(spec3, "78784", "Head", "Alt") -- Colossal Dragonplate Faceguard
-    LootAlert:AddItem(spec3, "77156", "Head", "Alt") -- Jaw of Repudiation
-    LootAlert:AddItem(spec3, "78734", "Shoulder", "BIS") -- Colossal Dragonplate Shoulderguards
-    LootAlert:AddItem(spec3, "78367", "Shoulder", "BIS") -- Brackenshell Shoulderplates
-    LootAlert:AddItem(spec3, "76992", "Shoulder", "Alt") -- Colossal Dragonplate Shoulderguards
-    LootAlert:AddItem(spec3, "77268", "Shoulder", "Alt") -- Brackenshell Shoulderplates
-    LootAlert:AddItem(spec3, "71612", "Shoulder", "BIS") -- Pauldrons of Roaring Flame
-    LootAlert:AddItem(spec3, "71608", "Shoulder", "Alt") -- Shoulderguards of the Molten Giant
-    LootAlert:AddItem(spec3, "70921", "Shoulder", "Alt") -- Pauldrons of Roaring Flame
-    LootAlert:AddItem(spec3, "78829", "Shoulder", "Alt") -- Colossal Dragonplate Shoulderguards
-    LootAlert:AddItem(spec3, "78378", "Shoulder", "Alt") -- Brackenshell Shoulderplates
-    LootAlert:AddItem(spec3, "77099", "Back", "BIS") -- Indefatigable Greatcloak
-    LootAlert:AddItem(spec3, "71415", "Back", "BIS") -- Dreadfire Drape
-    LootAlert:AddItem(spec3, "72854", "Back", "Alt") -- Iceward Cloak
-    LootAlert:AddItem(spec3, "78658", "Chest", "BIS") -- Colossal Dragonplate Chestguard
-    LootAlert:AddItem(spec3, "76988", "Chest", "Alt") -- Colossal Dragonplate Chestguard
-    LootAlert:AddItem(spec3, "77120", "Chest", "Alt") -- Chestplate of the Unshakable Titan
-    LootAlert:AddItem(spec3, "71405", "Chest", "BIS") -- Carapace of Imbibed Flame
-    LootAlert:AddItem(spec3, "71604", "Chest", "Alt") -- Chestguard of the Molten Giant
-    LootAlert:AddItem(spec3, "78753", "Chest", "Alt") -- Colossal Dragonplate Chestguard
-    LootAlert:AddItem(spec3, "78390", "Wrist", "BIS") -- Graveheart Bracers
-    LootAlert:AddItem(spec3, "71993", "Wrist", "Alt") -- Titanguard Wristplates
-    LootAlert:AddItem(spec3, "77258", "Wrist", "Alt") -- Graveheart Bracers
-    LootAlert:AddItem(spec3, "71470", "Wrist", "BIS") -- Bracers of the Fiery Path
-    LootAlert:AddItem(spec3, "77318", "Wrist", "Alt") -- Bracers of Unrelenting Excellence
-    LootAlert:AddItem(spec3, "78397", "Wrist", "Alt") -- Graveheart Bracers
-    LootAlert:AddItem(spec3, "78669", "Hands", "BIS") -- Colossal Dragonplate Handguards
-    LootAlert:AddItem(spec3, "76989", "Hands", "Alt") -- Colossal Dragonplate Handguards
-    LootAlert:AddItem(spec3, "71605", "Hands", "BIS") -- Handguards of the Molten Giant
-    LootAlert:AddItem(spec3, "77166", "Hands", "Alt") -- Gauntlets of Feathery Blows
-    LootAlert:AddItem(spec3, "78764", "Hands", "Alt") -- Colossal Dragonplate Handguards
-    LootAlert:AddItem(spec3, "78452", "Waist", "BIS") -- Goriona's Collar
-    LootAlert:AddItem(spec3, "77186", "Waist", "Alt") -- Forgesmelter Waistplate
-    LootAlert:AddItem(spec3, "77239", "Waist", "Alt") -- Goriona's Collar
-    LootAlert:AddItem(spec3, "71443", "Waist", "BIS") -- Uncrushable Belt of Fury
-    LootAlert:AddItem(spec3, "78460", "Waist", "Alt") -- Goriona's Collar
-    LootAlert:AddItem(spec3, "78705", "Legs", "BIS") -- Colossal Dragonplate Legguards
-    LootAlert:AddItem(spec3, "71984", "Legs", "Alt") -- Foundations of Courage
-    LootAlert:AddItem(spec3, "76991", "Legs", "Alt") -- Colossal Dragonplate Legguards
-    LootAlert:AddItem(spec3, "71607", "Legs", "BIS") -- Legguards of the Molten Giant
-    LootAlert:AddItem(spec3, "78800", "Legs", "Alt") -- Colossal Dragonplate Legguards
-    LootAlert:AddItem(spec3, "78431", "Feet", "BIS") -- Stillheart Warboots
-    LootAlert:AddItem(spec3, "77246", "Feet", "Alt") -- Stillheart Warboots
-    LootAlert:AddItem(spec3, "77171", "Feet", "Alt") -- Bladeshatter Treads
-    LootAlert:AddItem(spec3, "78439", "Feet", "Alt") -- Stillheart Warboots
-    LootAlert:AddItem(spec3, "71420", "Feet", "BIS") -- Cracked Obsidian Stompers
-    LootAlert:AddItem(spec3, "77092", "Neck", "BIS") -- Guardspike Choker
-    LootAlert:AddItem(spec3, "71563", "Neck", "BIS") -- Firebound Gorget
-    LootAlert:AddItem(spec3, "60227", "Neck", "Alt") -- Caelestrasz's Will
-    LootAlert:AddItem(spec3, "76162", "Neck", "Alt") -- Twilight Amulet
-    LootAlert:AddItem(spec3, "78493", "Ring", "BIS") -- Hardheart Ring
-    LootAlert:AddItem(spec3, "78432", "Ring", "BIS") -- Curled Twilight Claw
-    LootAlert:AddItem(spec3, "77232", "Ring", "Alt") -- Hardheart Ring
-    LootAlert:AddItem(spec3, "77112", "Ring", "Alt") -- Signet of the Resolute
-    LootAlert:AddItem(spec3, "78498", "Ring", "Alt") -- Hardheart Ring
-    LootAlert:AddItem(spec3, "78013", "Ring", "Alt") -- Curled Twilight Claw
-    LootAlert:AddItem(spec3, "77110", "Ring", "Alt") -- Ring of Torn Flesh
-    LootAlert:AddItem(spec3, "70934", "Ring", "BIS") -- Adamantine Signet of the Avengers
-    LootAlert:AddItem(spec3, "78479", "Main Hand", "BIS") -- Souldrinker
-    LootAlert:AddItem(spec3, "77193", "Main Hand", "Alt") -- Souldrinker
-    LootAlert:AddItem(spec3, "78488", "Main Hand", "Alt") -- Souldrinker
-    LootAlert:AddItem(spec3, "78371", "Main Hand", "Alt") -- Hand of Morchok
-    LootAlert:AddItem(spec3, "71406", "Main Hand", "BIS") -- Mandible of Beth'tilac
-    LootAlert:AddItem(spec3, "78448", "Off Hand", "BIS") -- Blackhorn's Mighty Bulwark
-    LootAlert:AddItem(spec3, "77226", "Off Hand", "Alt") -- Blackhorn's Mighty Bulwark
-    LootAlert:AddItem(spec3, "71460", "Off Hand", "BIS") -- Shard of Torment
-    LootAlert:AddItem(spec3, "78456", "Off Hand", "Alt") -- Blackhorn's Mighty Bulwark
-    LootAlert:AddItem(spec3, "77085", "Ranged/Relic", "BIS") -- Unexpected Backup
-    LootAlert:AddItem(spec3, "71592", "Ranged/Relic", "Alt") -- Deflecting Star
-    LootAlert:AddItem(spec3, "72873", "Ranged/Relic", "Alt") -- Bronze Blaster
+    LootAlert:AddItem(spec4, "78689", "Head", "BIS") -- Colossal Dragonplate Faceguard
+    LootAlert:AddItem(spec4, "76990", "Head", "Alt") -- Colossal Dragonplate Faceguard
+    LootAlert:AddItem(spec4, "71459", "Head", "BIS") -- Helm of Blazing Glory
+    LootAlert:AddItem(spec4, "71606", "Head", "Alt") -- Faceguard of the Molten Giant
+    LootAlert:AddItem(spec4, "78784", "Head", "Alt") -- Colossal Dragonplate Faceguard
+    LootAlert:AddItem(spec4, "77156", "Head", "Alt") -- Jaw of Repudiation
+    LootAlert:AddItem(spec4, "78734", "Shoulder", "BIS") -- Colossal Dragonplate Shoulderguards
+    LootAlert:AddItem(spec4, "78367", "Shoulder", "BIS") -- Brackenshell Shoulderplates
+    LootAlert:AddItem(spec4, "76992", "Shoulder", "Alt") -- Colossal Dragonplate Shoulderguards
+    LootAlert:AddItem(spec4, "77268", "Shoulder", "Alt") -- Brackenshell Shoulderplates
+    LootAlert:AddItem(spec4, "71612", "Shoulder", "BIS") -- Pauldrons of Roaring Flame
+    LootAlert:AddItem(spec4, "71608", "Shoulder", "Alt") -- Shoulderguards of the Molten Giant
+    LootAlert:AddItem(spec4, "70921", "Shoulder", "Alt") -- Pauldrons of Roaring Flame
+    LootAlert:AddItem(spec4, "78829", "Shoulder", "Alt") -- Colossal Dragonplate Shoulderguards
+    LootAlert:AddItem(spec4, "78378", "Shoulder", "Alt") -- Brackenshell Shoulderplates
+    LootAlert:AddItem(spec4, "77099", "Back", "BIS") -- Indefatigable Greatcloak
+    LootAlert:AddItem(spec4, "71415", "Back", "BIS") -- Dreadfire Drape
+    LootAlert:AddItem(spec4, "72854", "Back", "Alt") -- Iceward Cloak
+    LootAlert:AddItem(spec4, "78658", "Chest", "BIS") -- Colossal Dragonplate Chestguard
+    LootAlert:AddItem(spec4, "76988", "Chest", "Alt") -- Colossal Dragonplate Chestguard
+    LootAlert:AddItem(spec4, "77120", "Chest", "Alt") -- Chestplate of the Unshakable Titan
+    LootAlert:AddItem(spec4, "71405", "Chest", "BIS") -- Carapace of Imbibed Flame
+    LootAlert:AddItem(spec4, "71604", "Chest", "Alt") -- Chestguard of the Molten Giant
+    LootAlert:AddItem(spec4, "78753", "Chest", "Alt") -- Colossal Dragonplate Chestguard
+    LootAlert:AddItem(spec4, "78390", "Wrist", "BIS") -- Graveheart Bracers
+    LootAlert:AddItem(spec4, "71993", "Wrist", "Alt") -- Titanguard Wristplates
+    LootAlert:AddItem(spec4, "77258", "Wrist", "Alt") -- Graveheart Bracers
+    LootAlert:AddItem(spec4, "71470", "Wrist", "BIS") -- Bracers of the Fiery Path
+    LootAlert:AddItem(spec4, "77318", "Wrist", "Alt") -- Bracers of Unrelenting Excellence
+    LootAlert:AddItem(spec4, "78397", "Wrist", "Alt") -- Graveheart Bracers
+    LootAlert:AddItem(spec4, "78669", "Hands", "BIS") -- Colossal Dragonplate Handguards
+    LootAlert:AddItem(spec4, "76989", "Hands", "Alt") -- Colossal Dragonplate Handguards
+    LootAlert:AddItem(spec4, "71605", "Hands", "BIS") -- Handguards of the Molten Giant
+    LootAlert:AddItem(spec4, "77166", "Hands", "Alt") -- Gauntlets of Feathery Blows
+    LootAlert:AddItem(spec4, "78764", "Hands", "Alt") -- Colossal Dragonplate Handguards
+    LootAlert:AddItem(spec4, "78452", "Waist", "BIS") -- Goriona's Collar
+    LootAlert:AddItem(spec4, "77186", "Waist", "Alt") -- Forgesmelter Waistplate
+    LootAlert:AddItem(spec4, "77239", "Waist", "Alt") -- Goriona's Collar
+    LootAlert:AddItem(spec4, "71443", "Waist", "BIS") -- Uncrushable Belt of Fury
+    LootAlert:AddItem(spec4, "78460", "Waist", "Alt") -- Goriona's Collar
+    LootAlert:AddItem(spec4, "78705", "Legs", "BIS") -- Colossal Dragonplate Legguards
+    LootAlert:AddItem(spec4, "71984", "Legs", "Alt") -- Foundations of Courage
+    LootAlert:AddItem(spec4, "76991", "Legs", "Alt") -- Colossal Dragonplate Legguards
+    LootAlert:AddItem(spec4, "71607", "Legs", "BIS") -- Legguards of the Molten Giant
+    LootAlert:AddItem(spec4, "78800", "Legs", "Alt") -- Colossal Dragonplate Legguards
+    LootAlert:AddItem(spec4, "78431", "Feet", "BIS") -- Stillheart Warboots
+    LootAlert:AddItem(spec4, "77246", "Feet", "Alt") -- Stillheart Warboots
+    LootAlert:AddItem(spec4, "77171", "Feet", "Alt") -- Bladeshatter Treads
+    LootAlert:AddItem(spec4, "78439", "Feet", "Alt") -- Stillheart Warboots
+    LootAlert:AddItem(spec4, "71420", "Feet", "BIS") -- Cracked Obsidian Stompers
+    LootAlert:AddItem(spec4, "77092", "Neck", "BIS") -- Guardspike Choker
+    LootAlert:AddItem(spec4, "71563", "Neck", "BIS") -- Firebound Gorget
+    LootAlert:AddItem(spec4, "60227", "Neck", "Alt") -- Caelestrasz's Will
+    LootAlert:AddItem(spec4, "76162", "Neck", "Alt") -- Twilight Amulet
+    LootAlert:AddItem(spec4, "78493", "Ring", "BIS") -- Hardheart Ring
+    LootAlert:AddItem(spec4, "78432", "Ring", "BIS") -- Curled Twilight Claw
+    LootAlert:AddItem(spec4, "77232", "Ring", "Alt") -- Hardheart Ring
+    LootAlert:AddItem(spec4, "77112", "Ring", "Alt") -- Signet of the Resolute
+    LootAlert:AddItem(spec4, "78498", "Ring", "Alt") -- Hardheart Ring
+    LootAlert:AddItem(spec4, "78013", "Ring", "Alt") -- Curled Twilight Claw
+    LootAlert:AddItem(spec4, "77110", "Ring", "Alt") -- Ring of Torn Flesh
+    LootAlert:AddItem(spec4, "70934", "Ring", "BIS") -- Adamantine Signet of the Avengers
+    LootAlert:AddItem(spec4, "78479", "Main Hand", "BIS") -- Souldrinker
+    LootAlert:AddItem(spec4, "77193", "Main Hand", "Alt") -- Souldrinker
+    LootAlert:AddItem(spec4, "78488", "Main Hand", "Alt") -- Souldrinker
+    LootAlert:AddItem(spec4, "78371", "Main Hand", "Alt") -- Hand of Morchok
+    LootAlert:AddItem(spec4, "71406", "Main Hand", "BIS") -- Mandible of Beth'tilac
+    LootAlert:AddItem(spec4, "78448", "Off Hand", "BIS") -- Blackhorn's Mighty Bulwark
+    LootAlert:AddItem(spec4, "77226", "Off Hand", "Alt") -- Blackhorn's Mighty Bulwark
+    LootAlert:AddItem(spec4, "71460", "Off Hand", "BIS") -- Shard of Torment
+    LootAlert:AddItem(spec4, "78456", "Off Hand", "Alt") -- Blackhorn's Mighty Bulwark
+    LootAlert:AddItem(spec4, "77085", "Ranged/Relic", "BIS") -- Unexpected Backup
+    LootAlert:AddItem(spec4, "71592", "Ranged/Relic", "Alt") -- Deflecting Star
+    LootAlert:AddItem(spec4, "72873", "Ranged/Relic", "Alt") -- Bronze Blaster
 end
 
 table.insert(LootAlert.state.bisListLoadFunctions, loadBis);
