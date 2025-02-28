@@ -81,3 +81,16 @@ function LootAlert:START_LOOT_ROLL(eventName, ...)
         end);
     end
 end
+
+-- FOR TESTING ONLY
+function LootAlert:CHAT_MSG_CHANNEL(eventName, ...)
+    local msg, _, _, channel, playerName2 = ...;
+    local itemIdText = msg:match("item:(%d+):");
+    if itemIdText and channel == '5. lootalert' then
+        local itemId = tonumber(itemIdText);
+        local isWantedLoot = LootAlert:IsWantedBisLoot(itemId);
+        if isWantedLoot then 
+            LootAlert:RenderRollOptionsModal(itemId);
+        end
+    end
+end
