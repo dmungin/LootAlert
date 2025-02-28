@@ -1,5 +1,6 @@
 local _, core = ...;
 local LootAlert = core.LootAlert;
+local debug = false;
 
 function LootAlert:Dump(o)
     if type(o) == 'table' then
@@ -33,14 +34,18 @@ local function stringify(object)
 end
 
 function LootAlert:Debug(startString, object)
-    ChatFrame4:AddMessage("LootAlert:"..startString..stringify(object));
+    if debug then
+        ChatFrame4:AddMessage("LootAlert:"..startString..stringify(object));
+    end
 end
 
 function LootAlert:Error(startString, object)
-    if object == nil then
-        print("LootAlert ERROR:"..startString);
-    else
-        print("LootAlert ERROR:"..startString..stringify(object));
+    if debug then
+        if object == nil then
+            print("LootAlert ERROR:"..startString);
+        else
+            print("LootAlert ERROR:"..startString..stringify(object));
+        end
     end
 end
 

@@ -5,7 +5,7 @@ function LootAlert:BuildConstants()
     local constants = {};
     constants.PHASES = {
         PRERAID = 0,
-        PHASE_3 = 3,
+        PHASE_4 = 4,
     };
 
     constants.SLOT_MAP = {

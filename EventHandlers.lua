@@ -23,7 +23,7 @@ function LootAlert:HandleNewLoot(item)
         table.insert(LootAlert.db.char.lootHistory, 1, item.Id);
         LootAlert.db.char.lootHistoryLength = LootAlert.db.char.lootHistoryLength + 1;
 
-        local isWantedLoot = LootAlert.db.char.wantedLootBisList[item.Id] ~= nil;
+        local isWantedLoot = LootAlert:IsWantedBisLoot(item.Id);
 
         if LootAlert.state.tabFrame and LootAlert.db.char.activeTab == "lootHistory" then
             LootAlert:RenderLootHistory(LootAlert.state.tabFrame);
@@ -59,7 +59,7 @@ function LootAlert:CHAT_MSG_RAID_WARNING(eventName, ...)
     local showLooterMessages = LootAlert:UseLooterMessages(playerName2);
     if itemIdText and showLooterMessages then
         local itemId = tonumber(itemIdText);
-        local isWantedLoot = LootAlert.db.char.wantedLootBisList[itemId];
+        local isWantedLoot = LootAlert:IsWantedBisLoot(itemId);
         if isWantedLoot then
             LootAlert:RenderRollOptionsModal(itemId);
         end
@@ -79,5 +79,18 @@ function LootAlert:START_LOOT_ROLL(eventName, ...)
                 LootAlert:HandleNewLoot(item);
             end
         end);
+    end
+end
+
+-- FOR TESTING ONLY
+function LootAlert:CHAT_MSG_CHANNEL(eventName, ...)
+    local msg, _, _, channel, playerName2 = ...;
+    local itemIdText = msg:match("item:(%d+):");
+    if itemIdText and channel == '5. lootalert' then
+        local itemId = tonumber(itemIdText);
+        local isWantedLoot = LootAlert:IsWantedBisLoot(itemId);
+        if isWantedLoot then 
+            LootAlert:RenderRollOptionsModal(itemId);
+        end
     end
 end

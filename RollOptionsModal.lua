@@ -45,7 +45,7 @@ function LootAlert:RenderRollOptionsModal(itemId)
     bisCheckbox:SetType("checkbox");
 
     local item = LootAlert:GetItemInfoInstant(itemId);
-    if item.Slot == "Unknown" then
+    if LootAlert.db.global.tierMappings[itemId] == nil and item.Slot == "Unknown" then
         linkButton:SetDisabled(true);
     end
     linkButton:SetCallback("OnClick", OnLinkButtonClick(item, rollOptionsFrame, bisCheckbox));
@@ -88,7 +88,12 @@ end
 
 function OnLinkButtonClick (item, rollOptionsFrame, bisCheckbox)
     return function ()
-        local slotName = select(9, GetItemInfo(item.Id));
+        local slotName = "Unknown";
+        if LootAlert.db.global.tierMappings[item.Id] ~= nil then
+            slotName = LootAlert.db.global.tierMappings[item.Id].Slot
+        else
+            slotName = select(9, GetItemInfo(item.Id));
+        end
         local slotIds = LootAlert.constants.SLOT_MAP[slotName].ids;
         local itemLinks = "";
 

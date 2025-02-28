@@ -49,6 +49,7 @@ function LootAlert:OnInitialize()
     -- Should this be in a temporal state instead of DB?
     LootAlert.db.global.allItemsCached = false;
     LootAlert.db.global.itemSources = LootAlert:PopulateItemSources();
+    LootAlert.db.global.tierMappings = LootAlert:PopulateTierMappings();
 	LootAlert:PreCacheItems();
     LootAlert:PopulateBisLists();
 
@@ -56,6 +57,7 @@ function LootAlert:OnInitialize()
 	self:RegisterChatCommand("lootalert", "SlashCommand");
     LootAlert:RegisterEvent("CHAT_MSG_LOOT");
     LootAlert:RegisterEvent("CHAT_MSG_RAID_WARNING");
+    LootAlert:RegisterEvent("CHAT_MSG_CHANNEL");
     LootAlert:RegisterEvent("START_LOOT_ROLL");
     LootAlert:RenderLootAlert();
 end;
@@ -285,7 +287,7 @@ function LootAlert:RenderLootHistory (container)
 end
 
 function LootAlert:HighlightWantedLoot(item, labelWidget)
-    if LootAlert.db.char.wantedLootBisList[item.Id] then
+    if LootAlert:IsWantedBisLoot(item.Id) then
         local hightlightTexture = labelWidget.frame:CreateTexture("wantedItemTex["..item.Id.."]", "BACKGROUND", nil, -1);
         hightlightTexture:SetTexture("Interface\\QuestFrame\\UI-QuestLogTitleHighlight");
         hightlightTexture:SetAllPoints(labelWidget.frame);
