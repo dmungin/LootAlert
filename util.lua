@@ -511,3 +511,18 @@ function LootAlert:GetFrameMoveMouseUp(frameName)
         LootAlert.db.char[frameName].top = newTop;
     end
 end
+
+function LootAlert:IsWantedBisLoot(itemId)
+    if LootAlert.db.global.tierMappings[itemId] ~= nil then
+        local tierPieceWanted = false;
+        for _, tierPieceId in ipairs(LootAlert.db.global.tierMappings[itemId].Items) do
+            if LootAlert.db.char.wantedLootBisList[tierPieceId] then
+                tierPieceWanted = true;
+            end
+        end
+
+        return tierPieceWanted;
+    end
+
+    return LootAlert.db.char.wantedLootBisList[itemId] == true;
+end
