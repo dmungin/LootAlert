@@ -35,7 +35,7 @@ end
 
 function LootAlert:Debug(startString, object)
     if debug then
-        ChatFrame4:AddMessage("LootAlert:"..startString..stringify(object));
+        LootAlert:Print("LootAlert:"..startString..stringify(object));
     end
 end
 
