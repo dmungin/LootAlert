@@ -2,7 +2,7 @@ local _, core = ...;
 local LootAlert = core.LootAlert;
 
 local FORCE_UPDATE_CACHE = false;
-local RECACHE_DATE = time({year=2025, month=02, day=28, hour=12});
+local RECACHE_DATE = time({year=2025, month=08, day=16, hour=12});
 -- TODO:: This is not finishing before the UI tries to render...need to add a callback somehow?
 function LootAlert:PreCacheItems()
     if LootAlert.db.global.allItemsCached then return LootAlert.db.global.allItemsCached; end
@@ -11,15 +11,8 @@ function LootAlert:PreCacheItems()
     -- TODO:: Temp flag to force cache update;
     if (FORCE_UPDATE_CACHE or not LootAlert.db.global.lastCacheDate or LootAlert.db.global.lastCacheDate < RECACHE_DATE) then
         LootAlert.db.global.itemCache = {};
-        LootAlert.db.char.wantedLootBisList = {};
         LootAlert.db.char.activeTab = 'lootHistory';
         LootAlert.db.global.lastCacheDate = time();
-
-        for itemId, _ in pairs(LootAlert.db.global.itemSources) do
-            if itemId and itemId ~= 0 then
-                LootAlert:CacheItem(itemId);
-            end
-        end
 
         for itemId, _ in pairs(LootAlert.db.global.tierMappings) do
             if itemId and itemId ~= 0 then
@@ -100,10 +93,6 @@ function LootAlert:GetItemInfo(itemId, callback)
                 Class = classId,
                 Slot = slot
             };
-
-            if name and LootAlert.db.global.itemSources[itemId] == nil then
-                LootAlert:Error("Item Missing from Sources: ", itemId);
-            end
 
             LootAlert.db.global.itemCache[itemId] = newItem;
 

@@ -47,7 +47,6 @@ function LootAlert:OnInitialize()
     icon:Register("LootAlert", lootAlertDataBroker, LootAlert.db.profile.minimap);
     -- Should this be in a temporal state instead of DB?
     LootAlert.db.global.allItemsCached = false;
-    LootAlert.db.global.itemSources = LootAlert:PopulateItemSources();
     LootAlert.db.global.tierMappings = LootAlert:PopulateTierMappings();
 	LootAlert:PreCacheItems();
 

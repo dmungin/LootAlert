@@ -49,7 +49,6 @@ function LootAlert:getDefaultDb()
             allItemsCached = false,
             lastCacheDate = nil,
             itemCache = {},
-            itemSources = {},
             tierMappings = {}
         },
     };
