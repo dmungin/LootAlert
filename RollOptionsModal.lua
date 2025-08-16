@@ -92,14 +92,14 @@ function OnLinkButtonClick (item, rollOptionsFrame, bisCheckbox)
         if LootAlert.db.global.tierMappings[item.Id] ~= nil then
             slotName = LootAlert.db.global.tierMappings[item.Id].Slot
         else
-            slotName = select(9, GetItemInfo(item.Id));
+            slotName = select(9, C_Item.GetItemInfo(item.Id));
         end
         local slotIds = LootAlert.constants.SLOT_MAP[slotName].ids;
         local itemLinks = "";
 
         for _,slotId in ipairs(slotIds) do
             local equippedItemId = GetInventoryItemID("player", slotId);
-            local _, itemLink = GetItemInfo(equippedItemId);
+            local _, itemLink = C_Item.GetItemInfo(equippedItemId);
             itemLinks = itemLinks .. itemLink;
         end
         if bisCheckbox:GetValue() == true then
