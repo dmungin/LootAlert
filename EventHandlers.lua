@@ -52,7 +52,7 @@ function LootAlert:CHAT_MSG_RAID_WARNING(eventName, ...)
     if itemIdText and showLooterMessages then
         local itemId = tonumber(itemIdText);
         LootAlert:GetItemInfo(itemId, function (item)
-            if item.Id ~= nil then
+            if item.Id ~= nil and LootAlert:IsItemForLootSpec(item) then
                 LootAlert:RenderRollOptionsModal(itemId);
             end
         end);
