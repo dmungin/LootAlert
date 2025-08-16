@@ -182,5 +182,242 @@ function LootAlert:BuildConstants()
         FURY = "Fury"
     };
 
+    constants.CLASS_ITEM_PREFERENCES = {
+        -- Death Knight
+        [constants.CLASSES.DEATH_KNIGHT] = {
+            armor = {"Plate"},
+            weapons = {"Axe", "Mace", "Sword", "Polearm"},
+            specs = {
+                [constants.SPECS.BLOOD] = {
+                    primary_stats = {"Strength", "Stamina"},
+                    secondary_stats = {"Dodge", "Parry", "Block", "Expertise", "Hit"},
+                    role = "Tank"
+                },
+                [constants.SPECS.FROST] = {
+                    primary_stats = {"Strength"},
+                    secondary_stats = {"Critical Strike", "Haste", "Hit", "Expertise"},
+                    role = "DPS"
+                },
+                [constants.SPECS.UNHOLY] = {
+                    primary_stats = {"Strength"},
+                    secondary_stats = {"Critical Strike", "Haste", "Hit", "Expertise"},
+                    role = "DPS"
+                }
+            }
+        },
+        
+        -- Druid
+        [constants.CLASSES.DRUID] = {
+            armor = {"Leather", "Cloth"},
+            weapons = {"Mace", "Dagger", "Fist Weapon", "Staff", "Polearm"},
+            specs = {
+                [constants.SPECS.BALANCE] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Critical Strike", "Haste", "Hit", "Spirit"},
+                    role = "Caster DPS"
+                },
+                [constants.SPECS.BEAR] = {
+                    primary_stats = {"Stamina", "Agility"},
+                    secondary_stats = {"Dodge", "Expertise", "Hit", "Critical Strike"},
+                    role = "Tank"
+                },
+                [constants.SPECS.CAT] = {
+                    primary_stats = {"Agility"},
+                    secondary_stats = {"Critical Strike", "Hit", "Expertise", "Haste"},
+                    role = "Melee DPS"
+                },
+                [constants.SPECS.RESTORATION] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Spirit", "Haste", "Critical Strike", "Mastery"},
+                    role = "Healer"
+                }
+            }
+        },
+        
+        -- Hunter
+        [constants.CLASSES.HUNTER] = {
+            armor = {"Mail", "Leather", "Cloth"},
+            weapons = {"Axe", "Sword", "Polearm", "Dagger", "Fist Weapon", "Staff", "Bow", "Crossbow", "Gun"},
+            specs = {
+                [constants.SPECS.BEAST_MASTERY] = {
+                    primary_stats = {"Agility"},
+                    secondary_stats = {"Critical Strike", "Hit", "Haste", "Mastery"},
+                    role = "Ranged DPS"
+                },
+                [constants.SPECS.MARKSMANSHIP] = {
+                    primary_stats = {"Agility"},
+                    secondary_stats = {"Critical Strike", "Hit", "Haste", "Mastery"},
+                    role = "Ranged DPS"
+                },
+                [constants.SPECS.SURVIVAL] = {
+                    primary_stats = {"Agility"},
+                    secondary_stats = {"Critical Strike", "Hit", "Haste", "Mastery"},
+                    role = "Ranged DPS"
+                }
+            }
+        },
+        
+        -- Mage
+        [constants.CLASSES.MAGE] = {
+            armor = {"Cloth"},
+            weapons = {"Sword", "Dagger", "Staff", "Wand"},
+            specs = {
+                [constants.SPECS.ARCANE] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Critical Strike", "Haste", "Hit", "Mastery"},
+                    role = "Caster DPS"
+                },
+                [constants.SPECS.FIRE] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Critical Strike", "Haste", "Hit", "Mastery"},
+                    role = "Caster DPS"
+                },
+                [constants.SPECS.FROST] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Critical Strike", "Haste", "Hit", "Mastery"},
+                    role = "Caster DPS"
+                }
+            }
+        },
+        
+        -- Paladin
+        [constants.CLASSES.PALADIN] = {
+            armor = {"Plate"},
+            weapons = {"Axe", "Mace", "Sword", "Polearm"},
+            specs = {
+                [constants.SPECS.HOLY] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Spirit", "Haste", "Critical Strike", "Mastery"},
+                    role = "Healer"
+                },
+                [constants.SPECS.PROTECTION] = {
+                    primary_stats = {"Strength", "Stamina"},
+                    secondary_stats = {"Dodge", "Parry", "Block", "Expertise", "Hit"},
+                    role = "Tank"
+                },
+                [constants.SPECS.RETRIBUTION] = {
+                    primary_stats = {"Strength"},
+                    secondary_stats = {"Critical Strike", "Hit", "Expertise", "Haste"},
+                    role = "Melee DPS"
+                }
+            }
+        },
+        
+        -- Priest
+        [constants.CLASSES.PRIEST] = {
+            armor = {"Cloth"},
+            weapons = {"Mace", "Dagger", "Staff", "Wand"},
+            specs = {
+                [constants.SPECS.DISCIPLINE] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Spirit", "Haste", "Critical Strike", "Mastery"},
+                    role = "Healer"
+                },
+                [constants.SPECS.HOLY] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Spirit", "Haste", "Critical Strike", "Mastery"},
+                    role = "Healer"
+                },
+                [constants.SPECS.SHADOW] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Critical Strike", "Haste", "Hit", "Spirit"},
+                    role = "Caster DPS"
+                }
+            }
+        },
+        
+        -- Rogue
+        [constants.CLASSES.ROGUE] = {
+            armor = {"Leather", "Cloth"},
+            weapons = {"Axe", "Mace", "Sword", "Dagger", "Fist Weapon", "Bow", "Crossbow", "Gun", "Thrown"},
+            specs = {
+                [constants.SPECS.ASSASSINATION] = {
+                    primary_stats = {"Agility"},
+                    secondary_stats = {"Critical Strike", "Hit", "Expertise", "Haste"},
+                    role = "Melee DPS"
+                },
+                [constants.SPECS.COMBAT] = {
+                    primary_stats = {"Agility"},
+                    secondary_stats = {"Critical Strike", "Hit", "Expertise", "Haste"},
+                    role = "Melee DPS"
+                },
+                [constants.SPECS.SUBTLETY] = {
+                    primary_stats = {"Agility"},
+                    secondary_stats = {"Critical Strike", "Hit", "Expertise", "Haste"},
+                    role = "Melee DPS"
+                }
+            }
+        },
+        
+        -- Shaman
+        [constants.CLASSES.SHAMAN] = {
+            armor = {"Mail", "Leather", "Cloth"},
+            weapons = {"Axe", "Mace", "Dagger", "Fist Weapon", "Staff"},
+            specs = {
+                [constants.SPECS.ELEMENTAL] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Critical Strike", "Haste", "Hit", "Spirit"},
+                    role = "Caster DPS"
+                },
+                [constants.SPECS.ENHANCEMENT] = {
+                    primary_stats = {"Agility"},
+                    secondary_stats = {"Critical Strike", "Hit", "Expertise", "Haste"},
+                    role = "Melee DPS"
+                },
+                [constants.SPECS.RESTORATION] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Spirit", "Haste", "Critical Strike", "Mastery"},
+                    role = "Healer"
+                }
+            }
+        },
+        
+        -- Warlock
+        [constants.CLASSES.WARLOCK] = {
+            armor = {"Cloth"},
+            weapons = {"Sword", "Dagger", "Staff", "Wand"},
+            specs = {
+                [constants.SPECS.AFFLICTION] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Critical Strike", "Haste", "Hit", "Mastery"},
+                    role = "Caster DPS"
+                },
+                [constants.SPECS.DEMONOLOGY] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Critical Strike", "Haste", "Hit", "Mastery"},
+                    role = "Caster DPS"
+                },
+                [constants.SPECS.DESTRUCTION] = {
+                    primary_stats = {"Intellect"},
+                    secondary_stats = {"Critical Strike", "Haste", "Hit", "Mastery"},
+                    role = "Caster DPS"
+                }
+            }
+        },
+        
+        -- Warrior
+        [constants.CLASSES.WARRIOR] = {
+            armor = {"Plate"},
+            weapons = {"Axe", "Mace", "Sword", "Polearm", "Dagger", "Fist Weapon", "Staff", "Bow", "Crossbow", "Gun", "Thrown"},
+            specs = {
+                [constants.SPECS.ARMS] = {
+                    primary_stats = {"Strength"},
+                    secondary_stats = {"Critical Strike", "Hit", "Expertise", "Haste"},
+                    role = "Melee DPS"
+                },
+                [constants.SPECS.FURY] = {
+                    primary_stats = {"Strength"},
+                    secondary_stats = {"Critical Strike", "Hit", "Expertise", "Haste"},
+                    role = "Melee DPS"
+                },
+                [constants.SPECS.PROTECTION] = {
+                    primary_stats = {"Strength", "Stamina"},
+                    secondary_stats = {"Dodge", "Parry", "Block", "Expertise", "Hit"},
+                    role = "Tank"
+                }
+            }
+        }
+    };
+
     return constants;
 end

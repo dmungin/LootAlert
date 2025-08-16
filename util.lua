@@ -11,7 +11,7 @@ function LootAlert:getDefaultDb()
         profile = {
             lootThreshold = "4",
             showOnlyMaster = true,
-            showOnlyWearable = false,
+            alertAllLoot = false,
             minimap = {
 				hide = false,
 			},
@@ -120,12 +120,12 @@ function LootAlert:getOptions()
                 width = 1.5,
                 order = 4,
             },
-            showOnlyWearable = {
-                name = "Only Show Gear I Can Wear",
-                desc = "Only show loot that your character class can equip",
+            alertAllLoot = {
+                name = "Show roll window for all loot",
+                desc = "Show the roll window for all loot instead of only loot useful for your class",
                 type = "toggle",
-                set = function (info, val) LootAlert.db.profile.showOnlyWearable = val end,
-                get = function () return LootAlert.db.profile.showOnlyWearable end,
+                set = function (info, val) LootAlert.db.profile.alertAllLoot = val end,
+                get = function () return LootAlert.db.profile.alertAllLoot end,
                 width = 1.5,
                 order = 5,
             },
@@ -177,65 +177,10 @@ function LootAlert:GetFrameMoveMouseUp(frameName)
     end
 end
 
-function LootAlert:CanPlayerWearItem(item)
-    if not LootAlert.db.profile.showOnlyWearable then
+function LootAlert:AlertForLoot(item)
+    if not LootAlert.db.profile.alertAllLoot then
         return true;
     end
     
-    local playerClass = select(2, UnitClass("player"));
-    local itemType = item.Type;
-    local itemSubType = item.SubType;
-    
-    -- Always show trinkets, rings, necks, cloaks, and shirts as they're universal
-    if itemType == "Armor" then
-        if itemSubType == "Trinket" or itemSubType == "Finger" or itemSubType == "Neck" or itemSubType == "Cloak" or itemSubType == "Shirt" then
-            return true;
-        end
-    end
-    
-    -- Class-specific armor restrictions
-    if itemType == "Armor" then
-        if playerClass == "WARRIOR" or playerClass == "PALADIN" or playerClass == "DEATHKNIGHT" then
-            -- Plate wearers can wear all armor types
-            return true;
-        elseif playerClass == "HUNTER" or playerClass == "SHAMAN" then
-            -- Mail wearers can wear mail and leather
-            return itemSubType == "Mail" or itemSubType == "Leather" or itemSubType == "Cloth";
-        elseif playerClass == "ROGUE" or playerClass == "DRUID" then
-            -- Leather wearers can wear leather and cloth
-            return itemSubType == "Leather" or itemSubType == "Cloth";
-        elseif playerClass == "MAGE" or playerClass == "PRIEST" or playerClass == "WARLOCK" then
-            -- Cloth wearers can only wear cloth
-            return itemSubType == "Cloth";
-        end
-    end
-    
-    -- Weapon restrictions
-    if itemType == "Weapon" then
-        local classWeapons = {
-            WARRIOR = {"Axe", "Mace", "Sword", "Polearm", "Dagger", "Fist Weapon", "Staff", "Bow", "Crossbow", "Gun", "Thrown"},
-            PALADIN = {"Axe", "Mace", "Sword", "Polearm"},
-            HUNTER = {"Axe", "Sword", "Polearm", "Dagger", "Fist Weapon", "Staff", "Bow", "Crossbow", "Gun"},
-            ROGUE = {"Axe", "Mace", "Sword", "Dagger", "Fist Weapon", "Bow", "Crossbow", "Gun", "Thrown"},
-            PRIEST = {"Mace", "Dagger", "Staff", "Wand"},
-            DEATHKNIGHT = {"Axe", "Mace", "Sword", "Polearm"},
-            SHAMAN = {"Axe", "Mace", "Dagger", "Fist Weapon", "Staff"},
-            MAGE = {"Sword", "Dagger", "Staff", "Wand"},
-            WARLOCK = {"Sword", "Dagger", "Staff", "Wand"},
-            DRUID = {"Mace", "Dagger", "Fist Weapon", "Staff", "Polearm"}
-        };
-        
-        local allowedWeapons = classWeapons[playerClass];
-        if allowedWeapons then
-            for _, weaponType in ipairs(allowedWeapons) do
-                if string.find(itemSubType, weaponType) then
-                    return true;
-                end
-            end
-        end
-        return false;
-    end
-    
-    -- If we can't determine, show it
-    return true;
+    return true
 end
