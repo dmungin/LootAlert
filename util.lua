@@ -11,6 +11,7 @@ function LootAlert:getDefaultDb()
         profile = {
             lootThreshold = "4",
             showOnlyMaster = true,
+            showOnlyWearable = false,
             minimap = {
 				hide = false,
 			},
@@ -75,22 +76,7 @@ function LootAlert:getDefaultDb()
     };
 end
 
-function LootAlert:ReMakeBisListOnOptionChange ()
-    if LootAlert.state.tabFrame ~= nil and LootAlert.db.char.activeTab == "lootBisList" then
-        LootAlert:RenderLootBisList(LootAlert.state.tabFrame);
-    end
-end
 
-local function getShowSpecSetter (spec)
-    return function (info, val)
-        LootAlert.db.char.alertSpecs[spec] = val;
-        LootAlert:ReMakeBisListOnOptionChange();
-    end;
-end
-
-local function getShowSpecGetter (spec)
-    return function () return LootAlert.db.char.alertSpecs[spec] end;
-end
 
 function LootAlert:getOptions()
     local SPECS = LootAlert.constants.SPECS;
@@ -125,23 +111,6 @@ function LootAlert:getOptions()
                 width = 1.1,
                 order = 2,
             },
-            alertPhase = {
-                type = "select",
-                name = "Active BIS Phase",
-                desc = "Set what phase gear you wish to use for your BIS list",
-                set = function(info, val)
-                    LootAlert.db.char.alertPhase = val;
-                    LootAlert:ReMakeBisListOnOptionChange();
-                end,
-                get = function() return LootAlert.db.char.alertPhase  end,
-                values = {
-                    [PHASES.PRERAID] = "Pre-Raid",
-                    [PHASES.PHASE_4] = "Phase 4",
-                },
-                sorting = {0, 4},
-                width = 1.1,
-                order = 3,
-            },
             showOnlyMaster = {
                 name = "Show Only Master Looter",
                 desc = "Enables / disables filtering loot history by master looter name",
@@ -151,329 +120,25 @@ function LootAlert:getOptions()
                 width = 1.5,
                 order = 4,
             },
+            showOnlyWearable = {
+                name = "Only Show Gear I Can Wear",
+                desc = "Only show loot that your character class can equip",
+                type = "toggle",
+                set = function (info, val) LootAlert.db.profile.showOnlyWearable = val end,
+                get = function () return LootAlert.db.profile.showOnlyWearable end,
+                width = 1.5,
+                order = 5,
+            },
             spacer1 = {
                 type = "header",
                 name = "Alert Specs",
                 width = "full",
-                order = 5,
+                order = 6,
             },
         },
     };
 
-    local playerClass = UnitClass("player");
-    for spec, _ in pairs(LootAlert.db.char.alertSpecs) do
-        if not string.find(spec, playerClass) then
-            LootAlert.db.char.alertSpecs[spec] = false;
-        end
-    end
-    if playerClass == CLASSES.DEATH_KNIGHT then
-        options.args.showBloodDk = {
-            type = "toggle",
-            name = CLASSES.DEATH_KNIGHT..": "..SPECS.BLOOD,
-            desc = CLASSES.DEATH_KNIGHT..": "..SPECS.BLOOD,
-            get = getShowSpecGetter(SPECS.BLOOD..CLASSES.DEATH_KNIGHT),
-            set = getShowSpecSetter(SPECS.BLOOD..CLASSES.DEATH_KNIGHT),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showFrostDk = {
-            type = "toggle",
-            name = CLASSES.DEATH_KNIGHT..": "..SPECS.FROST,
-            desc = CLASSES.DEATH_KNIGHT..": "..SPECS.FROST,
-            get = getShowSpecGetter(SPECS.FROST..CLASSES.DEATH_KNIGHT),
-            set = getShowSpecSetter(SPECS.FROST..CLASSES.DEATH_KNIGHT),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showUnholyDk = {
-            type = "toggle",
-            name = CLASSES.DEATH_KNIGHT..": "..SPECS.UNHOLY,
-            desc = CLASSES.DEATH_KNIGHT..": "..SPECS.UNHOLY,
-            get = getShowSpecGetter(SPECS.UNHOLY..CLASSES.DEATH_KNIGHT),
-            set = getShowSpecSetter(SPECS.UNHOLY..CLASSES.DEATH_KNIGHT),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.DRUID then
-        options.args.showBalanceDruid = {
-            type = "toggle",
-            name = CLASSES.DRUID..": "..SPECS.BALANCE,
-            desc = CLASSES.DRUID..": "..SPECS.BALANCE,
-            get = getShowSpecGetter(SPECS.BALANCE..CLASSES.DRUID),
-            set = getShowSpecSetter(SPECS.BALANCE..CLASSES.DRUID),
-            width = .825,
-            order = 6,
-        };
-        options.args.showBearDruid = {
-            type = "toggle",
-            name = CLASSES.DRUID..": "..SPECS.BEAR,
-            desc = CLASSES.DRUID..": "..SPECS.BEAR,
-            get = getShowSpecGetter(SPECS.BEAR..CLASSES.DRUID),
-            set = getShowSpecSetter(SPECS.BEAR..CLASSES.DRUID),
-            width = .825,
-            order = 7,
-        };
-        options.args.showCatDruid = {
-            type = "toggle",
-            name = CLASSES.DRUID..": "..SPECS.CAT,
-            desc = CLASSES.DRUID..": "..SPECS.CAT,
-            get = getShowSpecGetter(SPECS.CAT..CLASSES.DRUID),
-            set = getShowSpecSetter(SPECS.CAT..CLASSES.DRUID),
-            width = .825,
-            order = 8,
-        };
-        options.args.showRestorationDruid = {
-            type = "toggle",
-            name = CLASSES.DRUID..": "..SPECS.RESTORATION,
-            desc = CLASSES.DRUID..": "..SPECS.RESTORATION,
-            get = getShowSpecGetter(SPECS.RESTORATION..CLASSES.DRUID),
-            set = getShowSpecSetter(SPECS.RESTORATION..CLASSES.DRUID),
-            width = .825,
-            order = 9,
-        };
-    end
-
-    if playerClass == CLASSES.HUNTER then
-        options.args.showBmHunter = {
-            type = "toggle",
-            name = CLASSES.HUNTER..": "..SPECS.BEAST_MASTERY,
-            desc = CLASSES.HUNTER..": "..SPECS.BEAST_MASTERY,
-            get = getShowSpecGetter(SPECS.BEAST_MASTERY..CLASSES.HUNTER),
-            set = getShowSpecSetter(SPECS.BEAST_MASTERY..CLASSES.HUNTER),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showMarksHunter = {
-            type = "toggle",
-            name = CLASSES.HUNTER..": "..SPECS.MARKSMANSHIP,
-            desc = CLASSES.HUNTER..": "..SPECS.MARKSMANSHIP,
-            get = getShowSpecGetter(SPECS.MARKSMANSHIP..CLASSES.HUNTER),
-            set = getShowSpecSetter(SPECS.MARKSMANSHIP..CLASSES.HUNTER),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showSurvivalHunter = {
-            type = "toggle",
-            name = CLASSES.HUNTER..": "..SPECS.SURVIVAL,
-            desc = CLASSES.HUNTER..": "..SPECS.SURVIVAL,
-            get = getShowSpecGetter(SPECS.SURVIVAL..CLASSES.HUNTER),
-            set = getShowSpecSetter(SPECS.SURVIVAL..CLASSES.HUNTER),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.MAGE then
-        options.args.showArcaneMage = {
-            type = "toggle",
-            name = CLASSES.MAGE..": "..SPECS.ARCANE,
-            desc = CLASSES.MAGE..": "..SPECS.ARCANE,
-            get = getShowSpecGetter(SPECS.ARCANE..CLASSES.MAGE),
-            set = getShowSpecSetter(SPECS.ARCANE..CLASSES.MAGE),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showFireMage = {
-            type = "toggle",
-            name = CLASSES.MAGE..": "..SPECS.FIRE,
-            desc = CLASSES.MAGE..": "..SPECS.FIRE,
-            get = getShowSpecGetter(SPECS.FIRE..CLASSES.MAGE),
-            set = getShowSpecSetter(SPECS.FIRE..CLASSES.MAGE),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showFrostMage = {
-            type = "toggle",
-            name = CLASSES.MAGE..": "..SPECS.FROST,
-            desc = CLASSES.MAGE..": "..SPECS.FROST,
-            get = getShowSpecGetter(SPECS.FROST..CLASSES.MAGE),
-            set = getShowSpecSetter(SPECS.FROST..CLASSES.MAGE),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.PALADIN then
-        options.args.showHolyPaladin = {
-            type = "toggle",
-            name = CLASSES.PALADIN..": "..SPECS.HOLY,
-            desc = CLASSES.PALADIN..": "..SPECS.HOLY,
-            get = getShowSpecGetter(SPECS.HOLY..CLASSES.PALADIN),
-            set = getShowSpecSetter(SPECS.HOLY..CLASSES.PALADIN),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showProtPaladin = {
-            type = "toggle",
-            name = CLASSES.PALADIN..": "..SPECS.PROTECTION,
-            desc = CLASSES.PALADIN..": "..SPECS.PROTECTION,
-            get = getShowSpecGetter(SPECS.PROTECTION..CLASSES.PALADIN),
-            set = getShowSpecSetter(SPECS.PROTECTION..CLASSES.PALADIN),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showRetPaladin = {
-            type = "toggle",
-            name = CLASSES.PALADIN..": "..SPECS.RETRIBUTION,
-            desc = CLASSES.PALADIN..": "..SPECS.RETRIBUTION,
-            get = getShowSpecGetter(SPECS.RETRIBUTION..CLASSES.PALADIN),
-            set = getShowSpecSetter(SPECS.RETRIBUTION..CLASSES.PALADIN),
-            width = 1.1,
-            order = 8
-        };
-    end
-
-    if playerClass == CLASSES.PRIEST then
-        options.args.showDiscPriest = {
-            type = "toggle",
-            name = CLASSES.PRIEST..": "..SPECS.DISCIPLINE,
-            desc = CLASSES.PRIEST..": "..SPECS.DISCIPLINE,
-            get = getShowSpecGetter(SPECS.DISCIPLINE..CLASSES.PRIEST),
-            set = getShowSpecSetter(SPECS.DISCIPLINE..CLASSES.PRIEST),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showHolyPriest = {
-            type = "toggle",
-            name = CLASSES.PRIEST..": "..SPECS.HOLY,
-            desc = CLASSES.PRIEST..": "..SPECS.HOLY,
-            get = getShowSpecGetter(SPECS.HOLY..CLASSES.PRIEST),
-            set = getShowSpecSetter(SPECS.HOLY..CLASSES.PRIEST),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showShadowPriest = {
-            type = "toggle",
-            name = CLASSES.PRIEST..": "..SPECS.SHADOW,
-            desc = CLASSES.PRIEST..": "..SPECS.SHADOW,
-            get = getShowSpecGetter(SPECS.SHADOW..CLASSES.PRIEST),
-            set = getShowSpecSetter(SPECS.SHADOW..CLASSES.PRIEST),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.ROGUE then
-        options.args.showAssRogue = {
-            type = "toggle",
-            name = CLASSES.ROGUE..": "..SPECS.ASSASSINATION,
-            desc = CLASSES.ROGUE..": "..SPECS.ASSASSINATION,
-            get = getShowSpecGetter(SPECS.ASSASSINATION..CLASSES.ROGUE),
-            set = getShowSpecSetter(SPECS.ASSASSINATION..CLASSES.ROGUE),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showCombatRogue = {
-            type = "toggle",
-            name = CLASSES.ROGUE..": "..SPECS.COMBAT,
-            desc = CLASSES.ROGUE..": "..SPECS.COMBAT,
-            get = getShowSpecGetter(SPECS.COMBAT..CLASSES.ROGUE),
-            set = getShowSpecSetter(SPECS.COMBAT..CLASSES.ROGUE),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showSubtletyRogue = {
-            type = "toggle",
-            name = CLASSES.ROGUE..": "..SPECS.SUBTLETY,
-            desc = CLASSES.ROGUE..": "..SPECS.SUBTLETY,
-            get = getShowSpecGetter(SPECS.SUBTLETY..CLASSES.ROGUE),
-            set = getShowSpecSetter(SPECS.SUBTLETY..CLASSES.ROGUE),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.SHAMAN then
-        options.args.showEleShaman = {
-            type = "toggle",
-            name = CLASSES.SHAMAN..": "..SPECS.ELEMENTAL,
-            desc = CLASSES.SHAMAN..": "..SPECS.ELEMENTAL,
-            get = getShowSpecGetter(SPECS.ELEMENTAL..CLASSES.SHAMAN),
-            set = getShowSpecSetter(SPECS.ELEMENTAL..CLASSES.SHAMAN),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showEnhShaman = {
-            type = "toggle",
-            name = CLASSES.SHAMAN..": "..SPECS.ENHANCEMENT,
-            desc = CLASSES.SHAMAN..": "..SPECS.ENHANCEMENT,
-            get = getShowSpecGetter(SPECS.ENHANCEMENT..CLASSES.SHAMAN),
-            set = getShowSpecSetter(SPECS.ENHANCEMENT..CLASSES.SHAMAN),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showRestShaman = {
-            type = "toggle",
-            name = CLASSES.SHAMAN..": "..SPECS.RESTORATION,
-            desc = CLASSES.SHAMAN..": "..SPECS.RESTORATION,
-            get = getShowSpecGetter(SPECS.RESTORATION..CLASSES.SHAMAN),
-            set = getShowSpecSetter(SPECS.RESTORATION..CLASSES.SHAMAN),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.WARLOCK then
-        options.args.showAfflicWarlock = {
-            type = "toggle",
-            name = CLASSES.WARLOCK..": "..SPECS.AFFLICTION,
-            desc = CLASSES.WARLOCK..": "..SPECS.AFFLICTION,
-            get = getShowSpecGetter(SPECS.AFFLICTION..CLASSES.WARLOCK),
-            set = getShowSpecSetter(SPECS.AFFLICTION..CLASSES.WARLOCK),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showDemonWarlock = {
-            type = "toggle",
-            name = CLASSES.WARLOCK..": "..SPECS.DEMONOLOGY,
-            desc = CLASSES.WARLOCK..": "..SPECS.DEMONOLOGY,
-            get = getShowSpecGetter(SPECS.DEMONOLOGY..CLASSES.WARLOCK),
-            set = getShowSpecSetter(SPECS.DEMONOLOGY..CLASSES.WARLOCK),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showDestWarlock = {
-            type = "toggle",
-            name = CLASSES.WARLOCK..": "..SPECS.DESTRUCTION,
-            desc = CLASSES.WARLOCK..": "..SPECS.DESTRUCTION,
-            get = getShowSpecGetter(SPECS.DESTRUCTION..CLASSES.WARLOCK),
-            set = getShowSpecSetter(SPECS.DESTRUCTION..CLASSES.WARLOCK),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.WARRIOR then
-        options.args.showArmsWarrior = {
-            type = "toggle",
-            name = CLASSES.WARRIOR..": "..SPECS.ARMS,
-            desc = CLASSES.WARRIOR..": "..SPECS.ARMS,
-            get = getShowSpecGetter(SPECS.ARMS..CLASSES.WARRIOR),
-            set = getShowSpecSetter(SPECS.ARMS..CLASSES.WARRIOR),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showFuryWarrior = {
-            type = "toggle",
-            name = CLASSES.WARRIOR..": "..SPECS.FURY,
-            desc = CLASSES.WARRIOR..": "..SPECS.FURY,
-            get = getShowSpecGetter(SPECS.FURY..CLASSES.WARRIOR),
-            set = getShowSpecSetter(SPECS.FURY..CLASSES.WARRIOR),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showProtWarrior = {
-            type = "toggle",
-            name = CLASSES.WARRIOR..": "..SPECS.PROTECTION,
-            desc = CLASSES.WARRIOR..": "..SPECS.PROTECTION,
-            get = getShowSpecGetter(SPECS.PROTECTION..CLASSES.WARRIOR),
-            set = getShowSpecSetter(SPECS.PROTECTION..CLASSES.WARRIOR),
-            width = 1.1,
-            order = 8,
-        };
-    end
+    --local playerClass = UnitClass("player");
 
     return options;
 end
@@ -512,17 +177,65 @@ function LootAlert:GetFrameMoveMouseUp(frameName)
     end
 end
 
-function LootAlert:IsWantedBisLoot(itemId)
-    if LootAlert.db.global.tierMappings[itemId] ~= nil then
-        local tierPieceWanted = false;
-        for _, tierPieceId in ipairs(LootAlert.db.global.tierMappings[itemId].Items) do
-            if LootAlert.db.char.wantedLootBisList[tierPieceId] then
-                tierPieceWanted = true;
+function LootAlert:CanPlayerWearItem(item)
+    if not LootAlert.db.profile.showOnlyWearable then
+        return true;
+    end
+    
+    local playerClass = select(2, UnitClass("player"));
+    local itemType = item.Type;
+    local itemSubType = item.SubType;
+    
+    -- Always show trinkets, rings, necks, cloaks, and shirts as they're universal
+    if itemType == "Armor" then
+        if itemSubType == "Trinket" or itemSubType == "Finger" or itemSubType == "Neck" or itemSubType == "Cloak" or itemSubType == "Shirt" then
+            return true;
+        end
+    end
+    
+    -- Class-specific armor restrictions
+    if itemType == "Armor" then
+        if playerClass == "WARRIOR" or playerClass == "PALADIN" or playerClass == "DEATHKNIGHT" then
+            -- Plate wearers can wear all armor types
+            return true;
+        elseif playerClass == "HUNTER" or playerClass == "SHAMAN" then
+            -- Mail wearers can wear mail and leather
+            return itemSubType == "Mail" or itemSubType == "Leather" or itemSubType == "Cloth";
+        elseif playerClass == "ROGUE" or playerClass == "DRUID" then
+            -- Leather wearers can wear leather and cloth
+            return itemSubType == "Leather" or itemSubType == "Cloth";
+        elseif playerClass == "MAGE" or playerClass == "PRIEST" or playerClass == "WARLOCK" then
+            -- Cloth wearers can only wear cloth
+            return itemSubType == "Cloth";
+        end
+    end
+    
+    -- Weapon restrictions
+    if itemType == "Weapon" then
+        local classWeapons = {
+            WARRIOR = {"Axe", "Mace", "Sword", "Polearm", "Dagger", "Fist Weapon", "Staff", "Bow", "Crossbow", "Gun", "Thrown"},
+            PALADIN = {"Axe", "Mace", "Sword", "Polearm"},
+            HUNTER = {"Axe", "Sword", "Polearm", "Dagger", "Fist Weapon", "Staff", "Bow", "Crossbow", "Gun"},
+            ROGUE = {"Axe", "Mace", "Sword", "Dagger", "Fist Weapon", "Bow", "Crossbow", "Gun", "Thrown"},
+            PRIEST = {"Mace", "Dagger", "Staff", "Wand"},
+            DEATHKNIGHT = {"Axe", "Mace", "Sword", "Polearm"},
+            SHAMAN = {"Axe", "Mace", "Dagger", "Fist Weapon", "Staff"},
+            MAGE = {"Sword", "Dagger", "Staff", "Wand"},
+            WARLOCK = {"Sword", "Dagger", "Staff", "Wand"},
+            DRUID = {"Mace", "Dagger", "Fist Weapon", "Staff", "Polearm"}
+        };
+        
+        local allowedWeapons = classWeapons[playerClass];
+        if allowedWeapons then
+            for _, weaponType in ipairs(allowedWeapons) do
+                if string.find(itemSubType, weaponType) then
+                    return true;
+                end
             end
         end
-
-        return tierPieceWanted;
+        return false;
     end
-
-    return LootAlert.db.char.wantedLootBisList[itemId] == true;
+    
+    -- If we can't determine, show it
+    return true;
 end

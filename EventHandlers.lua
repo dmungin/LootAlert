@@ -19,21 +19,13 @@ end
 
 function LootAlert:HandleNewLoot(item)
     local threshold = tonumber(LootAlert.db.profile.lootThreshold);
+    
     if item.Quality >= threshold then
         table.insert(LootAlert.db.char.lootHistory, 1, item.Id);
         LootAlert.db.char.lootHistoryLength = LootAlert.db.char.lootHistoryLength + 1;
 
-        local isWantedLoot = LootAlert:IsWantedBisLoot(item.Id);
-
         if LootAlert.state.tabFrame and LootAlert.db.char.activeTab == "lootHistory" then
             LootAlert:RenderLootHistory(LootAlert.state.tabFrame);
-        elseif isWantedLoot then
-            if not LootAlert.state.tabFrame then
-                LootAlert:RenderLootAlert();
-                LootAlert:SelectGroup('lootHistory');
-            elseif LootAlert.db.char.activeTab ~= "lootHistory" then
-                LootAlert:SelectGroup('lootHistory');
-            end
         end
     end
 end
@@ -59,10 +51,11 @@ function LootAlert:CHAT_MSG_RAID_WARNING(eventName, ...)
     local showLooterMessages = LootAlert:UseLooterMessages(playerName2);
     if itemIdText and showLooterMessages then
         local itemId = tonumber(itemIdText);
-        local isWantedLoot = LootAlert:IsWantedBisLoot(itemId);
-        if isWantedLoot then
-            LootAlert:RenderRollOptionsModal(itemId);
-        end
+        LootAlert:GetItemInfo(itemId, function (item)
+            if item.Id ~= nil and LootAlert:CanPlayerWearItem(item) then
+                LootAlert:RenderRollOptionsModal(itemId);
+            end
+        end);
     end
 end
 
@@ -88,9 +81,10 @@ function LootAlert:CHAT_MSG_CHANNEL(eventName, ...)
     local itemIdText = msg:match("item:(%d+):");
     if itemIdText and channel == '5. lootalert' then
         local itemId = tonumber(itemIdText);
-        local isWantedLoot = LootAlert:IsWantedBisLoot(itemId);
-        if isWantedLoot then 
-            LootAlert:RenderRollOptionsModal(itemId);
-        end
+        LootAlert:GetItemInfo(itemId, function (item)
+            if item.Id ~= nil and LootAlert:CanPlayerWearItem(item) then
+                LootAlert:RenderRollOptionsModal(itemId);
+            end
+        end);
     end
 end
