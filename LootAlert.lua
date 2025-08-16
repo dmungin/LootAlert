@@ -9,7 +9,7 @@ local lootAlertDataBroker = LibStub("LibDataBroker-1.1"):NewDataObject("LootAler
     OnClick = function (self, button)
 
         if button == "LeftButton" then
-            if not LootAlert.state.tabFrame then
+            if not LootAlert.state.mainFrame then
                 LootAlert:RenderLootAlert();
             end
         elseif button == "RightButton" then
@@ -29,10 +29,9 @@ core.LootAlert = LootAlert;
 core.AceGUI = AceGUI;
 
 LootAlert.state = {
-    tabFrame = nil,
+    mainFrame = nil,
 };
--- https://stackoverflow.com/questions/1252539/most-efficient-way-to-determine-if-a-lua-table-is-empty-contains-no-entries
-local next = next;
+
 
 function LootAlert:OnInitialize()
     LootAlert:Print("Loot Alert Initialized!");
@@ -80,34 +79,18 @@ function LootAlert:RenderLootAlert ()
 
     lootAlertFrame:SetCallback("OnClose", function(widget)
         AceGUI:Release(widget);
-        LootAlert.state.tabFrame = nil;
-    end);
-    -- Create tabs and select default
-    -- TODO:: This probably can be curried into the callback "OnGroupSelected" and removed from state
-    LootAlert.state.tabFrame = AceGUI:Create("TabGroup");
-    LootAlert.state.tabFrame:SetLayout("Flow");
-
-    LootAlert.state.tabFrame:SetTabs({
-        {text = "Loot History", value = "lootHistory" },
-    });
-
-    LootAlert.state.tabFrame:SetCallback("OnGroupSelected", function (...)
-        local _, _, group = ...;
-        LootAlert:SelectGroup(group);
+        LootAlert.state.mainFrame = nil;
     end);
     
-    LootAlert.state.tabFrame:SelectTab(LootAlert.db.char.activeTab);
-    lootAlertFrame:AddChild(LootAlert.state.tabFrame);
+    -- Store reference to main frame instead of tab frame
+    LootAlert.state.mainFrame = lootAlertFrame;
+    
+    -- Directly render loot history without tabs
+    LootAlert:RenderLootHistory(lootAlertFrame);
 
 end
 
-function LootAlert:SelectGroup(group)
-    local container = LootAlert.state.tabFrame;
-    LootAlert.db.char.activeTab = group;
-    if group == "lootHistory" then
-        LootAlert:RenderLootHistory(container);
-    end
-end
+
 
 function LootAlert:RenderLootHistory (container)
     container:ReleaseChildren();
@@ -167,9 +150,11 @@ function LootAlert:SlashCommand(msg)
 		LootAlert:OpenOptions();
     elseif msg == "clear" then
         LootAlert:ClearLootHistory();
-        LootAlert:SelectGroup('lootHistory');
+        if LootAlert.state.mainFrame then
+            LootAlert:RenderLootHistory(LootAlert.state.mainFrame);
+        end
     else
-        if not LootAlert.state.tabFrame then
+        if not LootAlert.state.mainFrame then
             LootAlert:RenderLootAlert();
         end
 	end

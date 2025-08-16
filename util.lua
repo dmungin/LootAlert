@@ -43,7 +43,7 @@ function LootAlert:getDefaultDb()
                 left = false,
                 top = false,
             },
-            activeTab = 'lootHistory',
+
         },
         global = {
             allItemsCached = false,
