@@ -4,14 +4,10 @@ local LootAlert = core.LootAlert;
 local AceGUI = core.AceGUI;
 
 function LootAlert:getDefaultDb()
-    local SPECS = LootAlert.constants.SPECS;
-    local CLASSES = LootAlert.constants.CLASSES;
-    local PHASES = LootAlert.constants.PHASES;
     return {
         profile = {
             lootThreshold = "4",
             showOnlyMaster = true,
-            alertAllLoot = false,
             minimap = {
 				hide = false,
 			},
@@ -28,50 +24,13 @@ function LootAlert:getDefaultDb()
                 top = false,
             },
             activeTab = 'lootHistory',
-
-            alertSpecs = {
-                [SPECS.BLOOD..CLASSES.DEATH_KNIGHT] = false,
-                [SPECS.FROST..CLASSES.DEATH_KNIGHT] = false,
-                [SPECS.UNHOLY..CLASSES.DEATH_KNIGHT] = false,
-                [SPECS.BALANCE..CLASSES.DRUID] = false,
-                [SPECS.BEAR..CLASSES.DRUID] = false,
-                [SPECS.CAT..CLASSES.DRUID] = false,
-                [SPECS.RESTORATION..CLASSES.DRUID] = false,
-                [SPECS.BEAST_MASTERY..CLASSES.HUNTER] = false,
-                [SPECS.MARKSMANSHIP..CLASSES.HUNTER] = false,
-                [SPECS.SURVIVAL..CLASSES.HUNTER] = false,
-                [SPECS.ARCANE..CLASSES.MAGE] = false,
-                [SPECS.FIRE..CLASSES.MAGE] = false,
-                [SPECS.FROST..CLASSES.MAGE] = false,
-                [SPECS.HOLY..CLASSES.PALADIN] = false,
-                [SPECS.PROTECTION..CLASSES.PALADIN] = false,
-                [SPECS.RETRIBUTION..CLASSES.PALADIN] = false,
-                [SPECS.DISCIPLINE..CLASSES.PRIEST] = false,
-                [SPECS.HOLY..CLASSES.PRIEST] = false,
-                [SPECS.SHADOW..CLASSES.PRIEST] = false,
-                [SPECS.ASSASSINATION..CLASSES.ROGUE] = false,
-                [SPECS.COMBAT..CLASSES.ROGUE] = false,
-                [SPECS.SUBTLETY..CLASSES.ROGUE] = false,
-                [SPECS.ELEMENTAL..CLASSES.SHAMAN] = false,
-                [SPECS.ENHANCEMENT..CLASSES.SHAMAN] = false,
-                [SPECS.RESTORATION..CLASSES.SHAMAN] = false,
-                [SPECS.AFFLICTION..CLASSES.WARLOCK] = false,
-                [SPECS.DEMONOLOGY..CLASSES.WARLOCK] = false,
-                [SPECS.DESTRUCTION..CLASSES.WARLOCK] = false,
-                [SPECS.ARMS..CLASSES.WARRIOR] = false,
-                [SPECS.FURY..CLASSES.WARRIOR] = false,
-                [SPECS.PROTECTION..CLASSES.WARRIOR] = false
-            },
-            alertPhase = PHASES.PHASE_4,
         },
         global = {
             allItemsCached = false,
-            currentPhase = PHASES.PHASE_4,
             lastCacheDate = nil,
             itemCache = {},
             itemSources = {},
-            tierMappings = {},
-            itemsBySpecAndId = {},
+            tierMappings = {}
         },
     };
 end
@@ -79,9 +38,6 @@ end
 
 
 function LootAlert:getOptions()
-    local SPECS = LootAlert.constants.SPECS;
-    local CLASSES = LootAlert.constants.CLASSES;
-    local PHASES = LootAlert.constants.PHASES;
 
     local options = {
         name = "LootAlert",
@@ -119,15 +75,6 @@ function LootAlert:getOptions()
                 get = function () return LootAlert.db.profile.showOnlyMaster end,
                 width = 1.5,
                 order = 4,
-            },
-            alertAllLoot = {
-                name = "Show roll window for all loot",
-                desc = "Show the roll window for all loot instead of only loot useful for your class",
-                type = "toggle",
-                set = function (info, val) LootAlert.db.profile.alertAllLoot = val end,
-                get = function () return LootAlert.db.profile.alertAllLoot end,
-                width = 1.5,
-                order = 5,
             },
             spacer1 = {
                 type = "header",
@@ -177,10 +124,3 @@ function LootAlert:GetFrameMoveMouseUp(frameName)
     end
 end
 
-function LootAlert:AlertForLoot(item)
-    if not LootAlert.db.profile.alertAllLoot then
-        return true;
-    end
-    
-    return true
-end

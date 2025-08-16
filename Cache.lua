@@ -11,7 +11,6 @@ function LootAlert:PreCacheItems()
     -- TODO:: Temp flag to force cache update;
     if (FORCE_UPDATE_CACHE or not LootAlert.db.global.lastCacheDate or LootAlert.db.global.lastCacheDate < RECACHE_DATE) then
         LootAlert.db.global.itemCache = {};
-        LootAlert.db.global.itemsBySpecAndId = {};
         LootAlert.db.char.wantedLootBisList = {};
         LootAlert.db.char.activeTab = 'lootHistory';
         LootAlert.db.global.lastCacheDate = time();
