@@ -27,7 +27,7 @@ function LootAlert:getDefaultDb()
                 top = false,
             },
             activeTab = 'lootHistory',
-            wantedLootBisList = {},
+
             alertSpecs = {
                 [SPECS.BLOOD..CLASSES.DEATH_KNIGHT] = false,
                 [SPECS.FROST..CLASSES.DEATH_KNIGHT] = false,

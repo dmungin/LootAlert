@@ -29,4 +29,3 @@ Constants.lua
 Util.lua
 EventHandlers.lua
 RollOptionsModal.lua
-bis\Guides.xml

@@ -54,19 +54,6 @@ function LootAlert:ReCacheItem(itemId)
     end);
 end
 
-function LootAlert:GetPhaseNumbers(phaseText)
-    local firstNumber, lastNumber = strsplit(">", phaseText);
-
-    if firstNumber == nil then
-        firstNumber = 0;
-    end
-    if lastNumber == nil then
-        lastNumber = firstNumber;
-    end
-
-    return firstNumber, lastNumber;
-end
-
 local NIL_ITEM = { Name = nil, Link = nil, Quality = nil, Type = nil, SubType = nil, Texture = nil, Class = nil, Slot = nil };
 
 function LootAlert:GetItemInfoInstant(itemId)
@@ -95,7 +82,7 @@ function LootAlert:GetItemInfo(itemId, callback)
         local itemCache = Item:CreateFromItemID(itemId)
 
         itemCache:ContinueOnItemLoad(function()
-            local itemId, itemType, subType, itemSlot, _, classId = GetItemInfoInstant(itemId);
+            local itemId, itemType, subType, itemSlot, _, classId = C_Item.GetItemInfoInstant(itemId);
             local name = itemCache:GetItemName();
 
             local slot = "Unknown";
@@ -123,82 +110,5 @@ function LootAlert:GetItemInfo(itemId, callback)
 
             callback(newItem);
         end);
-    end
-end
-
-function LootAlert:RegisterSpec(class, spec, phase)
-	if not spec then spec = "" end
-
-	local classSpec = {
-		Class = class,
-		Spec = spec,
-		Phase = phase
-	}
-
-	classSpec.Id = spec .. class
-
-	return classSpec
-end
-
-local addOrder = 0;
-function LootAlert:AddItem(bisEntry, id, slot, bis)
-	if strlen(id) <= 0 then
-		return;
-	end
-
-	local itemId = tonumber(id);
-
-	if itemId == nil or LootAlert.db.global.currentPhase < tonumber(bisEntry.Phase) then
-		return;
-	end
-
-    if not LootAlert.db.global.itemsBySpecAndId[bisEntry.Id] then
-		LootAlert.db.global.itemsBySpecAndId[bisEntry.Id] = {};
-	end
-
-	if tonumber(bisEntry.Phase) == 0 then
-		bis = "PreRaid";
-	elseif tonumber(bisEntry.Phase) < LootAlert.db.global.currentPhase then
-		bis = string.gsub(bis, "BIS", "Alt");
-	end
-
-	local searchedItem = LootAlert.db.global.itemsBySpecAndId[bisEntry.Id][itemId];
-
-	if searchedItem == nil then
-		searchedItem = { Id = itemId, Bis = bis, Phase = bisEntry.Phase, Slot = slot, SortOrder = addOrder }
-
-		if not LootAlert.db.global.itemsBySpecAndId[bisEntry.Id] then
-			LootAlert.db.global.itemsBySpecAndId[bisEntry.Id] = {};
-		end
-	else
-		if bisEntry.Phase > searchedItem.Phase then
-			searchedItem.Bis = bis;
-		end
-
-		searchedItem.SortOrder = addOrder;
-
-		local firstNumber, lastNumber = LootAlert:GetPhaseNumbers(searchedItem.Phase);
-
-		if tonumber(bisEntry.Phase) > tonumber(lastNumber) then
-			searchedItem.Phase = firstNumber .. ">" .. bisEntry.Phase;
-		else
-			searchedItem.Phase = bisEntry.Phase;
-		end
-	end
-
-	LootAlert.db.global.itemsBySpecAndId[bisEntry.Id][itemId] = searchedItem;
-
-	local itemSource = LootAlert.db.global.itemSources[itemId];
-
-	if itemSource == nil then
-		LootAlert:Error("Couldn't find item source for: ", id);
-	end
-
-    addOrder = addOrder + 1;
-end
-
-function LootAlert:PopulateBisLists()
-    for _, loadBis in ipairs(LootAlert.state.bisListLoadFunctions) do
-        loadBis();
     end
 end

@@ -30,7 +30,6 @@ core.AceGUI = AceGUI;
 
 LootAlert.state = {
     tabFrame = nil,
-    bisListLoadFunctions = {},
 };
 -- https://stackoverflow.com/questions/1252539/most-efficient-way-to-determine-if-a-lua-table-is-empty-contains-no-entries
 local next = next;
@@ -51,7 +50,6 @@ function LootAlert:OnInitialize()
     LootAlert.db.global.itemSources = LootAlert:PopulateItemSources();
     LootAlert.db.global.tierMappings = LootAlert:PopulateTierMappings();
 	LootAlert:PreCacheItems();
-    LootAlert:PopulateBisLists();
 
 	self:RegisterChatCommand("la", "SlashCommand");
 	self:RegisterChatCommand("lootalert", "SlashCommand");
@@ -92,8 +90,6 @@ function LootAlert:RenderLootAlert ()
 
     LootAlert.state.tabFrame:SetTabs({
         {text = "Loot History", value = "lootHistory" },
-        {text = "BIS List", value = "lootBisList" },
-        {text = "Add Item", value = "addItem" },
     });
 
     LootAlert.state.tabFrame:SetCallback("OnGroupSelected", function (...)
@@ -111,157 +107,6 @@ function LootAlert:SelectGroup(group)
     LootAlert.db.char.activeTab = group;
     if group == "lootHistory" then
         LootAlert:RenderLootHistory(container);
-    elseif group == "lootBisList" then
-        LootAlert:RenderLootBisList(container);
-    elseif group == "addItem" then
-        LootAlert:RenderAddItem(container);
-    end
- end
- 
-function LootAlert:RenderAddItem (container)
-    container:ReleaseChildren();
-
-    local scrollContainer = AceGUI:Create("SimpleGroup");
-    scrollContainer:SetFullWidth(true);
-    scrollContainer:SetFullHeight(true);
-    scrollContainer:SetLayout("Fill");
-    container:AddChild(scrollContainer)
-
-    local addItemScrollFrame = AceGUI:Create("ScrollFrame")
-    addItemScrollFrame:SetLayout("Flow");
-    scrollContainer:AddChild(addItemScrollFrame);
-
-    local AddItemTextBox = AceGUI:Create("EditBox");
-    AddItemTextBox:SetLabel("Item ID");
-    addItemScrollFrame:AddChild(AddItemTextBox);
-    local playerClass = UnitClass("player");
-    -- Handle clearing widgets on multiple item entry
-    AddItemTextBox:SetCallback("OnEnterPressed", function (_, _, text)
-        LootAlert:GetItemInfo(tonumber(text), function (item)
-            if item.Id ~= nil then
-                LootAlert:AddLoot(addItemScrollFrame, item, { fullWidth = true, iconSize = 20 });
-                
-                local ItemSlotDropdown = AceGUI:Create("Dropdown");
-                ItemSlotDropdown:SetLabel("Item Slot");
-                ItemSlotDropdown:SetList(LootAlert.constants.SLOT_LIST);
-                addItemScrollFrame:AddChild(ItemSlotDropdown);
-
-                local ItemSpecDropdown = AceGUI:Create("Dropdown");
-                ItemSpecDropdown:SetLabel("Item Spec");
-                ItemSpecDropdown:SetList(LootAlert.constants.SPEC_LIST_BY_CLASS[playerClass]);
-                addItemScrollFrame:AddChild(ItemSpecDropdown);
-
-                local ItemPhaseDropdown = AceGUI:Create("Dropdown");
-                ItemPhaseDropdown:SetLabel("Item Phase");
-                ItemPhaseDropdown:SetList({
-                    [LootAlert.constants.PHASES.PRERAID] = "Pre-Raid",
-                    [LootAlert.db.global.currentPhase] = "Current Phase",
-                });
-                addItemScrollFrame:AddChild(ItemPhaseDropdown);
-
-                local AddItemButton = AceGUI:Create("Button");
-                AddItemButton:SetText("Add to BIS List");
-                AddItemButton:SetDisabled(true);
-                AddItemButton:SetCallback("OnClick", function ()
-                    local itemSpec = ItemSpecDropdown:GetValue();
-                    local itemSlot = ItemSlotDropdown:GetValue();
-                    local itemPhase = ItemPhaseDropdown:GetValue();
-                    local itemId = AddItemTextBox:GetText();
-                    local spec = LootAlert:RegisterSpec(playerClass, itemSpec, itemPhase);
-                    LootAlert:AddItem(spec, itemId, itemSlot, "BIS");
-                    LootAlert:RenderAddItem(container);
-                end);
-
-                addItemScrollFrame:AddChild(AddItemButton);
-
-                ItemSlotDropdown:SetCallback("OnValueChanged", function (_, _, value)
-                    local itemSpec = ItemSpecDropdown:GetValue();
-                    local itemPhase = ItemPhaseDropdown:GetValue();
-                    if value ~= nil and itemSpec ~= nil and itemPhase ~= nil then
-                        AddItemButton:SetDisabled(false);
-                    end
-                end);
-                ItemSpecDropdown:SetCallback("OnValueChanged", function (_, _, value)
-                    local itemSlot = ItemSlotDropdown:GetValue()
-                    local itemPhase = ItemPhaseDropdown:GetValue();
-                    if value ~= nil and itemSlot ~= nil and itemPhase ~= nil then
-                        AddItemButton:SetDisabled(false);
-                    end
-                end);
-                ItemPhaseDropdown:SetCallback("OnValueChanged", function (_, _, value)
-                    local itemSlot = ItemSlotDropdown:GetValue()
-                    local itemSpec = ItemSpecDropdown:GetValue();
-                    if value ~= nil and itemSlot ~= nil and itemSpec ~= nil then
-                        AddItemButton:SetDisabled(false);
-                    end
-                end);
-                
-            end
-        end);
-    end);
-end
-
-function LootAlert:RenderLootBisList (container)
-    container:ReleaseChildren();
-
-    local scrollContainer = AceGUI:Create("SimpleGroup");
-    scrollContainer:SetFullWidth(true);
-    scrollContainer:SetFullHeight(true);
-    scrollContainer:SetLayout("Fill");
-    container:AddChild(scrollContainer)
-
-    local lootBislistScrollFrame = AceGUI:Create("ScrollFrame")
-    lootBislistScrollFrame:SetLayout("Flow");
-    scrollContainer:AddChild(lootBislistScrollFrame);
-
-    local lootBistList = LootAlert:BuildLootBisList();
-    if next(lootBistList) == nil then
-        local AddSpecButton = AceGUI:Create("Button");
-        AddSpecButton:SetText("Add Spec in Options");
-        AddSpecButton:SetCallback("OnClick", function ()
-            LootAlert.state.tabFrame:SelectTab("lootHistory");
-            LootAlert:OpenOptions();
-        end);
-        lootBislistScrollFrame:AddChild(AddSpecButton);
-    else
-        for _, slot in ipairs(LootAlert.constants.SLOT_ORDER) do
-
-            local slotItems = lootBistList[slot];
-            if slotItems ~= nil then
-                local slotHeader = AceGUI:Create("Label");
-                slotHeader:SetText(slot);
-                slotHeader:SetColor(255,255,255);
-                slotHeader:SetFullWidth(true);
-                lootBislistScrollFrame:AddChild(slotHeader);
-
-                for itemId, _ in pairs(slotItems) do
-                    local item = LootAlert:GetItemInfoInstant(itemId);
-                    if item.Id ~= nil then
-                        local addedItemLabel = LootAlert:AddLoot(lootBislistScrollFrame, item, { fullWidth = false, iconSize = 20 });
-                        addedItemLabel:SetWidth(230);
-                        local rollCheckBox = AceGUI:Create("CheckBox");
-                        rollCheckBox:SetWidth(20);
-                        rollCheckBox:SetHeight(20);
-                        rollCheckBox:SetType("checkbox");
-                        if LootAlert.db.char.wantedLootBisList[itemId] ~= nil then
-                            rollCheckBox:SetValue(LootAlert.db.char.wantedLootBisList[itemId]);
-                        else
-                            rollCheckBox:SetValue(false);
-                        end
-                        rollCheckBox:SetCallback("OnValueChanged", GetOnWantedRadioClick(itemId));
-                        lootBislistScrollFrame:AddChild(rollCheckBox);
-                    end
-                end
-            end
-        end
-    end
-
-    
-end
-
-function GetOnWantedRadioClick (itemId)
-    return function (widget, event, value)
-        LootAlert.db.char.wantedLootBisList[itemId] = value;
     end
 end
 
@@ -280,71 +125,14 @@ function LootAlert:RenderLootHistory (container)
     for _, itemId in ipairs(LootAlert.db.char.lootHistory) do
         local item = LootAlert:GetItemInfoInstant(itemId);
         if item.Id ~= nil then
-            local lootHistoryLabel = LootAlert:AddLoot(lootHistoryScrollFrame, item, { fullWidth = true, iconSize = 20 });
-            LootAlert:HighlightWantedLoot(item, lootHistoryLabel)
+            LootAlert:AddLoot(lootHistoryScrollFrame, item, { fullWidth = true, iconSize = 20 });
         end
-    end
-end
-
-function LootAlert:HighlightWantedLoot(item, labelWidget)
-    if LootAlert:IsWantedBisLoot(item.Id) then
-        local hightlightTexture = labelWidget.frame:CreateTexture("wantedItemTex["..item.Id.."]", "BACKGROUND", nil, -1);
-        hightlightTexture:SetTexture("Interface\\QuestFrame\\UI-QuestLogTitleHighlight");
-        hightlightTexture:SetAllPoints(labelWidget.frame);
-        hightlightTexture:Show();
-        labelWidget:SetCallback("OnRelease", function (...)
-            hightlightTexture:ClearAllPoints();
-            hightlightTexture:Hide();
-        end);
     end
 end
 
 function LootAlert:ClearLootHistory ()
     LootAlert.db.char.lootHistoryLength = 0;
     LootAlert.db.char.lootHistory = {};
-end
-
-
-function LootAlert:isItemInPhase(phase, phaseText)
-    local firstNumber, lastNumber = strsplit(">", phaseText);
-
-    if firstNumber == nil then
-        firstNumber = 0;
-    end
-    if lastNumber == nil then
-        lastNumber = firstNumber;
-    end
-    firstNumber = tonumber(firstNumber);
-    lastNumber = tonumber(lastNumber);
-    phase = tonumber(phase);
-
-    return phase >= firstNumber and phase <= lastNumber;
-end
-
-function LootAlert:BuildLootBisList()
-    local bisWishlist = {};
-    for spec, specEnabled in pairs(LootAlert.db.char.alertSpecs) do
-        if specEnabled then
-            local specItems = LootAlert.db.global.itemsBySpecAndId[spec];
-            for itemId, itemEntry in pairs(specItems) do
-                local phase = LootAlert.db.char.alertPhase;
-                if LootAlert:isItemInPhase(phase, itemEntry.Phase) then
-                    if bisWishlist[itemEntry.Slot] == nil then
-                        bisWishlist[itemEntry.Slot] = {};
-                    end
-                    local existingItem = bisWishlist[itemEntry.Slot][itemId];
-                    if existingItem ~= nil then
-                        existingItem.Spec = existingItem.Spec..", "..spec;
-                    else
-                        itemEntry.Spec = spec;
-                        bisWishlist[itemEntry.Slot][itemId] = itemEntry;
-                    end
-                end
-            end
-        end
-    end
-
-    return bisWishlist;
 end
 
 function LootAlert:AddLoot (container, item, options)
@@ -395,5 +183,3 @@ end
 function LootAlert:OnDisable()
     LootAlert:Print("Loot Alert Disabled");
 end
-
-
