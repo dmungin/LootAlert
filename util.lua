@@ -11,6 +11,7 @@ function LootAlert:getDefaultDb()
             minimap = {
 				hide = false,
 			},
+            elvuiIntegration = true,
             itemFilters = {
                 enabled = false,
                 armorTypes = {
@@ -94,11 +95,20 @@ function LootAlert:getOptions()
                 width = 1.5,
                 order = 4,
             },
+            elvuiIntegration = {
+                name = "ElvUI Integration",
+                desc = "Automatically apply ElvUI styling to Loot Alert windows when ElvUI is loaded",
+                type = "toggle",
+                set = function (info, val) LootAlert.db.profile.elvuiIntegration = val end,
+                get = function () return LootAlert.db.profile.elvuiIntegration end,
+                width = 1.5,
+                order = 5,
+            },
             spacer1 = {
                 type = "header",
                 name = "Item Filters",
                 width = "full",
-                order = 6,
+                order = 7,
             },
             itemFiltersEnabled = {
                 name = "Enable Item Filtering",
@@ -107,7 +117,7 @@ function LootAlert:getOptions()
                 set = function (info, val) LootAlert.db.profile.itemFilters.enabled = val end,
                 get = function () return LootAlert.db.profile.itemFilters.enabled end,
                 width = "full",
-                order = 7,
+                order = 8,
             },
             armorTypesGroup = {
                 type = "group",
