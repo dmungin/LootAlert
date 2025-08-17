@@ -9,7 +9,7 @@ function LootAlert:RenderRollOptionsModal(itemId)
     local frame = CreateFrame("Frame", "LootAlertRollOptionsFrame", UIParent, "BackdropTemplate");
 
     -- Set size
-    frame:SetSize(320, 140);
+    frame:SetSize(370, 140);
 
     -- Apply ElvUI styling if available, otherwise use default
     local colors = LootAlert:GetElvUIColors();
@@ -123,16 +123,18 @@ function LootAlert:RenderRollOptionsModal(itemId)
     buttonArea:SetPoint("TOPLEFT", itemArea, "BOTTOMLEFT", 0, -8);
     buttonArea:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -4, 4);
 
-    -- Create buttons with minimalist style
-    local buttonWidth = 75;
+    -- Create buttons that fill the width evenly
     local buttonHeight = 24;
-    local buttonSpacing = 4;
+    local buttonSpacing = 5;
+    local totalSpacing = buttonSpacing * 2; -- 2 gaps between 3 buttons
+    local availableWidth = buttonArea:GetWidth() - totalSpacing;
+    local buttonWidth = availableWidth / 3; -- 3 buttons
 
     -- Link Equipped button
     local linkButton = CreateFrame("Button", nil, buttonArea, "UIPanelButtonTemplate");
     linkButton:SetSize(buttonWidth, buttonHeight);
     linkButton:SetPoint("TOPLEFT", buttonArea, "TOPLEFT", 0, 0);
-    linkButton:SetText("Link Eq.");
+    linkButton:SetText("Link Equipped");
     linkButton:SetNormalFontObject("GameFontNormalSmall");
     LootAlert:ApplyElvUIStyle(linkButton, "button");
 
@@ -140,7 +142,7 @@ function LootAlert:RenderRollOptionsModal(itemId)
     local rollMainButton = CreateFrame("Button", nil, buttonArea, "UIPanelButtonTemplate");
     rollMainButton:SetSize(buttonWidth, buttonHeight);
     rollMainButton:SetPoint("LEFT", linkButton, "RIGHT", buttonSpacing, 0);
-    rollMainButton:SetText("Main (100)");
+    rollMainButton:SetText("Main Spec (100)");
     rollMainButton:SetNormalFontObject("GameFontNormalSmall");
     LootAlert:ApplyElvUIStyle(rollMainButton, "button");
 
@@ -148,7 +150,7 @@ function LootAlert:RenderRollOptionsModal(itemId)
     local rollOffButton = CreateFrame("Button", nil, buttonArea, "UIPanelButtonTemplate");
     rollOffButton:SetSize(buttonWidth, buttonHeight);
     rollOffButton:SetPoint("LEFT", rollMainButton, "RIGHT", buttonSpacing, 0);
-    rollOffButton:SetText("Off (99)");
+    rollOffButton:SetText("Off Spec (99)");
     rollOffButton:SetNormalFontObject("GameFontNormalSmall");
     LootAlert:ApplyElvUIStyle(rollOffButton, "button");
 
