@@ -37,7 +37,6 @@ function LootAlert:OnInitialize()
     local profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(LootAlert.db);
     LibStub("AceConfig-3.0"):RegisterOptionsTable("LootAlert_Profiles", profiles);
     LibStub("AceConfigDialog-3.0"):AddToBlizOptions("LootAlert_Profiles", "Profiles", "LootAlert");
-
     icon:Register("LootAlert", lootAlertDataBroker, LootAlert.db.profile.minimap);
     -- Should this be in a temporal state instead of DB?
     LootAlert.db.global.tierMappings = LootAlert:PopulateTierMappings();
