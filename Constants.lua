@@ -8,6 +8,9 @@ function LootAlert:BuildConstants()
         PHASE_4 = 4,
     };
 
+    -- Loot history settings
+    constants.MAX_LOOT_HISTORY = 50;
+
     constants.SLOT_MAP = {
         INVTYPE_HEAD = {
             ids = { 1 },

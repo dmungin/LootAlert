@@ -21,8 +21,19 @@ function LootAlert:HandleNewLoot(item)
     local threshold = tonumber(LootAlert.db.profile.lootThreshold);
 
     if item.Quality >= threshold then
+        -- Add new item to the beginning of the history
         table.insert(LootAlert.db.char.lootHistory, 1, item.Id);
-        LootAlert.db.char.lootHistoryLength = LootAlert.db.char.lootHistoryLength + 1;
+
+        -- Enforce maximum history limit
+        if #LootAlert.db.char.lootHistory > LootAlert.constants.MAX_LOOT_HISTORY then
+            -- Remove oldest items beyond the limit
+            for i = #LootAlert.db.char.lootHistory, LootAlert.constants.MAX_LOOT_HISTORY + 1, -1 do
+                table.remove(LootAlert.db.char.lootHistory, i);
+            end
+        end
+
+        -- Update history length to actual count
+        LootAlert.db.char.lootHistoryLength = #LootAlert.db.char.lootHistory;
 
         if LootAlert.state.mainFrame then
             LootAlert:RenderLootHistory();

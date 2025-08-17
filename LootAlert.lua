@@ -41,6 +41,9 @@ function LootAlert:OnInitialize()
     icon:Register("LootAlert", lootAlertDataBroker, LootAlert.db.profile.minimap);
     -- Should this be in a temporal state instead of DB?
     LootAlert.db.global.tierMappings = LootAlert:PopulateTierMappings();
+    -- Clean up existing loot history if it exceeds the limit
+    LootAlert:CleanupLootHistory();
+
     LootAlert:PreCacheItems(function()
         -- Restore window visibility state on addon load
         if LootAlert.db.char.windowVisible then
@@ -203,6 +206,22 @@ function LootAlert:ClearLootHistory()
     LootAlert.db.char.lootHistory = {};
 end
 
+function LootAlert:CleanupLootHistory()
+    -- Ensure loot history doesn't exceed maximum limit
+    if LootAlert.db.char.lootHistory and #LootAlert.db.char.lootHistory > LootAlert.constants.MAX_LOOT_HISTORY then
+        -- Keep only the most recent items (first MAX_LOOT_HISTORY items)
+        local newHistory = {};
+        for i = 1, LootAlert.constants.MAX_LOOT_HISTORY do
+            if LootAlert.db.char.lootHistory[i] then
+                newHistory[i] = LootAlert.db.char.lootHistory[i];
+            end
+        end
+        LootAlert.db.char.lootHistory = newHistory;
+        LootAlert.db.char.lootHistoryLength = #newHistory;
+        LootAlert:Print("Loot history cleaned up. Keeping " .. #newHistory .. " most recent items.");
+    end
+end
+
 function LootAlert:ResetModalPosition()
     LootAlert.db.char.rollModalLocation.left = false;
     LootAlert.db.char.rollModalLocation.top = false;
@@ -282,6 +301,8 @@ function LootAlert:SlashCommand(msg)
         LootAlert:ResetModalPosition();
     elseif msg == "debugelvui" then
         LootAlert:DebugElvUI();
+    elseif msg == "cleanup" then
+        LootAlert:CleanupLootHistory();
     else
         LootAlert:ToggleLootAlert();
     end
