@@ -45,9 +45,10 @@ function LootAlert:OnInitialize()
     
     icon:Register("LootAlert", lootAlertDataBroker, LootAlert.db.profile.minimap);
     -- Should this be in a temporal state instead of DB?
-    LootAlert.db.global.allItemsCached = false;
     LootAlert.db.global.tierMappings = LootAlert:PopulateTierMappings();
-	LootAlert:PreCacheItems();
+	LootAlert:PreCacheItems(function ()
+        LootAlert:RenderLootAlert();
+    end);
 
 	self:RegisterChatCommand("la", "SlashCommand");
 	self:RegisterChatCommand("lootalert", "SlashCommand");
@@ -55,7 +56,7 @@ function LootAlert:OnInitialize()
     LootAlert:RegisterEvent("CHAT_MSG_RAID_WARNING");
     LootAlert:RegisterEvent("CHAT_MSG_CHANNEL");
     LootAlert:RegisterEvent("START_LOOT_ROLL");
-    LootAlert:RenderLootAlert();
+
 end;
 
 function LootAlert:RenderLootAlert ()

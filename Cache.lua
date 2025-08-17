@@ -2,12 +2,9 @@ local _, core = ...;
 local LootAlert = core.LootAlert;
 
 local FORCE_UPDATE_CACHE = false;
-local RECACHE_DATE = time({year=2025, month=08, day=16, hour=12});
+local RECACHE_DATE = time({year=2025, month=08, day=17, hour=13});
 -- TODO:: This is not finishing before the UI tries to render...need to add a callback somehow?
-function LootAlert:PreCacheItems()
-    if LootAlert.db.global.allItemsCached then return LootAlert.db.global.allItemsCached; end
-
-    LootAlert.db.global.allItemsCached = true;
+function LootAlert:PreCacheItems(callback)
     -- TODO:: Temp flag to force cache update;
     if (FORCE_UPDATE_CACHE or not LootAlert.db.global.lastCacheDate or LootAlert.db.global.lastCacheDate < RECACHE_DATE) then
         LootAlert.db.global.itemCache = {};
@@ -26,7 +23,7 @@ function LootAlert:PreCacheItems()
         end
     end
 
-    return LootAlert.db.global.allItemsCached;
+    callback();
 end
 
 function LootAlert:CacheItem(itemId)

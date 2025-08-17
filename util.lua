@@ -46,7 +46,6 @@ function LootAlert:getDefaultDb()
 
         },
         global = {
-            allItemsCached = false,
             lastCacheDate = nil,
             itemCache = {},
             tierMappings = {}
