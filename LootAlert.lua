@@ -133,7 +133,7 @@ function LootAlert:RenderLootAlert()
     -- Title text
     local titleText = titleBar:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall");
     titleText:SetPoint("LEFT", titleBar, "LEFT", 4, 0);
-    titleText:SetText("|cFFFFFFFFLoot Alert|r");
+    titleText:SetText("|cFFFFFFFFLoot History|r");
 
     -- Close button
     local closeButton = LootAlert:CreateCustomCloseButton(titleBar, function()
