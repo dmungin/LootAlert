@@ -49,7 +49,7 @@ function LootAlert:DebugElvUI()
         else
             LootAlert:Print("- SetTemplate: Not found");
         end
-        
+
         local S = E:GetModule("Skins", true);
         if S then
             LootAlert:Print("- Skins module: Available");
@@ -67,10 +67,10 @@ end
 function LootAlert:ApplyElvUIStyle(frame, frameType)
     -- Check if ElvUI integration is enabled in settings
     if not LootAlert.db.profile.elvuiIntegration then return; end
-    
+
     local E = LootAlert:GetElvUI();
     if not E then return; end
-    
+
     -- Use pcall to safely attempt ElvUI styling
     if frameType == "frame" then
         -- Apply ElvUI frame styling
@@ -111,44 +111,45 @@ function LootAlert:GetElvUIColors()
     if not LootAlert.db.profile.elvuiIntegration then
         -- Return default colors if integration is disabled
         return {
-            backdrop = {0.05, 0.05, 0.05, 0.95},
-            border = {0.3, 0.3, 0.3, 1},
-            highlight = {1, 1, 1, 0.1}
+            backdrop = { 0.05, 0.05, 0.05, 0.95 },
+            border = { 0.3, 0.3, 0.3, 1 },
+            highlight = { 1, 1, 1, 0.1 }
         };
     end
-    
+
     local E = LootAlert:GetElvUI();
     if not E then
         -- Fallback colors if ElvUI not loaded
         return {
-            backdrop = {0.05, 0.05, 0.05, 0.95},
-            border = {0.3, 0.3, 0.3, 1},
-            highlight = {1, 1, 1, 0.1}
+            backdrop = { 0.05, 0.05, 0.05, 0.95 },
+            border = { 0.3, 0.3, 0.3, 1 },
+            highlight = { 1, 1, 1, 0.1 }
         };
     end
-    
+
     -- Use ElvUI's color scheme with safe access
     local colors = {
-        backdrop = {0.05, 0.05, 0.05, 0.95},
-        border = {0.3, 0.3, 0.3, 1},
-        highlight = {1, 1, 1, 0.1}
+        backdrop = { 0.05, 0.05, 0.05, 0.95 },
+        border = { 0.3, 0.3, 0.3, 1 },
+        highlight = { 1, 1, 1, 0.1 }
     };
-    
+
     pcall(function()
         if E.media and E.media.backdropcolor then
-            colors.backdrop = {E.media.backdropcolor[1] or 0.05, E.media.backdropcolor[2] or 0.05, E.media.backdropcolor[3] or 0.05, E.media.backdropcolor[4] or 0.95};
+            colors.backdrop = { E.media.backdropcolor[1] or 0.05, E.media.backdropcolor[2] or 0.05, E.media
+            .backdropcolor[3] or 0.05, E.media.backdropcolor[4] or 0.95 };
         end
         if E.media and E.media.bordercolor then
-            colors.border = {E.media.bordercolor[1] or 0.3, E.media.bordercolor[2] or 0.3, E.media.bordercolor[3] or 0.3, 1};
+            colors.border = { E.media.bordercolor[1] or 0.3, E.media.bordercolor[2] or 0.3, E.media.bordercolor[3] or 0.3, 1 };
         end
         if E.media and E.media.rgbvaluecolor then
-            colors.highlight = {E.media.rgbvaluecolor[1] or 1, E.media.rgbvaluecolor[2] or 1, E.media.rgbvaluecolor[3] or 1, 0.3};
+            colors.highlight = { E.media.rgbvaluecolor[1] or 1, E.media.rgbvaluecolor[2] or 1, E.media.rgbvaluecolor[3] or
+            1, 0.3 };
         end
     end);
-    
+
     return colors;
 end
-
 
 function LootAlert:OnInitialize()
     LootAlert:Print("Loot Alert Initialized!");
@@ -196,11 +197,11 @@ function LootAlert:RenderLootAlert()
 
     -- Set size
     frame:SetSize(280, 300);
-    
+
     -- Apply ElvUI styling if available, otherwise use default
     local colors = LootAlert:GetElvUIColors();
     local E = LootAlert:GetElvUI();
-    
+
     if E and LootAlert.db.profile.elvuiIntegration and E.SetTemplate ~= nil then
         -- Use ElvUI's template system with error checking
         pcall(function()
@@ -257,53 +258,16 @@ function LootAlert:RenderLootAlert()
     titleText:SetPoint("LEFT", titleBar, "LEFT", 4, 0);
     titleText:SetText("|cFFFFFFFFLoot Alert|r");
 
-    -- Close button with custom X
-    local closeButton = CreateFrame("Button", nil, titleBar);
-    closeButton:SetSize(16, 16);
-    closeButton:SetPoint("RIGHT", titleBar, "RIGHT", -2, 0);
-    
-    -- Create background
-    local bg = closeButton:CreateTexture(nil, "BACKGROUND");
-    bg:SetAllPoints();
-    bg:SetColorTexture(0.2, 0.2, 0.2, 0.8);
-    bg:Hide();
-    
-    -- Create X using two diagonal lines
-    local line1 = closeButton:CreateTexture(nil, "ARTWORK");
-    line1:SetSize(10, 1);
-    line1:SetPoint("CENTER", closeButton, "CENTER", 0, 0);
-    line1:SetColorTexture(0.8, 0.8, 0.8, 1);
-    line1:SetRotation(math.rad(45));
-    
-    local line2 = closeButton:CreateTexture(nil, "ARTWORK");
-    line2:SetSize(10, 1);
-    line2:SetPoint("CENTER", closeButton, "CENTER", 0, 0);
-    line2:SetColorTexture(0.8, 0.8, 0.8, 1);
-    line2:SetRotation(math.rad(-45));
-    
-    -- Add hover effects
-    closeButton:SetScript("OnEnter", function(self)
-        bg:Show();
-        line1:SetColorTexture(1, 0.2, 0.2, 1);
-        line2:SetColorTexture(1, 0.2, 0.2, 1);
-    end);
-    closeButton:SetScript("OnLeave", function(self)
-        bg:Hide();
-        line1:SetColorTexture(0.8, 0.8, 0.8, 1);
-        line2:SetColorTexture(0.8, 0.8, 0.8, 1);
-    end);
-    closeButton:SetScript("OnClick", function()
+    -- Close button
+    local closeButton = LootAlert:CreateCustomCloseButton(titleBar, function()
         LootAlert:ToggleLootAlert();
     end);
-    
-    -- Apply ElvUI button styling
-    LootAlert:ApplyElvUIStyle(closeButton, "button");
 
     -- Create scroll frame for loot items
     local scrollFrame = CreateFrame("ScrollFrame", nil, frame, "UIPanelScrollFrameTemplate");
     scrollFrame:SetPoint("TOPLEFT", titleBar, "BOTTOMLEFT", 0, -4);
     scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -24, 4);
-    
+
     -- Apply ElvUI scroll bar styling
     LootAlert:ApplyElvUIStyle(scrollFrame, "scrollframe");
 
