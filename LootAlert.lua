@@ -3,11 +3,10 @@ local LootAlert = LibStub("AceAddon-3.0"):NewAddon("LootAlert", "AceConsole-3.0"
 local AceGUI = LibStub("AceGUI-3.0");
 
 local lootAlertDataBroker = LibStub("LibDataBroker-1.1"):NewDataObject("LootAlert", {
-	type = "data source",
-	text = "Loot Alert",
-	icon = "Interface\\Icons\\INV_Axe_113",
-    OnClick = function (self, button)
-
+    type = "data source",
+    text = "Loot Alert",
+    icon = "Interface\\Icons\\INV_Axe_113",
+    OnClick = function(self, button)
         if button == "LeftButton" then
             if not LootAlert.state.mainFrame then
                 LootAlert:RenderLootAlert();
@@ -15,10 +14,9 @@ local lootAlertDataBroker = LibStub("LibDataBroker-1.1"):NewDataObject("LootAler
         elseif button == "RightButton" then
             LootAlert:OpenOptions();
         end
-
     end,
-    OnTooltipShow = function (tooltip)
-        tooltip:AddLine ("Loot Alert");
+    OnTooltipShow = function(tooltip)
+        tooltip:AddLine("Loot Alert");
         tooltip:AddLine("|cFF9CD6DELeft Click|r: Open Loot Alert Window");
         tooltip:AddLine("|cFF9CD6DERight Click|r: Open Settings");
     end,
@@ -38,28 +36,27 @@ function LootAlert:OnInitialize()
     LootAlert.constants = LootAlert:BuildConstants();
     LootAlert.db = LibStub("AceDB-3.0"):New("LootAlertDB", LootAlert:getDefaultDb(), true);
     LibStub("AceConfig-3.0"):RegisterOptionsTable("LootAlert_options", LootAlert:getOptions());
-	LootAlert.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("LootAlert_options", "LootAlert");
+    LootAlert.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("LootAlert_options", "LootAlert");
     local profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(LootAlert.db);
-	LibStub("AceConfig-3.0"):RegisterOptionsTable("LootAlert_Profiles", profiles);
-	LibStub("AceConfigDialog-3.0"):AddToBlizOptions("LootAlert_Profiles", "Profiles", "LootAlert");
-    
+    LibStub("AceConfig-3.0"):RegisterOptionsTable("LootAlert_Profiles", profiles);
+    LibStub("AceConfigDialog-3.0"):AddToBlizOptions("LootAlert_Profiles", "Profiles", "LootAlert");
+
     icon:Register("LootAlert", lootAlertDataBroker, LootAlert.db.profile.minimap);
     -- Should this be in a temporal state instead of DB?
     LootAlert.db.global.tierMappings = LootAlert:PopulateTierMappings();
-	LootAlert:PreCacheItems(function ()
+    LootAlert:PreCacheItems(function()
         LootAlert:RenderLootAlert();
     end);
 
-	self:RegisterChatCommand("la", "SlashCommand");
-	self:RegisterChatCommand("lootalert", "SlashCommand");
+    self:RegisterChatCommand("la", "SlashCommand");
+    self:RegisterChatCommand("lootalert", "SlashCommand");
     LootAlert:RegisterEvent("CHAT_MSG_LOOT");
     LootAlert:RegisterEvent("CHAT_MSG_RAID_WARNING");
     LootAlert:RegisterEvent("CHAT_MSG_CHANNEL");
     LootAlert:RegisterEvent("START_LOOT_ROLL");
-
 end;
 
-function LootAlert:RenderLootAlert ()
+function LootAlert:RenderLootAlert()
     local lootAlertFrame = AceGUI:Create("Frame");
     lootAlertFrame:SetTitle("Loot Alert");
     lootAlertFrame:SetLayout("Fill");
@@ -82,18 +79,15 @@ function LootAlert:RenderLootAlert ()
         AceGUI:Release(widget);
         LootAlert.state.mainFrame = nil;
     end);
-    
+
     -- Store reference to main frame instead of tab frame
     LootAlert.state.mainFrame = lootAlertFrame;
-    
+
     -- Directly render loot history without tabs
     LootAlert:RenderLootHistory(lootAlertFrame);
-
 end
 
-
-
-function LootAlert:RenderLootHistory (container)
+function LootAlert:RenderLootHistory(container)
     container:ReleaseChildren();
     local scrollContainer = AceGUI:Create("SimpleGroup");
     scrollContainer:SetFullWidth(true);
@@ -113,12 +107,12 @@ function LootAlert:RenderLootHistory (container)
     end
 end
 
-function LootAlert:ClearLootHistory ()
+function LootAlert:ClearLootHistory()
     LootAlert.db.char.lootHistoryLength = 0;
     LootAlert.db.char.lootHistory = {};
 end
 
-function LootAlert:AddLoot (container, item, options)
+function LootAlert:AddLoot(container, item, options)
     local itemLabel = AceGUI:Create("InteractiveLabel");
     itemLabel:SetText(item.Link);
     if options.iconSize then
@@ -128,8 +122,8 @@ function LootAlert:AddLoot (container, item, options)
     itemLabel:SetFullWidth(options.fullWidth);
     itemLabel:SetCallback("OnEnter", function(widget)
         GameTooltip:SetOwner(widget.image, "ANCHOR_LEFT");
-		GameTooltip:SetHyperlink(item.Link);
-		GameTooltip:Show();
+        GameTooltip:SetHyperlink(item.Link);
+        GameTooltip:Show();
     end);
     itemLabel:SetCallback("OnLeave", function(widget)
         GameTooltip:Hide();
@@ -141,14 +135,24 @@ function LootAlert:AddLoot (container, item, options)
 end
 
 function LootAlert:OpenOptions()
-    -- https://github.com/Stanzilla/WoWUIBugs/issues/89
-    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame);
-    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame);
+    -- Check if we're using the new Settings API (WoW 10.0+) or old Interface Options
+    if Settings and Settings.OpenToCategory then
+        -- New Settings API
+        Settings.OpenToCategory(LootAlert.optionsFrame.name);
+    elseif InterfaceOptionsFrame_OpenToCategory then
+        -- Legacy Interface Options - call twice due to Blizzard bug
+        -- https://github.com/Stanzilla/WoWUIBugs/issues/89
+        InterfaceOptionsFrame_OpenToCategory(LootAlert.optionsFrame);
+        InterfaceOptionsFrame_OpenToCategory(LootAlert.optionsFrame);
+    else
+        -- Fallback - try AceConfigDialog directly
+        LibStub("AceConfigDialog-3.0"):Open("LootAlert_options");
+    end
 end
 
 function LootAlert:SlashCommand(msg)
-	if not msg or msg:trim() == "" then
-		LootAlert:OpenOptions();
+    if not msg or msg:trim() == "" then
+        LootAlert:OpenOptions();
     elseif msg == "clear" then
         LootAlert:ClearLootHistory();
         if LootAlert.state.mainFrame then
@@ -158,7 +162,7 @@ function LootAlert:SlashCommand(msg)
         if not LootAlert.state.mainFrame then
             LootAlert:RenderLootAlert();
         end
-	end
+    end
 end
 
 function LootAlert:OnEnable()
