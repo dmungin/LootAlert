@@ -8,16 +8,14 @@ local lootAlertDataBroker = LibStub("LibDataBroker-1.1"):NewDataObject("LootAler
     icon = "Interface\\Icons\\INV_Axe_113",
     OnClick = function(self, button)
         if button == "LeftButton" then
-            if not LootAlert.state.mainFrame then
-                LootAlert:RenderLootAlert();
-            end
+            LootAlert:ToggleLootAlert();
         elseif button == "RightButton" then
             LootAlert:OpenOptions();
         end
     end,
     OnTooltipShow = function(tooltip)
         tooltip:AddLine("Loot Alert");
-        tooltip:AddLine("|cFF9CD6DELeft Click|r: Open Loot Alert Window");
+        tooltip:AddLine("|cFF9CD6DELeft Click|r: Toggle Loot Alert Window");
         tooltip:AddLine("|cFF9CD6DERight Click|r: Open Settings");
     end,
 });
@@ -45,7 +43,10 @@ function LootAlert:OnInitialize()
     -- Should this be in a temporal state instead of DB?
     LootAlert.db.global.tierMappings = LootAlert:PopulateTierMappings();
     LootAlert:PreCacheItems(function()
-        LootAlert:RenderLootAlert();
+        -- Restore window visibility state on addon load
+        if LootAlert.db.char.windowVisible then
+            LootAlert:RenderLootAlert();
+        end
     end);
 
     self:RegisterChatCommand("la", "SlashCommand");
@@ -55,6 +56,18 @@ function LootAlert:OnInitialize()
     LootAlert:RegisterEvent("CHAT_MSG_CHANNEL");
     LootAlert:RegisterEvent("START_LOOT_ROLL");
 end;
+
+function LootAlert:ToggleLootAlert()
+    if LootAlert.state.mainFrame then
+        -- Window is open, close it
+        AceGUI:Release(LootAlert.state.mainFrame);
+        LootAlert.state.mainFrame = nil;
+        LootAlert.db.char.windowVisible = false;
+    else
+        -- Window is closed, open it
+        LootAlert:RenderLootAlert();
+    end
+end
 
 function LootAlert:RenderLootAlert()
     local lootAlertFrame = AceGUI:Create("Frame");
@@ -78,10 +91,15 @@ function LootAlert:RenderLootAlert()
     lootAlertFrame:SetCallback("OnClose", function(widget)
         AceGUI:Release(widget);
         LootAlert.state.mainFrame = nil;
+        -- Save window visibility state when closed
+        LootAlert.db.char.windowVisible = false;
     end);
 
     -- Store reference to main frame instead of tab frame
     LootAlert.state.mainFrame = lootAlertFrame;
+    
+    -- Save window visibility state when opened
+    LootAlert.db.char.windowVisible = true;
 
     -- Directly render loot history without tabs
     LootAlert:RenderLootHistory(lootAlertFrame);
@@ -159,9 +177,7 @@ function LootAlert:SlashCommand(msg)
             LootAlert:RenderLootHistory(LootAlert.state.mainFrame);
         end
     else
-        if not LootAlert.state.mainFrame then
-            LootAlert:RenderLootAlert();
-        end
+        LootAlert:ToggleLootAlert();
     end
 end
 
