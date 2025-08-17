@@ -60,7 +60,7 @@ end;
 function LootAlert:ToggleLootAlert()
     if LootAlert.state.mainFrame then
         -- Window is open, close it
-        AceGUI:Release(LootAlert.state.mainFrame);
+        LootAlert.state.mainFrame:Hide();
         LootAlert.state.mainFrame = nil;
         LootAlert.db.char.windowVisible = false;
     else
@@ -70,59 +70,121 @@ function LootAlert:ToggleLootAlert()
 end
 
 function LootAlert:RenderLootAlert()
-    local lootAlertFrame = AceGUI:Create("Frame");
-    lootAlertFrame:SetTitle("Loot Alert");
-    lootAlertFrame:SetLayout("Fill");
-    lootAlertFrame:SetWidth(350);
-    lootAlertFrame:SetHeight(400);
+    -- Create minimalist frame similar to Details addon
+    local frame = CreateFrame("Frame", "LootAlertMinimalistFrame", UIParent, "BackdropTemplate");
+    
+    -- Set size and backdrop for clean look
+    frame:SetSize(280, 300);
+    frame:SetBackdrop({
+        bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+        edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+        tile = true,
+        tileSize = 8,
+        edgeSize = 8,
+        insets = { left = 2, right = 2, top = 2, bottom = 2 }
+    });
+    frame:SetBackdropColor(0.05, 0.05, 0.05, 0.95);
+    frame:SetBackdropBorderColor(0.3, 0.3, 0.3, 1);
+    
     -- Set frame location to saved coords, or center if none are saved
     local left = LootAlert.db.char.lootHistoryLocation.left;
     local top = LootAlert.db.char.lootHistoryLocation.top;
     if left and top then
-        lootAlertFrame:SetPoint("TOP", UIParent, "BOTTOM", 0, top);
-        lootAlertFrame:SetPoint("LEFT", UIParent, "LEFT", left, 0);
+        frame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", left, top);
     else
-        lootAlertFrame:SetPoint("CENTER");
+        frame:SetPoint("CENTER");
     end
-    -- Add Frame movement and position saving logic
-    lootAlertFrame.frame:SetScript("OnMouseDown", LootAlert:GetFrameMoveMouseDown('lootHistoryLocation'));
-    lootAlertFrame.frame:SetScript("OnMouseUp", LootAlert:GetFrameMoveMouseUp('lootHistoryLocation'));
-
-    lootAlertFrame:SetCallback("OnClose", function(widget)
-        AceGUI:Release(widget);
-        LootAlert.state.mainFrame = nil;
-        -- Save window visibility state when closed
-        LootAlert.db.char.windowVisible = false;
+    
+    -- Make frame movable
+    frame:SetMovable(true);
+    frame:EnableMouse(true);
+    frame:RegisterForDrag("LeftButton");
+    frame:SetScript("OnDragStart", function(self)
+        self:StartMoving();
     end);
-
-    -- Store reference to main frame instead of tab frame
-    LootAlert.state.mainFrame = lootAlertFrame;
+    frame:SetScript("OnDragStop", function(self)
+        self:StopMovingOrSizing();
+        local left = self:GetLeft();
+        local top = self:GetTop();
+        LootAlert.db.char.lootHistoryLocation.left = left;
+        LootAlert.db.char.lootHistoryLocation.top = top;
+    end);
+    
+    -- Create title bar
+    local titleBar = CreateFrame("Frame", nil, frame);
+    titleBar:SetPoint("TOPLEFT", frame, "TOPLEFT", 4, -4);
+    titleBar:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -4, -4);
+    titleBar:SetHeight(20);
+    
+    -- Title text
+    local titleText = titleBar:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall");
+    titleText:SetPoint("LEFT", titleBar, "LEFT", 4, 0);
+    titleText:SetText("|cFFFFFFFFLoot Alert|r");
+    
+    -- Close button
+    local closeButton = CreateFrame("Button", nil, titleBar);
+    closeButton:SetSize(16, 16);
+    closeButton:SetPoint("RIGHT", titleBar, "RIGHT", -2, 0);
+    closeButton:SetNormalTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Up");
+    closeButton:SetPushedTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Down");
+    closeButton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight", "ADD");
+    closeButton:SetScript("OnClick", function()
+        LootAlert:ToggleLootAlert();
+    end);
+    
+    -- Create scroll frame for loot items
+    local scrollFrame = CreateFrame("ScrollFrame", nil, frame, "UIPanelScrollFrameTemplate");
+    scrollFrame:SetPoint("TOPLEFT", titleBar, "BOTTOMLEFT", 0, -4);
+    scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -24, 4);
+    
+    -- Create content frame
+    local contentFrame = CreateFrame("Frame", nil, scrollFrame);
+    contentFrame:SetSize(scrollFrame:GetWidth(), 1);
+    scrollFrame:SetScrollChild(contentFrame);
+    
+    -- Store references
+    frame.scrollFrame = scrollFrame;
+    frame.contentFrame = contentFrame;
+    LootAlert.state.mainFrame = frame;
     
     -- Save window visibility state when opened
     LootAlert.db.char.windowVisible = true;
-
-    -- Directly render loot history without tabs
-    LootAlert:RenderLootHistory(lootAlertFrame);
+    
+    -- Render loot history
+    LootAlert:RenderLootHistory();
+    
+    frame:Show();
 end
 
-function LootAlert:RenderLootHistory(container)
-    container:ReleaseChildren();
-    local scrollContainer = AceGUI:Create("SimpleGroup");
-    scrollContainer:SetFullWidth(true);
-    scrollContainer:SetFullHeight(true);
-    scrollContainer:SetLayout("Fill");
-    container:AddChild(scrollContainer)
-
-    local lootHistoryScrollFrame = AceGUI:Create("ScrollFrame")
-    lootHistoryScrollFrame:SetLayout("Flow");
-    scrollContainer:AddChild(lootHistoryScrollFrame);
-
-    for _, itemId in ipairs(LootAlert.db.char.lootHistory) do
+function LootAlert:RenderLootHistory()
+    if not LootAlert.state.mainFrame or not LootAlert.state.mainFrame.contentFrame then
+        return;
+    end
+    
+    local contentFrame = LootAlert.state.mainFrame.contentFrame;
+    
+    -- Clear existing children
+    for i = 1, contentFrame:GetNumChildren() do
+        local child = select(i, contentFrame:GetChildren());
+        child:Hide();
+        child:SetParent(nil);
+    end
+    
+    local yOffset = 0;
+    local itemHeight = 24;
+    local padding = 2;
+    
+    -- Create loot item entries
+    for i, itemId in ipairs(LootAlert.db.char.lootHistory) do
         local item = LootAlert:GetItemInfoInstant(itemId);
         if item.Id ~= nil then
-            LootAlert:AddLoot(lootHistoryScrollFrame, item, { fullWidth = true, iconSize = 20 });
+            local itemFrame = LootAlert:CreateLootItemFrame(contentFrame, item, yOffset);
+            yOffset = yOffset + itemHeight + padding;
         end
     end
+    
+    -- Update content frame height
+    contentFrame:SetHeight(math.max(yOffset, 1));
 end
 
 function LootAlert:ClearLootHistory()
@@ -130,26 +192,48 @@ function LootAlert:ClearLootHistory()
     LootAlert.db.char.lootHistory = {};
 end
 
-function LootAlert:AddLoot(container, item, options)
-    local itemLabel = AceGUI:Create("InteractiveLabel");
-    itemLabel:SetText(item.Link);
-    if options.iconSize then
-        itemLabel:SetImage(item.Texture);
-        itemLabel:SetImageSize(options.iconSize, options.iconSize);
-    end
-    itemLabel:SetFullWidth(options.fullWidth);
-    itemLabel:SetCallback("OnEnter", function(widget)
-        GameTooltip:SetOwner(widget.image, "ANCHOR_LEFT");
+function LootAlert:CreateLootItemFrame(parent, item, yOffset)
+    local itemFrame = CreateFrame("Frame", nil, parent);
+    itemFrame:SetSize(parent:GetWidth() - 4, 22);
+    itemFrame:SetPoint("TOPLEFT", parent, "TOPLEFT", 2, -yOffset);
+    
+    -- Create hover highlight
+    local highlight = itemFrame:CreateTexture(nil, "BACKGROUND");
+    highlight:SetAllPoints(itemFrame);
+    highlight:SetColorTexture(1, 1, 1, 0.1);
+    highlight:Hide();
+    
+    -- Item icon
+    local icon = itemFrame:CreateTexture(nil, "ARTWORK");
+    icon:SetSize(20, 20);
+    icon:SetPoint("LEFT", itemFrame, "LEFT", 2, 0);
+    icon:SetTexture(item.Texture);
+    
+    -- Item name text
+    local nameText = itemFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall");
+    nameText:SetPoint("LEFT", icon, "RIGHT", 4, 0);
+    nameText:SetPoint("RIGHT", itemFrame, "RIGHT", -4, 0);
+    nameText:SetJustifyH("LEFT");
+    nameText:SetText(item.Name);
+    
+    -- Set text color based on item quality
+    local qualityColor = ITEM_QUALITY_COLORS[item.Quality] or ITEM_QUALITY_COLORS[1];
+    nameText:SetTextColor(qualityColor.r, qualityColor.g, qualityColor.b);
+    
+    -- Mouse interactions
+    itemFrame:EnableMouse(true);
+    itemFrame:SetScript("OnEnter", function(self)
+        highlight:Show();
+        GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
         GameTooltip:SetHyperlink(item.Link);
         GameTooltip:Show();
     end);
-    itemLabel:SetCallback("OnLeave", function(widget)
+    itemFrame:SetScript("OnLeave", function(self)
+        highlight:Hide();
         GameTooltip:Hide();
     end);
-
-    container:AddChild(itemLabel);
-
-    return itemLabel;
+    
+    return itemFrame;
 end
 
 function LootAlert:OpenOptions()
@@ -174,7 +258,7 @@ function LootAlert:SlashCommand(msg)
     elseif msg == "clear" then
         LootAlert:ClearLootHistory();
         if LootAlert.state.mainFrame then
-            LootAlert:RenderLootHistory(LootAlert.state.mainFrame);
+            LootAlert:RenderLootHistory();
         end
     else
         LootAlert:ToggleLootAlert();

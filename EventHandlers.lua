@@ -25,7 +25,7 @@ function LootAlert:HandleNewLoot(item)
         LootAlert.db.char.lootHistoryLength = LootAlert.db.char.lootHistoryLength + 1;
 
         if LootAlert.state.mainFrame then
-            LootAlert:RenderLootHistory(LootAlert.state.mainFrame);
+            LootAlert:RenderLootHistory();
         end
     end
 end
