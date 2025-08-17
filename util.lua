@@ -335,6 +335,128 @@ function LootAlert:ItemHasDesiredStats(item)
     return false;
 end
 
+function LootAlert:IsElvUILoaded()
+    return _G.ElvUI ~= nil;
+end
+
+function LootAlert:GetElvUI()
+    if LootAlert:IsElvUILoaded() then
+        return _G.ElvUI[1];
+    end
+    return nil;
+end
+
+function LootAlert:DebugElvUI()
+    local E = LootAlert:GetElvUI();
+    if E then
+        LootAlert:Print("ElvUI detected. Available methods:");
+        if E.SetTemplate then
+            LootAlert:Print("- SetTemplate: Available");
+        else
+            LootAlert:Print("- SetTemplate: Not found");
+        end
+
+        local S = E:GetModule("Skins", true);
+        if S then
+            LootAlert:Print("- Skins module: Available");
+            if S.HandleButton then LootAlert:Print("  - HandleButton: Available"); end
+            if S.HandleScrollBar then LootAlert:Print("  - HandleScrollBar: Available"); end
+            if S.HandleCheckBox then LootAlert:Print("  - HandleCheckBox: Available"); end
+        else
+            LootAlert:Print("- Skins module: Not found");
+        end
+    else
+        LootAlert:Print("ElvUI not detected");
+    end
+end
+
+function LootAlert:ApplyElvUIStyle(frame, frameType)
+    -- Check if ElvUI integration is enabled in settings
+    if not LootAlert.db.profile.elvuiIntegration then return; end
+
+    local E = LootAlert:GetElvUI();
+    if not E then return; end
+
+    -- Use pcall to safely attempt ElvUI styling
+    if frameType == "frame" then
+        -- Apply ElvUI frame styling
+        pcall(function()
+            if E.SetTemplate then
+                E:SetTemplate(frame, "Default");
+            end
+        end);
+    elseif frameType == "button" then
+        -- Apply ElvUI button styling
+        pcall(function()
+            local S = E:GetModule("Skins", true);
+            if S and S.HandleButton then
+                S:HandleButton(frame);
+            end
+        end);
+    elseif frameType == "scrollframe" then
+        -- Apply ElvUI scroll frame styling
+        pcall(function()
+            local S = E:GetModule("Skins", true);
+            if S and S.HandleScrollBar then
+                S:HandleScrollBar(frame.ScrollBar or frame);
+            end
+        end);
+    elseif frameType == "checkbox" then
+        -- Apply ElvUI checkbox styling
+        pcall(function()
+            local S = E:GetModule("Skins", true);
+            if S and S.HandleCheckBox then
+                S:HandleCheckBox(frame);
+            end
+        end);
+    end
+end
+
+function LootAlert:GetElvUIColors()
+    -- Check if ElvUI integration is enabled in settings
+    if not LootAlert.db.profile.elvuiIntegration then
+        -- Return default colors if integration is disabled
+        return {
+            backdrop = { 0.05, 0.05, 0.05, 0.95 },
+            border = { 0.3, 0.3, 0.3, 1 },
+            highlight = { 1, 1, 1, 0.1 }
+        };
+    end
+
+    local E = LootAlert:GetElvUI();
+    if not E then
+        -- Fallback colors if ElvUI not loaded
+        return {
+            backdrop = { 0.05, 0.05, 0.05, 0.95 },
+            border = { 0.3, 0.3, 0.3, 1 },
+            highlight = { 1, 1, 1, 0.1 }
+        };
+    end
+
+    -- Use ElvUI's color scheme with safe access
+    local colors = {
+        backdrop = { 0.05, 0.05, 0.05, 0.95 },
+        border = { 0.3, 0.3, 0.3, 1 },
+        highlight = { 1, 1, 1, 0.1 }
+    };
+
+    pcall(function()
+        if E.media and E.media.backdropcolor then
+            colors.backdrop = { E.media.backdropcolor[1] or 0.05, E.media.backdropcolor[2] or 0.05, E.media
+            .backdropcolor[3] or 0.05, E.media.backdropcolor[4] or 0.95 };
+        end
+        if E.media and E.media.bordercolor then
+            colors.border = { E.media.bordercolor[1] or 0.3, E.media.bordercolor[2] or 0.3, E.media.bordercolor[3] or 0.3, 1 };
+        end
+        if E.media and E.media.rgbvaluecolor then
+            colors.highlight = { E.media.rgbvaluecolor[1] or 1, E.media.rgbvaluecolor[2] or 1, E.media.rgbvaluecolor[3] or
+            1, 0.3 };
+        end
+    end);
+
+    return colors;
+end
+
 function LootAlert:CreateCustomCloseButton(parent, onClickCallback)
     -- Create close button with custom X
     local closeButton = CreateFrame("Button", nil, parent);
