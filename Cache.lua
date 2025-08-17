@@ -2,7 +2,7 @@ local _, core = ...;
 local LootAlert = core.LootAlert;
 
 local FORCE_UPDATE_CACHE = false;
-local RECACHE_DATE = time({year=2025, month=08, day=17, hour=13});
+local RECACHE_DATE = time({ year = 2025, month = 08, day = 17, hour = 13 });
 -- TODO:: This is not finishing before the UI tries to render...need to add a callback somehow?
 function LootAlert:PreCacheItems(callback)
     -- TODO:: Temp flag to force cache update;
@@ -37,7 +37,7 @@ end
 function LootAlert:ReCacheItem(itemId)
     LootAlert:GetItemInfo(itemId, function(cacheItem)
         if not cacheItem or cacheItem.Name == nil then
-            LootAlert:Error("Failed to cache ("..itemId.."): ", cacheItem);
+            LootAlert:Error("Failed to cache (" .. itemId .. "): ", cacheItem);
         end
     end);
 end
@@ -55,7 +55,6 @@ function LootAlert:GetItemInfoInstant(itemId)
 end
 
 function LootAlert:GetItemInfo(itemId, callback)
-
     if itemId == nil or not itemId or itemId <= 0 then
         LootAlert:Error("Unable to get invalid Item: ", itemId);
         callback(NIL_ITEM);
@@ -84,7 +83,7 @@ function LootAlert:GetItemInfo(itemId, callback)
                 Link = itemCache:GetItemLink(),
                 Quality = itemCache:GetItemQuality(),
                 Type = itemType,
-                SubType = subType,                
+                SubType = subType,
                 Texture = itemCache:GetItemIcon(),
                 Class = classId,
                 Slot = slot
