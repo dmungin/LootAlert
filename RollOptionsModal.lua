@@ -79,13 +79,41 @@ function LootAlert:RenderRollOptionsModal(itemId)
     titleText:SetPoint("LEFT", titleBar, "LEFT", 4, 0);
     titleText:SetText("|cFFFFFFFFRoll Options|r");
 
-    -- Close button
+    -- Close button with custom X
     local closeButton = CreateFrame("Button", nil, titleBar);
     closeButton:SetSize(16, 16);
     closeButton:SetPoint("RIGHT", titleBar, "RIGHT", -2, 0);
-    closeButton:SetNormalTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Up");
-    closeButton:SetPushedTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Down");
-    closeButton:SetHighlightTexture("Interface\\Buttons\\UI-Panel-MinimizeButton-Highlight", "ADD");
+    
+    -- Create background
+    local bg = closeButton:CreateTexture(nil, "BACKGROUND");
+    bg:SetAllPoints();
+    bg:SetColorTexture(0.2, 0.2, 0.2, 0.8);
+    bg:Hide();
+    
+    -- Create X using two diagonal lines
+    local line1 = closeButton:CreateTexture(nil, "ARTWORK");
+    line1:SetSize(10, 1);
+    line1:SetPoint("CENTER", closeButton, "CENTER", 0, 0);
+    line1:SetColorTexture(0.8, 0.8, 0.8, 1);
+    line1:SetRotation(math.rad(45));
+    
+    local line2 = closeButton:CreateTexture(nil, "ARTWORK");
+    line2:SetSize(10, 1);
+    line2:SetPoint("CENTER", closeButton, "CENTER", 0, 0);
+    line2:SetColorTexture(0.8, 0.8, 0.8, 1);
+    line2:SetRotation(math.rad(-45));
+    
+    -- Add hover effects
+    closeButton:SetScript("OnEnter", function(self)
+        bg:Show();
+        line1:SetColorTexture(1, 0.2, 0.2, 1);
+        line2:SetColorTexture(1, 0.2, 0.2, 1);
+    end);
+    closeButton:SetScript("OnLeave", function(self)
+        bg:Hide();
+        line1:SetColorTexture(0.8, 0.8, 0.8, 1);
+        line2:SetColorTexture(0.8, 0.8, 0.8, 1);
+    end);
     closeButton:SetScript("OnClick", function()
         frame:Hide();
     end);
