@@ -1,12 +1,8 @@
 local _, core = ...;
 
 local LootAlert = core.LootAlert;
-local AceGUI = core.AceGUI;
 
 function LootAlert:getDefaultDb()
-    local SPECS = LootAlert.constants.SPECS;
-    local CLASSES = LootAlert.constants.CLASSES;
-    local PHASES = LootAlert.constants.PHASES;
     return {
         profile = {
             lootThreshold = "4",
@@ -14,6 +10,27 @@ function LootAlert:getDefaultDb()
             minimap = {
 				hide = false,
 			},
+            elvuiIntegration = true,
+            itemFilters = {
+                enabled = false,
+                armorTypes = {
+                    cloth = false,
+                    leather = false,
+                    mail = false,
+                    plate = false,
+                },
+
+                stats = {
+                    agility = false,
+                    intellect = false,
+                    spirit = false,
+                    strength = false,
+                    crit = false,
+                    hit = false,
+                    haste = false,
+                    expertise = false,
+                },
+            },
         },
         char = {
             lootHistory = {},
@@ -26,76 +43,19 @@ function LootAlert:getDefaultDb()
                 left = false,
                 top = false,
             },
-            activeTab = 'lootHistory',
-            wantedLootBisList = {},
-            alertSpecs = {
-                [SPECS.BLOOD..CLASSES.DEATH_KNIGHT] = false,
-                [SPECS.FROST..CLASSES.DEATH_KNIGHT] = false,
-                [SPECS.UNHOLY..CLASSES.DEATH_KNIGHT] = false,
-                [SPECS.BALANCE..CLASSES.DRUID] = false,
-                [SPECS.BEAR..CLASSES.DRUID] = false,
-                [SPECS.CAT..CLASSES.DRUID] = false,
-                [SPECS.RESTORATION..CLASSES.DRUID] = false,
-                [SPECS.BEAST_MASTERY..CLASSES.HUNTER] = false,
-                [SPECS.MARKSMANSHIP..CLASSES.HUNTER] = false,
-                [SPECS.SURVIVAL..CLASSES.HUNTER] = false,
-                [SPECS.ARCANE..CLASSES.MAGE] = false,
-                [SPECS.FIRE..CLASSES.MAGE] = false,
-                [SPECS.FROST..CLASSES.MAGE] = false,
-                [SPECS.HOLY..CLASSES.PALADIN] = false,
-                [SPECS.PROTECTION..CLASSES.PALADIN] = false,
-                [SPECS.RETRIBUTION..CLASSES.PALADIN] = false,
-                [SPECS.DISCIPLINE..CLASSES.PRIEST] = false,
-                [SPECS.HOLY..CLASSES.PRIEST] = false,
-                [SPECS.SHADOW..CLASSES.PRIEST] = false,
-                [SPECS.ASSASSINATION..CLASSES.ROGUE] = false,
-                [SPECS.COMBAT..CLASSES.ROGUE] = false,
-                [SPECS.SUBTLETY..CLASSES.ROGUE] = false,
-                [SPECS.ELEMENTAL..CLASSES.SHAMAN] = false,
-                [SPECS.ENHANCEMENT..CLASSES.SHAMAN] = false,
-                [SPECS.RESTORATION..CLASSES.SHAMAN] = false,
-                [SPECS.AFFLICTION..CLASSES.WARLOCK] = false,
-                [SPECS.DEMONOLOGY..CLASSES.WARLOCK] = false,
-                [SPECS.DESTRUCTION..CLASSES.WARLOCK] = false,
-                [SPECS.ARMS..CLASSES.WARRIOR] = false,
-                [SPECS.FURY..CLASSES.WARRIOR] = false,
-                [SPECS.PROTECTION..CLASSES.WARRIOR] = false
-            },
-            alertPhase = PHASES.PHASE_4,
+            windowVisible = false,
         },
         global = {
-            allItemsCached = false,
-            currentPhase = PHASES.PHASE_4,
             lastCacheDate = nil,
             itemCache = {},
-            itemSources = {},
-            tierMappings = {},
-            itemsBySpecAndId = {},
+            tierMappings = {}
         },
     };
 end
 
-function LootAlert:ReMakeBisListOnOptionChange ()
-    if LootAlert.state.tabFrame ~= nil and LootAlert.db.char.activeTab == "lootBisList" then
-        LootAlert:RenderLootBisList(LootAlert.state.tabFrame);
-    end
-end
 
-local function getShowSpecSetter (spec)
-    return function (info, val)
-        LootAlert.db.char.alertSpecs[spec] = val;
-        LootAlert:ReMakeBisListOnOptionChange();
-    end;
-end
-
-local function getShowSpecGetter (spec)
-    return function () return LootAlert.db.char.alertSpecs[spec] end;
-end
 
 function LootAlert:getOptions()
-    local SPECS = LootAlert.constants.SPECS;
-    local CLASSES = LootAlert.constants.CLASSES;
-    local PHASES = LootAlert.constants.PHASES;
 
     local options = {
         name = "LootAlert",
@@ -125,23 +85,6 @@ function LootAlert:getOptions()
                 width = 1.1,
                 order = 2,
             },
-            alertPhase = {
-                type = "select",
-                name = "Active BIS Phase",
-                desc = "Set what phase gear you wish to use for your BIS list",
-                set = function(info, val)
-                    LootAlert.db.char.alertPhase = val;
-                    LootAlert:ReMakeBisListOnOptionChange();
-                end,
-                get = function() return LootAlert.db.char.alertPhase  end,
-                values = {
-                    [PHASES.PRERAID] = "Pre-Raid",
-                    [PHASES.PHASE_4] = "Phase 4",
-                },
-                sorting = {0, 4},
-                width = 1.1,
-                order = 3,
-            },
             showOnlyMaster = {
                 name = "Show Only Master Looter",
                 desc = "Enables / disables filtering loot history by master looter name",
@@ -151,329 +94,137 @@ function LootAlert:getOptions()
                 width = 1.5,
                 order = 4,
             },
+            elvuiIntegration = {
+                name = "ElvUI Integration",
+                desc = "Automatically apply ElvUI styling to Loot Alert windows when ElvUI is loaded",
+                type = "toggle",
+                set = function (info, val) LootAlert.db.profile.elvuiIntegration = val end,
+                get = function () return LootAlert.db.profile.elvuiIntegration end,
+                width = 1.5,
+                order = 5,
+            },
             spacer1 = {
                 type = "header",
-                name = "Alert Specs",
+                name = "Item Filters",
                 width = "full",
-                order = 5,
+                order = 7,
+            },
+            itemFiltersEnabled = {
+                name = "Enable Item Filtering",
+                desc = "When enabled, only items matching your selected criteria will trigger roll options",
+                type = "toggle",
+                set = function (info, val) LootAlert.db.profile.itemFilters.enabled = val end,
+                get = function () return LootAlert.db.profile.itemFilters.enabled end,
+                width = "full",
+                order = 8,
+            },
+            armorTypesGroup = {
+                type = "group",
+                name = "Armor Types",
+                inline = true,
+                order = 9,
+                disabled = function() return not LootAlert.db.profile.itemFilters.enabled end,
+                args = {
+                    cloth = {
+                        name = "Cloth",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.armorTypes.cloth = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.armorTypes.cloth end,
+                        order = 1,
+                    },
+                    leather = {
+                        name = "Leather",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.armorTypes.leather = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.armorTypes.leather end,
+                        order = 2,
+                    },
+                    mail = {
+                        name = "Mail",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.armorTypes.mail = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.armorTypes.mail end,
+                        order = 3,
+                    },
+                    plate = {
+                        name = "Plate",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.armorTypes.plate = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.armorTypes.plate end,
+                        order = 4,
+                    },
+                },
+            },
+
+            statsGroup = {
+                type = "group",
+                name = "Desired Stats",
+                inline = true,
+                order = 10,
+                disabled = function() return not LootAlert.db.profile.itemFilters.enabled end,
+                args = {
+                    agility = {
+                        name = "Agility",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.stats.agility = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.stats.agility end,
+                        order = 1,
+                    },
+                    intellect = {
+                        name = "Intellect",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.stats.intellect = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.stats.intellect end,
+                        order = 2,
+                    },
+                    spirit = {
+                        name = "Spirit",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.stats.spirit = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.stats.spirit end,
+                        order = 3,
+                    },
+                    strength = {
+                        name = "Strength",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.stats.strength = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.stats.strength end,
+                        order = 4,
+                    },
+                    crit = {
+                        name = "Critical Strike",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.stats.crit = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.stats.crit end,
+                        order = 5,
+                    },
+                    hit = {
+                        name = "Hit Rating",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.stats.hit = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.stats.hit end,
+                        order = 6,
+                    },
+                    haste = {
+                        name = "Haste",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.stats.haste = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.stats.haste end,
+                        order = 7,
+                    },
+                    expertise = {
+                        name = "Expertise",
+                        type = "toggle",
+                        set = function (info, val) LootAlert.db.profile.itemFilters.stats.expertise = val end,
+                        get = function () return LootAlert.db.profile.itemFilters.stats.expertise end,
+                        order = 8,
+                    },
+                },
             },
         },
     };
 
-    local playerClass = UnitClass("player");
-    for spec, _ in pairs(LootAlert.db.char.alertSpecs) do
-        if not string.find(spec, playerClass) then
-            LootAlert.db.char.alertSpecs[spec] = false;
-        end
-    end
-    if playerClass == CLASSES.DEATH_KNIGHT then
-        options.args.showBloodDk = {
-            type = "toggle",
-            name = CLASSES.DEATH_KNIGHT..": "..SPECS.BLOOD,
-            desc = CLASSES.DEATH_KNIGHT..": "..SPECS.BLOOD,
-            get = getShowSpecGetter(SPECS.BLOOD..CLASSES.DEATH_KNIGHT),
-            set = getShowSpecSetter(SPECS.BLOOD..CLASSES.DEATH_KNIGHT),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showFrostDk = {
-            type = "toggle",
-            name = CLASSES.DEATH_KNIGHT..": "..SPECS.FROST,
-            desc = CLASSES.DEATH_KNIGHT..": "..SPECS.FROST,
-            get = getShowSpecGetter(SPECS.FROST..CLASSES.DEATH_KNIGHT),
-            set = getShowSpecSetter(SPECS.FROST..CLASSES.DEATH_KNIGHT),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showUnholyDk = {
-            type = "toggle",
-            name = CLASSES.DEATH_KNIGHT..": "..SPECS.UNHOLY,
-            desc = CLASSES.DEATH_KNIGHT..": "..SPECS.UNHOLY,
-            get = getShowSpecGetter(SPECS.UNHOLY..CLASSES.DEATH_KNIGHT),
-            set = getShowSpecSetter(SPECS.UNHOLY..CLASSES.DEATH_KNIGHT),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.DRUID then
-        options.args.showBalanceDruid = {
-            type = "toggle",
-            name = CLASSES.DRUID..": "..SPECS.BALANCE,
-            desc = CLASSES.DRUID..": "..SPECS.BALANCE,
-            get = getShowSpecGetter(SPECS.BALANCE..CLASSES.DRUID),
-            set = getShowSpecSetter(SPECS.BALANCE..CLASSES.DRUID),
-            width = .825,
-            order = 6,
-        };
-        options.args.showBearDruid = {
-            type = "toggle",
-            name = CLASSES.DRUID..": "..SPECS.BEAR,
-            desc = CLASSES.DRUID..": "..SPECS.BEAR,
-            get = getShowSpecGetter(SPECS.BEAR..CLASSES.DRUID),
-            set = getShowSpecSetter(SPECS.BEAR..CLASSES.DRUID),
-            width = .825,
-            order = 7,
-        };
-        options.args.showCatDruid = {
-            type = "toggle",
-            name = CLASSES.DRUID..": "..SPECS.CAT,
-            desc = CLASSES.DRUID..": "..SPECS.CAT,
-            get = getShowSpecGetter(SPECS.CAT..CLASSES.DRUID),
-            set = getShowSpecSetter(SPECS.CAT..CLASSES.DRUID),
-            width = .825,
-            order = 8,
-        };
-        options.args.showRestorationDruid = {
-            type = "toggle",
-            name = CLASSES.DRUID..": "..SPECS.RESTORATION,
-            desc = CLASSES.DRUID..": "..SPECS.RESTORATION,
-            get = getShowSpecGetter(SPECS.RESTORATION..CLASSES.DRUID),
-            set = getShowSpecSetter(SPECS.RESTORATION..CLASSES.DRUID),
-            width = .825,
-            order = 9,
-        };
-    end
-
-    if playerClass == CLASSES.HUNTER then
-        options.args.showBmHunter = {
-            type = "toggle",
-            name = CLASSES.HUNTER..": "..SPECS.BEAST_MASTERY,
-            desc = CLASSES.HUNTER..": "..SPECS.BEAST_MASTERY,
-            get = getShowSpecGetter(SPECS.BEAST_MASTERY..CLASSES.HUNTER),
-            set = getShowSpecSetter(SPECS.BEAST_MASTERY..CLASSES.HUNTER),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showMarksHunter = {
-            type = "toggle",
-            name = CLASSES.HUNTER..": "..SPECS.MARKSMANSHIP,
-            desc = CLASSES.HUNTER..": "..SPECS.MARKSMANSHIP,
-            get = getShowSpecGetter(SPECS.MARKSMANSHIP..CLASSES.HUNTER),
-            set = getShowSpecSetter(SPECS.MARKSMANSHIP..CLASSES.HUNTER),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showSurvivalHunter = {
-            type = "toggle",
-            name = CLASSES.HUNTER..": "..SPECS.SURVIVAL,
-            desc = CLASSES.HUNTER..": "..SPECS.SURVIVAL,
-            get = getShowSpecGetter(SPECS.SURVIVAL..CLASSES.HUNTER),
-            set = getShowSpecSetter(SPECS.SURVIVAL..CLASSES.HUNTER),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.MAGE then
-        options.args.showArcaneMage = {
-            type = "toggle",
-            name = CLASSES.MAGE..": "..SPECS.ARCANE,
-            desc = CLASSES.MAGE..": "..SPECS.ARCANE,
-            get = getShowSpecGetter(SPECS.ARCANE..CLASSES.MAGE),
-            set = getShowSpecSetter(SPECS.ARCANE..CLASSES.MAGE),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showFireMage = {
-            type = "toggle",
-            name = CLASSES.MAGE..": "..SPECS.FIRE,
-            desc = CLASSES.MAGE..": "..SPECS.FIRE,
-            get = getShowSpecGetter(SPECS.FIRE..CLASSES.MAGE),
-            set = getShowSpecSetter(SPECS.FIRE..CLASSES.MAGE),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showFrostMage = {
-            type = "toggle",
-            name = CLASSES.MAGE..": "..SPECS.FROST,
-            desc = CLASSES.MAGE..": "..SPECS.FROST,
-            get = getShowSpecGetter(SPECS.FROST..CLASSES.MAGE),
-            set = getShowSpecSetter(SPECS.FROST..CLASSES.MAGE),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.PALADIN then
-        options.args.showHolyPaladin = {
-            type = "toggle",
-            name = CLASSES.PALADIN..": "..SPECS.HOLY,
-            desc = CLASSES.PALADIN..": "..SPECS.HOLY,
-            get = getShowSpecGetter(SPECS.HOLY..CLASSES.PALADIN),
-            set = getShowSpecSetter(SPECS.HOLY..CLASSES.PALADIN),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showProtPaladin = {
-            type = "toggle",
-            name = CLASSES.PALADIN..": "..SPECS.PROTECTION,
-            desc = CLASSES.PALADIN..": "..SPECS.PROTECTION,
-            get = getShowSpecGetter(SPECS.PROTECTION..CLASSES.PALADIN),
-            set = getShowSpecSetter(SPECS.PROTECTION..CLASSES.PALADIN),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showRetPaladin = {
-            type = "toggle",
-            name = CLASSES.PALADIN..": "..SPECS.RETRIBUTION,
-            desc = CLASSES.PALADIN..": "..SPECS.RETRIBUTION,
-            get = getShowSpecGetter(SPECS.RETRIBUTION..CLASSES.PALADIN),
-            set = getShowSpecSetter(SPECS.RETRIBUTION..CLASSES.PALADIN),
-            width = 1.1,
-            order = 8
-        };
-    end
-
-    if playerClass == CLASSES.PRIEST then
-        options.args.showDiscPriest = {
-            type = "toggle",
-            name = CLASSES.PRIEST..": "..SPECS.DISCIPLINE,
-            desc = CLASSES.PRIEST..": "..SPECS.DISCIPLINE,
-            get = getShowSpecGetter(SPECS.DISCIPLINE..CLASSES.PRIEST),
-            set = getShowSpecSetter(SPECS.DISCIPLINE..CLASSES.PRIEST),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showHolyPriest = {
-            type = "toggle",
-            name = CLASSES.PRIEST..": "..SPECS.HOLY,
-            desc = CLASSES.PRIEST..": "..SPECS.HOLY,
-            get = getShowSpecGetter(SPECS.HOLY..CLASSES.PRIEST),
-            set = getShowSpecSetter(SPECS.HOLY..CLASSES.PRIEST),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showShadowPriest = {
-            type = "toggle",
-            name = CLASSES.PRIEST..": "..SPECS.SHADOW,
-            desc = CLASSES.PRIEST..": "..SPECS.SHADOW,
-            get = getShowSpecGetter(SPECS.SHADOW..CLASSES.PRIEST),
-            set = getShowSpecSetter(SPECS.SHADOW..CLASSES.PRIEST),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.ROGUE then
-        options.args.showAssRogue = {
-            type = "toggle",
-            name = CLASSES.ROGUE..": "..SPECS.ASSASSINATION,
-            desc = CLASSES.ROGUE..": "..SPECS.ASSASSINATION,
-            get = getShowSpecGetter(SPECS.ASSASSINATION..CLASSES.ROGUE),
-            set = getShowSpecSetter(SPECS.ASSASSINATION..CLASSES.ROGUE),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showCombatRogue = {
-            type = "toggle",
-            name = CLASSES.ROGUE..": "..SPECS.COMBAT,
-            desc = CLASSES.ROGUE..": "..SPECS.COMBAT,
-            get = getShowSpecGetter(SPECS.COMBAT..CLASSES.ROGUE),
-            set = getShowSpecSetter(SPECS.COMBAT..CLASSES.ROGUE),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showSubtletyRogue = {
-            type = "toggle",
-            name = CLASSES.ROGUE..": "..SPECS.SUBTLETY,
-            desc = CLASSES.ROGUE..": "..SPECS.SUBTLETY,
-            get = getShowSpecGetter(SPECS.SUBTLETY..CLASSES.ROGUE),
-            set = getShowSpecSetter(SPECS.SUBTLETY..CLASSES.ROGUE),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.SHAMAN then
-        options.args.showEleShaman = {
-            type = "toggle",
-            name = CLASSES.SHAMAN..": "..SPECS.ELEMENTAL,
-            desc = CLASSES.SHAMAN..": "..SPECS.ELEMENTAL,
-            get = getShowSpecGetter(SPECS.ELEMENTAL..CLASSES.SHAMAN),
-            set = getShowSpecSetter(SPECS.ELEMENTAL..CLASSES.SHAMAN),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showEnhShaman = {
-            type = "toggle",
-            name = CLASSES.SHAMAN..": "..SPECS.ENHANCEMENT,
-            desc = CLASSES.SHAMAN..": "..SPECS.ENHANCEMENT,
-            get = getShowSpecGetter(SPECS.ENHANCEMENT..CLASSES.SHAMAN),
-            set = getShowSpecSetter(SPECS.ENHANCEMENT..CLASSES.SHAMAN),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showRestShaman = {
-            type = "toggle",
-            name = CLASSES.SHAMAN..": "..SPECS.RESTORATION,
-            desc = CLASSES.SHAMAN..": "..SPECS.RESTORATION,
-            get = getShowSpecGetter(SPECS.RESTORATION..CLASSES.SHAMAN),
-            set = getShowSpecSetter(SPECS.RESTORATION..CLASSES.SHAMAN),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.WARLOCK then
-        options.args.showAfflicWarlock = {
-            type = "toggle",
-            name = CLASSES.WARLOCK..": "..SPECS.AFFLICTION,
-            desc = CLASSES.WARLOCK..": "..SPECS.AFFLICTION,
-            get = getShowSpecGetter(SPECS.AFFLICTION..CLASSES.WARLOCK),
-            set = getShowSpecSetter(SPECS.AFFLICTION..CLASSES.WARLOCK),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showDemonWarlock = {
-            type = "toggle",
-            name = CLASSES.WARLOCK..": "..SPECS.DEMONOLOGY,
-            desc = CLASSES.WARLOCK..": "..SPECS.DEMONOLOGY,
-            get = getShowSpecGetter(SPECS.DEMONOLOGY..CLASSES.WARLOCK),
-            set = getShowSpecSetter(SPECS.DEMONOLOGY..CLASSES.WARLOCK),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showDestWarlock = {
-            type = "toggle",
-            name = CLASSES.WARLOCK..": "..SPECS.DESTRUCTION,
-            desc = CLASSES.WARLOCK..": "..SPECS.DESTRUCTION,
-            get = getShowSpecGetter(SPECS.DESTRUCTION..CLASSES.WARLOCK),
-            set = getShowSpecSetter(SPECS.DESTRUCTION..CLASSES.WARLOCK),
-            width = 1.1,
-            order = 8,
-        };
-    end
-
-    if playerClass == CLASSES.WARRIOR then
-        options.args.showArmsWarrior = {
-            type = "toggle",
-            name = CLASSES.WARRIOR..": "..SPECS.ARMS,
-            desc = CLASSES.WARRIOR..": "..SPECS.ARMS,
-            get = getShowSpecGetter(SPECS.ARMS..CLASSES.WARRIOR),
-            set = getShowSpecSetter(SPECS.ARMS..CLASSES.WARRIOR),
-            width = 1.1,
-            order = 6,
-        };
-        options.args.showFuryWarrior = {
-            type = "toggle",
-            name = CLASSES.WARRIOR..": "..SPECS.FURY,
-            desc = CLASSES.WARRIOR..": "..SPECS.FURY,
-            get = getShowSpecGetter(SPECS.FURY..CLASSES.WARRIOR),
-            set = getShowSpecSetter(SPECS.FURY..CLASSES.WARRIOR),
-            width = 1.1,
-            order = 7,
-        };
-        options.args.showProtWarrior = {
-            type = "toggle",
-            name = CLASSES.WARRIOR..": "..SPECS.PROTECTION,
-            desc = CLASSES.WARRIOR..": "..SPECS.PROTECTION,
-            get = getShowSpecGetter(SPECS.PROTECTION..CLASSES.WARRIOR),
-            set = getShowSpecSetter(SPECS.PROTECTION..CLASSES.WARRIOR),
-            width = 1.1,
-            order = 8,
-        };
-    end
+    --local playerClass = UnitClass("player");
 
     return options;
 end
@@ -491,38 +242,239 @@ function LootAlert:DeepCopy(src, dst)
 	return dst
 end
 
-function LootAlert:GetFrameMoveMouseDown(frameName)
-    return function (frame)
-        frame:StartMoving();
-        AceGUI:ClearFocus();
+function LootAlert:IsItemForLootSpec(item)
+    -- If filtering is disabled, show all items
+    if not LootAlert.db.profile.itemFilters.enabled then
+        return true;
     end
+
+    -- Check stats by examining the item tooltip
+    local hasDesiredStat = LootAlert:ItemHasDesiredStats(item);
+
+    -- Check armor type - must have both matching armor type AND desired stats
+    -- Exclude trinkets, rings, necks, and back items from armor type filtering
+    if item.Type == "Armor" and item.Slot ~= LootAlert.constants.SLOT_MAP.INVTYPE_TRINKET.name and item.Slot ~= LootAlert.constants.SLOT_MAP.INVTYPE_FINGER.name and item.Slot ~= LootAlert.constants.SLOT_MAP.INVTYPE_NECK.name and item.Slot ~= LootAlert.constants.SLOT_MAP.INVTYPE_CLOAK.name then
+        local armorType = string.lower(item.SubType);
+        if LootAlert.db.profile.itemFilters.armorTypes[armorType] and hasDesiredStat then
+            return true;
+        end
+    else
+        -- For non-armor items (weapons, etc.) and excluded armor items (trinkets, rings, necks, backs), just check if they have desired stats
+        if hasDesiredStat then
+            return true;
+        end
+    end
+
+    -- If no criteria matched, don't show the item
+    return false;
 end
 
-function LootAlert:GetFrameMoveMouseUp(frameName)
-    return function (frame)
-        frame:StopMovingOrSizing();
-        local self = frame.obj;
-        local status = self.status or self.localstatus;
-        local newLeft = frame:GetLeft();
-        local newTop = frame:GetTop();
-        status.top = newTop;
-        status.left = newLeft;
-        LootAlert.db.char[frameName].left = newLeft;
-        LootAlert.db.char[frameName].top = newTop;
-    end
-end
-
-function LootAlert:IsWantedBisLoot(itemId)
-    if LootAlert.db.global.tierMappings[itemId] ~= nil then
-        local tierPieceWanted = false;
-        for _, tierPieceId in ipairs(LootAlert.db.global.tierMappings[itemId].Items) do
-            if LootAlert.db.char.wantedLootBisList[tierPieceId] then
-                tierPieceWanted = true;
+function LootAlert:ItemHasDesiredStats(item)
+    -- Get item tooltip to check for stats
+    local tooltip = CreateFrame("GameTooltip", "LootAlertStatTooltip", nil, "GameTooltipTemplate");
+    tooltip:SetOwner(UIParent, "ANCHOR_NONE");
+    tooltip:SetHyperlink(item.Link);
+    
+    -- Check each line of the tooltip for desired stats
+    for i = 1, tooltip:NumLines() do
+        local line = _G["LootAlertStatTooltipTextLeft" .. i];
+        if line then
+            local text = string.lower(line:GetText() or "");
+            
+            -- Check for each desired stat
+            if LootAlert.db.profile.itemFilters.stats.agility and string.find(text, "agility") then
+                return true;
+            end
+            if LootAlert.db.profile.itemFilters.stats.intellect and string.find(text, "intellect") then
+                return true;
+            end
+            if LootAlert.db.profile.itemFilters.stats.spirit and string.find(text, "spirit") then
+                return true;
+            end
+            if LootAlert.db.profile.itemFilters.stats.strength and string.find(text, "strength") then
+                return true;
+            end
+            if LootAlert.db.profile.itemFilters.stats.crit and (string.find(text, "critical") or string.find(text, "crit")) then
+                return true;
+            end
+            if LootAlert.db.profile.itemFilters.stats.hit and (string.find(text, "hit rating") or string.find(text, "hit chance")) then
+                return true;
+            end
+            if LootAlert.db.profile.itemFilters.stats.haste and string.find(text, "haste") then
+                return true;
+            end
+            if LootAlert.db.profile.itemFilters.stats.expertise and string.find(text, "expertise") then
+                return true;
             end
         end
+    end
+    
+    tooltip:Hide();
+    return false;
+end
 
-        return tierPieceWanted;
+function LootAlert:IsElvUILoaded()
+    return _G.ElvUI ~= nil;
+end
+
+function LootAlert:GetElvUI()
+    if LootAlert:IsElvUILoaded() then
+        return _G.ElvUI[1];
+    end
+    return nil;
+end
+
+function LootAlert:DebugElvUI()
+    local E = LootAlert:GetElvUI();
+    if E then
+        LootAlert:Print("ElvUI detected. Available methods:");
+        if E.SetTemplate then
+            LootAlert:Print("- SetTemplate: Available");
+        else
+            LootAlert:Print("- SetTemplate: Not found");
+        end
+
+        local S = E:GetModule("Skins", true);
+        if S then
+            LootAlert:Print("- Skins module: Available");
+            if S.HandleButton then LootAlert:Print("  - HandleButton: Available"); end
+            if S.HandleScrollBar then LootAlert:Print("  - HandleScrollBar: Available"); end
+            if S.HandleCheckBox then LootAlert:Print("  - HandleCheckBox: Available"); end
+        else
+            LootAlert:Print("- Skins module: Not found");
+        end
+    else
+        LootAlert:Print("ElvUI not detected");
+    end
+end
+
+function LootAlert:ApplyElvUIStyle(frame, frameType)
+    -- Check if ElvUI integration is enabled in settings
+    if not LootAlert.db.profile.elvuiIntegration then return; end
+
+    local E = LootAlert:GetElvUI();
+    if not E then return; end
+
+    -- Use pcall to safely attempt ElvUI styling
+    if frameType == "frame" then
+        -- Apply ElvUI frame styling
+        pcall(function()
+            if E.SetTemplate then
+                E:SetTemplate(frame, "Default");
+            end
+        end);
+    elseif frameType == "button" then
+        -- Apply ElvUI button styling
+        pcall(function()
+            local S = E:GetModule("Skins", true);
+            if S and S.HandleButton then
+                S:HandleButton(frame);
+            end
+        end);
+    elseif frameType == "scrollframe" then
+        -- Apply ElvUI scroll frame styling
+        pcall(function()
+            local S = E:GetModule("Skins", true);
+            if S and S.HandleScrollBar then
+                S:HandleScrollBar(frame.ScrollBar or frame);
+            end
+        end);
+    elseif frameType == "checkbox" then
+        -- Apply ElvUI checkbox styling
+        pcall(function()
+            local S = E:GetModule("Skins", true);
+            if S and S.HandleCheckBox then
+                S:HandleCheckBox(frame);
+            end
+        end);
+    end
+end
+
+function LootAlert:GetElvUIColors()
+    -- Check if ElvUI integration is enabled in settings
+    if not LootAlert.db.profile.elvuiIntegration then
+        -- Return default colors if integration is disabled
+        return {
+            backdrop = { 0.05, 0.05, 0.05, 0.95 },
+            border = { 0.3, 0.3, 0.3, 1 },
+            highlight = { 1, 1, 1, 0.1 }
+        };
     end
 
-    return LootAlert.db.char.wantedLootBisList[itemId] == true;
+    local E = LootAlert:GetElvUI();
+    if not E then
+        -- Fallback colors if ElvUI not loaded
+        return {
+            backdrop = { 0.05, 0.05, 0.05, 0.95 },
+            border = { 0.3, 0.3, 0.3, 1 },
+            highlight = { 1, 1, 1, 0.1 }
+        };
+    end
+
+    -- Use ElvUI's color scheme with safe access
+    local colors = {
+        backdrop = { 0.05, 0.05, 0.05, 0.95 },
+        border = { 0.3, 0.3, 0.3, 1 },
+        highlight = { 1, 1, 1, 0.1 }
+    };
+
+    pcall(function()
+        if E.media and E.media.backdropcolor then
+            colors.backdrop = { E.media.backdropcolor[1] or 0.05, E.media.backdropcolor[2] or 0.05, E.media
+            .backdropcolor[3] or 0.05, E.media.backdropcolor[4] or 0.95 };
+        end
+        if E.media and E.media.bordercolor then
+            colors.border = { E.media.bordercolor[1] or 0.3, E.media.bordercolor[2] or 0.3, E.media.bordercolor[3] or 0.3, 1 };
+        end
+        if E.media and E.media.rgbvaluecolor then
+            colors.highlight = { E.media.rgbvaluecolor[1] or 1, E.media.rgbvaluecolor[2] or 1, E.media.rgbvaluecolor[3] or
+            1, 0.3 };
+        end
+    end);
+
+    return colors;
+end
+
+function LootAlert:CreateCustomCloseButton(parent, onClickCallback)
+    -- Create close button with custom X
+    local closeButton = CreateFrame("Button", nil, parent);
+    closeButton:SetSize(16, 16);
+    closeButton:SetPoint("RIGHT", parent, "RIGHT", -2, 0);
+
+    -- Create background
+    local bg = closeButton:CreateTexture(nil, "BACKGROUND");
+    bg:SetAllPoints();
+    bg:SetColorTexture(0.2, 0.2, 0.2, 0.8);
+    bg:Hide();
+
+    -- Create X using two diagonal lines
+    local line1 = closeButton:CreateTexture(nil, "ARTWORK");
+    line1:SetSize(10, 1);
+    line1:SetPoint("CENTER", closeButton, "CENTER", 0, 0);
+    line1:SetColorTexture(0.8, 0.8, 0.8, 1);
+    line1:SetRotation(math.rad(45));
+
+    local line2 = closeButton:CreateTexture(nil, "ARTWORK");
+    line2:SetSize(10, 1);
+    line2:SetPoint("CENTER", closeButton, "CENTER", 0, 0);
+    line2:SetColorTexture(0.8, 0.8, 0.8, 1);
+    line2:SetRotation(math.rad(-45));
+
+    -- Add hover effects
+    closeButton:SetScript("OnEnter", function(self)
+        bg:Show();
+        line1:SetColorTexture(1, 0.2, 0.2, 1);
+        line2:SetColorTexture(1, 0.2, 0.2, 1);
+    end);
+    closeButton:SetScript("OnLeave", function(self)
+        bg:Hide();
+        line1:SetColorTexture(0.8, 0.8, 0.8, 1);
+        line2:SetColorTexture(0.8, 0.8, 0.8, 1);
+    end);
+    closeButton:SetScript("OnClick", onClickCallback);
+
+    -- Apply ElvUI button styling
+    LootAlert:ApplyElvUIStyle(closeButton, "button");
+
+    return closeButton;
 end

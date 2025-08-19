@@ -1,111 +1,221 @@
 local _, core = ...;
 local LootAlert = core.LootAlert;
-local AceGUI = core.AceGUI;
 
 function LootAlert:RenderRollOptionsModal(itemId)
-    local rollOptionsFrame = AceGUI:Create("Frame");
-    rollOptionsFrame:SetTitle("Select an Option");
+    local item = LootAlert:GetItemInfoInstant(itemId);
+
+    -- Create minimalist frame similar to main LootAlert window
+    local frame = CreateFrame("Frame", "LootAlertRollOptionsFrame", UIParent, "BackdropTemplate");
+
+    -- Set size
+    frame:SetSize(370, 172);
+
+    -- Apply ElvUI styling if available, otherwise use default
+    local colors = LootAlert:GetElvUIColors();
+    local E = LootAlert:GetElvUI();
+
+    if E and LootAlert.db.profile.elvuiIntegration and E.SetTemplate ~= nil then
+        -- Use ElvUI's template system with error checking
+        pcall(function()
+            if E.SetTemplate then
+                E:SetTemplate(frame, "Default");
+            end
+        end);
+    else
+        -- Fallback to default styling
+        frame:SetBackdrop({
+            bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+            edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+            tile = true,
+            tileSize = 8,
+            edgeSize = 8,
+            insets = { left = 2, right = 2, top = 2, bottom = 2 }
+        });
+        frame:SetBackdropColor(unpack(colors.backdrop));
+        frame:SetBackdropBorderColor(unpack(colors.border));
+    end
+
+    -- Set frame location to saved coords, or center if none are saved
     local left = LootAlert.db.char.rollModalLocation.left;
     local top = LootAlert.db.char.rollModalLocation.top;
-    if left and top then
-        rollOptionsFrame:SetPoint("TOP", UIParent, "BOTTOM", 0, top);
-        rollOptionsFrame:SetPoint("LEFT", UIParent, "LEFT", left, 0);
+    if left and top and left > 0 and top > 0 then
+        -- Ensure the position is still on screen
+        local screenWidth = GetScreenWidth();
+        local screenHeight = GetScreenHeight();
+
+        -- Clamp position to screen bounds
+        left = math.max(0, math.min(left, screenWidth - 320));
+        top = math.max(140, math.min(top, screenHeight));
+
+        frame:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", left, top);
     else
-        rollOptionsFrame:SetPoint("CENTER");
+        frame:SetPoint("CENTER");
     end
-    rollOptionsFrame:PauseLayout();
-    rollOptionsFrame:SetWidth(550);
-    rollOptionsFrame:SetHeight(200);
-    -- Add Frame movement and position saving logic
-    rollOptionsFrame.frame:SetScript("OnMouseDown", LootAlert:GetFrameMoveMouseDown('rollModalLocation'));
-    rollOptionsFrame.frame:SetScript("OnMouseUp", LootAlert:GetFrameMoveMouseUp('rollModalLocation'));
-    rollOptionsFrame:SetCallback("OnClose", function(widget)
-        AceGUI:Release(widget);
+
+    -- Make frame movable
+    frame:SetMovable(true);
+    frame:EnableMouse(true);
+    frame:RegisterForDrag("LeftButton");
+    frame:SetScript("OnDragStart", function(self)
+        self:StartMoving();
+    end);
+    frame:SetScript("OnDragStop", function(self)
+        self:StopMovingOrSizing();
+        local newLeft = self:GetLeft();
+        local newTop = self:GetTop();
+        LootAlert.db.char.rollModalLocation.left = newLeft;
+        LootAlert.db.char.rollModalLocation.top = newTop;
     end);
 
-    local linkButton = AceGUI:Create("Button");
-    local rollMainSpecButton = AceGUI:Create("Button");
-    local rollOffSpecButton = AceGUI:Create("Button");
+    -- Create title bar
+    local titleBar = CreateFrame("Frame", nil, frame);
+    titleBar:SetPoint("TOPLEFT", frame, "TOPLEFT", 4, -4);
+    titleBar:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -4, -4);
+    titleBar:SetHeight(20);
 
-    linkButton:SetText("Link Equipped");
-    rollMainSpecButton:SetText("Roll Main Spec");
-    rollOffSpecButton:SetText("Roll Off Spec");
+    -- Title text
+    local titleText = titleBar:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall");
+    titleText:SetPoint("LEFT", titleBar, "LEFT", 4, 0);
+    titleText:SetText("|cFFFFFFFFRoll Options|r");
 
-    linkButton:SetHeight(30);
-    linkButton:SetWidth(150);
-    rollMainSpecButton:SetHeight(30);
-    rollMainSpecButton:SetWidth(150);
-    rollOffSpecButton:SetHeight(30);
-    rollOffSpecButton:SetWidth(150);
-
-    local bisCheckbox = AceGUI:Create("CheckBox");
-    bisCheckbox:SetLabel("BIS?");
-    bisCheckbox:SetWidth(150);
-    bisCheckbox:SetHeight(20);
-    bisCheckbox:SetType("checkbox");
-
-    local item = LootAlert:GetItemInfoInstant(itemId);
-    if LootAlert.db.global.tierMappings[itemId] == nil and item.Slot == "Unknown" then
-        linkButton:SetDisabled(true);
-    end
-    linkButton:SetCallback("OnClick", OnLinkButtonClick(item, rollOptionsFrame, bisCheckbox));
-    rollMainSpecButton:SetCallback("OnClick", function ()
-        RandomRoll(1, 100);
-        AceGUI:Release(rollOptionsFrame);
-    end);
-    rollOffSpecButton:SetCallback("OnClick", function ()
-        RandomRoll(1, 99);
-        AceGUI:Release(rollOptionsFrame);
+    -- Close button
+    local closeButton = LootAlert:CreateCustomCloseButton(titleBar, function()
+        frame:Hide();
     end);
 
-    local icon = AceGUI:Create("Icon");
-    icon:SetLabel(item.Link);
-    icon:SetImage(item.Texture);
-    icon:SetWidth(400);
-    icon:SetImageSize(40, 40);
-    icon:SetCallback("OnEnter", function(widget)
-        GameTooltip:SetOwner(widget.image, "ANCHOR_LEFT");
-		GameTooltip:SetHyperlink(item.Link);
-		GameTooltip:Show();
+    -- Item display area
+    local itemArea = CreateFrame("Frame", nil, frame);
+    itemArea:SetPoint("TOPLEFT", titleBar, "BOTTOMLEFT", 4, -4);
+    itemArea:SetPoint("TOPRIGHT", titleBar, "BOTTOMRIGHT", -4, -4);
+    itemArea:SetHeight(64);
+
+    -- Item icon
+    local icon = itemArea:CreateTexture(nil, "ARTWORK");
+    icon:SetSize(32, 32);
+    icon:SetPoint("LEFT", itemArea, "LEFT", 2, 0);
+    icon:SetTexture(item.Texture);
+
+    -- Item name
+    local nameText = itemArea:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge");
+    nameText:SetPoint("TOPLEFT", icon, "TOPRIGHT", 6, 0);
+    nameText:SetPoint("RIGHT", itemArea, "RIGHT", -4, 0);
+    nameText:SetJustifyH("LEFT");
+    nameText:SetText(item.Name);
+
+    -- Item Type
+    local itemType = itemArea:CreateFontString(nil, "OVERLAY", "GameFontNormalGraySmall");
+    itemType:SetPoint("TOPLEFT", nameText, "BOTTOMLEFT", 0, 0);
+    --itemType:SetPoint("RIGHT", itemArea, "RIGHT", -4, 0);
+    itemType:SetJustifyH("LEFT");
+    itemType:SetText(item.Type..", "..item.Slot);
+
+    -- Set text color based on item quality
+    local qualityColor = ITEM_QUALITY_COLORS[item.Quality] or ITEM_QUALITY_COLORS[1];
+    nameText:SetTextColor(qualityColor.r, qualityColor.g, qualityColor.b);
+
+    -- Item tooltip
+    itemArea:EnableMouse(true);
+    itemArea:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+        GameTooltip:SetHyperlink(item.Link);
+        GameTooltip:Show();
     end);
-    icon:SetCallback("OnLeave", function()
+    itemArea:SetScript("OnLeave", function(self)
         GameTooltip:Hide();
     end);
 
-    rollOptionsFrame:AddChild(icon);
-    rollOptionsFrame:AddChild(linkButton);
-    rollOptionsFrame:AddChild(rollMainSpecButton);
-    rollOptionsFrame:AddChild(rollOffSpecButton);
-    rollOptionsFrame:AddChild(bisCheckbox);
+    -- Button area
+    local buttonArea = CreateFrame("Frame", nil, frame);
+    buttonArea:SetPoint("TOPLEFT", itemArea, "BOTTOMLEFT", 0, -20);
+    buttonArea:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -10, 4);
 
-    icon:SetPoint("TOP", rollOptionsFrame.frame, "TOP", 0, -30);
-    linkButton:SetPoint("LEFT", rollOptionsFrame.frame, "LEFT", 20, -20);
-    rollMainSpecButton:SetPoint("CENTER", rollOptionsFrame.frame, "CENTER", 0, -20);
-    rollOffSpecButton:SetPoint("RIGHT", rollOptionsFrame.frame, "RIGHT", -20, -20);
-    bisCheckbox:SetPoint("TOPLEFT", linkButton.frame, "BOTTOMLEFT", 0, -10);
+    -- Create buttons that fill the width evenly
+    local buttonHeight = 24;
+    local buttonSpacing = 5;
+    local totalSpacing = buttonSpacing * 2; -- 2 gaps between 3 buttons
+    local availableWidth = buttonArea:GetWidth() - totalSpacing;
+    local buttonWidth = availableWidth / 3; -- 3 buttons
 
+    -- Link Equipped button
+    local linkButton = CreateFrame("Button", nil, buttonArea, "UIPanelButtonTemplate");
+    linkButton:SetSize(buttonWidth, buttonHeight);
+    linkButton:SetPoint("TOPLEFT", buttonArea, "TOPLEFT", 0, 0);
+    linkButton:SetText("Link Equipped");
+    linkButton:SetNormalFontObject("GameFontNormalSmall");
+    LootAlert:ApplyElvUIStyle(linkButton, "button");
+
+    -- Roll Main Spec button
+    local rollMainButton = CreateFrame("Button", nil, buttonArea, "UIPanelButtonTemplate");
+    rollMainButton:SetSize(buttonWidth, buttonHeight);
+    rollMainButton:SetPoint("LEFT", linkButton, "RIGHT", buttonSpacing, 0);
+    rollMainButton:SetText("Main Spec (100)");
+    rollMainButton:SetNormalFontObject("GameFontNormalSmall");
+    LootAlert:ApplyElvUIStyle(rollMainButton, "button");
+
+    -- Roll Off Spec button
+    local rollOffButton = CreateFrame("Button", nil, buttonArea, "UIPanelButtonTemplate");
+    rollOffButton:SetSize(buttonWidth, buttonHeight);
+    rollOffButton:SetPoint("LEFT", rollMainButton, "RIGHT", buttonSpacing, 0);
+    rollOffButton:SetText("Off Spec (99)");
+    rollOffButton:SetNormalFontObject("GameFontNormalSmall");
+    LootAlert:ApplyElvUIStyle(rollOffButton, "button");
+
+    -- BIS checkbox
+    local bisCheckbox = CreateFrame("CheckButton", nil, buttonArea, "UICheckButtonTemplate");
+    bisCheckbox:SetSize(16, 16);
+    bisCheckbox:SetPoint("TOPLEFT", linkButton, "BOTTOMLEFT", 0, -4);
+    LootAlert:ApplyElvUIStyle(bisCheckbox, "checkbox");
+
+    local bisLabel = bisCheckbox:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall");
+    bisLabel:SetPoint("LEFT", bisCheckbox, "RIGHT", 4, 0);
+    bisLabel:SetText("BIS?");
+    bisLabel:SetTextColor(1, 1, 1);
+
+    -- Button functionality
+    if LootAlert.db.global.tierMappings[itemId] == nil and item.Slot == "Unknown" then
+        linkButton:Disable();
+    end
+
+    linkButton:SetScript("OnClick", function()
+        LootAlert:HandleLinkEquipped(item, bisCheckbox:GetChecked());
+        frame:Hide();
+        frame = nil;
+    end);
+
+    rollMainButton:SetScript("OnClick", function()
+        RandomRoll(1, 100);
+        frame:Hide();
+        frame = nil;
+    end);
+
+    rollOffButton:SetScript("OnClick", function()
+        RandomRoll(1, 99);
+        frame:Hide();
+        frame = nil;
+    end);
+
+    frame:Show();
 end
 
-function OnLinkButtonClick (item, rollOptionsFrame, bisCheckbox)
-    return function ()
-        local slotName = "Unknown";
-        if LootAlert.db.global.tierMappings[item.Id] ~= nil then
-            slotName = LootAlert.db.global.tierMappings[item.Id].Slot
-        else
-            slotName = select(9, GetItemInfo(item.Id));
-        end
-        local slotIds = LootAlert.constants.SLOT_MAP[slotName].ids;
-        local itemLinks = "";
+function LootAlert:HandleLinkEquipped(item, isBis)
+    local slotName = "Unknown";
+    if LootAlert.db.global.tierMappings[item.Id] ~= nil then
+        slotName = LootAlert.db.global.tierMappings[item.Id].Slot
+    else
+        slotName = select(9, C_Item.GetItemInfo(item.Id));
+    end
+    local slotIds = LootAlert.constants.SLOT_MAP[slotName].ids;
+    local itemLinks = "";
 
-        for _,slotId in ipairs(slotIds) do
-            local equippedItemId = GetInventoryItemID("player", slotId);
-            local _, itemLink = GetItemInfo(equippedItemId);
+    for _, slotId in ipairs(slotIds) do
+        local equippedItemId = GetInventoryItemID("player", slotId);
+        local _, itemLink = C_Item.GetItemInfo(equippedItemId);
+        if itemLink then
             itemLinks = itemLinks .. itemLink;
         end
-        if bisCheckbox:GetValue() == true then
-            itemLinks = itemLinks .. " bis";
-        end
-        SendChatMessage(itemLinks, "RAID");
-        AceGUI:Release(rollOptionsFrame);
     end
+    if isBis then
+        itemLinks = itemLinks .. " bis";
+    end
+    SendChatMessage(itemLinks, "RAID");
 end
