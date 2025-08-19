@@ -1,6 +1,5 @@
 local _, core = ...;
 local LootAlert = core.LootAlert;
-local AceGUI = core.AceGUI;
 
 function LootAlert:RenderRollOptionsModal(itemId)
     local item = LootAlert:GetItemInfoInstant(itemId);

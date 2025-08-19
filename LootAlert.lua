@@ -1,6 +1,5 @@
 local _, core = ...;
 local LootAlert = LibStub("AceAddon-3.0"):NewAddon("LootAlert", "AceConsole-3.0", "AceEvent-3.0");
-local AceGUI = LibStub("AceGUI-3.0");
 
 local lootAlertDataBroker = LibStub("LibDataBroker-1.1"):NewDataObject("LootAlert", {
     type = "data source",
@@ -22,7 +21,6 @@ local lootAlertDataBroker = LibStub("LibDataBroker-1.1"):NewDataObject("LootAler
 local icon = LibStub("LibDBIcon-1.0");
 
 core.LootAlert = LootAlert;
-core.AceGUI = AceGUI;
 
 LootAlert.state = {
     mainFrame = nil,
