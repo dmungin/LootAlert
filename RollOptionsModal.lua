@@ -8,7 +8,7 @@ function LootAlert:RenderRollOptionsModal(itemId)
     local frame = CreateFrame("Frame", "LootAlertRollOptionsFrame", UIParent, "BackdropTemplate");
 
     -- Set size
-    frame:SetSize(370, 140);
+    frame:SetSize(370, 172);
 
     -- Apply ElvUI styling if available, otherwise use default
     local colors = LootAlert:GetElvUIColors();
@@ -87,20 +87,27 @@ function LootAlert:RenderRollOptionsModal(itemId)
     local itemArea = CreateFrame("Frame", nil, frame);
     itemArea:SetPoint("TOPLEFT", titleBar, "BOTTOMLEFT", 4, -4);
     itemArea:SetPoint("TOPRIGHT", titleBar, "BOTTOMRIGHT", -4, -4);
-    itemArea:SetHeight(32);
+    itemArea:SetHeight(64);
 
     -- Item icon
     local icon = itemArea:CreateTexture(nil, "ARTWORK");
-    icon:SetSize(28, 28);
+    icon:SetSize(32, 32);
     icon:SetPoint("LEFT", itemArea, "LEFT", 2, 0);
     icon:SetTexture(item.Texture);
 
     -- Item name
-    local nameText = itemArea:CreateFontString(nil, "OVERLAY", "GameFontNormal");
-    nameText:SetPoint("LEFT", icon, "RIGHT", 6, 0);
+    local nameText = itemArea:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge");
+    nameText:SetPoint("TOPLEFT", icon, "TOPRIGHT", 6, 0);
     nameText:SetPoint("RIGHT", itemArea, "RIGHT", -4, 0);
     nameText:SetJustifyH("LEFT");
     nameText:SetText(item.Name);
+
+    -- Item Type
+    local itemType = itemArea:CreateFontString(nil, "OVERLAY", "GameFontNormalGraySmall");
+    itemType:SetPoint("TOPLEFT", nameText, "BOTTOMLEFT", 0, 0);
+    --itemType:SetPoint("RIGHT", itemArea, "RIGHT", -4, 0);
+    itemType:SetJustifyH("LEFT");
+    itemType:SetText(item.Type..", "..item.Slot);
 
     -- Set text color based on item quality
     local qualityColor = ITEM_QUALITY_COLORS[item.Quality] or ITEM_QUALITY_COLORS[1];
@@ -119,8 +126,8 @@ function LootAlert:RenderRollOptionsModal(itemId)
 
     -- Button area
     local buttonArea = CreateFrame("Frame", nil, frame);
-    buttonArea:SetPoint("TOPLEFT", itemArea, "BOTTOMLEFT", 0, -8);
-    buttonArea:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -4, 4);
+    buttonArea:SetPoint("TOPLEFT", itemArea, "BOTTOMLEFT", 0, -20);
+    buttonArea:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -10, 4);
 
     -- Create buttons that fill the width evenly
     local buttonHeight = 24;
