@@ -95,6 +95,7 @@ function LootAlert:CHAT_MSG_CHANNEL(eventName, ...)
         LootAlert:GetItemInfo(itemId, function(item)
             if item.Id ~= nil and LootAlert:IsItemForLootSpec(item) then
                 LootAlert:RenderRollOptionsModal(itemId);
+                -- LootAlert:HandleNewLoot(item);
             end
         end);
     end

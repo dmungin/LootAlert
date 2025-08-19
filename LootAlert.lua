@@ -173,12 +173,14 @@ function LootAlert:RenderLootHistory()
     end
 
     local contentFrame = LootAlert.state.mainFrame.contentFrame;
-
+    local children = { contentFrame:GetChildren() };
     -- Clear existing children
-    for i = 1, contentFrame:GetNumChildren() do
-        local child = select(i, contentFrame:GetChildren());
-        child:Hide();
-        child:SetParent(nil);
+    if children then
+        for i, child in ipairs(children) do
+            child:UnregisterAllEvents();
+            child:SetParent(nil);
+            child:Hide();
+        end
     end
 
     local yOffset = 0;
