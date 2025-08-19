@@ -122,7 +122,7 @@ function LootAlert:getOptions()
                 type = "group",
                 name = "Armor Types",
                 inline = true,
-                order = 8,
+                order = 9,
                 disabled = function() return not LootAlert.db.profile.itemFilters.enabled end,
                 args = {
                     cloth = {
@@ -160,7 +160,7 @@ function LootAlert:getOptions()
                 type = "group",
                 name = "Desired Stats",
                 inline = true,
-                order = 9,
+                order = 10,
                 disabled = function() return not LootAlert.db.profile.itemFilters.enabled end,
                 args = {
                     agility = {
