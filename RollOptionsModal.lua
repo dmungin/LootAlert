@@ -107,7 +107,13 @@ function LootAlert:RenderRollOptionsModal(itemId)
     itemType:SetPoint("TOPLEFT", nameText, "BOTTOMLEFT", 0, 0);
     --itemType:SetPoint("RIGHT", itemArea, "RIGHT", -4, 0);
     itemType:SetJustifyH("LEFT");
-    itemType:SetText(item.Type..", "..item.Slot);
+    if LootAlert.db.global.tierMappings[item.Id] ~= nil then
+        local tierSlot = LootAlert.constants.SLOT_MAP[LootAlert.db.global.tierMappings[item.Id].Slot].name;
+        itemType:SetText("Tier Token, "..tierSlot);
+    else
+        itemType:SetText(item.Type..", "..item.Slot);
+    end
+
 
     -- Set text color based on item quality
     local qualityColor = ITEM_QUALITY_COLORS[item.Quality] or ITEM_QUALITY_COLORS[1];

@@ -118,30 +118,6 @@ function LootAlert:BuildConstants()
         },
     };
 
-    constants.SLOT_ORDER = {
-        constants.SLOT_MAP.INVTYPE_HEAD.name,
-        constants.SLOT_MAP.INVTYPE_NECK.name,
-        constants.SLOT_MAP.INVTYPE_SHOULDER.name,
-        constants.SLOT_MAP.INVTYPE_CLOAK.name,
-        constants.SLOT_MAP.INVTYPE_CHEST.name,
-        constants.SLOT_MAP.INVTYPE_BODY.name,
-        constants.SLOT_MAP.INVTYPE_WRIST.name,
-        constants.SLOT_MAP.INVTYPE_HAND.name,
-        constants.SLOT_MAP.INVTYPE_WAIST.name,
-        constants.SLOT_MAP.INVTYPE_LEGS.name,
-        constants.SLOT_MAP.INVTYPE_FEET.name,
-        constants.SLOT_MAP.INVTYPE_FINGER.name,
-        constants.SLOT_MAP.INVTYPE_TRINKET.name,
-        constants.SLOT_MAP.INVTYPE_2HWEAPON.name,
-        constants.SLOT_MAP.INVTYPE_WEAPONMAINHAND.name,
-        constants.SLOT_MAP.INVTYPE_WEAPON.name,
-        constants.SLOT_MAP.INVTYPE_WEAPONOFFHAND.name,
-        constants.SLOT_MAP.INVTYPE_RANGED.name,
-        constants.SLOT_MAP.INVTYPE_AMMO.name,
-        constants.SLOT_MAP.INVTYPE_TABARD.name,
-        "Tier Token",
-    };
-
     constants.CLASSES = {
         DRUID = "Druid",
         HUNTER = "Hunter",
@@ -152,37 +128,8 @@ function LootAlert:BuildConstants()
         SHAMAN = "Shaman",
         WARLOCK = "Warlock",
         WARRIOR = "Warrior",
-        DEATH_KNIGHT = "Death Knight"
-    };
-
-    constants.SPECS = {
-        BLOOD = "Blood",
-        FROST = "Frost",
-        UNHOLY = "Unholy",
-        BALANCE = "Balance",
-        BEAR = "Bear",
-        CAT = "Cat",
-        RESTORATION = "Restoration",
-        BEAST_MASTERY = "Beast Mastery",
-        MARKSMANSHIP = "Marksmanship",
-        SURVIVAL = "Survival",
-        ARCANE = "Arcane",
-        FIRE = "Fire",
-        PROTECTION = "Protection",
-        RETRIBUTION = "Retribution",
-        DISCIPLINE = "Discipline",
-        SHADOW = "Shadow",
-        HOLY = "Holy",
-        ASSASSINATION = "Assassination",
-        COMBAT = "Combat",
-        SUBTLETY = "Subtlety",
-        ELEMENTAL = "Elemental",
-        ENHANCEMENT = "Enhancement",
-        AFFLICTION = "Affliction",
-        DEMONOLOGY = "Demonology",
-        DESTRUCTION = "Destruction",
-        ARMS = "Arms",
-        FURY = "Fury"
+        DEATH_KNIGHT = "Death Knight",
+        MONK = "Monk"
     };
 
     return constants;

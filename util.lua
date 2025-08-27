@@ -247,6 +247,11 @@ function LootAlert:IsItemForLootSpec(item)
     if not LootAlert.db.profile.itemFilters.enabled then
         return true;
     end
+    local playerClass, _ = UnitClass("player");
+    -- Check tier mappings
+    if LootAlert.db.global.tierMappings[item.Id] ~= nil and LootAlert:HasValue(LootAlert.db.global.tierMappings[item.Id].Classes, playerClass) then
+        return true;
+    end
 
     -- Check stats by examining the item tooltip
     local hasDesiredStat = LootAlert:ItemHasDesiredStats(item);
@@ -477,4 +482,14 @@ function LootAlert:CreateCustomCloseButton(parent, onClickCallback)
     LootAlert:ApplyElvUIStyle(closeButton, "button");
 
     return closeButton;
+end
+
+function LootAlert:HasValue (tab, val)
+    for _, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+
+    return false
 end
