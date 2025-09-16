@@ -11,6 +11,7 @@ function LootAlert:getDefaultDb()
 				hide = false,
 			},
             elvuiIntegration = true,
+            disableRollModal = false,
             itemFilters = {
                 enabled = false,
                 armorTypes = {
@@ -102,6 +103,15 @@ function LootAlert:getOptions()
                 get = function () return LootAlert.db.profile.elvuiIntegration end,
                 width = 1.5,
                 order = 5,
+            },
+            disableRollModal = {
+                name = "Disable Roll Options Modal",
+                desc = "Completely disable the Roll Options Modal from appearing when loot is announced",
+                type = "toggle",
+                set = function (info, val) LootAlert.db.profile.disableRollModal = val end,
+                get = function () return LootAlert.db.profile.disableRollModal end,
+                width = 1.5,
+                order = 6,
             },
             spacer1 = {
                 type = "header",
@@ -223,8 +233,6 @@ function LootAlert:getOptions()
             },
         },
     };
-
-    --local playerClass = UnitClass("player");
 
     return options;
 end
@@ -402,7 +410,8 @@ function LootAlert:GetElvUIColors()
         return {
             backdrop = { 0.05, 0.05, 0.05, 0.95 },
             border = { 0.3, 0.3, 0.3, 1 },
-            highlight = { 1, 1, 1, 0.1 }
+            highlight = { 1, 1, 1, 0.1 },
+            filterHighlight = { 0.2, 0.8, 0.2, 0.3 }
         };
     end
 
@@ -412,7 +421,8 @@ function LootAlert:GetElvUIColors()
         return {
             backdrop = { 0.05, 0.05, 0.05, 0.95 },
             border = { 0.3, 0.3, 0.3, 1 },
-            highlight = { 1, 1, 1, 0.1 }
+            highlight = { 1, 1, 1, 0.1 },
+            filterHighlight = { 0.2, 0.8, 0.2, 0.3 }
         };
     end
 
@@ -420,7 +430,8 @@ function LootAlert:GetElvUIColors()
     local colors = {
         backdrop = { 0.05, 0.05, 0.05, 0.95 },
         border = { 0.3, 0.3, 0.3, 1 },
-        highlight = { 1, 1, 1, 0.1 }
+        highlight = { 1, 1, 1, 0.1 },
+        filterHighlight = { 0.2, 0.8, 0.2, 0.3 }
     };
 
     pcall(function()
@@ -434,6 +445,10 @@ function LootAlert:GetElvUIColors()
         if E.media and E.media.rgbvaluecolor then
             colors.highlight = { E.media.rgbvaluecolor[1] or 1, E.media.rgbvaluecolor[2] or 1, E.media.rgbvaluecolor[3] or
             1, 0.3 };
+        end
+        -- Use ElvUI's class color or a green tint for filter highlighting
+        if E.media and E.media.rgbvaluecolor then
+            colors.filterHighlight = { 0.2, E.media.rgbvaluecolor[2] or 0.8, 0.2, 0.4 };
         end
     end);
 
