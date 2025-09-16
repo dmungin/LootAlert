@@ -11,6 +11,7 @@ function LootAlert:getDefaultDb()
 				hide = false,
 			},
             elvuiIntegration = true,
+            disableRollModal = false,
             itemFilters = {
                 enabled = false,
                 armorTypes = {
@@ -102,6 +103,15 @@ function LootAlert:getOptions()
                 get = function () return LootAlert.db.profile.elvuiIntegration end,
                 width = 1.5,
                 order = 5,
+            },
+            disableRollModal = {
+                name = "Disable Roll Options Modal",
+                desc = "Completely disable the Roll Options Modal from appearing when loot is announced",
+                type = "toggle",
+                set = function (info, val) LootAlert.db.profile.disableRollModal = val end,
+                get = function () return LootAlert.db.profile.disableRollModal end,
+                width = 1.5,
+                order = 6,
             },
             spacer1 = {
                 type = "header",
@@ -223,8 +233,6 @@ function LootAlert:getOptions()
             },
         },
     };
-
-    --local playerClass = UnitClass("player");
 
     return options;
 end
