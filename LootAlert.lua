@@ -73,7 +73,7 @@ function LootAlert:RenderLootAlert()
     local frame = CreateFrame("Frame", "LootAlertMinimalistFrame", UIParent, "BackdropTemplate");
 
     -- Set size
-    frame:SetSize(280, 300);
+    frame:SetSize(350, 300);
 
     -- Apply ElvUI styling if available, otherwise use default
     local colors = LootAlert:GetElvUIColors();
@@ -232,23 +232,45 @@ function LootAlert:CreateLootItemFrame(parent, item, yOffset)
     itemFrame:SetSize(parent:GetWidth() - 4, 22);
     itemFrame:SetPoint("TOPLEFT", parent, "TOPLEFT", 2, -yOffset);
 
-    -- Create hover highlight with ElvUI colors
-    local highlight = itemFrame:CreateTexture(nil, "BACKGROUND");
-    highlight:SetAllPoints(itemFrame);
     local colors = LootAlert:GetElvUIColors();
+
+    -- Check if item matches filter criteria when filtering is enabled
+    local matchesFilter = LootAlert.db.profile.itemFilters.enabled and LootAlert:IsItemForLootSpec(item);
+
+    -- Create elegant filter indicators when item matches filter
+    if matchesFilter then
+        -- Left border accent
+        local leftBorder = itemFrame:CreateTexture(nil, "BACKGROUND");
+        leftBorder:SetSize(3, 18);
+        leftBorder:SetPoint("LEFT", itemFrame, "LEFT", 0, 0);
+        leftBorder:SetColorTexture(0.2, 0.9, 0.3, 0.8);
+        leftBorder:Show();
+
+        -- Small star icon indicator
+        local starIcon = itemFrame:CreateTexture(nil, "OVERLAY");
+        starIcon:SetSize(12, 12);
+        starIcon:SetPoint("RIGHT", itemFrame, "RIGHT", -2, 0);
+        starIcon:SetTexture("Interface\\Common\\ReputationStar");
+        starIcon:SetVertexColor(0.2, 0.9, 0.3, 0.9);
+        starIcon:Show();
+    end
+
+    -- Create hover highlight with ElvUI colors
+    local highlight = itemFrame:CreateTexture(nil, "BACKGROUND", nil, 1);
+    highlight:SetAllPoints(itemFrame);
     highlight:SetColorTexture(unpack(colors.highlight));
     highlight:Hide();
 
     -- Item icon
     local icon = itemFrame:CreateTexture(nil, "ARTWORK");
     icon:SetSize(20, 20);
-    icon:SetPoint("LEFT", itemFrame, "LEFT", 2, 0);
+    icon:SetPoint("LEFT", itemFrame, "LEFT", matchesFilter and 6 or 2, 0);
     icon:SetTexture(item.Texture);
 
     -- Item name text
     local nameText = itemFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall");
     nameText:SetPoint("LEFT", icon, "RIGHT", 4, 0);
-    nameText:SetPoint("RIGHT", itemFrame, "RIGHT", -4, 0);
+    nameText:SetPoint("RIGHT", itemFrame, "RIGHT", matchesFilter and -18 or -4, 0);
     nameText:SetJustifyH("LEFT");
     nameText:SetText(item.Name);
 
