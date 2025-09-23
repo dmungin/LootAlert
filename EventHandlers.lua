@@ -2,7 +2,7 @@ local _, core = ...;
 local LootAlert = core.LootAlert;
 
 function LootAlert:UseLooterMessages(looterName)
-    local lootMethod, _, masterlooterRaidID = GetLootMethod();
+    local lootMethod, _, masterlooterRaidID = C_PartyInfo.GetLootMethod();
     if lootMethod ~= 'master' then
         return false;
     else
